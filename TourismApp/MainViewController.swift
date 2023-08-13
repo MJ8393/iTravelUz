@@ -18,7 +18,7 @@ class MainViewController: UIViewController {
     lazy var label: UILabel = {
         let label = UILabel()
         label.text = "Main"
-        label.textColor = UIColor.red
+        label.textColor = UIColor.black
         return label
     }()
     

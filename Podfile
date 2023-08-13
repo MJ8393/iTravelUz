@@ -7,5 +7,6 @@ target 'TourismApp' do
 
   # Pods for TourismApp
   pod 'SnapKit', '~> 4.0.0'
+  pod 'Alamofire'
 
 end

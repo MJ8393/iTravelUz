@@ -8,6 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		108FC85F2A878BDB00A97BE0 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108FC85E2A878BDB00A97BE0 /* MainViewController.swift */; };
+		108FC8632A878FF900A97BE0 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108FC8622A878FF900A97BE0 /* ChatViewController.swift */; };
+		108FC8672A879F8D00A97BE0 /* ChatRecieverCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108FC8662A879F8D00A97BE0 /* ChatRecieverCell.swift */; };
+		108FC86A2A87A09C00A97BE0 /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108FC8692A87A09C00A97BE0 /* UIColor+Ext.swift */; };
+		108FC86D2A87A0D500A97BE0 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108FC86C2A87A0D500A97BE0 /* UIColor.swift */; };
+		108FC86F2A87A1B700A97BE0 /* ChatSenderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108FC86E2A87A1B700A97BE0 /* ChatSenderCell.swift */; };
+		108FC8712A87AEDB00A97BE0 /* ChatBottomSendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108FC8702A87AEDB00A97BE0 /* ChatBottomSendView.swift */; };
+		108FC8732A87B20400A97BE0 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108FC8722A87B20400A97BE0 /* UIViewController+Ext.swift */; };
+		108FC8762A882D6000A97BE0 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108FC8752A882D6000A97BE0 /* API.swift */; };
+		108FC8792A882EF900A97BE0 /* ChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108FC8782A882EF900A97BE0 /* ChatModel.swift */; };
+		108FC87C2A883D5800A97BE0 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108FC87B2A883D5800A97BE0 /* File.swift */; };
 		10C9163B2A7821FE0054B55C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C9163A2A7821FE0054B55C /* AppDelegate.swift */; };
 		10C9163D2A7821FE0054B55C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C9163C2A7821FE0054B55C /* SceneDelegate.swift */; };
 		10C916422A7821FE0054B55C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10C916402A7821FE0054B55C /* Main.storyboard */; };
@@ -18,6 +28,17 @@
 
 /* Begin PBXFileReference section */
 		108FC85E2A878BDB00A97BE0 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		108FC8622A878FF900A97BE0 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		108FC8662A879F8D00A97BE0 /* ChatRecieverCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRecieverCell.swift; sourceTree = "<group>"; };
+		108FC8692A87A09C00A97BE0 /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
+		108FC86C2A87A0D500A97BE0 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		108FC86E2A87A1B700A97BE0 /* ChatSenderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatSenderCell.swift; sourceTree = "<group>"; };
+		108FC8702A87AEDB00A97BE0 /* ChatBottomSendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatBottomSendView.swift; sourceTree = "<group>"; };
+		108FC8722A87B20400A97BE0 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
+		108FC8752A882D6000A97BE0 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		108FC8782A882EF900A97BE0 /* ChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModel.swift; sourceTree = "<group>"; };
+		108FC87A2A883AF300A97BE0 /* TourismApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TourismApp.entitlements; sourceTree = "<group>"; };
+		108FC87B2A883D5800A97BE0 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		10C916372A7821FE0054B55C /* TourismApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TourismApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		10C9163A2A7821FE0054B55C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		10C9163C2A7821FE0054B55C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -45,7 +66,7 @@
 		108FC85D2A878BB200A97BE0 /* screens */ = {
 			isa = PBXGroup;
 			children = (
-				108FC85E2A878BDB00A97BE0 /* MainViewController.swift */,
+				108FC8612A878FBF00A97BE0 /* chat_page */,
 			);
 			path = screens;
 			sourceTree = "<group>";
@@ -57,6 +78,67 @@
 				10C916402A7821FE0054B55C /* Main.storyboard */,
 			);
 			path = others;
+			sourceTree = "<group>";
+		};
+		108FC8612A878FBF00A97BE0 /* chat_page */ = {
+			isa = PBXGroup;
+			children = (
+				108FC8652A87901600A97BE0 /* view */,
+				108FC8642A87901000A97BE0 /* cell */,
+				108FC8622A878FF900A97BE0 /* ChatViewController.swift */,
+			);
+			path = chat_page;
+			sourceTree = "<group>";
+		};
+		108FC8642A87901000A97BE0 /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				108FC8662A879F8D00A97BE0 /* ChatRecieverCell.swift */,
+				108FC86E2A87A1B700A97BE0 /* ChatSenderCell.swift */,
+			);
+			path = cell;
+			sourceTree = "<group>";
+		};
+		108FC8652A87901600A97BE0 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				108FC8702A87AEDB00A97BE0 /* ChatBottomSendView.swift */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		108FC8682A87A08900A97BE0 /* extensions */ = {
+			isa = PBXGroup;
+			children = (
+				108FC8692A87A09C00A97BE0 /* UIColor+Ext.swift */,
+				108FC8722A87B20400A97BE0 /* UIViewController+Ext.swift */,
+				108FC87B2A883D5800A97BE0 /* File.swift */,
+			);
+			path = extensions;
+			sourceTree = "<group>";
+		};
+		108FC86B2A87A0D100A97BE0 /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				108FC86C2A87A0D500A97BE0 /* UIColor.swift */,
+			);
+			path = utils;
+			sourceTree = "<group>";
+		};
+		108FC8742A882D4A00A97BE0 /* networking */ = {
+			isa = PBXGroup;
+			children = (
+				108FC8752A882D6000A97BE0 /* API.swift */,
+			);
+			path = networking;
+			sourceTree = "<group>";
+		};
+		108FC8772A882EE500A97BE0 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				108FC8782A882EF900A97BE0 /* ChatModel.swift */,
+			);
+			path = model;
 			sourceTree = "<group>";
 		};
 		10C9162E2A7821FE0054B55C = {
@@ -80,6 +162,12 @@
 		10C916392A7821FE0054B55C /* TourismApp */ = {
 			isa = PBXGroup;
 			children = (
+				108FC87A2A883AF300A97BE0 /* TourismApp.entitlements */,
+				108FC8772A882EE500A97BE0 /* model */,
+				108FC8742A882D4A00A97BE0 /* networking */,
+				108FC86B2A87A0D100A97BE0 /* utils */,
+				108FC8682A87A08900A97BE0 /* extensions */,
+				108FC85E2A878BDB00A97BE0 /* MainViewController.swift */,
 				108FC85D2A878BB200A97BE0 /* screens */,
 				10C9163A2A7821FE0054B55C /* AppDelegate.swift */,
 				10C9163C2A7821FE0054B55C /* SceneDelegate.swift */,
@@ -222,9 +310,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				108FC86F2A87A1B700A97BE0 /* ChatSenderCell.swift in Sources */,
 				108FC85F2A878BDB00A97BE0 /* MainViewController.swift in Sources */,
+				108FC8732A87B20400A97BE0 /* UIViewController+Ext.swift in Sources */,
+				108FC86A2A87A09C00A97BE0 /* UIColor+Ext.swift in Sources */,
+				108FC86D2A87A0D500A97BE0 /* UIColor.swift in Sources */,
 				10C9163B2A7821FE0054B55C /* AppDelegate.swift in Sources */,
+				108FC8712A87AEDB00A97BE0 /* ChatBottomSendView.swift in Sources */,
+				108FC8672A879F8D00A97BE0 /* ChatRecieverCell.swift in Sources */,
+				108FC8632A878FF900A97BE0 /* ChatViewController.swift in Sources */,
+				108FC8762A882D6000A97BE0 /* API.swift in Sources */,
+				108FC87C2A883D5800A97BE0 /* File.swift in Sources */,
 				10C9163D2A7821FE0054B55C /* SceneDelegate.swift in Sources */,
+				108FC8792A882EF900A97BE0 /* ChatModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -370,6 +468,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = TourismApp/TourismApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = FZU84SDGV7;
@@ -398,6 +497,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = TourismApp/TourismApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = FZU84SDGV7;
