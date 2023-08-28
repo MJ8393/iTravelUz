@@ -16,6 +16,9 @@ class ChatViewController: UIViewController {
         return view
     }()
     
+    var messages = [Message]()
+
+    
     lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.backgroundColor = UIColor.clear
@@ -38,10 +41,18 @@ class ChatViewController: UIViewController {
         setupNavigation()
         initViews()
         addObservers()
+        print("Get Chat History")
+        getChatHistory()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        print("Closing chat")
+        closeChat()
     }
     
     private func setupNavigation() {
         title = "AI Travel Assistent"
+        navigationController?.navigationBar.tintColor = .black
     }
     
     private func initViews() {
@@ -56,7 +67,7 @@ class ChatViewController: UIViewController {
         
         view.addSubview(bottomSendView)
         bottomSendView.callback = { [weak self] in
-            self?.insertCell()
+            self?.questionAsked()
         }
         
         bottomSendView.snp.makeConstraints { make in
@@ -69,7 +80,81 @@ class ChatViewController: UIViewController {
             make.top.left.right.equalToSuperview()
             make.bottom.equalTo(bottomSendView.snp.top)
         }
-      
+    }
+    
+    func openChat() {
+        showLoadingView()
+        API.shared.openChat { [weak self] result in
+            self?.dissmissLoadingView()
+            switch result {
+            case .success(let chatData):
+                UD.conversationID = chatData.conversationId
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    func askQuestion(_ question: String) {
+        API.shared.queryChat(question: question) { [weak self] result in
+            switch result {
+            case .success(let data):
+                self?.bottomSendView.hideLoadingView()
+                self?.insertCell(str: data.answer, type: .recieved)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    func closeChat() {
+        API.shared.closeChat { result in
+            switch result {
+            case .success(let data):
+                UD.conversationID = ""
+                print(data.message)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    func getChatHistory() {
+        showLoadingView()
+        API.shared.getChatHistory { [weak self] result in
+            self?.dissmissLoadingView()
+            switch result {
+            case .success(let data):
+                self?.setData(data.conversations)
+                self?.tableView.reloadData()
+                self?.openChat()
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    func setData(_ conversations: [Conversation]) {
+        for conversation in conversations {
+            var i = 0
+            for context in conversation.ChatHistory {
+                let context = context.Context
+                var type: MessageType = .sended
+                if i % 2 == 1 {
+                    type = .recieved
+                }
+                messages.append(Message(text: context, type: type))
+                i += 1
+            }
+        }
+    }
+    
+    func questionAsked() {
+        if let newMessage = bottomSendView.getText(), !newMessage.isEmpty {
+            askQuestion(newMessage)
+            insertCell(str: newMessage, type: .sended)
+        }
+        bottomSendView.setText("")
     }
     
     private func addObservers() {
@@ -108,16 +193,14 @@ class ChatViewController: UIViewController {
         tableView.scrollToRow(at: lastIndexPath, at: .bottom, animated: true)
     }
     
-    func insertCell() {
-        if let newMessage = bottomSendView.getText(), !newMessage.isEmpty {
-            messages.append(Message(text: newMessage, type: .sended))
-            let newIndexPath = IndexPath(row: messages.count - 1, section: 0)
-            tableView.beginUpdates()
-            tableView.insertRows(at: [newIndexPath], with: .bottom)
-            tableView.endUpdates()
-            tableView.scrollToRow(at: newIndexPath, at: .bottom, animated: true)
-            bottomSendView.setText("")
-        }
+    func insertCell(str: String, type: MessageType) {
+        messages.append(Message(text: str, type: type))
+        let newIndexPath = IndexPath(row: messages.count - 1, section: 0)
+        tableView.beginUpdates()
+        tableView.insertRows(at: [newIndexPath], with: .bottom)
+        tableView.endUpdates()
+        tableView.scrollToRow(at: newIndexPath, at: .bottom, animated: true)
+        tableView.reloadRows(at: [newIndexPath], with: .bottom)
     }
 }
 
@@ -151,10 +234,3 @@ struct Message {
     let text: String?
     let type: MessageType
 }
-
-var messages = [
-    Message(text: "Hello, Who is Amir Timur?", type: .sended),
-    Message(text: "Timur Taragay ibn Barlas was born on April 9, 1336 in the small village of Khoja-Ilgar. The name Temur is translated from Turkic as “iron”, which in many respects influenced his strong-willed character and further fate. He was a brave and courageous young man, his parents and mentors raised him as a real warrior. Despite the wound in the leg that he received in battle, he had remarkable strength and until the last days he personally participated in all campaigns and battles. Therefore, historians called him the Great Lame.", type: .recieved),
-    Message(text: "Hello, Who is Amir Timur?", type: .sended),
-    Message(text: "Timur Taragay ibn Barlas was born on April 9, 1336 in the small village of Khoja-Ilgar. The name Temur is translated from Turkic as “iron”, which in many respects influenced his strong-willed character and further fate. He was a brave and courageous young man, his parents and mentors raised him as a real warrior. Despite the wound in the leg that he received in battle, he had remarkable strength and until the last days he personally participated in all campaigns and battles. Therefore, historians called him the Great Lame.", type: .recieved),
-]

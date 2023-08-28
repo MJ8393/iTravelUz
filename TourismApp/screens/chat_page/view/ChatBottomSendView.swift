@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import MHLoadingButton
 
 class ChatBottomSendView: UIView {
     
@@ -26,6 +27,7 @@ class ChatBottomSendView: UIView {
     lazy var textField: UITextField = {
         let textField = UITextField()
         textField.backgroundColor = .clear
+        textField.autocorrectionType = .no
         let placeholderText = "Enter your text"
         let attributes: [NSAttributedString.Key: Any] = [
             .foregroundColor: UIColor.placeHolderColor,
@@ -43,35 +45,21 @@ class ChatBottomSendView: UIView {
         return textField
     }()
     
-    lazy var sendButton: UIButton = {
-        let button = UIButton()
-        button.layer.cornerRadius = 45.0 / 2
-        button.backgroundColor = UIColor.mainColor
-        button.setImage(UIImage(named: "send_icon")!, for: .normal)
-        button.addTarget(self, action: #selector(sendButtonTapped), for: .touchUpInside)
-        return button
-    }()
+    let sendButton = LoadingButton(icon: UIImage(named: "send_icon")!, buttonStyle: .fill)
 
     override init(frame: CGRect) {
         super.init(frame: frame)
         initViews()
-        openChat()
+        sendButton.indicator = LineScalePulseIndicator(color: .white)
+        sendButton.layer.cornerRadius = 45.0 / 2
+        sendButton.bgColor = .mainColor
+        sendButton.addTarget(self, action: #selector(sendButtonTapped), for: .touchUpInside)
+        sendButton.showLoader(userInteraction: false)
+        sendButton.hideLoader()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    func openChat() {
-        API.shared.openChat { [weak self] result in
-            switch result {
-            case .success(let chatData):
-                print("xxxx")
-                UD.conversationID = chatData.conversationId
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
-        }
     }
     
     private func initViews() {
@@ -107,7 +95,14 @@ class ChatBottomSendView: UIView {
     }
         
     @objc func sendButtonTapped() {
-        callback?()
+        if let question = textField.text, question.replacingOccurrences(of: " ", with: "") != "" {
+            sendButton.showLoader(userInteraction: false)
+            callback?()
+        }
+    }
+    
+    func hideLoadingView() {
+        sendButton.hideLoader()
     }
     
     func getText() -> String? {
