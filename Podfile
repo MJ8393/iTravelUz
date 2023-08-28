@@ -9,5 +9,6 @@ target 'TourismApp' do
   pod 'SnapKit', '~> 4.0.0'
   pod 'Alamofire'
   pod 'MHLoadingButton'
+  pod 'GSKStretchyHeaderView'
 
 end

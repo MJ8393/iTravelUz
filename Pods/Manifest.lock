@@ -1,24 +1,28 @@
 PODS:
   - Alamofire (5.7.1)
+  - GSKStretchyHeaderView (1.0.4)
   - MHLoadingButton (0.1.3)
   - SnapKit (4.0.1)
 
 DEPENDENCIES:
   - Alamofire
+  - GSKStretchyHeaderView
   - MHLoadingButton
   - SnapKit (~> 4.0.0)
 
 SPEC REPOS:
   trunk:
     - Alamofire
+    - GSKStretchyHeaderView
     - MHLoadingButton
     - SnapKit
 
 SPEC CHECKSUMS:
   Alamofire: 0123a34370cb170936ae79a8df46cc62b2edeb88
+  GSKStretchyHeaderView: 9743704c12bdc9cf7c7947bad3af8bf24f7061e3
   MHLoadingButton: 13bab47a3ce9d88df15638b7a5b73a8ac9f21077
   SnapKit: 0de968a9fec17499afa29683b05d0c775b6d1c29
 
-PODFILE CHECKSUM: 546335e1dcc75db88e557447144924392feba5d4
+PODFILE CHECKSUM: 29c00600cefaa641aae71ac25fa91b0f99487f4f
 
 COCOAPODS: 1.12.1
