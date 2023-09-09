@@ -16,11 +16,33 @@ class MainCollectionView: UICollectionViewCell {
     
     lazy var mainIcon: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "test_icon")!
+        imageView.image = UIImage(named: "Registan")!
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 15
         return imageView
+    }()
+    
+    lazy var titleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Registon Square"
+        label.textColor = UIColor.black
+        label.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
+        return label
+    }()
+    
+    lazy var starView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .yellow
+        return view
+    }()
+    
+    lazy var addressLabel = {
+        let label = UILabel()
+        label.text = "Samarkhand, Uzbekistan"
+        label.font = UIFont.systemFont(ofSize: 12, weight: .regular)
+        label.textColor = UIColor.black
+        return label
     }()
     
     override init(frame: CGRect) {
@@ -40,9 +62,22 @@ class MainCollectionView: UICollectionViewCell {
         
         subView.addSubview(mainIcon)
         mainIcon.snp.makeConstraints { make in
-            make.top.left.right.equalToSuperview()
+            make.top.equalToSuperview()
+            make.left.right.equalToSuperview()
             make.width.height.equalTo(200)
         }
         
+        subView.addSubview(titleLabel)
+        titleLabel.snp.makeConstraints { make in
+            make.left.equalToSuperview()
+            make.right.equalToSuperview()
+            make.top.equalTo(mainIcon.snp.bottom).offset(10)
+        }
+        
+        subView.addSubview(addressLabel)
+        addressLabel.snp.makeConstraints { make in
+            make.left.right.equalTo(titleLabel)
+            make.top.equalTo(titleLabel.snp.bottom).offset(5)
+        }
     }
 }

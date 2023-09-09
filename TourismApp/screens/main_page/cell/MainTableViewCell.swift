@@ -7,8 +7,14 @@
 
 import UIKit
 
+protocol MainControllerDelegate: AnyObject {
+    func didSelectItem()
+}
+
 class MainTableViewCell: UITableViewCell {
     
+    weak var delegate: MainControllerDelegate?
+
     lazy var subView: UIView = {
         let view = UIView()
         return view
@@ -16,8 +22,8 @@ class MainTableViewCell: UITableViewCell {
     
     lazy var collectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.itemSize = CGSize(width: 200, height: 240)
-        flowLayout.minimumLineSpacing = 10
+        flowLayout.itemSize = CGSize(width: 220, height: 260)
+        flowLayout.minimumLineSpacing = 15
         flowLayout.scrollDirection = .horizontal
         flowLayout.minimumInteritemSpacing = 0
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
@@ -26,6 +32,7 @@ class MainTableViewCell: UITableViewCell {
         collectionView.dataSource = self
         collectionView.backgroundColor = UIColor.clear
         collectionView.contentInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+        collectionView.showsHorizontalScrollIndicator = false
         return collectionView
     }()
 
@@ -62,5 +69,9 @@ extension MainTableViewCell: UICollectionViewDelegate, UICollectionViewDataSourc
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String.init(describing: MainCollectionView.self), for: indexPath) as? MainCollectionView else { return UICollectionViewCell() }
         cell.backgroundColor = .clear
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        delegate?.didSelectItem()
     }
 }

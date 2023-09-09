@@ -18,7 +18,7 @@ final class StretchyTableHeaderView: UIView {
     
     private var imageViewHeight = NSLayoutConstraint ()
     private var imageViewBottom = NSLayoutConstraint ()
-    private var containerView = UIView()
+    var containerView = UIView()
     private var containerViewHeight = NSLayoutConstraint ()
     
     // MARK: - Init
@@ -56,7 +56,7 @@ final class StretchyTableHeaderView: UIView {
         containerViewHeight.constant = scrollView.contentInset.top
         let offsetY = -(scrollView.contentOffset.y + scrollView.contentInset.top)
         containerView.clipsToBounds = offsetY <= 0
-        imageViewBottom.constant = offsetY >= 0 ? 0 : -offsetY / 2
+        imageViewBottom.constant = 0
         imageViewHeight.constant = max(offsetY + scrollView.contentInset.top, scrollView.contentInset.top)
     }
 }

@@ -26,7 +26,7 @@ class SectionHeaderView: UIView {
         let button = UIButton(type: .system)
         button.setTitle("View all", for: .normal)
         button.setTitleColor(.mainColor, for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .regular)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
         button.addTarget(self, action: #selector(moreButtonTapped), for: .touchUpInside)
         button.contentHorizontalAlignment = .right
         return button
