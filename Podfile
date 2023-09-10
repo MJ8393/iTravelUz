@@ -10,5 +10,7 @@ target 'TourismApp' do
   pod 'Alamofire'
   pod 'MHLoadingButton'
   pod 'GSKStretchyHeaderView'
+  pod ‘googleapis’, :path => ‘.’
+
 
 end

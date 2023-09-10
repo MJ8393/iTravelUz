@@ -9,7 +9,7 @@ import Foundation
 import Alamofire
 
 let BASE_URL = "http://127.0.0.1:8080"
-let testToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTUyMDQxNjMsInVzZXIiOiJtZWtocmlkZGluIn0.5DSkyok_fv8xug17j7ZXu15aXofluVi6p-zSVrThCxQ"
+let testToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTY3NzM3MTksInVzZXIiOiJYWFhYWFhYWFhYIn0.B1TlWah5WPCL7hGWrmtVdmDouMuam10LAE4Bnnl-Mgs"
 
 class API {
     static let shared = API()

@@ -10,6 +10,25 @@
 		10369B282AABB98C00558A5E /* ExploreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10369B272AABB98C00558A5E /* ExploreViewController.swift */; };
 		10369B2B2AAC922400558A5E /* ExploreContentTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10369B2A2AAC922400558A5E /* ExploreContentTableCell.swift */; };
 		10369B2E2AACA4B300558A5E /* speechService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10369B2D2AACA4B300558A5E /* speechService.swift */; };
+		10369B442AACF25800558A5E /* operations.proto in Sources */ = {isa = PBXBuildFile; fileRef = 10369B312AACF25700558A5E /* operations.proto */; };
+		10369B452AACF25800558A5E /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 10369B322AACF25700558A5E /* README.md */; };
+		10369B462AACF25800558A5E /* cloud_speech.proto in Sources */ = {isa = PBXBuildFile; fileRef = 10369B362AACF25700558A5E /* cloud_speech.proto */; };
+		10369B472AACF25800558A5E /* http.proto in Sources */ = {isa = PBXBuildFile; fileRef = 10369B382AACF25700558A5E /* http.proto */; };
+		10369B482AACF25800558A5E /* monitored_resource.proto in Sources */ = {isa = PBXBuildFile; fileRef = 10369B392AACF25700558A5E /* monitored_resource.proto */; };
+		10369B492AACF25800558A5E /* annotations.proto in Sources */ = {isa = PBXBuildFile; fileRef = 10369B3A2AACF25700558A5E /* annotations.proto */; };
+		10369B4A2AACF25800558A5E /* label.proto in Sources */ = {isa = PBXBuildFile; fileRef = 10369B3B2AACF25700558A5E /* label.proto */; };
+		10369B4B2AACF25800558A5E /* code.proto in Sources */ = {isa = PBXBuildFile; fileRef = 10369B3D2AACF25700558A5E /* code.proto */; };
+		10369B4C2AACF25800558A5E /* status.proto in Sources */ = {isa = PBXBuildFile; fileRef = 10369B3E2AACF25700558A5E /* status.proto */; };
+		10369B4E2AACF25800558A5E /* error_details.proto in Sources */ = {isa = PBXBuildFile; fileRef = 10369B402AACF25700558A5E /* error_details.proto */; };
+		10369B4F2AACF25800558A5E /* descriptor.proto in Sources */ = {isa = PBXBuildFile; fileRef = 10369B422AACF25700558A5E /* descriptor.proto */; };
+		10369B502AACF25800558A5E /* googleapis.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 10369B432AACF25800558A5E /* googleapis.podspec */; };
+		10369B522AACF2A800558A5E /* AudioController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10369B512AACF2A800558A5E /* AudioController.swift */; };
+		10369B542AACF2B200558A5E /* SpeechRecognitionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10369B532AACF2B100558A5E /* SpeechRecognitionService.swift */; };
+		10369B572AAD05BA00558A5E /* Bridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 10369B562AAD05BA00558A5E /* Bridge.m */; };
+		10369B592AAD0F7D00558A5E /* GoogleSpeechManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10369B582AAD0F7D00558A5E /* GoogleSpeechManager.swift */; };
+		10369B5E2AAD45EC00558A5E /* SiriWaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10369B5D2AAD45EC00558A5E /* SiriWaveView.swift */; };
+		10369B602AAD45FC00558A5E /* SiriWaveLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10369B5F2AAD45FC00558A5E /* SiriWaveLine.swift */; };
+		10369B622AAD461600558A5E /* waveUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10369B612AAD461600558A5E /* waveUtils.swift */; };
 		1051A2BC2A9BE8B50083D25D /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1051A2BB2A9BE8B50083D25D /* TestViewController.swift */; };
 		1051A2BF2A9BEE790083D25D /* LoaderView+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1051A2BE2A9BEE790083D25D /* LoaderView+ext.swift */; };
 		1051A2C12A9BEFB90083D25D /* LoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1051A2C02A9BEFB90083D25D /* LoaderView.swift */; };
@@ -44,6 +63,27 @@
 		10369B272AABB98C00558A5E /* ExploreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreViewController.swift; sourceTree = "<group>"; };
 		10369B2A2AAC922400558A5E /* ExploreContentTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreContentTableCell.swift; sourceTree = "<group>"; };
 		10369B2D2AACA4B300558A5E /* speechService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = speechService.swift; sourceTree = "<group>"; };
+		10369B312AACF25700558A5E /* operations.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.protobuf; path = operations.proto; sourceTree = "<group>"; };
+		10369B322AACF25700558A5E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		10369B362AACF25700558A5E /* cloud_speech.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.protobuf; path = cloud_speech.proto; sourceTree = "<group>"; };
+		10369B382AACF25700558A5E /* http.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.protobuf; path = http.proto; sourceTree = "<group>"; };
+		10369B392AACF25700558A5E /* monitored_resource.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.protobuf; path = monitored_resource.proto; sourceTree = "<group>"; };
+		10369B3A2AACF25700558A5E /* annotations.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.protobuf; path = annotations.proto; sourceTree = "<group>"; };
+		10369B3B2AACF25700558A5E /* label.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.protobuf; path = label.proto; sourceTree = "<group>"; };
+		10369B3D2AACF25700558A5E /* code.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.protobuf; path = code.proto; sourceTree = "<group>"; };
+		10369B3E2AACF25700558A5E /* status.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.protobuf; path = status.proto; sourceTree = "<group>"; };
+		10369B3F2AACF25700558A5E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		10369B402AACF25700558A5E /* error_details.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.protobuf; path = error_details.proto; sourceTree = "<group>"; };
+		10369B422AACF25700558A5E /* descriptor.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.protobuf; path = descriptor.proto; sourceTree = "<group>"; };
+		10369B432AACF25800558A5E /* googleapis.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = googleapis.podspec; sourceTree = "<group>"; };
+		10369B512AACF2A800558A5E /* AudioController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioController.swift; sourceTree = "<group>"; };
+		10369B532AACF2B100558A5E /* SpeechRecognitionService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeechRecognitionService.swift; sourceTree = "<group>"; };
+		10369B552AAD05B900558A5E /* TourismApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TourismApp-Bridging-Header.h"; sourceTree = "<group>"; };
+		10369B562AAD05BA00558A5E /* Bridge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Bridge.m; sourceTree = "<group>"; };
+		10369B582AAD0F7D00558A5E /* GoogleSpeechManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleSpeechManager.swift; sourceTree = "<group>"; };
+		10369B5D2AAD45EC00558A5E /* SiriWaveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiriWaveView.swift; sourceTree = "<group>"; };
+		10369B5F2AAD45FC00558A5E /* SiriWaveLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiriWaveLine.swift; sourceTree = "<group>"; };
+		10369B612AAD461600558A5E /* waveUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = waveUtils.swift; sourceTree = "<group>"; };
 		1051A2BB2A9BE8B50083D25D /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		1051A2BE2A9BEE790083D25D /* LoaderView+ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoaderView+ext.swift"; sourceTree = "<group>"; };
 		1051A2C02A9BEFB90083D25D /* LoaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderView.swift; sourceTree = "<group>"; };
@@ -111,8 +151,94 @@
 			isa = PBXGroup;
 			children = (
 				10369B2D2AACA4B300558A5E /* speechService.swift */,
+				10369B582AAD0F7D00558A5E /* GoogleSpeechManager.swift */,
 			);
 			path = google_speech;
+			sourceTree = "<group>";
+		};
+		10369B2F2AACF25700558A5E /* google */ = {
+			isa = PBXGroup;
+			children = (
+				10369B302AACF25700558A5E /* longrunning */,
+				10369B332AACF25700558A5E /* cloud */,
+				10369B372AACF25700558A5E /* api */,
+				10369B3C2AACF25700558A5E /* rpc */,
+				10369B412AACF25700558A5E /* protobuf */,
+			);
+			path = google;
+			sourceTree = "<group>";
+		};
+		10369B302AACF25700558A5E /* longrunning */ = {
+			isa = PBXGroup;
+			children = (
+				10369B312AACF25700558A5E /* operations.proto */,
+				10369B322AACF25700558A5E /* README.md */,
+			);
+			path = longrunning;
+			sourceTree = "<group>";
+		};
+		10369B332AACF25700558A5E /* cloud */ = {
+			isa = PBXGroup;
+			children = (
+				10369B342AACF25700558A5E /* speech */,
+			);
+			path = cloud;
+			sourceTree = "<group>";
+		};
+		10369B342AACF25700558A5E /* speech */ = {
+			isa = PBXGroup;
+			children = (
+				10369B352AACF25700558A5E /* v1 */,
+			);
+			path = speech;
+			sourceTree = "<group>";
+		};
+		10369B352AACF25700558A5E /* v1 */ = {
+			isa = PBXGroup;
+			children = (
+				10369B362AACF25700558A5E /* cloud_speech.proto */,
+			);
+			path = v1;
+			sourceTree = "<group>";
+		};
+		10369B372AACF25700558A5E /* api */ = {
+			isa = PBXGroup;
+			children = (
+				10369B382AACF25700558A5E /* http.proto */,
+				10369B392AACF25700558A5E /* monitored_resource.proto */,
+				10369B3A2AACF25700558A5E /* annotations.proto */,
+				10369B3B2AACF25700558A5E /* label.proto */,
+			);
+			path = api;
+			sourceTree = "<group>";
+		};
+		10369B3C2AACF25700558A5E /* rpc */ = {
+			isa = PBXGroup;
+			children = (
+				10369B3D2AACF25700558A5E /* code.proto */,
+				10369B3E2AACF25700558A5E /* status.proto */,
+				10369B3F2AACF25700558A5E /* README.md */,
+				10369B402AACF25700558A5E /* error_details.proto */,
+			);
+			path = rpc;
+			sourceTree = "<group>";
+		};
+		10369B412AACF25700558A5E /* protobuf */ = {
+			isa = PBXGroup;
+			children = (
+				10369B422AACF25700558A5E /* descriptor.proto */,
+			);
+			path = protobuf;
+			sourceTree = "<group>";
+		};
+		10369B5C2AAD45C100558A5E /* wave_view */ = {
+			isa = PBXGroup;
+			children = (
+				10369B5D2AAD45EC00558A5E /* SiriWaveView.swift */,
+				10369B5F2AAD45FC00558A5E /* SiriWaveLine.swift */,
+				10369B612AAD461600558A5E /* waveUtils.swift */,
+			);
+			path = wave_view;
 			sourceTree = "<group>";
 		};
 		1051A2BD2A9BEE500083D25D /* customizations */ = {
@@ -179,9 +305,9 @@
 		108FC85D2A878BB200A97BE0 /* screens */ = {
 			isa = PBXGroup;
 			children = (
+				1051A2BB2A9BE8B50083D25D /* TestViewController.swift */,
 				10369B262AABB95F00558A5E /* tab_bar_screen */,
 				10740E642AA517AE00C2D6C0 /* eplore_page */,
-				1051A2BB2A9BE8B50083D25D /* TestViewController.swift */,
 				10DEB84B2A92748E008CE34F /* main_page */,
 				108FC8612A878FBF00A97BE0 /* chat_page */,
 			);
@@ -200,6 +326,7 @@
 		108FC8612A878FBF00A97BE0 /* chat_page */ = {
 			isa = PBXGroup;
 			children = (
+				10369B5C2AAD45C100558A5E /* wave_view */,
 				108FC8652A87901600A97BE0 /* view */,
 				108FC8642A87901000A97BE0 /* cell */,
 				108FC8622A878FF900A97BE0 /* ChatViewController.swift */,
@@ -261,6 +388,8 @@
 		10C9162E2A7821FE0054B55C = {
 			isa = PBXGroup;
 			children = (
+				10369B432AACF25800558A5E /* googleapis.podspec */,
+				10369B2F2AACF25700558A5E /* google */,
 				10C916392A7821FE0054B55C /* TourismApp */,
 				10C916382A7821FE0054B55C /* Products */,
 				BA0BAD2840594147E2623CB0 /* Pods */,
@@ -279,6 +408,8 @@
 		10C916392A7821FE0054B55C /* TourismApp */ = {
 			isa = PBXGroup;
 			children = (
+				10369B532AACF2B100558A5E /* SpeechRecognitionService.swift */,
+				10369B512AACF2A800558A5E /* AudioController.swift */,
 				108FC87A2A883AF300A97BE0 /* TourismApp.entitlements */,
 				10369B2C2AACA49800558A5E /* google_speech */,
 				1051A2BD2A9BEE500083D25D /* customizations */,
@@ -292,6 +423,8 @@
 				10C916432A7821FE0054B55C /* Assets.xcassets */,
 				10C916482A7821FE0054B55C /* Info.plist */,
 				108FC8602A878DFA00A97BE0 /* others */,
+				10369B562AAD05BA00558A5E /* Bridge.m */,
+				10369B552AAD05B900558A5E /* TourismApp-Bridging-Header.h */,
 			);
 			path = TourismApp;
 			sourceTree = "<group>";
@@ -367,6 +500,7 @@
 				TargetAttributes = {
 					10C916362A7821FE0054B55C = {
 						CreatedOnToolsVersion = 14.3.1;
+						LastSwiftMigration = 1430;
 					};
 				};
 			};
@@ -395,6 +529,8 @@
 			files = (
 				10C916472A7821FE0054B55C /* LaunchScreen.storyboard in Resources */,
 				10C916442A7821FE0054B55C /* Assets.xcassets in Resources */,
+				10369B502AACF25800558A5E /* googleapis.podspec in Resources */,
+				10369B452AACF25800558A5E /* README.md in Resources */,
 				10C916422A7821FE0054B55C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -448,33 +584,50 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				10369B602AAD45FC00558A5E /* SiriWaveLine.swift in Sources */,
 				108FC86F2A87A1B700A97BE0 /* ChatSenderCell.swift in Sources */,
+				10369B492AACF25800558A5E /* annotations.proto in Sources */,
 				108FC8732A87B20400A97BE0 /* UIViewController+Ext.swift in Sources */,
 				10369B2B2AAC922400558A5E /* ExploreContentTableCell.swift in Sources */,
 				10369B2E2AACA4B300558A5E /* speechService.swift in Sources */,
+				10369B4C2AACF25800558A5E /* status.proto in Sources */,
 				108FC86A2A87A09C00A97BE0 /* UIColor+Ext.swift in Sources */,
 				108B56572A9D2EFE000DF967 /* MainCollectionView.swift in Sources */,
+				10369B5E2AAD45EC00558A5E /* SiriWaveView.swift in Sources */,
+				10369B442AACF25800558A5E /* operations.proto in Sources */,
 				108FC86D2A87A0D500A97BE0 /* UIColor.swift in Sources */,
+				10369B542AACF2B200558A5E /* SpeechRecognitionService.swift in Sources */,
+				10369B462AACF25800558A5E /* cloud_speech.proto in Sources */,
 				108B56542A9D25E3000DF967 /* SectionHeaderView.swift in Sources */,
+				10369B4E2AACF25800558A5E /* error_details.proto in Sources */,
 				10C9163B2A7821FE0054B55C /* AppDelegate.swift in Sources */,
 				108FC8712A87AEDB00A97BE0 /* ChatBottomSendView.swift in Sources */,
 				106B01442A9E694600D9290D /* AccountView.swift in Sources */,
 				10DEB84D2A927877008CE34F /* MainViewController.swift in Sources */,
 				108FC8672A879F8D00A97BE0 /* ChatRecieverCell.swift in Sources */,
 				108FC8632A878FF900A97BE0 /* ChatViewController.swift in Sources */,
+				10369B472AACF25800558A5E /* http.proto in Sources */,
 				10369B282AABB98C00558A5E /* ExploreViewController.swift in Sources */,
 				108FC8762A882D6000A97BE0 /* API.swift in Sources */,
 				1051A2BC2A9BE8B50083D25D /* TestViewController.swift in Sources */,
 				1051A2BF2A9BEE790083D25D /* LoaderView+ext.swift in Sources */,
 				10DEB8502A92791D008CE34F /* MainTableViewCell.swift in Sources */,
 				108FC87C2A883D5800A97BE0 /* File.swift in Sources */,
+				10369B4A2AACF25800558A5E /* label.proto in Sources */,
+				10369B4B2AACF25800558A5E /* code.proto in Sources */,
 				1051A2C12A9BEFB90083D25D /* LoaderView.swift in Sources */,
 				108B56522A9D1541000DF967 /* HeaderView.swift in Sources */,
 				10C9163D2A7821FE0054B55C /* SceneDelegate.swift in Sources */,
+				10369B572AAD05BA00558A5E /* Bridge.m in Sources */,
+				10369B482AACF25800558A5E /* monitored_resource.proto in Sources */,
 				10740E662AA517D500C2D6C0 /* MainTabBarController.swift in Sources */,
+				10369B592AAD0F7D00558A5E /* GoogleSpeechManager.swift in Sources */,
+				10369B622AAD461600558A5E /* waveUtils.swift in Sources */,
 				108FC8792A882EF900A97BE0 /* ChatModel.swift in Sources */,
 				108B564F2A9D125C000DF967 /* MainAPI.swift in Sources */,
 				1051A2C32A9BF3320083D25D /* SpinnerView.swift in Sources */,
+				10369B522AACF2A800558A5E /* AudioController.swift in Sources */,
+				10369B4F2AACF25800558A5E /* descriptor.proto in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -620,6 +773,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = TourismApp/TourismApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -638,6 +792,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.mekhriddin.TourismApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "TourismApp/TourismApp-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -649,6 +805,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = TourismApp/TourismApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -667,6 +824,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.mekhriddin.TourismApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "TourismApp/TourismApp-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

@@ -8,9 +8,26 @@
 import UIKit
 import MHLoadingButton
 
+protocol ChatControllerDelegate: AnyObject {
+    func microphoneTapped()
+    func sendButtonTapped()
+}
+
 class ChatBottomSendView: UIView {
     
     var callback: (() -> Void)?
+    
+    var isMicrophone: Bool = true {
+        didSet {
+            if isMicrophone {
+                sendButton.setImage(UIImage(systemName: "mic.fill"))
+            } else {
+                sendButton.setImage(UIImage(named: "send_icon")!)
+            }
+        }
+    }
+    
+    weak var delegate: ChatControllerDelegate?
     
     lazy var subView: UIView = {
         let view = UIView()
@@ -42,10 +59,11 @@ class ChatBottomSendView: UIView {
         let attributedText = NSAttributedString(string: "", attributes: attributes2)
         textField.attributedText = attributedText
         textField.tintColor = UIColor.mainColor
+        textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         return textField
     }()
     
-    let sendButton = LoadingButton(icon: UIImage(named: "send_icon")!, buttonStyle: .fill)
+    let sendButton = LoadingButton(icon: UIImage(systemName: "mic.fill"), buttonStyle: .fill)
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -55,6 +73,7 @@ class ChatBottomSendView: UIView {
         sendButton.bgColor = .mainColor
         sendButton.addTarget(self, action: #selector(sendButtonTapped), for: .touchUpInside)
         sendButton.showLoader(userInteraction: false)
+        sendButton.tintColor = .white
         sendButton.hideLoader()
     }
     
@@ -95,14 +114,17 @@ class ChatBottomSendView: UIView {
     }
         
     @objc func sendButtonTapped() {
-        if let question = textField.text, question.replacingOccurrences(of: " ", with: "") != "" {
+        if isMicrophone {
+            delegate?.microphoneTapped()
+        } else {
+            delegate?.sendButtonTapped()
             sendButton.showLoader(userInteraction: false)
-            callback?()
         }
     }
     
     func hideLoadingView() {
         sendButton.hideLoader()
+        sendButton.isUserInteractionEnabled = false
     }
     
     func getText() -> String? {
@@ -114,5 +136,13 @@ class ChatBottomSendView: UIView {
     
     func setText(_ text: String) {
         textField.text = text
+    }
+    
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        if textField.text?.replacingOccurrences(of: " ", with: "") == "" {
+            isMicrophone = true
+        } else {
+            isMicrophone = false
+        }
     }
 }

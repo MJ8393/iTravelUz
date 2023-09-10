@@ -6,11 +6,22 @@
 //
 
 import UIKit
+import googleapis
+import AVFoundation
+import AVKit
 
 
-class ChatViewController: UIViewController {
+class ChatViewController: UIViewController, ChatControllerDelegate {
     
     // MARK: Properties
+    var isRecording: Bool = false
+    
+    var audioData: NSMutableData!
+    
+    let SAMPLE_RATE = 16000
+    
+    private var recorder:AVAudioRecorder!
+    
     lazy var subView: UIView = {
         let view = UIView()
         return view
@@ -33,16 +44,25 @@ class ChatViewController: UIViewController {
     
     lazy var bottomSendView: ChatBottomSendView = {
         let view = ChatBottomSendView()
+        view.delegate = self
         return view
     }()
     
+    private var siriWave: SiriWaveView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigation()
         initViews()
         addObservers()
         print("Get Chat History")
+        AudioController.sharedInstance.delegate = self
         getChatHistory()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        checkMicPermission()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -66,20 +86,21 @@ class ChatViewController: UIViewController {
         }
         
         view.addSubview(bottomSendView)
-        bottomSendView.callback = { [weak self] in
-            self?.questionAsked()
-        }
         
         bottomSendView.snp.makeConstraints { make in
             make.bottom.equalToSuperview().offset(-getBottomMargin())
             make.left.right.equalToSuperview()
         }
-
+        
         subView.addSubview(tableView)
         tableView.snp.makeConstraints { make in
             make.top.left.right.equalToSuperview()
             make.bottom.equalTo(bottomSendView.snp.top)
         }
+        
+        siriWave = SiriWaveView(frame: CGRect(x: 20, y: UIScreen.main.bounds.height, width: UIScreen.main.bounds.width - 40, height: 120))
+        siriWave.backgroundColor = .clear
+        view.addSubview(siriWave)
     }
     
     func openChat() {
@@ -96,11 +117,19 @@ class ChatViewController: UIViewController {
     }
     
     func askQuestion(_ question: String) {
+        self.bottomSendView.sendButton.showLoader(userInteraction: false)
+        self.bottomSendView.sendButton.isUserInteractionEnabled = false
         API.shared.queryChat(question: question) { [weak self] result in
             switch result {
             case .success(let data):
                 self?.bottomSendView.hideLoadingView()
                 self?.insertCell(str: data.answer, type: .recieved)
+                
+                self?.bottomSendView.sendButton.isUserInteractionEnabled = false
+                SpeechService.shared.speak(text: data.answer) {
+                    print("xxxxx")
+                    self?.bottomSendView.sendButton.isUserInteractionEnabled = true
+                }
             case .failure(let error):
                 print(error.localizedDescription)
             }
@@ -149,12 +178,52 @@ class ChatViewController: UIViewController {
         }
     }
     
-    func questionAsked() {
-        if let newMessage = bottomSendView.getText(), !newMessage.isEmpty {
+    func microphoneTapped() {
+        isRecording = !isRecording
+        if isRecording {
+            startAudio()
+            showWaveView()
+            setupRecorder()
+            bottomSendView.textField.isUserInteractionEnabled = false
+        } else {
+            bottomSendView.textField.isUserInteractionEnabled = true
+            stopAudio()
+            closeWaveView()
+            stopRecording()
+        }
+    }
+    
+    func sendButtonTapped() {
+        if let newMessage = bottomSendView.getText(), !newMessage.replacingOccurrences(of: " ", with: "").isEmpty {
             askQuestion(newMessage)
             insertCell(str: newMessage, type: .sended)
+            bottomSendView.setText("")
         }
-        bottomSendView.setText("")
+    }
+    
+    
+    func showWaveView() {
+        if isRecording {
+            view.endEditing(true)
+        }
+        UIView.animate(withDuration: 0.3, animations: {
+            self.bottomSendView.snp.updateConstraints { make in
+                make.bottom.equalToSuperview().offset(-self.getBottomMargin() - 120.0)
+            }
+            self.siriWave.frame.origin.y = UIScreen.main.bounds.height - (110.0 + 3 * self.getBottomMargin())
+            self.view.layoutIfNeeded()
+        })
+        scrollToBottom()
+    }
+    
+    func closeWaveView() {
+        UIView.animate(withDuration: 0.3, animations: {
+            self.bottomSendView.snp.updateConstraints { make in
+                make.bottom.equalToSuperview().offset(-self.getBottomMargin())
+            }
+            self.siriWave.frame.origin.y = UIScreen.main.bounds.height
+            self.view.layoutIfNeeded()
+        })
     }
     
     private func addObservers() {
@@ -180,6 +249,7 @@ class ChatViewController: UIViewController {
     }
 
     @objc func keyboardWillHide(_ notification: Notification) {
+        if isRecording { return }
         UIView.animate(withDuration: 0.3) {
             self.bottomSendView.snp.updateConstraints { make in
                 make.bottom.equalToSuperview().offset(-self.getBottomMargin())
@@ -189,6 +259,11 @@ class ChatViewController: UIViewController {
     }
     
     @objc func keyboardDidShow(_ notification: Notification) {
+        scrollToBottom()
+    }
+    
+    func scrollToBottom() {
+        if tableView.numberOfRows(inSection: 0) - 1 <= 0 { return }
         let lastIndexPath = IndexPath(row: tableView.numberOfRows(inSection: 0) - 1, section: 0)
         tableView.scrollToRow(at: lastIndexPath, at: .bottom, animated: true)
     }
@@ -197,10 +272,10 @@ class ChatViewController: UIViewController {
         messages.append(Message(text: str, type: type))
         let newIndexPath = IndexPath(row: messages.count - 1, section: 0)
         tableView.beginUpdates()
-        tableView.insertRows(at: [newIndexPath], with: .bottom)
+        tableView.insertRows(at: [newIndexPath], with: .fade)
         tableView.endUpdates()
         tableView.scrollToRow(at: newIndexPath, at: .bottom, animated: true)
-        tableView.reloadRows(at: [newIndexPath], with: .bottom)
+//        tableView.reloadRows(at: [newIndexPath], with: .fade)
     }
 }
 
@@ -224,6 +299,85 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
+// MARK: Google Cloud Services
+// I am writing motherf*cking code :)
+extension ChatViewController: AudioControllerDelegate {
+
+    func processSampleData(_ data: Data) -> Void {
+      audioData.append(data)
+
+      // We recommend sending samples in 100ms chunks
+      let chunkSize : Int /* bytes/chunk */ = Int(0.1 /* seconds/chunk */
+        * Double(SAMPLE_RATE) /* samples/second */
+        * 2 /* bytes/sample */);
+
+      if (audioData.length > chunkSize) {
+        SpeechRecognitionService.sharedInstance.streamAudioData(audioData,
+                                                                completion:
+          { [weak self] (response, error) in
+              guard let strongSelf = self else {
+                  return
+              }
+              
+              if let error = error {
+//                  strongSelf.textView.text = error.localizedDescription
+              } else if let response = response {
+                  var finished = false
+                  var transcript: String = ""
+                  var confidence: Float = 0.0
+//                  print(response)
+                  for result in response.resultsArray! {
+                      if let result = result as? StreamingRecognitionResult {
+                          if let alternativesArray = result.alternativesArray as? [SpeechRecognitionAlternative] {
+                              for alternative in alternativesArray {
+                                  if confidence <= alternative.confidence {
+                                      transcript = alternative.transcript
+                                      confidence = alternative.confidence
+                                  }
+                              }
+                          }
+                          if result.isFinal {
+                              finished = true
+                          }
+                      }
+                  }
+
+                  print("XXXX", transcript)
+                  self?.bottomSendView.textField.text = transcript
+                  if finished {
+                      print("Finished")
+                      self?.isRecording = false
+                      self?.sendButtonTapped()
+                      self?.stopAudio()
+                      self?.bottomSendView.textField.isUserInteractionEnabled = true
+                      self?.closeWaveView()
+                      self?.stopRecording()
+                  }
+              }
+        })
+        self.audioData = NSMutableData()
+      }
+    }
+    
+    func startAudio() {
+        let audioSession = AVAudioSession.sharedInstance()
+        do {
+            try audioSession.setCategory(AVAudioSession.Category.record)
+        } catch {
+
+        }
+        audioData = NSMutableData()
+        _ = AudioController.sharedInstance.prepare(specifiedSampleRate: SAMPLE_RATE)
+        SpeechRecognitionService.sharedInstance.sampleRate = SAMPLE_RATE
+        _ = AudioController.sharedInstance.start()
+    }
+    
+    func stopAudio() {
+        _ = AudioController.sharedInstance.stop()
+        SpeechRecognitionService.sharedInstance.stopStreaming()
+    }
+}
+
 enum MessageType {
     case sended
     case recieved
@@ -233,4 +387,113 @@ enum MessageType {
 struct Message {
     let text: String?
     let type: MessageType
+}
+
+extension ChatViewController {
+    
+    @objc func setupRecorder() {
+        if(checkMicPermission()) {
+            startRecording()
+        } else {
+            print("permission denied")
+        }
+    }
+    
+    @objc func stopRecording() {
+        if self.recorder != nil && self.recorder.isRecording {
+            self.recorder.stop()
+            let audioSession = AVAudioSession.sharedInstance()
+            do {
+                try audioSession.setActive(false)
+            } catch {
+                print("Error deactivating audio session: \(error.localizedDescription)")
+            }
+            print("Recording stopped")
+        } else {
+            print("No active recording to stop")
+        }
+    }
+    
+    @objc func updateMeters() {
+        var normalizedValue: Float
+        recorder.updateMeters()
+        normalizedValue = normalizedPowerLevelFromDecibels(decibels: recorder.averagePower(forChannel: 0))
+        // Adjust the animation speed based on the microphone input amplitude.
+        let speed = CGFloat(0.05 + normalizedValue * 0.1) // Adjust the coefficients as needed
+        self.siriWave.update(CGFloat(normalizedValue) * 10)
+    }
+    
+    private func startRecording() {
+        let recordingSession = AVAudioSession.sharedInstance()
+        let recorderSettings = [AVSampleRateKey: NSNumber(value: 44100.0),
+                                AVFormatIDKey: NSNumber(value: kAudioFormatAppleLossless),
+                                AVNumberOfChannelsKey: NSNumber(value: 2),
+                                AVEncoderAudioQualityKey: NSNumber(value: Int8(AVAudioQuality.min.rawValue))]
+        
+        let url: URL = URL(fileURLWithPath:"/dev/null")
+        do {
+            
+            let displayLink: CADisplayLink = CADisplayLink(target: self,
+                                                           selector: #selector(ChatViewController.updateMeters))
+            displayLink.add(to: RunLoop.current,
+                            forMode: RunLoop.Mode.common)
+
+            try recordingSession.setCategory(.playAndRecord,
+                                             mode: .default)
+            try recordingSession.setActive(true)
+            self.recorder = try AVAudioRecorder.init(url: url,
+                                                     settings: recorderSettings as [String : Any])
+            self.recorder.prepareToRecord()
+            self.recorder.isMeteringEnabled = true;
+            self.recorder.record()
+            print("recorder enabled")
+        } catch {
+            self.showErrorPopUp(errorMessage: error.localizedDescription)
+            print("recorder init failed")
+        }
+    }
+    
+    private func checkMicPermission() -> Bool {
+        var permissionCheck: Bool = false
+        
+        switch AVAudioSession.sharedInstance().recordPermission {
+        case AVAudioSession.RecordPermission.granted:
+            permissionCheck = true
+        case AVAudioSession.RecordPermission.denied:
+            permissionCheck = false
+        case AVAudioSession.RecordPermission.undetermined:
+            AVAudioSession.sharedInstance().requestRecordPermission({ (granted) in
+                if granted {
+                    permissionCheck = true
+                } else {
+                    permissionCheck = false
+                }
+            })
+        default:
+            break
+        }
+        
+        return permissionCheck
+    }
+    
+    private func normalizedPowerLevelFromDecibels(decibels: Float) -> Float {
+        let minDecibels: Float = -60.0
+        if (decibels < minDecibels || decibels.isZero) {
+            return .zero
+        }
+        
+        let powDecibels = pow(10.0, 0.05 * decibels)
+        let powMinDecibels = pow(10.0, 0.05 * minDecibels)
+        return pow((powDecibels - powMinDecibels) * (1.0 / (1.0 - powMinDecibels)), 1.0 / 2.0)
+        
+    }
+    
+    private func showErrorPopUp(errorMessage: String) {
+        let alertController = UIAlertController(title: "Error",
+                                                message: errorMessage,
+                                                preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
+        alertController.addAction(okAction)
+        present(alertController, animated: true, completion: nil)
+    }
 }
