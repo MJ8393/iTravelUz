@@ -17,13 +17,13 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         navigationItem.hidesBackButton = true
         
         let nc1 = UINavigationController(rootViewController: MainViewController())
-        let nc2 = UINavigationController(rootViewController: MainViewController())
+        let nc2 = UINavigationController(rootViewController: SearchVC())
         let nc3 = UINavigationController(rootViewController: MainViewController())
         let nc4 = UINavigationController(rootViewController: MainViewController())
         let nc5 = MainViewController()
         
         nc1.tabBarItem.image = UIImage(systemName: "house")
-        nc2.tabBarItem.image = UIImage(systemName: "house")
+        nc2.tabBarItem.image = UIImage(systemName: "magnifyingglass")
         nc4.tabBarItem.image = UIImage(systemName: "house")
         nc5.tabBarItem.image = UIImage(systemName: "house")
         nc3.tabBarItem.tag = 2
