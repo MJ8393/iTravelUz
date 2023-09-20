@@ -9,6 +9,8 @@ import UIKit
 
 class SectionHeaderView: UIView {
     
+    weak var delegate: MainControllerDelegate?
+    
     lazy var subView: UIView = {
         let view = UIView()
         return view
@@ -65,7 +67,7 @@ class SectionHeaderView: UIView {
     }
     
     @objc func moreButtonTapped() {
-        print("More")
+        delegate?.viewAllTapped()
     }
     
     func setData(title: String) {

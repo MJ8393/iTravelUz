@@ -4,7 +4,7 @@
 target 'TourismApp' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
-
+  
   # Pods for TourismApp
   pod 'SnapKit', '~> 4.0.0'
   pod 'Alamofire'
@@ -14,6 +14,5 @@ target 'TourismApp' do
   pod 'GoogleMaps'
   pod 'GooglePlaces'
   pod 'FloatingPanel'
-
-
+  
 end

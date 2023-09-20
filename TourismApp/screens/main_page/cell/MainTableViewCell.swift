@@ -9,6 +9,7 @@ import UIKit
 
 protocol MainControllerDelegate: AnyObject {
     func didSelectItem()
+    func viewAllTapped()
 }
 
 class MainTableViewCell: UITableViewCell {

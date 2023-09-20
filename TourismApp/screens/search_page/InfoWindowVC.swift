@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FloatingPanel
 
 class InfoWindowVC: SearchVC {
 

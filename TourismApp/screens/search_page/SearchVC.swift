@@ -11,9 +11,8 @@ import GooglePlaces
 import CoreLocation
 import FloatingPanel
 
-class SearchVC: mapVC {
+class SearchVC: mapVC, FloatingPanelControllerDelegate {
     
-    let fpc = FloatingPanelController()
     let searchController = UISearchController(searchResultsController: ResultVC())
     var numberOfPlaces: Int = 0
     
@@ -69,8 +68,4 @@ extension SearchVC: UISearchResultsUpdating, ResultVCDelegate {
 }
 
 
-extension SearchVC: FloatingPanelControllerDelegate {
-    
-    
-    
-}
+

@@ -95,6 +95,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let sectionHeader = SectionHeaderView()
+        sectionHeader.delegate = self
         sectionHeader.setData(title: titles[section])
         return sectionHeader
     }
@@ -120,6 +121,12 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
 extension MainViewController: MainControllerDelegate {
     func didSelectItem() {
         let vc = ExploreViewController()
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    
+    func viewAllTapped() {
+        let vc = ViewAllVC()
         navigationController?.pushViewController(vc, animated: true)
     }
 }
