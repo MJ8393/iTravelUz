@@ -7,7 +7,6 @@
 
 import UIKit
 import CoreLocation
-import FloatingPanel
 
 protocol ResultVCDelegate: AnyObject, mapVC {
     func didTapPlace(with coordinate: CLLocationCoordinate2D)
@@ -17,7 +16,7 @@ class ResultVC: UIViewController {
     
     weak var delegate: ResultVCDelegate?
     
-    private var places: [Place] = []
+    private var places: [SearchDestinationModel] = []
     
     private let tableView: UITableView = {
         let tableView = UITableView()
@@ -39,10 +38,11 @@ class ResultVC: UIViewController {
         super.viewDidLayoutSubviews()
         tableView.frame = view.bounds
     }
+
     
-    func update(with places: [Place]) {
+    func updateData(destinations: [SearchDestinationModel]) {
         self.tableView.isHidden = false
-        self.places = places
+        self.places = destinations
         tableView.reloadData()
     }
 }
@@ -66,6 +66,7 @@ extension ResultVC: UITableViewDelegate, UITableViewDataSource{
         
         tableView.isHidden = true
         
+        // MARK: - Should be done
         let place = places[indexPath.row]
         self.delegate?.marker?.title = place.name
         GooglePlacesManager.shared.resolveLocation(for: place) { [weak self] result in

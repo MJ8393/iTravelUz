@@ -11,10 +11,11 @@ import GooglePlaces
 import CoreLocation
 import FloatingPanel
 
-class SearchVC: mapVC, FloatingPanelControllerDelegate {
+class SearchVC: mapVC {
     
     let searchController = UISearchController(searchResultsController: ResultVC())
     var numberOfPlaces: Int = 0
+    let panel = FloatingPanelController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +27,9 @@ class SearchVC: mapVC, FloatingPanelControllerDelegate {
         searchController.searchBar.placeholder = "Search for a place"
         
         setMapView()
+        
+        panel.set(contentViewController: InfoWindowVC())
+        panel.addPanel(toParent: self)
     }
     
     override func viewDidLayoutSubviews() {
@@ -41,16 +45,13 @@ extension SearchVC: UISearchResultsUpdating, ResultVCDelegate {
               let resultVC = searchController.searchResultsController as? ResultVC  else { return }
         resultVC.delegate = self
         
-        
-        GooglePlacesManager.shared.findPlaces(query: query) { result in
+        API.shared.searchDestination(name: query) { result in
             switch result {
-            case .success(let places):
-                self.numberOfPlaces = places.count
-                
+            case .success(let data):
+                self.numberOfPlaces = data.destinations.count
                 DispatchQueue.main.async {
-                    resultVC.update(with: places)
+                    resultVC.updateData(destinations: data.destinations)
                 }
-                
             case .failure(let error):
                 print(error.localizedDescription)
             }
@@ -66,6 +67,4 @@ extension SearchVC: UISearchResultsUpdating, ResultVCDelegate {
         marker?.position = coordinate
     }
 }
-
-
 

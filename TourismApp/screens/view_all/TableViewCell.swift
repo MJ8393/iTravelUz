@@ -66,7 +66,6 @@ class TableViewCell: UITableViewCell {
     
     
     func applyConstraints() {
-        let padding: CGFloat = 5
         let headerImageViewConstraints = [
             headerImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
             headerImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
@@ -81,14 +80,14 @@ class TableViewCell: UITableViewCell {
         ]
     
         let locationLabelConstraints = [
-            locationLabel.topAnchor.constraint(equalTo: cityLabel.bottomAnchor, constant: padding),
+            locationLabel.topAnchor.constraint(equalTo: cityLabel.bottomAnchor, constant: 5),
             locationLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             cityLabel.heightAnchor.constraint(equalToConstant: 20)
                 
         ]
         
         let locationButtonConstraints = [
-            locationButton.topAnchor.constraint(equalTo: locationLabel.bottomAnchor, constant: padding),
+            locationButton.topAnchor.constraint(equalTo: locationLabel.bottomAnchor, constant: 5),
             locationButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             locationButton.heightAnchor.constraint(equalToConstant: 25),
             locationButton.widthAnchor.constraint(equalToConstant: 25)

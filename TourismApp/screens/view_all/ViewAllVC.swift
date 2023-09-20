@@ -27,7 +27,6 @@ class ViewAllVC: UIViewController {
         viewAllTable.frame = view.bounds
         viewAllTable.delegate = self
         viewAllTable.dataSource = self
-        
     }
 }
 

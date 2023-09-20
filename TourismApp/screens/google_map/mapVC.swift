@@ -32,8 +32,6 @@ class mapVC: UIViewController {
         mapView = GMSMapView.map(withFrame: view.bounds, camera: camera)
         marker = GMSMarker()
         marker?.map = mapView
-        mapView?.isUserInteractionEnabled = true
-        marker?.isTappable = true
         mapView?.selectedMarker = marker
         view.addSubview(mapView!)
     }

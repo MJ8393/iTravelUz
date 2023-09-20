@@ -36,3 +36,21 @@ struct Conversation: Codable {
 struct Context: Codable {
     let Context: String
 }
+
+//MARK: - Search Model
+struct SearchModel: Codable {
+    let destinations: [SearchDestinationModel]
+}
+
+struct SearchDestinationModel: Codable {
+    let id: String
+    let name: String
+    let location: LocationModel
+    let city_name: String?
+    let description: String?
+}
+
+struct LocationModel: Codable {
+    let latitude: Double
+    let longitude: Double
+}

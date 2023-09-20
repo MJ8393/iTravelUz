@@ -9,7 +9,7 @@ import Foundation
 import Alamofire
 
 let BASE_URL = "http://127.0.0.1:8080"
-let testToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTY3NzM3MTksInVzZXIiOiJYWFhYWFhYWFhYIn0.B1TlWah5WPCL7hGWrmtVdmDouMuam10LAE4Bnnl-Mgs"
+let testToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTc4Mjk4MjYsInVzZXIiOiJhc2xvbiJ9.Z3izRBnwzCFOZkF2g7gUh8MKUrVzIrDDcB83ic2srcU"
 
 class API {
     static let shared = API()
@@ -18,6 +18,7 @@ class API {
     let API_URL_QUERY_CHAT = BASE_URL + "/chat/query_chat"
     let API_URL_CLOSE_CHAT = BASE_URL + "/chat/close_chat"
     let API_URL_GET_CHAT_HISTORY = BASE_URL + "/chat/get_chat"
+    let API_URL_SEARCH = BASE_URL + "/geo/city/d/search"
     
     let headers: HTTPHeaders = [
         "Cookie": "Authorization=\(testToken)",
