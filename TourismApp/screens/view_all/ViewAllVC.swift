@@ -13,7 +13,7 @@ protocol ViewAllVCDelegate: AnyObject {
 
 class ViewAllVC: UIViewController {
     
-    private let viewAllTable: UITableView = {
+    private let viewAllTableView: UITableView = {
         let table = UITableView(frame: .zero, style: .grouped)
         table.register(TableViewCell.self, forCellReuseIdentifier: TableViewCell.identifier)
         return table
@@ -23,10 +23,10 @@ class ViewAllVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Popular cities"
-        view.addSubview(viewAllTable)
-        viewAllTable.frame = view.bounds
-        viewAllTable.delegate = self
-        viewAllTable.dataSource = self
+        view.addSubview(viewAllTableView)
+        viewAllTableView.frame = view.bounds
+        viewAllTableView.delegate = self
+        viewAllTableView.dataSource = self
     }
 }
 

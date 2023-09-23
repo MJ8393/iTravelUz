@@ -14,5 +14,6 @@ target 'TourismApp' do
   pod 'GoogleMaps'
   pod 'GooglePlaces'
   pod 'FloatingPanel'
+  pod 'Kingfisher'
   
 end

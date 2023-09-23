@@ -17,8 +17,6 @@ class GooglePlacesManager {
     
     func resolveLocation(for place: SearchDestinationModel, completion: @escaping(Result<CLLocationCoordinate2D, Error>) -> Void) {
         let coordinate = CLLocationCoordinate2D(latitude: place.location.latitude, longitude: place.location.longitude)
-        
         completion(.success(coordinate))
-        
     }
 }

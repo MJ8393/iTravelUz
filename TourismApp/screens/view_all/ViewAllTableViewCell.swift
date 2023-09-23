@@ -44,10 +44,12 @@ class TableViewCell: UITableViewCell {
     
     private let locationButton: UIButton = {
         let locationButton = UIButton()
+        locationButton.translatesAutoresizingMaskIntoConstraints = false
         locationButton.tintColor = .black
+        locationButton.backgroundColor = .secondarySystemBackground
         let image = UIImage(systemName: "mappin.and.ellipse")
         locationButton.setImage(image)
-        locationButton.translatesAutoresizingMaskIntoConstraints = false
+        locationButton.layer.cornerRadius = 12.5
         locationButton.addTarget(self, action: #selector(locationButtonTapped), for: .touchUpInside)
         return locationButton
     }()

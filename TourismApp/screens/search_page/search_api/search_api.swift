@@ -13,7 +13,7 @@ extension API {
         let url = API_URL_SEARCH
         
         let parameters: Parameters = [
-            "name": name,
+            "name": name
          ]
         
         AF.request(url, method: .get, parameters: parameters, encoding: URLEncoding.default, headers: headers, interceptor: nil)
@@ -22,7 +22,6 @@ extension API {
                 case .success(let data):
                     do {
                         let decoder = JSONDecoder()
-                        decoder.keyDecodingStrategy = .convertFromSnakeCase
                         let data = try decoder.decode(SearchModel.self, from: data!)
                         complition(.success(data))
                     } catch {
