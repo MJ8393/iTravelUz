@@ -10,7 +10,7 @@ import Kingfisher
 
 extension UIImageView {
     func loadImageWithURL(url: String) {
-        let baseURL = "https://storage.cloud.google.com/saam/"
+        let baseURL = "https://storage.googleapis.com/saam"
         if let imageURL = URL(string: baseURL + url) {
             self.kf.setImage(with: imageURL)
         }

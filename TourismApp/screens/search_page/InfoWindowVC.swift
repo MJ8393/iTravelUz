@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import Kingfisher
 
 protocol InfoWindowVCDelegate: AnyObject {
     func didTapXButton()
@@ -189,7 +188,7 @@ extension InfoWindowVC: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageCollectionViewCell.identifier, for: indexPath) as? ImageCollectionViewCell else { return UICollectionViewCell() }
         if let url = images?[indexPath.row].url {
-            cell.imageView.loadImageWithURL(url: url)
+            cell.setImage(url: url)
         }
         cell.clipsToBounds = true
         cell.backgroundColor = .clear

@@ -12,17 +12,20 @@ class ImageCollectionViewCell: UICollectionViewCell {
 
     static let identifier = "ImageTableViewCell"
     
-    lazy var imageView: UIImageView = {
+    lazy var iconImage: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
-        imageView.layer.masksToBounds = true
+        imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 10
         return imageView
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        contentView.addSubview(imageView)
+        contentView.addSubview(iconImage)
+        iconImage.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
     }
     
     required init?(coder: NSCoder) {
@@ -35,5 +38,18 @@ class ImageCollectionViewCell: UICollectionViewCell {
     
     func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
         URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
+    }
+    
+    func setImage(url: String) {
+        if let url = URL(string: "https://storage.googleapis.com/saam/\(url)") {
+            iconImage.kf.setImage(with: url) { result in
+                switch result {
+                case .success(_):
+                    print("Image loaded successfully")
+                case .failure(let error):
+                    print("Error loading image: \(error.localizedDescription)")
+                }
+            }
+        }
     }
 }

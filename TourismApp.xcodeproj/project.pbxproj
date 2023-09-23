@@ -51,6 +51,7 @@
 		108FC87C2A883D5800A97BE0 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108FC87B2A883D5800A97BE0 /* File.swift */; };
 		10AD11E02ABF01A600F68BC9 /* Vibration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10AD11DF2ABF01A600F68BC9 /* Vibration.swift */; };
 		10AD11E22ABF020E00F68BC9 /* AddToFavorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10AD11E12ABF020E00F68BC9 /* AddToFavorite.swift */; };
+		10AD11E42ABF500300F68BC9 /* TestVoewControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10AD11E32ABF500300F68BC9 /* TestVoewControllerViewController.swift */; };
 		10C9163B2A7821FE0054B55C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C9163A2A7821FE0054B55C /* AppDelegate.swift */; };
 		10C9163D2A7821FE0054B55C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C9163C2A7821FE0054B55C /* SceneDelegate.swift */; };
 		10C916422A7821FE0054B55C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10C916402A7821FE0054B55C /* Main.storyboard */; };
@@ -123,6 +124,7 @@
 		108FC87B2A883D5800A97BE0 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		10AD11DF2ABF01A600F68BC9 /* Vibration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vibration.swift; sourceTree = "<group>"; };
 		10AD11E12ABF020E00F68BC9 /* AddToFavorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToFavorite.swift; sourceTree = "<group>"; };
+		10AD11E32ABF500300F68BC9 /* TestVoewControllerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestVoewControllerViewController.swift; sourceTree = "<group>"; };
 		10C916372A7821FE0054B55C /* TourismApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TourismApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		10C9163A2A7821FE0054B55C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		10C9163C2A7821FE0054B55C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -453,6 +455,7 @@
 		10C916392A7821FE0054B55C /* TourismApp */ = {
 			isa = PBXGroup;
 			children = (
+				10AD11E32ABF500300F68BC9 /* TestVoewControllerViewController.swift */,
 				108847E02ABEE5A800B835F8 /* Custom Views */,
 				10369B532AACF2B100558A5E /* SpeechRecognitionService.swift */,
 				10369B512AACF2A800558A5E /* AudioController.swift */,
@@ -725,6 +728,7 @@
 				10C9163B2A7821FE0054B55C /* AppDelegate.swift in Sources */,
 				108FC8712A87AEDB00A97BE0 /* ChatBottomSendView.swift in Sources */,
 				106B01442A9E694600D9290D /* AccountView.swift in Sources */,
+				10AD11E42ABF500300F68BC9 /* TestVoewControllerViewController.swift in Sources */,
 				10DEB84D2A927877008CE34F /* MainViewController.swift in Sources */,
 				108FC8672A879F8D00A97BE0 /* ChatRecieverCell.swift in Sources */,
 				108FC8632A878FF900A97BE0 /* ChatViewController.swift in Sources */,
