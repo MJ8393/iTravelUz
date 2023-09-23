@@ -13,23 +13,18 @@ import FloatingPanel
 
 class SearchVC: mapVC {
     
-    let searchController = UISearchController(searchResultsController: ResultVC())
-    var numberOfPlaces: Int = 0
+    let mainfpc = FloatingPanelController()
     let panel = FloatingPanelController()
+    var coordinate: CLLocationCoordinate2D?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.searchController = searchController
-        
-        searchController.searchBar.backgroundColor = .secondarySystemBackground
-        searchController.searchResultsUpdater = self
-        searchController.searchBar.placeholder = "Search for a place"
-        
         setMapView()
-        
-        panel.set(contentViewController: InfoWindowVC())
-        panel.addPanel(toParent: self)
+        let vc = ViewController()
+        vc.delegate = self
+        mainfpc.set(contentViewController: vc)
+        mainfpc.addPanel(toParent: self)
     }
     
     override func viewDidLayoutSubviews() {
@@ -38,33 +33,55 @@ class SearchVC: mapVC {
     }
 }
 
-extension SearchVC: UISearchResultsUpdating, ResultVCDelegate {
+extension SearchVC: ViewControllerDelegate {
     
-    func updateSearchResults(for searchController: UISearchController) {
-        guard let query = searchController.searchBar.text, !query.trimmingCharacters(in: .whitespaces).isEmpty,
-              let resultVC = searchController.searchResultsController as? ResultVC  else { return }
-        resultVC.delegate = self
+    func didTapPlace(with coordinate: CLLocationCoordinate2D, text: String?, name: String?, images: [GalleryModel]) {
+        mainfpc.dismiss(animated: true)
+        self.coordinate = coordinate
+        setMapView(latitude: coordinate.latitude, longitude: coordinate.longitude, zoom: 17)
+        marker?.iconView = setMarkerImageView(with: "marker_icon")
+        marker?.position = coordinate
+        let vc = InfoWindowVC()
+        vc.delegate = self
+        vc.cityLabelText = text
+        vc.cityName = name
+        vc.images = images
+        panel.set(contentViewController: vc)
+        panel.addPanel(toParent: self)
+    }
+}
+
+
+extension SearchVC: InfoWindowVCDelegate {
+    func didTapGoButton() {
+        let googleMapsURLString = "comgooglemaps://?q=\(String(describing: coordinate!.latitude)),\(String(describing: coordinate!.longitude))"
         
-        API.shared.searchDestination(name: query) { result in
-            switch result {
-            case .success(let data):
-                self.numberOfPlaces = data.destinations.count
-                DispatchQueue.main.async {
-                    resultVC.updateData(destinations: data.destinations)
-                }
-            case .failure(let error):
-                print(error.localizedDescription)
+        if let googleMapsURL = URL(string: googleMapsURLString), UIApplication.shared.canOpenURL(googleMapsURL) {
+            UIApplication.shared.open(googleMapsURL, options: [:], completionHandler: nil)
+        } else {
+            let googleMapsWebURLString = "https://maps.google.com/?q=\(coordinate!.latitude),\(coordinate!.longitude)"
+            if let googleMapsWebURL = URL(string: googleMapsWebURLString) {
+                UIApplication.shared.open(googleMapsWebURL, options: [:], completionHandler: nil)
             }
         }
     }
     
+    func didTapShareButton(_ sender: UIButton) {
+        guard let url = URL(string: "https://maps.google.com/maps?q=\(String(describing: coordinate!.latitude)),\(String(describing: coordinate!.longitude))") else { return }
+        let shareSheetVC = UIActivityViewController(activityItems: [url], applicationActivities: nil)
+        present(shareSheetVC, animated: true)
+        shareSheetVC.popoverPresentationController?.sourceView = sender
+        shareSheetVC.popoverPresentationController?.sourceRect = view.frame
+    }
     
-    func didTapPlace(with coordinate: CLLocationCoordinate2D) {
-        searchController.searchBar.resignFirstResponder()
-        searchController.dismiss(animated: true)
-        setMapView(latitude: coordinate.latitude, longitude: coordinate.longitude, zoom: 6.5)
-        marker?.iconView = setMarkerImageView(with: "marker_icon")
-        marker?.position = coordinate
+    
+    func didTapXButton() {
+        panel.dismiss(animated: true)
+        let vc = ViewController()
+        vc.delegate = self
+        mainfpc.set(contentViewController: vc)
+        mainfpc.addPanel(toParent: self)
+        mapView?.clear()
     }
 }
 

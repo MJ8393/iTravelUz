@@ -47,10 +47,15 @@ struct SearchDestinationModel: Codable {
     let name: String
     let location: LocationModel
     let city_name: String?
+    let gallery: [GalleryModel]?
     let description: String?
 }
 
 struct LocationModel: Codable {
     let latitude: Double
     let longitude: Double
+}
+
+struct GalleryModel: Codable {
+    let url: String?
 }

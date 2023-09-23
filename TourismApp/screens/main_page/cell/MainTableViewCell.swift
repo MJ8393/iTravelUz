@@ -58,7 +58,6 @@ class MainTableViewCell: UITableViewCell {
             make.edges.equalToSuperview()
         }
     }
-    
 }
 
 extension MainTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource {

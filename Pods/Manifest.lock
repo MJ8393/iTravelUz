@@ -651,6 +651,7 @@ PODS:
   - gRPC/Interface-Legacy (1.49.0):
     - gRPC-RxLibrary/Interface (= 1.49.0)
   - GSKStretchyHeaderView (1.0.4)
+  - Kingfisher (7.9.1)
   - MHLoadingButton (0.1.3)
   - Protobuf (3.24.3)
   - SnapKit (4.0.1)
@@ -662,6 +663,7 @@ DEPENDENCIES:
   - GoogleMaps
   - GooglePlaces
   - GSKStretchyHeaderView
+  - Kingfisher
   - MHLoadingButton
   - SnapKit (~> 4.0.0)
 
@@ -680,6 +682,7 @@ SPEC REPOS:
     - gRPC-ProtoRPC
     - gRPC-RxLibrary
     - GSKStretchyHeaderView
+    - Kingfisher
     - MHLoadingButton
     - Protobuf
     - SnapKit
@@ -703,10 +706,11 @@ SPEC CHECKSUMS:
   gRPC-ProtoRPC: 1c223e0f1732bb8d0b9e9e0ea60cc0fe995b8e2d
   gRPC-RxLibrary: 92327f150e11cf3b1c0f52e083944fd9f5cb5d1e
   GSKStretchyHeaderView: 9743704c12bdc9cf7c7947bad3af8bf24f7061e3
+  Kingfisher: 1d14e9f59cbe19389f591c929000332bf70efd32
   MHLoadingButton: 13bab47a3ce9d88df15638b7a5b73a8ac9f21077
   Protobuf: 970f7ee93a3a08e3cf64859b8efd95ee32b4f87f
   SnapKit: 0de968a9fec17499afa29683b05d0c775b6d1c29
 
-PODFILE CHECKSUM: 46e15fc26d4bef0bf7d71eb1c580410488442e79
+PODFILE CHECKSUM: cc38ae14e36c13ec5893e018128a3795e32f2afd
 
 COCOAPODS: 1.11.3
