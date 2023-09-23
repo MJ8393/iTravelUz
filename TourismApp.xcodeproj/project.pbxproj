@@ -11,7 +11,6 @@
 		10369B2B2AAC922400558A5E /* ExploreContentTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10369B2A2AAC922400558A5E /* ExploreContentTableCell.swift */; };
 		10369B2E2AACA4B300558A5E /* speechService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10369B2D2AACA4B300558A5E /* speechService.swift */; };
 		10369B442AACF25800558A5E /* operations.proto in Sources */ = {isa = PBXBuildFile; fileRef = 10369B312AACF25700558A5E /* operations.proto */; };
-		10369B452AACF25800558A5E /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 10369B322AACF25700558A5E /* README.md */; };
 		10369B462AACF25800558A5E /* cloud_speech.proto in Sources */ = {isa = PBXBuildFile; fileRef = 10369B362AACF25700558A5E /* cloud_speech.proto */; };
 		10369B472AACF25800558A5E /* http.proto in Sources */ = {isa = PBXBuildFile; fileRef = 10369B382AACF25700558A5E /* http.proto */; };
 		10369B482AACF25800558A5E /* monitored_resource.proto in Sources */ = {isa = PBXBuildFile; fileRef = 10369B392AACF25700558A5E /* monitored_resource.proto */; };
@@ -35,6 +34,7 @@
 		1051A2C32A9BF3320083D25D /* SpinnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1051A2C22A9BF3320083D25D /* SpinnerView.swift */; };
 		106B01442A9E694600D9290D /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106B01432A9E694600D9290D /* AccountView.swift */; };
 		10740E662AA517D500C2D6C0 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10740E652AA517D500C2D6C0 /* MainTabBarController.swift */; };
+		108847E22ABEE5F700B835F8 /* CustomNavButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108847E12ABEE5F700B835F8 /* CustomNavButton.swift */; };
 		108B564F2A9D125C000DF967 /* MainAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108B564E2A9D125C000DF967 /* MainAPI.swift */; };
 		108B56522A9D1541000DF967 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108B56512A9D1541000DF967 /* HeaderView.swift */; };
 		108B56542A9D25E3000DF967 /* SectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108B56532A9D25E3000DF967 /* SectionHeaderView.swift */; };
@@ -49,6 +49,8 @@
 		108FC8762A882D6000A97BE0 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108FC8752A882D6000A97BE0 /* API.swift */; };
 		108FC8792A882EF900A97BE0 /* ChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108FC8782A882EF900A97BE0 /* ChatModel.swift */; };
 		108FC87C2A883D5800A97BE0 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108FC87B2A883D5800A97BE0 /* File.swift */; };
+		10AD11E02ABF01A600F68BC9 /* Vibration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10AD11DF2ABF01A600F68BC9 /* Vibration.swift */; };
+		10AD11E22ABF020E00F68BC9 /* AddToFavorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10AD11E12ABF020E00F68BC9 /* AddToFavorite.swift */; };
 		10C9163B2A7821FE0054B55C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C9163A2A7821FE0054B55C /* AppDelegate.swift */; };
 		10C9163D2A7821FE0054B55C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C9163C2A7821FE0054B55C /* SceneDelegate.swift */; };
 		10C916422A7821FE0054B55C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10C916402A7821FE0054B55C /* Main.storyboard */; };
@@ -56,6 +58,8 @@
 		10C916472A7821FE0054B55C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10C916452A7821FE0054B55C /* LaunchScreen.storyboard */; };
 		10DEB84D2A927877008CE34F /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10DEB84C2A927877008CE34F /* MainViewController.swift */; };
 		10DEB8502A92791D008CE34F /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10DEB84F2A92791D008CE34F /* MainTableViewCell.swift */; };
+		10EB81442ABCBA1200D7126E /* Main_API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10EB81432ABCBA1200D7126E /* Main_API.swift */; };
+		10EB81462ABCBA7500D7126E /* MainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10EB81452ABCBA7500D7126E /* MainModel.swift */; };
 		8C56C12A2ABAD00B007D1781 /* InfoWindowVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C56C1262ABAD002007D1781 /* InfoWindowVC.swift */; };
 		8C56C12B2ABAD00B007D1781 /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C56C1272ABAD005007D1781 /* SearchVC.swift */; };
 		8C56C12C2ABAD00B007D1781 /* GooglePlacesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C56C1282ABAD008007D1781 /* GooglePlacesManager.swift */; };
@@ -99,6 +103,7 @@
 		1051A2C22A9BF3320083D25D /* SpinnerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerView.swift; sourceTree = "<group>"; };
 		106B01432A9E694600D9290D /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 		10740E652AA517D500C2D6C0 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		108847E12ABEE5F700B835F8 /* CustomNavButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavButton.swift; sourceTree = "<group>"; };
 		108B564E2A9D125C000DF967 /* MainAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainAPI.swift; sourceTree = "<group>"; };
 		108B56512A9D1541000DF967 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		108B56532A9D25E3000DF967 /* SectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeaderView.swift; sourceTree = "<group>"; };
@@ -114,6 +119,8 @@
 		108FC8782A882EF900A97BE0 /* ChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModel.swift; sourceTree = "<group>"; };
 		108FC87A2A883AF300A97BE0 /* TourismApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TourismApp.entitlements; sourceTree = "<group>"; };
 		108FC87B2A883D5800A97BE0 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
+		10AD11DF2ABF01A600F68BC9 /* Vibration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vibration.swift; sourceTree = "<group>"; };
+		10AD11E12ABF020E00F68BC9 /* AddToFavorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToFavorite.swift; sourceTree = "<group>"; };
 		10C916372A7821FE0054B55C /* TourismApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TourismApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		10C9163A2A7821FE0054B55C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		10C9163C2A7821FE0054B55C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -123,6 +130,8 @@
 		10C916482A7821FE0054B55C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		10DEB84C2A927877008CE34F /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		10DEB84F2A92791D008CE34F /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
+		10EB81432ABCBA1200D7126E /* Main_API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main_API.swift; sourceTree = "<group>"; };
+		10EB81452ABCBA7500D7126E /* MainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainModel.swift; sourceTree = "<group>"; };
 		1BE165FE71FEBCA7F0F275C3 /* Pods-TourismApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TourismApp.release.xcconfig"; path = "Target Support Files/Pods-TourismApp/Pods-TourismApp.release.xcconfig"; sourceTree = "<group>"; };
 		3F6A5C0325368C51BDC06D5A /* Pods_TourismApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TourismApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C56C1262ABAD002007D1781 /* InfoWindowVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoWindowVC.swift; sourceTree = "<group>"; };
@@ -294,6 +303,15 @@
 			path = eplore_page;
 			sourceTree = "<group>";
 		};
+		108847E02ABEE5A800B835F8 /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+				108847E12ABEE5F700B835F8 /* CustomNavButton.swift */,
+				10AD11DF2ABF01A600F68BC9 /* Vibration.swift */,
+			);
+			path = "Custom Views";
+			sourceTree = "<group>";
+		};
 		108B564D2A9D124F000DF967 /* network */ = {
 			isa = PBXGroup;
 			children = (
@@ -394,6 +412,7 @@
 			isa = PBXGroup;
 			children = (
 				108FC8752A882D6000A97BE0 /* API.swift */,
+				10AD11E12ABF020E00F68BC9 /* AddToFavorite.swift */,
 			);
 			path = networking;
 			sourceTree = "<group>";
@@ -429,6 +448,7 @@
 		10C916392A7821FE0054B55C /* TourismApp */ = {
 			isa = PBXGroup;
 			children = (
+				108847E02ABEE5A800B835F8 /* Custom Views */,
 				10369B532AACF2B100558A5E /* SpeechRecognitionService.swift */,
 				10369B512AACF2A800558A5E /* AudioController.swift */,
 				108FC87A2A883AF300A97BE0 /* TourismApp.entitlements */,
@@ -453,6 +473,7 @@
 		10DEB84B2A92748E008CE34F /* main_page */ = {
 			isa = PBXGroup;
 			children = (
+				10EB81422ABCBA0700D7126E /* API */,
 				108B56502A9D1537000DF967 /* view */,
 				108B564D2A9D124F000DF967 /* network */,
 				10DEB84E2A9278FF008CE34F /* cell */,
@@ -468,6 +489,15 @@
 				10DEB84F2A92791D008CE34F /* MainTableViewCell.swift */,
 			);
 			path = cell;
+			sourceTree = "<group>";
+		};
+		10EB81422ABCBA0700D7126E /* API */ = {
+			isa = PBXGroup;
+			children = (
+				10EB81432ABCBA1200D7126E /* Main_API.swift */,
+				10EB81452ABCBA7500D7126E /* MainModel.swift */,
+			);
+			path = API;
 			sourceTree = "<group>";
 		};
 		8C56C12E2ABAD017007D1781 /* search_page */ = {
@@ -590,7 +620,6 @@
 				10C916472A7821FE0054B55C /* LaunchScreen.storyboard in Resources */,
 				10C916442A7821FE0054B55C /* Assets.xcassets in Resources */,
 				10369B502AACF25800558A5E /* googleapis.podspec in Resources */,
-				10369B452AACF25800558A5E /* README.md in Resources */,
 				10C916422A7821FE0054B55C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -673,6 +702,7 @@
 				108FC86A2A87A09C00A97BE0 /* UIColor+Ext.swift in Sources */,
 				108B56572A9D2EFE000DF967 /* MainCollectionView.swift in Sources */,
 				8C93A19D2ABB7F9C009F96BA /* search_api.swift in Sources */,
+				108847E22ABEE5F700B835F8 /* CustomNavButton.swift in Sources */,
 				10369B5E2AAD45EC00558A5E /* SiriWaveView.swift in Sources */,
 				10369B442AACF25800558A5E /* operations.proto in Sources */,
 				108FC86D2A87A0D500A97BE0 /* UIColor.swift in Sources */,
@@ -680,6 +710,7 @@
 				10369B462AACF25800558A5E /* cloud_speech.proto in Sources */,
 				108B56542A9D25E3000DF967 /* SectionHeaderView.swift in Sources */,
 				10369B4E2AACF25800558A5E /* error_details.proto in Sources */,
+				10AD11E22ABF020E00F68BC9 /* AddToFavorite.swift in Sources */,
 				10C9163B2A7821FE0054B55C /* AppDelegate.swift in Sources */,
 				108FC8712A87AEDB00A97BE0 /* ChatBottomSendView.swift in Sources */,
 				106B01442A9E694600D9290D /* AccountView.swift in Sources */,
@@ -689,6 +720,8 @@
 				10369B472AACF25800558A5E /* http.proto in Sources */,
 				10369B282AABB98C00558A5E /* ExploreViewController.swift in Sources */,
 				108FC8762A882D6000A97BE0 /* API.swift in Sources */,
+				10EB81462ABCBA7500D7126E /* MainModel.swift in Sources */,
+				10AD11E02ABF01A600F68BC9 /* Vibration.swift in Sources */,
 				1051A2BC2A9BE8B50083D25D /* TestViewController.swift in Sources */,
 				1051A2BF2A9BEE790083D25D /* LoaderView+ext.swift in Sources */,
 				10DEB8502A92791D008CE34F /* MainTableViewCell.swift in Sources */,
@@ -708,6 +741,7 @@
 				10369B622AAD461600558A5E /* waveUtils.swift in Sources */,
 				108FC8792A882EF900A97BE0 /* ChatModel.swift in Sources */,
 				8C7A9C482ABAD115005F790D /* LocationVC.swift in Sources */,
+				10EB81442ABCBA1200D7126E /* Main_API.swift in Sources */,
 				108B564F2A9D125C000DF967 /* MainAPI.swift in Sources */,
 				8C7A9C462ABAD115005F790D /* TableViewCell.swift in Sources */,
 				8C56C12A2ABAD00B007D1781 /* InfoWindowVC.swift in Sources */,
@@ -863,10 +897,11 @@
 				CODE_SIGN_ENTITLEMENTS = TourismApp/TourismApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = L7D5MM5SF3;
+				DEVELOPMENT_TEAM = FZU84SDGV7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TourismApp/Info.plist;
-				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Please allow app to get your location";
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "We need your location";
 				INFOPLIST_KEY_NSLocationUsageDescription = "Please allow app to get your location";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Please allow app to get your location";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "We need access to your microphone to get your voice";
@@ -874,12 +909,13 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.uyguntursunov.TourismApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mekhriddin.TourismApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "TourismApp/TourismApp-Bridging-Header.h";
@@ -902,7 +938,8 @@
 				DEVELOPMENT_TEAM = FZU84SDGV7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TourismApp/Info.plist;
-				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Please allow app to get your location";
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "We need your location";
 				INFOPLIST_KEY_NSLocationUsageDescription = "Please allow app to get your location";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Please allow app to get your location";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "We need access to your microphone to get your voice";
@@ -910,6 +947,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

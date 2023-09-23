@@ -80,4 +80,9 @@ class MainCollectionView: UICollectionViewCell {
             make.top.equalTo(titleLabel.snp.bottom).offset(5)
         }
     }
+    
+    func setData(destination: MainDestination) {
+        titleLabel.text = destination.name
+        addressLabel.text = (destination.city_name ?? "") + ", Uzbekistan"
+    }
 }

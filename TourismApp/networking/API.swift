@@ -20,6 +20,9 @@ class API {
     let API_URL_GET_CHAT_HISTORY = BASE_URL + "/chat/get_chat"
     let API_URL_SEARCH = BASE_URL + "/geo/city/d/search"
     
+    // MAIN
+    let API_URL_GET_NEARBY = BASE_URL + "/geo/city/d/nearby_destinations"
+    
     let headers: HTTPHeaders = [
         "Cookie": "Authorization=\(testToken)",
         "Postman-Token": "<calculated when request is sent>"

@@ -8,13 +8,15 @@
 import UIKit
 
 protocol MainControllerDelegate: AnyObject {
-    func didSelectItem()
+    func didSelectItem(index: Int)
     func viewAllTapped()
 }
 
 class MainTableViewCell: UITableViewCell {
     
     weak var delegate: MainControllerDelegate?
+    
+    var destinations = [MainDestination]()
 
     lazy var subView: UIView = {
         let view = UIView()
@@ -59,20 +61,26 @@ class MainTableViewCell: UITableViewCell {
         }
     }
     
+    func setData(destinations: [MainDestination]) {
+        self.destinations = destinations
+        collectionView.reloadData()
+    }
+    
 }
 
 extension MainTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return destinations.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String.init(describing: MainCollectionView.self), for: indexPath) as? MainCollectionView else { return UICollectionViewCell() }
+        cell.setData(destination: destinations[indexPath.row])
         cell.backgroundColor = .clear
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        delegate?.didSelectItem()
+        delegate?.didSelectItem(index: indexPath.row)
     }
 }
