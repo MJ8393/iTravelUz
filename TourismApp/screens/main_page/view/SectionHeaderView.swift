@@ -11,6 +11,8 @@ class SectionHeaderView: UIView {
     
     weak var delegate: MainControllerDelegate?
     
+    var index: Int = 0
+    
     lazy var subView: UIView = {
         let view = UIView()
         return view
@@ -67,7 +69,7 @@ class SectionHeaderView: UIView {
     }
     
     @objc func moreButtonTapped() {
-        delegate?.viewAllTapped()
+        delegate?.viewAllTapped(index: index)
     }
     
     func setData(title: String) {

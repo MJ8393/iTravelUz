@@ -18,14 +18,14 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         
         let nc1 = UINavigationController(rootViewController: MainViewController())
         let nc2 = UINavigationController(rootViewController: SearchVC())
-        let nc3 = UINavigationController(rootViewController: MainViewController())
-        let nc4 = UINavigationController(rootViewController: MainViewController())
-        let nc5 = MainViewController()
+        let nc3 = UINavigationController(rootViewController: FavoritesViewController())
+        let nc4 = UINavigationController(rootViewController: FavoritesViewController())
+        let nc5 = FavoritesViewController()
         
         nc1.tabBarItem.image = UIImage(systemName: "house")
         nc2.tabBarItem.image = UIImage(systemName: "magnifyingglass")
-        nc4.tabBarItem.image = UIImage(systemName: "house")
-        nc5.tabBarItem.image = UIImage(systemName: "house")
+        nc4.tabBarItem.image = UIImage(systemName: "heart")
+        nc5.tabBarItem.image = UIImage(systemName: "person.crop.circle")
         nc3.tabBarItem.tag = 2
         
         tabBar.tintColor = UIColor.mainColor

@@ -22,6 +22,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let vc = MainTabBarController()
         window?.rootViewController = vc
         window?.makeKeyAndVisible()
+        API.shared.getFavorites { result in
+            switch result {
+            case .success(_):
+                print("success get favorite")
+            case .failure(_):
+                print("failure get favorites")
+            }
+        }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

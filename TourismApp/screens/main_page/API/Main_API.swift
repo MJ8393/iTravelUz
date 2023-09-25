@@ -34,4 +34,44 @@ extension API {
                 }
             }
     }
+    
+    func getMainCities(complition: @escaping (Result<CityModel, Error>) -> Void) {
+        let url = API_URL_GET_CITIES
+        
+        AF.request(url, method: .get, parameters: nil, encoding: URLEncoding.default, headers: headers, interceptor: nil)
+            .response{ resp in
+                switch resp.result {
+                case .success(let data):
+                    do {
+                        let decoder = JSONDecoder()
+                        let data = try decoder.decode(CityModel.self, from: data!)
+                        complition(.success(data))
+                    } catch {
+                        complition(.failure(error))
+                    }
+                case .failure(let error):
+                    complition(.failure(error))
+                }
+            }
+    }
+    
+    func getPopularCities(complition: @escaping (Result<PopularModel, Error>) -> Void) {
+        let url = API_URL_GET_POPULAR
+        
+        AF.request(url, method: .get, parameters: nil, encoding: URLEncoding.default, headers: headers, interceptor: nil)
+            .response{ resp in
+                switch resp.result {
+                case .success(let data):
+                    do {
+                        let decoder = JSONDecoder()
+                        let data = try decoder.decode(PopularModel.self, from: data!)
+                        complition(.success(data))
+                    } catch {
+                        complition(.failure(error))
+                    }
+                case .failure(let error):
+                    complition(.failure(error))
+                }
+            }
+    }
 }

@@ -10,11 +10,13 @@ import SnapKit
 import CoreLocation
 
 
-let titles = ["Nearest Places", "Cities", "Popular Destinations", "Cousines"]
+let titles = ["Nearest Places", "Cities", "Popular Destinations"]
 
 class MainViewController: UIViewController {
     
     var nearbyDestinations = [MainDestination]()
+    var cities = [City]()
+    var popularDestionations = [MainDestination]()
     
     let locationManager = CLLocationManager()
     var previousLocation: CLLocation?
@@ -45,11 +47,13 @@ class MainViewController: UIViewController {
         initViews()
         
         // API
+        getCities()
+        getPopular()
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         
         let header = StretchyTableHeaderView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 180))
-        header.imageView.image = UIImage(named: "Registan")!
+//        header.imageView.image = UIImage(named: "Registan")!
         tableView.tableHeaderView = header
         setupNavigation()
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
@@ -70,9 +74,39 @@ class MainViewController: UIViewController {
         }
     }
     
+    func getCities() {
+        API.shared.getMainCities { [weak self] result in
+            switch result {
+            case .success(let data):
+                if let cities = data.cities {
+                    self?.cities = cities
+                    self?.tableView.reloadData()
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    func getPopular() {
+        API.shared.getPopularCities { [weak self] result in
+            switch result {
+            case .success(let data):
+                self?.popularDestionations = data.our_results
+                self?.tableView.reloadData()
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.tintColor = .white
+    }
+    
     private func setupNavigation() {
         avatarView = AccountView()
-        navigationController?.navigationBar.tintColor = .white
         navigationItem.rightBarButtonItems = [
             UIBarButtonItem(image: UIImage(systemName: "magnifyingglass"), style: .done, target: self, action: nil),
         ]
@@ -95,7 +129,7 @@ class MainViewController: UIViewController {
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 4
+        return 3
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -106,6 +140,10 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: String.init(describing: MainTableViewCell.self), for: indexPath) as? MainTableViewCell else { return UITableViewCell() }
         if indexPath.section == 0 {
             cell.setData(destinations: nearbyDestinations)
+        } else if indexPath.section == 1 {
+            cell.setCity(cities: cities)
+        } else if indexPath.section == 2 {
+            cell.setData(destinations: popularDestionations)
         }
         cell.backgroundColor = .clear
         cell.selectionStyle = .none
@@ -123,6 +161,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let sectionHeader = SectionHeaderView()
+        sectionHeader.index = section
         sectionHeader.delegate = self
         sectionHeader.setData(title: titles[section])
         return sectionHeader
@@ -155,8 +194,21 @@ extension MainViewController: MainControllerDelegate {
     }
     
     
-    func viewAllTapped() {
+    func viewAllTapped(index: Int) {
         let vc = ViewAllVC()
+        if index == 0 {
+            vc.destionations = nearbyDestinations
+            vc.isCity = false
+            vc.title = "Nearest Places"
+        } else if index == 1 {
+            vc.cities = cities
+            vc.isCity = true
+            vc.title = "Cities"
+        } else if index == 2 {
+            vc.destionations = popularDestionations
+            vc.isCity = false
+            vc.title = "Popular Destionations"
+        }
         navigationController?.pushViewController(vc, animated: true)
     }
 }

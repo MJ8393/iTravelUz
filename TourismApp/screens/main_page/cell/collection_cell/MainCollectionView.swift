@@ -14,11 +14,11 @@ class MainCollectionView: UICollectionViewCell {
         return view
     }()
     
-    lazy var mainIcon: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "Registan")!
+    lazy var mainIcon: ActivityImageView = {
+        let imageView = ActivityImageView(frame: .zero)
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
+        imageView.backgroundColor = .systemGray6
         imageView.layer.cornerRadius = 15
         return imageView
     }()
@@ -84,5 +84,32 @@ class MainCollectionView: UICollectionViewCell {
     func setData(destination: MainDestination) {
         titleLabel.text = destination.name
         addressLabel.text = (destination.city_name ?? "") + ", Uzbekistan"
+        if let gallery = destination.gallery {
+            if gallery.count != 0 {
+                mainIcon.loadImage(url: gallery[0].url)
+            } else {
+                mainIcon.image = nil
+                mainIcon.stopLoading()
+            }
+        } else {
+            mainIcon.image = nil
+            mainIcon.stopLoading()
+        }
+    }
+    
+    func setCity(city: City) {
+        titleLabel.text = city.name
+        addressLabel.text = city.country
+        if let gallery = city.gallery {
+            if gallery.count != 0 {
+                mainIcon.loadImage(url: gallery[0].url)
+            } else {
+                mainIcon.image = nil
+                mainIcon.stopLoading()
+            }
+        } else {
+            mainIcon.image = nil
+            mainIcon.stopLoading()
+        }
     }
 }

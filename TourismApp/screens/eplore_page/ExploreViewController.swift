@@ -45,7 +45,7 @@ class ExploreViewController: UIViewController {
         setupNavigation()
         
         let header = StretchyTableHeaderView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 240))
-        header.imageView.image = UIImage(named: "Registan")!
+//        header.imageView.image = UIImage(named: "Registan")!
         tableView.tableHeaderView = header
     }
     
@@ -59,14 +59,53 @@ class ExploreViewController: UIViewController {
 
         // Like Button
         let likeButton = CustomBarButtonView(image: UIImage(systemName: "heart")!)
+        if let favorites = UD.favorites, let destionation = destionation {
+            if favorites.contains(destionation.id) {
+                isLiked = true
+                likeButton.customButton.setImage(UIImage(systemName: "heart.fill")!)
+                likeButton.customButton.tintColor = UIColor.init(hex: "ED2B2A")
+            } else {
+                isLiked = false
+                likeButton.customButton.setImage(UIImage(systemName: "heart")!)
+                likeButton.customButton.tintColor = UIColor.black
+            }
+        }
+        
+        
         likeButton.buttonAction = { [weak self] in
             if self!.isLiked {
                 likeButton.customButton.setImage(UIImage(systemName: "heart")!)
                 likeButton.customButton.tintColor = UIColor.black
+                if let id = self!.destionation?.id {
+                    API.shared.removeFromFavorites(destionationID: id) { result in
+                        switch result {
+                        case .success(_):
+                            self!.showAlert(title: "Success", message: "\(self!.destionation!.name) successfully removed from favorites")
+                        case .failure(let error):
+                            print(error)
+                            self!.showAlert(title: "Failure", message: "\(self!.destionation!.name) could be removed from favorites")
+                            likeButton.customButton.setImage(UIImage(systemName: "heart.fill")!)
+                            likeButton.customButton.tintColor = UIColor.init(hex: "ED2B2A")
+                        }
+                    }
+                }
             } else {
                 Vibration.light.vibrate()
                 likeButton.customButton.setImage(UIImage(systemName: "heart.fill")!)
-                likeButton.customButton.tintColor = UIColor.red
+                likeButton.customButton.tintColor = UIColor.init(hex: "ED2B2A")
+                if let id = self!.destionation?.id {
+                    API.shared.addToFavorites(destionationID: id) { result in
+                        switch result {
+                        case .success(_):
+                            self!.showAlert(title: "Success", message: "\(self!.destionation!.name) successfully added to favorites")
+                        case .failure(let error):
+                            print(error)
+                            self!.showAlert(title: "Failure", message: "\(self!.destionation!.name) could be added to favorites")
+                            likeButton.customButton.setImage(UIImage(systemName: "heart")!)
+                            likeButton.customButton.tintColor = UIColor.black
+                        }
+                    }
+                }
             }
             self!.isLiked = !self!.isLiked
         }

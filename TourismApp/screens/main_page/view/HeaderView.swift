@@ -11,6 +11,7 @@ final class StretchyTableHeaderView: UIView {
     
     public let imageView: UIImageView = {
         let imageView = UIImageView()
+        imageView.image = UIImage(named: "Registan")!
         imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFill
         return imageView

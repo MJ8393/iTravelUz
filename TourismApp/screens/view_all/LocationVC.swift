@@ -14,6 +14,6 @@ class LocationVC: mapVC {
         super.viewDidLoad()
 
         setMapView()
-        marker?.iconView = setMarkerImageView(with: "marker_icon")
+        marker?.iconView = setMarkerImageView(with: "Registan")
     }
 }

@@ -12,12 +12,13 @@ class TableViewCell: UITableViewCell {
     weak var delegate: ViewAllVCDelegate?
     static let identifier = "TableViewCell"
     
-    private let headerImageView: UIImageView = {
-        let imageView = UIImageView()
+    private let headerImageView: ActivityImageView = {
+        let imageView = ActivityImageView(frame: .zero)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 15
+        imageView.backgroundColor = .systemGray6
         imageView.image = UIImage(named: "Registan")
         return imageView
     }()
@@ -66,6 +67,39 @@ class TableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func setData(destination: MainDestination) {
+        headerImageView.image = nil
+        cityLabel.text = destination.name
+        locationLabel.text = "\(destination.city_name ?? ""), Uzbekistan"
+        if let gallery = destination.gallery {
+            if gallery.count != 0 {
+                headerImageView.loadImage(url: gallery[0].url)
+            } else {
+                headerImageView.image = nil
+                headerImageView.stopLoading()
+            }
+        } else {
+            headerImageView.image = nil
+            headerImageView.stopLoading()
+        }
+    }
+    
+    func setCity(city: City) {
+        headerImageView.image = nil
+        cityLabel.text = city.name
+        locationLabel.text = "\(city.country)"
+        if let gallery = city.gallery {
+            if gallery.count != 0 {
+                headerImageView.loadImage(url: gallery[0].url)
+            } else {
+                headerImageView.image = nil
+                headerImageView.stopLoading()
+            }
+        } else {
+            headerImageView.image = nil
+            headerImageView.stopLoading()
+        }
+    }
     
     func applyConstraints() {
         let headerImageViewConstraints = [

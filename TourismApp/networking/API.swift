@@ -22,6 +22,14 @@ class API {
     
     // MAIN
     let API_URL_GET_NEARBY = BASE_URL + "/geo/city/d/nearby_destinations"
+    let API_URL_GET_CITIES = BASE_URL + "/geo/all_cities"
+    let API_URL_GET_POPULAR = BASE_URL + "/geo/city/d/popular_destinations?city_name=Samarkand"
+    
+    
+    // Favorites
+    let API_URL_ADD_FAVORITES = BASE_URL + "/accounts/add_to_favorites/"
+    let API_URL_DELETE_FAVORITES = BASE_URL + "/accounts/remove_from_favorites/"
+    let API_URL_GET_FAVORITES = BASE_URL + "/accounts"
     
     let headers: HTTPHeaders = [
         "Cookie": "Authorization=\(testToken)",

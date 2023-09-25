@@ -9,7 +9,7 @@ import UIKit
 
 protocol MainControllerDelegate: AnyObject {
     func didSelectItem(index: Int)
-    func viewAllTapped()
+    func viewAllTapped(index: Int)
 }
 
 class MainTableViewCell: UITableViewCell {
@@ -17,6 +17,10 @@ class MainTableViewCell: UITableViewCell {
     weak var delegate: MainControllerDelegate?
     
     var destinations = [MainDestination]()
+    
+    var isCity: Bool = false
+    
+    var cities = [City]()
 
     lazy var subView: UIView = {
         let view = UIView()
@@ -64,18 +68,32 @@ class MainTableViewCell: UITableViewCell {
     func setData(destinations: [MainDestination]) {
         self.destinations = destinations
         collectionView.reloadData()
+        isCity = false
+    }
+    
+    func setCity(cities: [City]) {
+        self.cities = cities
+        collectionView.reloadData()
+        isCity = true
     }
     
 }
 
 extension MainTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if isCity {
+            return cities.count
+        }
         return destinations.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String.init(describing: MainCollectionView.self), for: indexPath) as? MainCollectionView else { return UICollectionViewCell() }
-        cell.setData(destination: destinations[indexPath.row])
+        if isCity {
+            cell.setCity(city: cities[indexPath.row])
+        } else {
+            cell.setData(destination: destinations[indexPath.row])
+        }
         cell.backgroundColor = .clear
         return cell
     }
