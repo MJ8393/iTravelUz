@@ -16,20 +16,50 @@ class SearchVC: mapVC {
     let mainfpc = FloatingPanelController()
     let panel = FloatingPanelController()
     var coordinate: CLLocationCoordinate2D?
+    let vc = ViewController()
+    let appearance = SurfaceAppearance()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setMapView()
-        let vc = ViewController()
         vc.delegate = self
         mainfpc.set(contentViewController: vc)
+        // Define shadows
+        let shadow = SurfaceAppearance.Shadow()
+        shadow.color = UIColor.black
+        shadow.offset = CGSize(width: 0, height: 16)
+        shadow.radius = 25
+        shadow.spread = 8
+        appearance.shadows = [shadow]
+        mainfpc.surfaceView.grabberHandle.backgroundColor = UIColor.chatGrayColor
+        // Define corner radius and background color
+        appearance.cornerRadius = 20
+        appearance.backgroundColor = .clear
+        // Set the new appearance
+        mainfpc.surfaceView.appearance = appearance
+        mainfpc.delegate = self
         mainfpc.addPanel(toParent: self)
+        mainfpc.track(scrollView: vc.tableView)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIWindow.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIWindow.keyboardWillHideNotification, object: nil)
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         mapView?.frame = view.bounds
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        UIView.animate(withDuration: 0.3) {
+            self.mainfpc.move(to: .half, animated: true)
+        }
+    }
+    
+    @objc func viewTapped() {
+        view.endEditing(true)
     }
 }
 
@@ -39,16 +69,35 @@ extension SearchVC: ViewControllerDelegate {
         mainfpc.dismiss(animated: true)
         self.coordinate = coordinate
         setMapView(latitude: coordinate.latitude, longitude: coordinate.longitude, zoom: 17)
-        marker?.iconView = setMarkerImageView(with: "marker_icon")
+        marker?.iconView = setMarkerImageView(with: images)
         marker?.position = coordinate
         let vc = InfoWindowVC()
         vc.delegate = self
         vc.cityLabelText = text
         vc.cityName = name
         vc.images = images
-        panel.set(contentViewController: vc)
-        panel.addPanel(toParent: self)
+        self.panel.surfaceView.appearance = self.appearance
+        self.panel.set(contentViewController: vc)
+        self.panel.addPanel(toParent: self)
+        self.panel.delegate = self
+        self.panel.track(scrollView: vc.collectionView)
     }
+    
+    func textFieldBeginEditing() {
+        UIView.animate(withDuration: 0.3) {
+            self.mainfpc.move(to: .full, animated: true)
+        }
+    }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(viewTapped))
+        view.addGestureRecognizer(gesture)
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        view.gestureRecognizers?.removeAll()
+    }
+    
 }
 
 
@@ -85,3 +134,29 @@ extension SearchVC: InfoWindowVCDelegate {
     }
 }
 
+extension SearchVC: FloatingPanelControllerDelegate {
+    func floatingPanelDidEndAttracting(_ fpc: FloatingPanelController) {
+        if fpc.state == .full {
+            self.vc.textField.becomeFirstResponder()
+        } else {
+            self.view.endEditing(true)
+        }
+    }
+    
+    func floatingPanelDidMove(_ vc: FloatingPanelController) {
+        if vc.isAttracting == false {
+            let loc = vc.surfaceLocation
+            let minY = vc.surfaceLocation(for: .full).y - 15.0
+            let maxY = vc.surfaceLocation(for: .tip).y + 15.0
+            vc.surfaceLocation = CGPoint(x: loc.x, y: min(max(loc.y, minY), maxY))
+        }
+    }
+    
+    func shouldProjectMomentum(_ fpc: FloatingPanelController, to proposedState: FloatingPanelPosition) -> Bool {
+        return true
+    }
+    
+    func allowsRubberBanding(for edge: UIRectEdge) -> Bool {
+        return true
+    }
+}

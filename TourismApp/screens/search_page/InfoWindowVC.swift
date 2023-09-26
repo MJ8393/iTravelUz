@@ -75,17 +75,24 @@ class InfoWindowVC: UIViewController {
     private let xButton: UIButton = {
         let xButton = UIButton()
         xButton.translatesAutoresizingMaskIntoConstraints = false
-        xButton.backgroundColor = .secondarySystemBackground
-        xButton.setTitleColor(.secondarySystemBackground, for: .normal)
-        let image = UIImage(systemName: "xmark")
-        xButton.setImage(image, for: .normal)
-        xButton.tintColor = .black
-        xButton.layer.cornerRadius = 14
+        xButton.backgroundColor = .clear
+        if let image = UIImage(systemName: "xmark.circle.fill") {
+               let imageSize = CGSize(width: 24, height: 24) // Adjust the width and height as needed
+               let resizedImage = image.withRenderingMode(.alwaysTemplate)
+               let renderer = UIGraphicsImageRenderer(size: imageSize)
+               let renderedImage = renderer.image { _ in
+                   resizedImage.draw(in: CGRect(origin: .zero, size: imageSize))
+               }
+               xButton.setImage(renderedImage, for: .normal)
+           }
+//        xButton.setImage(image, for: .normal)
+        xButton.tintColor = .chatGrayColor
+        xButton.imageView?.tintColor = .chatGrayColor
         xButton.addTarget(self, action: #selector(xButtonPressed), for: .touchUpInside)
         return xButton
     }()
     
-    private let collectionView: UICollectionView = {
+    let collectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.itemSize = CGSize(width: 220, height: 260)
         flowLayout.scrollDirection = .horizontal
@@ -99,6 +106,7 @@ class InfoWindowVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = UIColor.white
         
         let properties = [cityLabel, descriptionLabel, goButton, shareButton, saveButton, xButton, collectionView]
         for property in properties {
@@ -115,42 +123,42 @@ class InfoWindowVC: UIViewController {
         super.viewDidLayoutSubviews()
         
         cityLabel.sizeToFit()
-        cityLabel.frame = CGRect(x: 15, y: 15, width: cityLabel.frame.size.width, height: cityLabel.frame.size.height)
+        cityLabel.frame = CGRect(x: 20, y: 25, width: cityLabel.frame.size.width, height: cityLabel.frame.size.height)
     }
     
     func applyConstraints() {
         
         let descriptionLabelConstraints = [
-            descriptionLabel.topAnchor.constraint(equalTo: cityLabel.bottomAnchor, constant: 4),
-            descriptionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15)
+            descriptionLabel.topAnchor.constraint(equalTo: cityLabel.bottomAnchor, constant: 5),
+            descriptionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20)
         ]
         
         let goButtonConstrains = [
-            goButton.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 15),
-            goButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
+            goButton.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 20),
+            goButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             goButton.heightAnchor.constraint(equalToConstant: 42),
             goButton.widthAnchor.constraint(equalToConstant: 120)
         ]
         
         let shareButtonConstraints = [
-            shareButton.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 15),
+            shareButton.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 20),
             shareButton.leadingAnchor.constraint(equalTo: goButton.trailingAnchor, constant: 7),
             shareButton.heightAnchor.constraint(equalToConstant: 40),
             shareButton.widthAnchor.constraint(equalToConstant: 50)
         ]
         
         let saveButtonConstraints = [
-            saveButton.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 15),
+            saveButton.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 20),
             saveButton.leadingAnchor.constraint(equalTo: shareButton.trailingAnchor, constant: 7),
             saveButton.heightAnchor.constraint(equalToConstant: 40),
             saveButton.widthAnchor.constraint(equalToConstant: 50)
         ]
         
         let xButtonConstraints = [
-            xButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 13),
-            xButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -13),
-            xButton.heightAnchor.constraint(equalToConstant: 28),
-            xButton.widthAnchor.constraint(equalToConstant: 28)
+            xButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 20),
+            xButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            xButton.heightAnchor.constraint(equalToConstant: 30),
+            xButton.widthAnchor.constraint(equalToConstant: 30)
         ]
         
         let collectionViewConstraints = [

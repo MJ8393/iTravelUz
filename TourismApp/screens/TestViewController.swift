@@ -14,7 +14,6 @@ class TestViewController: UIViewController {
         view.backgroundColor = UIColor.white
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
 
-        
         let button = UIButton()
         button.setTitle("Chat")
         button.backgroundColor = UIColor.red
