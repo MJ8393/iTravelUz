@@ -44,7 +44,6 @@ class IndoorViewController: UIViewController {
       alert.addAction(alertAction(style))
     }
     alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-    alert.popoverPresentationController?.barButtonItem = sender
     present(alert, animated: true, completion: nil)
   }
 

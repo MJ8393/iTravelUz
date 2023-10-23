@@ -20,7 +20,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         let nc2 = UINavigationController(rootViewController: SearchVC())
         let nc3 = UINavigationController(rootViewController: FavoritesViewController())
         let nc4 = UINavigationController(rootViewController: FavoritesViewController())
-        let nc5 = FavoritesViewController()
+        let nc5 = UINavigationController(rootViewController: ProfileViewController())
         
         nc1.tabBarItem.image = UIImage(systemName: "house")
         nc2.tabBarItem.image = UIImage(systemName: "magnifyingglass")
@@ -45,7 +45,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         tabBar.shadowImage = UIImage()
         tabBar.backgroundImage = UIImage()
         tabBar.clipsToBounds = false
-        tabBar.frame.size.height = 100
+//        tabBar.frame.size.height = 90
     }
     
     private func addTabBarShadowBG() {
@@ -73,14 +73,14 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
     }
     
     func createPath() -> CGPath {
-           let height: CGFloat = 78
+           let height: CGFloat = 80
            let path = UIBezierPath()
            let centerWidth = tabBar.frame.width / 2
            path.move(to: CGPoint(x: 0, y: 0))
-           path.addLine(to: CGPoint(x: (centerWidth - height ), y: 0))
+           path.addLine(to: CGPoint(x: (centerWidth - height), y: 0))
            path.addCurve(to: CGPoint(x: centerWidth, y: height - 40),
                          controlPoint1: CGPoint(x: (centerWidth - 30), y: 0), controlPoint2: CGPoint(x: centerWidth - 35, y: height - 40))
-           path.addCurve(to: CGPoint(x: (centerWidth + height ), y: 0),
+           path.addCurve(to: CGPoint(x: (centerWidth + height), y: 0),
                          controlPoint1: CGPoint(x: centerWidth + 35, y: height - 40), controlPoint2: CGPoint(x: (centerWidth + 30), y: 0))
            path.addLine(to: CGPoint(x: tabBar.frame.width, y: 0))
            path.addLine(to: CGPoint(x: tabBar.frame.width, y: tabBar.frame.height))
@@ -98,7 +98,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
          menuButton.frame = menuButtonFrame
 
          //menuButton.backgroundColor = UIColor.init(hex: "6980FD")
-         menuButton.layer.cornerRadius = menuButtonFrame.height/2
+         menuButton.layer.cornerRadius = menuButtonFrame.height / 2
          view.addSubview(menuButton)
 
         let image = UIImage(systemName: "mic.fill")?.withTintColor(.white)
@@ -183,13 +183,3 @@ class ActualGradientButton: UIButton {
     }()
 }
 
- 
-class CustomTabBar: UITabBar {
-    private let customHeight: CGFloat = 64 // Set your desired tab bar height
-
-    override func sizeThatFits(_ size: CGSize) -> CGSize {
-        var sizeThatFits = super.sizeThatFits(size)
-        sizeThatFits.height = customHeight
-        return sizeThatFits
-    }
-}

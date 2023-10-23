@@ -15,7 +15,9 @@ import GoogleMaps
 import UIKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate {
+
+  var window: UIWindow?
 
   func application(
     _ application: UIApplication,
@@ -23,19 +25,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDelegate {
   ) -> Bool {
 
     GMSServices.provideAPIKey(SDKConstants.apiKey)
-    // Metal is the preferred renderer.
-    GMSServices.setMetalRendererEnabled(true)
+
+    let sampleListViewController = SampleListViewController()
+    let frame = UIScreen.main.bounds
+    let window = UIWindow(frame: frame)
+    let navigationController = UINavigationController(rootViewController: sampleListViewController)
+    window.rootViewController = navigationController
+    window.makeKeyAndVisible()
+    self.window = window
 
     return true
-  }
-
-  func application(
-    _ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession,
-    options: UIScene.ConnectionOptions
-  ) -> UISceneConfiguration {
-    let config = UISceneConfiguration(
-      name: "Default configuration", sessionRole: connectingSceneSession.role)
-    config.delegateClass = SceneDelegate.self
-    return config
   }
 }

@@ -584,10 +584,10 @@ PODS:
     - "!ProtoCompiler-gRPCPlugin (~> 1.0)"
     - googleapis/Messages
     - gRPC-ProtoRPC
-  - GoogleMaps (8.2.0):
-    - GoogleMaps/Maps (= 8.2.0)
-  - GoogleMaps/Base (8.2.0)
-  - GoogleMaps/Maps (8.2.0):
+  - GoogleMaps (5.1.0):
+    - GoogleMaps/Maps (= 5.1.0)
+  - GoogleMaps/Base (5.1.0)
+  - GoogleMaps/Maps (5.1.0):
     - GoogleMaps/Base
   - GooglePlaces (8.2.1)
   - gRPC-Core (1.49.0):
@@ -660,7 +660,7 @@ DEPENDENCIES:
   - Alamofire
   - FloatingPanel
   - googleapis (from `.`)
-  - GoogleMaps
+  - GoogleMaps (= 5.1.0)
   - GooglePlaces
   - GSKStretchyHeaderView
   - Kingfisher
@@ -699,7 +699,7 @@ SPEC CHECKSUMS:
   BoringSSL-GRPC: 3175b25143e648463a56daeaaa499c6cb86dad33
   FloatingPanel: c88e3fd981b7a74121ff48746fb14d496f5fd553
   googleapis: aca6318130c96d3f627ec57af5eb3c9f1dbcf963
-  GoogleMaps: 081f2547b60a1c0870a8f49166a653900e5055d5
+  GoogleMaps: 086ae1dab659eaa7339bdb30fc88e2f44e7c597c
   GooglePlaces: 867722fe422f5a4cc19c68bc28f9f74a24470e40
   gRPC: 64f36d689b2ecd99c4351f74e6f91347cdc65d9f
   gRPC-Core: 3a9fdb5967d42211e875826f3f6fc163ea02c2a1
@@ -711,6 +711,6 @@ SPEC CHECKSUMS:
   Protobuf: 970f7ee93a3a08e3cf64859b8efd95ee32b4f87f
   SnapKit: 0de968a9fec17499afa29683b05d0c775b6d1c29
 
-PODFILE CHECKSUM: cc38ae14e36c13ec5893e018128a3795e32f2afd
+PODFILE CHECKSUM: 654da4854cb373e7bed008fd354db07e458c60c7
 
-COCOAPODS: 1.11.3
+COCOAPODS: 1.12.1

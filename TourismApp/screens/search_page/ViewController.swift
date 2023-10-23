@@ -13,15 +13,15 @@ protocol ViewControllerDelegate: AnyObject, mapVC {
     func textFieldBeginEditing()
 }
 
-class ViewController: UIViewController, UITextFieldDelegate {
+class ViewController: BaseViewController, UITextFieldDelegate {
 
     weak var delegate: ViewControllerDelegate?
     private var places: [SearchDestinationModel] = []
     
     private let label: UILabel = {
         let label = UILabel()
-        label.text = "Search"
-        label.textColor = UIColor.black
+        label.text = "search".translate()
+        label.textColor = UIColor.label
         label.font = .systemFont(ofSize: 24, weight: .semibold)
         return label
     }()
@@ -29,13 +29,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
     let textField: UITextField = {
         let textField = UITextField()
         textField.layer.cornerRadius = 45 / 2
-        textField.backgroundColor = .chatGrayColor
+        textField.backgroundColor = .systemGray6
         textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: 45))
         textField.leftViewMode = .always
         textField.autocorrectionType = .no
-        let placeholderText = "Search for a place"
+        let placeholderText = "search_place".translate()
         let attributes: [NSAttributedString.Key: Any] = [
-            .foregroundColor: UIColor.placeHolderColor,
+            .foregroundColor: UIColor.systemGray,
             .font: UIFont.systemFont(ofSize: 17)
         ]
         let attributedPlaceholder = NSAttributedString(string: placeholderText, attributes: attributes)
@@ -60,7 +60,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
         view.addSubview(label)
         view.addSubview(textField)
         view.addSubview(tableView)
@@ -78,6 +78,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
         tableView.frame = CGRect(x: 0, y: tableY, width: view.frame.size.width, height: view.frame.size.height - tableY)
     }
     
+    override func languageDidChange() {
+        super.languageDidChange()
+        label.text = "search".translate()
+        textField.placeholder = "search_place".translate()
+        tableView.reloadData()
+    }
     
     @objc func textFieldDidChange(_ textField: UITextField) {
         if let text = textField.text, !text.isEmpty {

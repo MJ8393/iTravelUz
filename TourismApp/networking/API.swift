@@ -31,6 +31,9 @@ class API {
     let API_URL_DELETE_FAVORITES = BASE_URL + "/accounts/remove_from_favorites/"
     let API_URL_GET_FAVORITES = BASE_URL + "/accounts"
     
+    // Login
+    let API_URL_LOGIN = BASE_URL + "/accounts/login"
+    
     let headers: HTTPHeaders = [
         "Cookie": "Authorization=\(testToken)",
         "Postman-Token": "<calculated when request is sent>"

@@ -1,0 +1,25 @@
+/* 
+  Localizable.strings
+  TourismApp
+
+  Created by Mekhriddin Jumaev on 28/09/23.
+  
+*/
+
+// Profile
+"profile" = "Profil";
+"my_info" = "Mening ma'lumotlarim";
+"change_language" = "Tilni o'zgartirish";
+"design" = "Dizayn";
+"your_comments" = "Sevimli joylar";
+"share_feedback" = "Fikr almashish";
+"rate_app" =  "Ilovani baholash";
+"log_out" = "Chiqish";
+"near_destinations" = "Eng yaqin qadamjolar";
+"cities" = "Shaharlar";
+"popular_destinations" = "Mashhur maskanlar";
+"view_all" = "Barchasi";
+"favorites" = "Sevimlilar";
+"delete" = "O'chirish";
+"search" = "Qidirish";
+"search_place" = "Biror joyni qidiring ...";

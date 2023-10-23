@@ -10,7 +10,7 @@ import GoogleMaps
 import CoreLocation
 import GooglePlaces
 
-class mapVC: UIViewController {
+class mapVC: BaseViewController {
 
     let manager = CLLocationManager()
     var mapView: GMSMapView?
@@ -25,8 +25,11 @@ class mapVC: UIViewController {
         
         navigationController?.navigationBar.tintColor = .black
     }
-
     
+    override func languageDidChange() {
+        super.languageDidChange()
+    }
+
     func setMapView(latitude: Double = 41.377491, longitude: Double = 64.585262, zoom: Float = 5.0) {
         let camera = GMSCameraPosition.camera(withLatitude: latitude, longitude: longitude, zoom: zoom)
         mapView = GMSMapView.map(withFrame: view.bounds, camera: camera)

@@ -17,6 +17,15 @@ final class StretchyTableHeaderView: UIView {
         return imageView
     }()
     
+    lazy var title: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
+        label.textColor = .white
+        label.textAlignment = .right
+        label.text = "Samarkand"
+        return label
+    }()
+    
     private var imageViewHeight = NSLayoutConstraint ()
     private var imageViewBottom = NSLayoutConstraint ()
     var containerView = UIView()
@@ -28,7 +37,7 @@ final class StretchyTableHeaderView: UIView {
         createViews()
         setViewConstraints()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -36,6 +45,22 @@ final class StretchyTableHeaderView: UIView {
     private func createViews () {
         addSubview(containerView)
         containerView.addSubview(imageView)
+        containerView.addSubview(title)
+        title.snp.makeConstraints { make in
+            make.bottom.equalToSuperview().offset(-20)
+            make.left.equalToSuperview().offset(20)
+            make.right.equalToSuperview().offset(-20)
+        }
+    }
+    
+    func addSwipeActions() {
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe))
+        swipeLeft.direction = .left
+        self.addGestureRecognizer(swipeLeft)
+
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe))
+        swipeRight.direction = .right
+        self.addGestureRecognizer(swipeRight)
     }
     
     func setViewConstraints () {
@@ -60,7 +85,19 @@ final class StretchyTableHeaderView: UIView {
         imageViewBottom.constant = 0
         imageViewHeight.constant = max(offsetY + scrollView.contentInset.top, scrollView.contentInset.top)
     }
+    
+    public func updateImageWithAnimation(_ newImage: UIImage, _ title: String) {
+        UIView.transition(with: imageView, duration: 0.5, options: .transitionCrossDissolve, animations: {
+            self.imageView.image = newImage
+            self.title.text = title
+        }, completion: nil)
+    }
+    
+    @objc func handleSwipe(sender: UISwipeGestureRecognizer) {
+        if sender.direction == .left {
+            updateImageWithAnimation(UIImage(named: "Registan")!, "")
+        } else if sender.direction == .right {
+            updateImageWithAnimation(UIImage(named: "travel_avatar")!, "")
+        }
+    }
 }
-
-
-

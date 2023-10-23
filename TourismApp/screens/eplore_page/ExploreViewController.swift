@@ -46,6 +46,7 @@ class ExploreViewController: UIViewController {
         
         let header = StretchyTableHeaderView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 240))
 //        header.imageView.image = UIImage(named: "Registan")!
+        header.addSwipeActions()
         tableView.tableHeaderView = header
     }
     
@@ -133,15 +134,19 @@ extension ExploreViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: String.init(describing: ExploreContentTableCell.self), for: indexPath) as? ExploreContentTableCell else { return UITableViewCell() }
-        if let destination = destionation {
-            cell.setData(destination.name, destination.description ?? "No description")
-        }
+//        if let destination = destionation {
+//            cell.setData(destination.name, destination.description ?? "No description")
+//        }
+        cell.setData("", "")
         cell.backgroundColor = .clear
         cell.selectionStyle = .none
         return cell
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let defaultOffset = view.safeAreaInsets.top
+            let offset = scrollView.contentOffset.y + defaultOffset
+            navigationController?.navigationBar.transform = .init(translationX: 0, y: min(0, -offset))
         guard let header = tableView.tableHeaderView as? StretchyTableHeaderView else { return }
         header.scrollViewDidScroll(scrollView: tableView)
     }

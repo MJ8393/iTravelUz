@@ -31,4 +31,11 @@ extension UIViewController {
         
         present(alertController, animated: true, completion: nil)
     }
+    
+    func setNewRootViewController() {
+          let newRootViewController = MainTabBarController() // Replace with the desired view controller
+          if let sceneDelegate = SceneDelegate.shared {
+              sceneDelegate.window?.rootViewController = newRootViewController
+          }
+      }
 }

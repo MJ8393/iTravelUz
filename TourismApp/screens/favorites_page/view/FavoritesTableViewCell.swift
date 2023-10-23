@@ -28,7 +28,7 @@ class FavoritesTableViewCell: UITableViewCell {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
         label.text = "Labihovuz"
-        label.textColor = UIColor.black
+        label.textColor = UIColor.label
         return label
     }()
     
@@ -36,7 +36,7 @@ class FavoritesTableViewCell: UITableViewCell {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
         label.text = "Bukhara, Uzbekistan"
-        label.textColor = UIColor.black
+        label.textColor = UIColor.label
         return label
     }()
     

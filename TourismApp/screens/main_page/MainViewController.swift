@@ -10,9 +10,9 @@ import SnapKit
 import CoreLocation
 
 
-let titles = ["Nearest Places", "Cities", "Popular Destinations"]
+var titles = ["near_destinations".translate(), "cities".translate(), "popular_destinations".translate()]
 
-class MainViewController: UIViewController {
+class MainViewController: BaseViewController {
     
     var nearbyDestinations = [MainDestination]()
     var cities = [City]()
@@ -20,6 +20,11 @@ class MainViewController: UIViewController {
     
     let locationManager = CLLocationManager()
     var previousLocation: CLLocation?
+    
+    var index = 0
+    
+    var images = [ UIImage(named: "bukhara")!, UIImage(named: "juma")!, UIImage(named: "nodira_begim")!]
+    let titlesMain = ["Bukhara", "Juma Mosque, Khiva", "Nadir Divan-Begi Madrasa"]
 
     lazy var subView: UIView = {
         let view = UIView()
@@ -41,9 +46,12 @@ class MainViewController: UIViewController {
     var avatarView: AccountView!
     var avatarTopConstraint: NSLayoutConstraint!
     
+    let header = StretchyTableHeaderView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 180))
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.white
+        view.backgroundColor = UIColor.systemBackground
         initViews()
         
         // API
@@ -52,13 +60,32 @@ class MainViewController: UIViewController {
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         
-        let header = StretchyTableHeaderView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 180))
 //        header.imageView.image = UIImage(named: "Registan")!
+        self.header.updateImageWithAnimation(images[0], titlesMain[0])
         tableView.tableHeaderView = header
         setupNavigation()
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
             navigationController?.navigationBar.shadowImage = UIImage()
                navigationController?.navigationBar.isTranslucent = true
+        performTaskWithTimer()
+    }
+    
+    func performTaskWithTimer() {
+        let timer = Timer.scheduledTimer(withTimeInterval: 10.0, repeats: true) { timer in
+            self.index += 1
+            if self.index >= self.images.count {
+                self.index = 0
+            }
+            let image = self.images[self.index]
+            let title = self.titlesMain[self.index]
+            self.header.updateImageWithAnimation(image, title)
+        }
+    }
+    
+    override func languageDidChange() {
+        super.languageDidChange()
+        titles = ["near_destinations".translate(), "cities".translate(), "popular_destinations".translate()]
+        tableView.reloadData()
     }
     
     // MARK: Get Nearby
@@ -106,11 +133,15 @@ class MainViewController: UIViewController {
     }
     
     private func setupNavigation() {
-        avatarView = AccountView()
-        navigationItem.rightBarButtonItems = [
-            UIBarButtonItem(image: UIImage(systemName: "magnifyingglass"), style: .done, target: self, action: nil),
-        ]
-        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: avatarView)
+//        avatarView = AccountView()
+//        let gesture = UITapGestureRecognizer(target: self, action: #selector(avatarViewTapped))
+//        avatarView.addGestureRecognizer(gesture)
+//        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: avatarView)
+    }
+    
+    @objc func avatarViewTapped() {
+        let vc = PersonalViewController()
+        present(UINavigationController(rootViewController: vc), animated: true)
     }
 
     private func initViews() {
@@ -155,10 +186,6 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         return 260
     }
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return titles[section]
-    }
-    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let sectionHeader = SectionHeaderView()
         sectionHeader.index = section
@@ -176,9 +203,9 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let defaultOffset = view.safeAreaInsets.top
-        let offset = scrollView.contentOffset.y + defaultOffset
-        navigationController?.navigationBar.transform = .init(translationX: 0, y: min(0, -offset))
+//        let defaultOffset = view.safeAreaInsets.top
+//        let offset = scrollView.contentOffset.y + defaultOffset
+//        navigationController?.navigationBar.transform = .init(translationX: 0, y: min(0, -offset))
         
         guard let header = tableView.tableHeaderView as? StretchyTableHeaderView else { return }
         header.scrollViewDidScroll(scrollView: tableView)
@@ -188,26 +215,25 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
 extension MainViewController: MainControllerDelegate {
     func didSelectItem(index: Int) {
         let vc = ExploreViewController()
-        let destination = nearbyDestinations[index]
-        vc.destionation = destination
+//        let destination = nearbyDestinations[index]
+//        vc.destionation = destination
         navigationController?.pushViewController(vc, animated: true)
     }
-    
     
     func viewAllTapped(index: Int) {
         let vc = ViewAllVC()
         if index == 0 {
             vc.destionations = nearbyDestinations
             vc.isCity = false
-            vc.title = "Nearest Places"
+            vc.title = titles[0]
         } else if index == 1 {
             vc.cities = cities
             vc.isCity = true
-            vc.title = "Cities"
+            vc.title = titles[1]
         } else if index == 2 {
             vc.destionations = popularDestionations
             vc.isCity = false
-            vc.title = "Popular Destionations"
+            vc.title = titles[2]
         }
         navigationController?.pushViewController(vc, animated: true)
     }

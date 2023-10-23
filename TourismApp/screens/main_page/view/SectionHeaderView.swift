@@ -22,13 +22,13 @@ class SectionHeaderView: UIView {
         let label = UILabel()
         label.text = "Title"
         label.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
-        label.textColor = .black
+        label.textColor = .label
         return label
     }()
     
     lazy var moreButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("View all", for: .normal)
+        button.setTitle("view_all".translate(), for: .normal)
         button.setTitleColor(.mainColor, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
         button.addTarget(self, action: #selector(moreButtonTapped), for: .touchUpInside)

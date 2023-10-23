@@ -50,14 +50,13 @@ extension StructuredGeocoderViewController: GMSMapViewDelegate {
       marker.appearAnimation = .pop
       marker.map = mapView
       marker.title = address.thoroughfare
-      mapView.selectedMarker = marker
 
       var snippet = ""
       if let subLocality = address.subLocality {
         snippet.append("subLocality: \(subLocality)\n")
       }
       if let locality = address.locality {
-        snippet.append("locality: \(locality)\n")
+        snippet.append("subLocality: \(locality)\n")
       }
       if let administrativeArea = address.administrativeArea {
         snippet.append("administrativeArea: \(administrativeArea)\n")

@@ -10,16 +10,21 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    
+    static var shared: SceneDelegate?
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
+        SceneDelegate.shared = self
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
-        window?.overrideUserInterfaceStyle = .light
+        setMode()
+        // MARK: Login
+        // let vc = LoginViewController()
         let vc = MainTabBarController()
         window?.rootViewController = vc
         window?.makeKeyAndVisible()
@@ -32,6 +37,37 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             }
         }
     }
+    
+    func setMode() {
+        let viewMode = UD.mode ?? ""
+        if !viewMode.isEmpty {
+            if viewMode == "light" {
+                window?.overrideUserInterfaceStyle = .light
+            } else if viewMode == "dark" {
+                window?.overrideUserInterfaceStyle = .dark
+            } else if viewMode == "system" {
+                let mode = Functions.getDeviceMode()
+                if mode == .light {
+                    window?.overrideUserInterfaceStyle = .light
+                } else if mode == .dark {
+                    window?.overrideUserInterfaceStyle = .light
+                } else {
+                    window?.overrideUserInterfaceStyle = .light
+                }
+            }
+        } else {
+            let mode = Functions.getDeviceMode()
+            if mode == .light {
+                window?.overrideUserInterfaceStyle = .light
+            } else if mode == .dark {
+                window?.overrideUserInterfaceStyle = .light
+            } else {
+                window?.overrideUserInterfaceStyle = .light
+            }
+            UD.mode = "system"
+        }
+    }
+
 
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
@@ -61,6 +97,23 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
     }
 
+
+    func windowScene(_ windowScene: UIWindowScene, didUpdate previousCoordinateSpace: UICoordinateSpace, interfaceOrientation previousInterfaceOrientation: UIInterfaceOrientation, traitCollection previousTraitCollection: UITraitCollection) {
+        if #available(iOS 13.0, *) {
+            if previousTraitCollection.hasDifferentColorAppearance(comparedTo: windowScene.traitCollection) {
+                let mode = UD.mode
+                if mode == "system" {
+                    if windowScene.traitCollection.userInterfaceStyle == .dark {
+                        window?.overrideUserInterfaceStyle = .dark
+                    } else {
+                        window?.overrideUserInterfaceStyle = .light
+                    }
+                }
+            }
+        } else {
+            // Fallback on earlier versions
+        }
+    }
 
 }
 

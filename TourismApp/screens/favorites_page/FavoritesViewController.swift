@@ -7,7 +7,7 @@
 
 import UIKit
 
-class FavoritesViewController: UIViewController {
+class FavoritesViewController: BaseViewController {
     
     var favoriteDestinations = [MainDestination]()
     
@@ -35,6 +35,12 @@ class FavoritesViewController: UIViewController {
         initViews()
     }
     
+    override func languageDidChange() {
+        super.languageDidChange()
+        title = "favorites".translate()
+        tableView.reloadData()
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         getFavorites()
     }
@@ -55,10 +61,10 @@ class FavoritesViewController: UIViewController {
     }
     
     private func initViews() {
-        view.backgroundColor = UIColor.white
+        view.backgroundColor = UIColor.systemBackground
         navigationController?.navigationBar.prefersLargeTitles = true
         
-        title = "Favorites"
+        title = "favorites".translate()
         view.addSubview(subView)
         subView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
@@ -88,7 +94,7 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource, U
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let customAction = UIContextualAction(style: .normal, title: "Delete") { [weak self] (_, _, completionHandler) in
+        let customAction = UIContextualAction(style: .normal, title: "delete".translate()) { [weak self] (_, _, completionHandler) in
             guard let self = self else { return }
             API.shared.removeFromFavorites(destionationID: self.favoriteDestinations[indexPath.row].id) { result in
                 switch result {

@@ -19,7 +19,7 @@
 
 @implementation CameraViewController {
   GMSMapView *_mapView;
-  NSTimer *_timer;
+  NSTimer *timer;
 }
 
 - (void)viewDidLoad {
@@ -38,7 +38,7 @@
   self.view = _mapView;
 }
 
-- (void)moveCamera:(NSTimer *)timer {
+- (void)moveCamera {
   GMSCameraPosition *camera = _mapView.camera;
   float zoom = fmaxf(camera.zoom - 0.1f, 17.5f);
 
@@ -52,21 +52,21 @@
 
 - (void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
-  _timer = [NSTimer scheduledTimerWithTimeInterval:1.f / 30.f
-                                            target:self
-                                          selector:@selector(moveCamera:)
-                                          userInfo:nil
-                                           repeats:YES];
+  timer = [NSTimer scheduledTimerWithTimeInterval:1.f/30.f
+                                           target:self
+                                         selector:@selector(moveCamera)
+                                         userInfo:nil
+                                          repeats:YES];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
   [super viewDidDisappear:animated];
-  [_timer invalidate];
+  [timer invalidate];
 }
 
 - (void)didReceiveMemoryWarning {
   [super didReceiveMemoryWarning];
-  [_timer invalidate];
+  [timer invalidate];
 }
 
 @end

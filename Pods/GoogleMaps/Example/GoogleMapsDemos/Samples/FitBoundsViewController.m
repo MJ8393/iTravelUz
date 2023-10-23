@@ -18,7 +18,6 @@
 #import <GoogleMaps/GoogleMaps.h>
 
 @interface FitBoundsViewController () <GMSMapViewDelegate>
-
 @end
 
 @implementation FitBoundsViewController {
@@ -52,8 +51,8 @@
   _markers = [NSMutableArray arrayWithObject:sydneyMarker];
   [_markers addObject:anotherSydneyMarker];
 
-  // Create a button that, when pressed, updates the camera to fit the bounds of the specified
-  // markers.
+  // Create a button that, when pressed, updates the camera to fit the bounds
+  // of the specified markers.
   UIBarButtonItem *fitBoundsButton =
       [[UIBarButtonItem alloc] initWithTitle:@"Fit Bounds"
                                        style:UIBarButtonItemStylePlain
@@ -65,8 +64,8 @@
 - (void)didTapFitBounds {
   if (_markers.count == 0) return;
   CLLocationCoordinate2D firstPos = ((GMSMarker *)_markers.firstObject).position;
-  GMSCoordinateBounds *bounds = [[GMSCoordinateBounds alloc] initWithCoordinate:firstPos
-                                                                     coordinate:firstPos];
+  GMSCoordinateBounds *bounds =
+      [[GMSCoordinateBounds alloc] initWithCoordinate:firstPos coordinate:firstPos];
   for (GMSMarker *marker in _markers) {
     bounds = [bounds includingCoordinate:marker.position];
   }
@@ -76,10 +75,11 @@
 
 #pragma mark - GMSMapViewDelegate
 
-- (void)mapView:(GMSMapView *)mapView didLongPressAtCoordinate:(CLLocationCoordinate2D)coordinate {
+- (void)mapView:(GMSMapView *)mapView
+    didLongPressAtCoordinate:(CLLocationCoordinate2D)coordinate {
   GMSMarker *marker = [[GMSMarker alloc] init];
-  marker.title = [NSString
-      stringWithFormat:@"Marker at: %.2f,%.2f", coordinate.latitude, coordinate.longitude];
+  marker.title = [NSString stringWithFormat:@"Marker at: %.2f,%.2f",
+                  coordinate.latitude, coordinate.longitude];
   marker.position = coordinate;
   marker.appearAnimation = kGMSMarkerAnimationPop;
   marker.map = _mapView;

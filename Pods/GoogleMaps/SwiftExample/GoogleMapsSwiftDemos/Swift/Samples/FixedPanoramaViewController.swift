@@ -15,9 +15,10 @@ import GoogleMaps
 import UIKit
 
 class FixedPanoramaViewController: UIViewController {
+
   override func loadView() {
     let panoramaView = GMSPanoramaView(frame: .zero)
-    panoramaView.moveNearCoordinate(.mountainSceneLocation)
+    panoramaView.moveNearCoordinate(.newYork)
     panoramaView.camera = GMSPanoramaCamera(heading: 180, pitch: -10, zoom: 0)
     panoramaView.orientationGestures = false
     panoramaView.navigationGestures = false

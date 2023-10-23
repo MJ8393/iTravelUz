@@ -15,11 +15,13 @@
 
 #import "GoogleMapsDemos/DemoAppDelegate.h"
 
-#import "GoogleMapsDemos/DemoSceneDelegate.h"
+#import "GoogleMapsDemos/MasterViewController.h"
 #import "GoogleMapsDemos/SDKDemoAPIKey.h"
 #import <GoogleMaps/GoogleMaps.h>
 
 @implementation DemoAppDelegate
+
+@synthesize window = _window;
 
 - (BOOL)application:(UIApplication *)application
     didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -35,26 +37,35 @@
                                  userInfo:nil];
   }
   [GMSServices provideAPIKey:kAPIKey];
-
-  // Metal is the preferred renderer.
-  [GMSServices setMetalRendererEnabled:YES];
   self.servicesHandle = [GMSServices sharedServices];
 
-  // Log the required open source licenses! Yes, just NSLog-ing them is not enough but is good for a
-  // demo.
+  // Log the required open source licenses! Yes, just NSLog-ing them is not enough but is good for
+  // a demo.
   NSLog(@"Open source licenses:\n%@", [GMSServices openSourceLicenseInfo]);
 
-  return YES;
-}
+  self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+  MasterViewController *master = [[MasterViewController alloc] init];
 
-- (UISceneConfiguration *)application:(UIApplication *)application
-    configurationForConnectingSceneSession:(UISceneSession *)connectingSceneSession
-                                   options:(UISceneConnectionOptions *)options {
-  UISceneConfiguration *configuration =
-      [UISceneConfiguration configurationWithName:@"Default Configuration"
-                                      sessionRole:connectingSceneSession.role];
-  configuration.delegateClass = [DemoSceneDelegate class];
-  return configuration;
+  UINavigationController *masterNavigationController =
+      [[UINavigationController alloc] initWithRootViewController:master];
+
+  UIViewController *empty = [[UIViewController alloc] init];
+  UINavigationController *detailNavigationController =
+      [[UINavigationController alloc] initWithRootViewController:empty];
+
+  self.splitViewController = [[UISplitViewController alloc] init];
+  self.splitViewController.delegate = master;
+  self.splitViewController.preferredDisplayMode = UISplitViewControllerDisplayModeAllVisible;
+  self.splitViewController.viewControllers =
+      @[ masterNavigationController, detailNavigationController ];
+
+  empty.navigationItem.leftItemsSupplementBackButton = YES;
+  empty.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
+
+  self.window.rootViewController = self.splitViewController;
+
+  [self.window makeKeyAndVisible];
+  return YES;
 }
 
 @end
