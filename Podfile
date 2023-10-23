@@ -15,5 +15,8 @@ target 'TourismApp' do
   pod 'GooglePlaces'
   pod 'FloatingPanel'
   pod 'Kingfisher'
+  pod 'PanModal'
+pod 'Localize-Swift', '~> 3.2'
+	pod 'SwiftyStarRatingView'
   
 end
