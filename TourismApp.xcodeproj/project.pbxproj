@@ -76,7 +76,6 @@
 		10AD11E22ABF020E00F68BC9 /* AddToFavorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10AD11E12ABF020E00F68BC9 /* AddToFavorite.swift */; };
 		10C9163B2A7821FE0054B55C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C9163A2A7821FE0054B55C /* AppDelegate.swift */; };
 		10C9163D2A7821FE0054B55C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C9163C2A7821FE0054B55C /* SceneDelegate.swift */; };
-		10C916422A7821FE0054B55C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10C916402A7821FE0054B55C /* Main.storyboard */; };
 		10C916442A7821FE0054B55C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 10C916432A7821FE0054B55C /* Assets.xcassets */; };
 		10C916472A7821FE0054B55C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10C916452A7821FE0054B55C /* LaunchScreen.storyboard */; };
 		10DEB84D2A927877008CE34F /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10DEB84C2A927877008CE34F /* MainViewController.swift */; };
@@ -104,7 +103,6 @@
 		101CCFDF2AC4950300D6E90C /* ChangeLanguageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeLanguageCell.swift; sourceTree = "<group>"; };
 		101CCFE22AC4B62400D6E90C /* LanguageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageManager.swift; sourceTree = "<group>"; };
 		101CCFE72AC4BB5F00D6E90C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		101CCFE92AC4BB9600D6E90C /* uz */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uz; path = uz.lproj/Main.strings; sourceTree = "<group>"; };
 		101CCFEA2AC4BBB500D6E90C /* uz */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uz; path = uz.lproj/Localizable.strings; sourceTree = "<group>"; };
 		101CCFEB2AC4BC6700D6E90C /* Ext_String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ext_String.swift; sourceTree = "<group>"; };
 		101CCFEE2AC4C7BF00D6E90C /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -174,7 +172,6 @@
 		10C916372A7821FE0054B55C /* TourismApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TourismApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		10C9163A2A7821FE0054B55C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		10C9163C2A7821FE0054B55C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		10C916412A7821FE0054B55C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		10C916432A7821FE0054B55C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		10C916462A7821FE0054B55C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		10C916482A7821FE0054B55C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -521,7 +518,6 @@
 			isa = PBXGroup;
 			children = (
 				10C916452A7821FE0054B55C /* LaunchScreen.storyboard */,
-				10C916402A7821FE0054B55C /* Main.storyboard */,
 			);
 			path = others;
 			sourceTree = "<group>";
@@ -831,7 +827,6 @@
 				10C916472A7821FE0054B55C /* LaunchScreen.storyboard in Resources */,
 				10C916442A7821FE0054B55C /* Assets.xcassets in Resources */,
 				10369B502AACF25800558A5E /* googleapis.podspec in Resources */,
-				10C916422A7821FE0054B55C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -996,15 +991,6 @@
 				101CCFEA2AC4BBB500D6E90C /* uz */,
 			);
 			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
-		10C916402A7821FE0054B55C /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				10C916412A7821FE0054B55C /* Base */,
-				101CCFE92AC4BB9600D6E90C /* uz */,
-			);
-			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 		10C916452A7821FE0054B55C /* LaunchScreen.storyboard */ = {
