@@ -7,7 +7,7 @@
 
 import Foundation
 
-let UD = UserDefaults(suiteName: "uz.carwon.www")!
+let UD = UserDefaults(suiteName: "uz.iTravel.www")!
 
 extension UserDefaults {
     var conversationID: String? {
@@ -57,8 +57,8 @@ extension UserDefaults {
     }
     
     var username: String? {
-        get { return self.string(forKey: "token") }
-        set { self.set(newValue, forKey: "token") }
+        get { return self.string(forKey: "username") }
+        set { self.set(newValue, forKey: "username") }
     }
 }
 

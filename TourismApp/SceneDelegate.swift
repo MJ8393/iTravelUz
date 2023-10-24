@@ -24,16 +24,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.windowScene = windowScene
         setMode()
         // MARK: Login
-//        if let token = UD.token, token.replacingOccurrences(of: " ", with: "") != "" {
-//            let vc = MainTabBarController()
-//            window?.rootViewController = vc
-//        } else {
-//            let vc = LoginViewController()
-//            window?.rootViewController = vc
-//        }
+        if let token = UD.token, token.replacingOccurrences(of: " ", with: "") != "" {
+            let vc = MainTabBarController()
+            window?.rootViewController = vc
+        } else {
+            let vc = LoginViewController()
+            window?.rootViewController = vc
+        }
         
-        let vc = MainTabBarController()
-        window?.rootViewController = vc
+//        let vc = MainTabBarController()
+//        window?.rootViewController = vc
         window?.makeKeyAndVisible()
         API.shared.getFavorites { result in
             switch result {

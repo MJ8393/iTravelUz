@@ -9,8 +9,8 @@ import Foundation
 import Alamofire
 
 let BASE_URL = "http://139.59.138.213"
-//let testToken = UD.token ?? ""
-let testToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MDA3MzAyODYsInVzZXIiOiJhc2xvbiJ9.IKB0rjKM5_5Y-ps6_aM6Tcau5aJpevkB2DIDS_wuo7w"
+let testToken = UD.token ?? ""
+//let testToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MDA3MzAyODYsInVzZXIiOiJhc2xvbiJ9.IKB0rjKM5_5Y-ps6_aM6Tcau5aJpevkB2DIDS_wuo7w"
 
 class API {
     static let shared = API()

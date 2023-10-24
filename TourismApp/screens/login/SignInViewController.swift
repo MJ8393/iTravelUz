@@ -137,7 +137,6 @@ class SignInViewController: UIViewController {
     
     @objc func logInButtonTapped() {
         if let userName = textField1.text, userName.replacingOccurrences(of: " ", with: "") != "", let password = textField2.text, password.replacingOccurrences(of: " ", with: "") != "" {
-            print(userName, password, "xxxx")
             API.shared.login(username: userName, password: password) { [weak self] result in
                 switch result {
                 case .success(let data):
