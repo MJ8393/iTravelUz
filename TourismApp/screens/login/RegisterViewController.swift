@@ -181,10 +181,11 @@ class RegisterViewController: UIViewController {
             if password.count <= 5 {
                 showAlert(message: "Password should contains at least 5 characters")
                 return
-            } else if !containsNumber(in: password) {
-                showAlert(message: "Password should contains at least 1 digit")
-                return
             }
+//            } else if !containsNumber(in: password) {
+//                showAlert(message: "Password should contains at least 1 digit")
+//                return
+//            }
         }
         
         if let email = textField3.text?.replacingOccurrences(of: " ", with: "") {
@@ -198,10 +199,18 @@ class RegisterViewController: UIViewController {
             API.shared.signUp(username: username, password: password, email: email) { [weak self] result in
                 switch result {
                 case .success(_):
-                    print("Success")
-                    self?.setNewRootViewController()
-                case .failure(let error):
-                    print("Error", error)
+                    API.shared.login(username: username, password: password) { [weak self] result in
+                        switch result {
+                        case .success(let data):
+                            UD.token = data.Authorization
+                            UD.username = username
+                            self?.setNewRootViewController()
+                        case.failure(let error):
+                            self?.showAlert(title: "Error", message: "Something went wrong")
+                            print(error)
+                        }
+                    }
+                case .failure(_):
                     self?.showAlert(message: "Can not register. Please check your data")
                 }
             }

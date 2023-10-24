@@ -69,8 +69,8 @@ class TableViewCell: UITableViewCell {
     
     func setData(destination: MainDestination) {
         headerImageView.image = nil
-        cityLabel.text = destination.name
-        locationLabel.text = "\(destination.city_name ?? ""), Uzbekistan"
+        cityLabel.text = destination.name?.getName()
+        locationLabel.text = "\(destination.city_name?.getCityName() ?? ""), Uzbekistan"
         if let gallery = destination.gallery {
             if gallery.count != 0 {
                 headerImageView.loadImage(url: gallery[0].url)
@@ -86,8 +86,8 @@ class TableViewCell: UITableViewCell {
     
     func setCity(city: City) {
         headerImageView.image = nil
-        cityLabel.text = city.name
-        locationLabel.text = "\(city.country)"
+        cityLabel.text = city.name?.getName()
+        locationLabel.text = "\(city.country?.getCountry())"
         if let gallery = city.gallery {
             if gallery.count != 0 {
                 headerImageView.loadImage(url: gallery[0].url)

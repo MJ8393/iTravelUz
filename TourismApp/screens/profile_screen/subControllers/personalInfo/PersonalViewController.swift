@@ -14,6 +14,8 @@ class PersonalViewController: UIViewController {
         return view
     }()
     
+    var profile: ProfileInfo?
+    
     lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.backgroundColor = .clear
@@ -29,13 +31,13 @@ class PersonalViewController: UIViewController {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         label.textColor = .label
-        label.text = "Empty"
+        label.text = "empty".translate()
         return label
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Mekhriddin"
+        title = UD.username
         view.backgroundColor = UIColor.systemBackground
         initViews()
     }
@@ -53,6 +55,17 @@ class PersonalViewController: UIViewController {
         }
     }
 
+    func getPersonalInfo() {
+        API.shared.getUserData { [weak self] result in
+            switch result {
+            case .success(let profile):
+                self?.profile = profile
+            case .failure(let error):
+                self?.showAlert(title: "Error", message: "Failed to get user data")
+                print(error)
+            }
+        }
+    }
 }
 
 extension PersonalViewController: UITableViewDelegate, UITableViewDataSource {
@@ -62,6 +75,7 @@ extension PersonalViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: String.init(describing: PersonalTableViewCell.self), for: indexPath) as? PersonalTableViewCell else { return UITableViewCell() }
+//        let destionations = profile.
         cell.selectionStyle = .none
         cell.backgroundColor = .clear
         return cell
@@ -69,6 +83,10 @@ extension PersonalViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = PersonalHeaderView()
+        if let profile = profile {
+            view.userNameLabel.text = profile.username ?? ""
+            view.emailLabel.text = profile.email 
+        }
         view.backgroundColor = .clear
         return view
     }

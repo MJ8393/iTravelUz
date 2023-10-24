@@ -44,11 +44,11 @@ struct SearchModel: Codable {
 
 struct SearchDestinationModel: Codable {
     let id: String
-    let name: String
-    let location: LocationModel
-    let city_name: String?
+    let name: DestionationName?
+    let location: LocationModel?
+    let city_name: CityName?
     let gallery: [GalleryModel]?
-    let description: String?
+    let description: DescriptionString?
 }
 
 struct LocationModel: Codable {
@@ -58,4 +58,19 @@ struct LocationModel: Codable {
 
 struct GalleryModel: Codable {
     let url: String?
+}
+
+struct DestionationName: Codable {
+    let english: String?
+    let uzbek: String?
+}
+
+struct CityName: Codable {
+    let english: String?
+    let uzbek: String?
+}
+
+struct DescriptionString: Codable {
+    let english: String?
+    let uzbek: String?
 }

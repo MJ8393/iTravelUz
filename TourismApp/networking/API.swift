@@ -8,8 +8,9 @@
 import Foundation
 import Alamofire
 
-let BASE_URL = "http://127.0.0.1:8080"
-let testToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTc4Mjk4MjYsInVzZXIiOiJhc2xvbiJ9.Z3izRBnwzCFOZkF2g7gUh8MKUrVzIrDDcB83ic2srcU"
+let BASE_URL = "http://139.59.138.213"
+//let testToken = UD.token ?? ""
+let testToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MDA3MzAyODYsInVzZXIiOiJhc2xvbiJ9.IKB0rjKM5_5Y-ps6_aM6Tcau5aJpevkB2DIDS_wuo7w"
 
 class API {
     static let shared = API()
@@ -23,7 +24,7 @@ class API {
     // MAIN
     let API_URL_GET_NEARBY = BASE_URL + "/geo/city/d/nearby_destinations"
     let API_URL_GET_CITIES = BASE_URL + "/geo/all_cities"
-    let API_URL_GET_POPULAR = BASE_URL + "/geo/city/d/popular_destinations?city_name=Samarkand"
+    let API_URL_GET_POPULAR = BASE_URL + "/geo/city/d/main/popular_destinations"
     
     
     // Favorites
@@ -33,6 +34,8 @@ class API {
     
     // Login
     let API_URL_LOGIN = BASE_URL + "/accounts/login"
+    let API_URL_SIGN_UP = BASE_URL + "/accounts/signup"
+
     
     let headers: HTTPHeaders = [
         "Cookie": "Authorization=\(testToken)",

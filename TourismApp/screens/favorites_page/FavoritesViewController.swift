@@ -16,6 +16,16 @@ class FavoritesViewController: BaseViewController {
         return view
     }()
     
+    lazy var emptyLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
+        label.text = "empty".translate()
+        label.textColor = .label
+        label.isHidden = true
+        label.textAlignment = .center
+        return label
+    }()
+    
     lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
@@ -74,6 +84,13 @@ class FavoritesViewController: BaseViewController {
         tableView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+        
+        subView.addSubview(emptyLabel)
+        emptyLabel.snp.makeConstraints { make in
+            make.left.equalToSuperview().offset(20)
+            make.right.equalToSuperview().offset(-20)
+            make.centerY.equalToSuperview()
+        }
     }
 }
 
@@ -90,7 +107,13 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource, U
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return favoriteDestinations.count
+        let count = self.favoriteDestinations.count
+        if count == 0 {
+            self.emptyLabel.isHidden = false
+        } else {
+            self.emptyLabel.isHidden = true
+        }
+        return count
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {

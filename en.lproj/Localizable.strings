@@ -22,3 +22,14 @@
 "delete" = "Delete";
 "search" = "Search";
 "search_place" = "Search for a place ...";
+"calcel" = "Cancel";
+"log_out_alert" = "Are you sure you want to log out?";
+"choose_mode" = "Choose mode";
+"choose_language" = "Choose language";
+"english" = "English";
+"uzbek" = "Uzbek";
+"dark" = "Dark";
+"light" = "Light";
+"system" = "System";
+"home" = "Home";
+"empty" = "Empty";

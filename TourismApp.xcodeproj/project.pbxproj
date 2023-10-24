@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		100342572AE7CEEE0075DE9A /* HeaderImagesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100342562AE7CEEE0075DE9A /* HeaderImagesCollectionViewCell.swift */; };
 		10194BB82AC415CB00366A69 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10194BB72AC415CB00366A69 /* ProfileViewController.swift */; };
 		10194BBB2AC4181600366A69 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10194BBA2AC4181600366A69 /* ProfileTableViewCell.swift */; };
 		101CCFDC2AC492F000D6E90C /* ChangeLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 101CCFDB2AC492F000D6E90C /* ChangeLanguage.swift */; };
@@ -97,6 +98,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		100342562AE7CEEE0075DE9A /* HeaderImagesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderImagesCollectionViewCell.swift; sourceTree = "<group>"; };
 		10194BB72AC415CB00366A69 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		10194BBA2AC4181600366A69 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		101CCFDB2AC492F000D6E90C /* ChangeLanguage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeLanguage.swift; sourceTree = "<group>"; };
@@ -325,6 +327,7 @@
 			isa = PBXGroup;
 			children = (
 				10369B2A2AAC922400558A5E /* ExploreContentTableCell.swift */,
+				100342562AE7CEEE0075DE9A /* HeaderImagesCollectionViewCell.swift */,
 			);
 			path = cell;
 			sourceTree = "<group>";
@@ -949,6 +952,7 @@
 				8C7A9C412ABAD0FE005F790D /* mapVC.swift in Sources */,
 				10369B4A2AACF25800558A5E /* label.proto in Sources */,
 				10369B4B2AACF25800558A5E /* code.proto in Sources */,
+				100342572AE7CEEE0075DE9A /* HeaderImagesCollectionViewCell.swift in Sources */,
 				1051A2C12A9BEFB90083D25D /* LoaderView.swift in Sources */,
 				108B56522A9D1541000DF967 /* HeaderView.swift in Sources */,
 				8C56C12C2ABAD00B007D1781 /* GooglePlacesManager.swift in Sources */,

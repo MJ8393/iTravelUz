@@ -37,7 +37,7 @@ class ProfileViewController: BaseViewController {
             Profile(image: UIImage(systemName: "info.circle")!, name: "my_info".translate()),
             Profile(image: UIImage(systemName: "network")!, name: "change_language".translate()),
             Profile(image: UIImage(systemName: "moon")!, name: "design".translate()),
-            Profile(image: UIImage(systemName: "keyboard")!, name: "your_comments".translate()),
+            Profile(image: UIImage(systemName: "bookmark")!, name: "your_comments".translate()),
             Profile(image: UIImage(systemName: "envelope")!, name: "share_feedback".translate()),
             Profile(image: UIImage(systemName: "star")!, name: "rate_app".translate()),
             Profile(image: UIImage(systemName: "rectangle.portrait.and.arrow.right")!, name: "log_out".translate()),
@@ -108,7 +108,21 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
                 UIApplication.shared.openURL(url)
             }
         case 6:
-            break
+            let alertController = UIAlertController(title: "log_out".translate(), message: "log_out_alert".translate(), preferredStyle: .alert)
+            
+            // Create a Log Out action
+            let logoutAction = UIAlertAction(title: "log_out".translate(), style: .destructive) { (action) in
+                UD.token = ""
+                UD.username = ""
+                self.goLoginPage()
+            }
+            
+            let cancelAction = UIAlertAction(title: "calcel".translate(), style: .cancel, handler: nil)
+            alertController.addAction(logoutAction)
+            alertController.addAction(cancelAction)
+            
+            // Present the alert
+            present(alertController, animated: true, completion: nil)
             // Log go log in screen
 //            UD.
         default:

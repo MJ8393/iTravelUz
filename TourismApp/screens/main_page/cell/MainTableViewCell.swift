@@ -84,8 +84,7 @@ extension MainTableViewCell: UICollectionViewDelegate, UICollectionViewDataSourc
         if isCity {
             return cities.count
         }
-        // MARK: Changed
-        return 10
+        return destinations.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -93,7 +92,7 @@ extension MainTableViewCell: UICollectionViewDelegate, UICollectionViewDataSourc
         if isCity {
             cell.setCity(city: cities[indexPath.row])
         } else {
-//            cell.setData(destination: destinations[indexPath.row])
+            cell.setData(destination: destinations[indexPath.row])
         }
         cell.backgroundColor = .clear
         return cell

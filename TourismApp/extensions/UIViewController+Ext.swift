@@ -33,9 +33,16 @@ extension UIViewController {
     }
     
     func setNewRootViewController() {
-          let newRootViewController = MainTabBarController() // Replace with the desired view controller
+          let newRootViewController = MainTabBarController()
           if let sceneDelegate = SceneDelegate.shared {
               sceneDelegate.window?.rootViewController = newRootViewController
           }
       }
+    
+    func goLoginPage() {
+        let newRootViewController = LoginViewController()
+        if let sceneDelegate = SceneDelegate.shared {
+            sceneDelegate.window?.rootViewController = newRootViewController
+        }
+    }
 }

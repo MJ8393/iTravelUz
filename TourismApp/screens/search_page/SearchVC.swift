@@ -34,7 +34,7 @@ class SearchVC: mapVC {
         appearance.shadows = [shadow]
         mainfpc.surfaceView.grabberHandle.backgroundColor = UIColor.chatGrayColor
         // Define corner radius and background color
-        appearance.cornerRadius = 20
+        appearance.cornerRadius = 30
         appearance.backgroundColor = .clear
         // Set the new appearance
         mainfpc.surfaceView.appearance = appearance

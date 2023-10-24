@@ -13,10 +13,10 @@ struct MainDestionationModel: Codable {
 
 struct MainDestination: Codable {
     let id: String
-    let name: String
+    let name: DestionationName?
     let location: MainLocation
-    let city_name: String?
-    let description: String?
+    let city_name: CityName?
+    let description: DescriptionString?
     let recommendationLevel: MainRecomentationLevel?
     let gallery: [Gallery]?
 }
@@ -41,12 +41,18 @@ struct CityModel: Codable {
 
 struct City: Codable {
     let id: String
-    let name: String
-    let country: String
+    let name: DestionationName?
+    let country: CountryName?
     let gallery: [Gallery]?
+}
+
+struct CountryName: Codable {
+    let english: String?
+    let arabic: String?
 }
 
 // POPULAR
 struct PopularModel: Codable {
-    let our_results: [MainDestination]
+    let destinations: [MainDestination]
 }
+

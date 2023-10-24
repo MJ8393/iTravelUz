@@ -40,15 +40,6 @@ struct ProfileInfo: Codable {
 struct RatedDestination: Codable {
     let id: String
     let name: String
-    let location: MainLocation?
     let city_name: String?
-    let recommendationLevel: MainRecomentationLevel?
     let gallery: [Gallery]?
-    let ratings: [RatingsModel]?
-}
-
-struct RatingsModel: Codable {
-    let user: String
-    let text: String
-    let rate: Int
 }

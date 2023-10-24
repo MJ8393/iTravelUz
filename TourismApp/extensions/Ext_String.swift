@@ -12,3 +12,60 @@ extension String {
         return self.localized()
     }
 }
+
+extension DestionationName {
+    func getName() -> String {
+        let language = LanguageManager.getAppLang()
+        switch language {
+        case .Uzbek:
+            return self.uzbek ?? ""
+        case .English:
+            return self.english ?? ""
+        default:
+            return ""
+        }
+    }
+}
+
+extension CityName {
+    func getCityName() -> String {
+        let language = LanguageManager.getAppLang()
+        switch language {
+        case .Uzbek:
+            return self.uzbek ?? ""
+        case .English:
+            return self.english ?? ""
+        default:
+            return ""
+        }
+    }
+}
+
+extension DescriptionString {
+    func getDescription() -> String {
+        let language = LanguageManager.getAppLang()
+        switch language {
+        case .Uzbek:
+            return self.uzbek ?? ""
+        case .English:
+            return self.english ?? ""
+        default:
+            return ""
+        }
+    }
+}
+
+
+extension CountryName {
+    func getCountry() -> String {
+        let language = LanguageManager.getAppLang()
+        switch language {
+        case .Uzbek:
+            return self.arabic ?? ""
+        case .English:
+            return self.english ?? ""
+        default:
+            return ""
+        }
+    }
+}

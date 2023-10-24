@@ -16,8 +16,8 @@ class ExploreViewController: UIViewController {
     }()
     
     var destionation: MainDestination?
-    
     var isLiked: Bool = false
+    var thisWidth: CGFloat = CGFloat(UIScreen.main.bounds.width)
     
     lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
@@ -31,23 +31,51 @@ class ExploreViewController: UIViewController {
         return tableView
     }()
     
+    lazy var collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.itemSize = CGSize(width: thisWidth, height: 240)
+        let collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: thisWidth, height: 240), collectionViewLayout: layout)
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.isScrollEnabled = true
+        collectionView.isPagingEnabled = true
+        collectionView.register(HeaderImagesCollectionViewCell.self, forCellWithReuseIdentifier: HeaderImagesCollectionViewCell.identifier)
+        collectionView.addSubview(pageControl)
+        return collectionView
+    }()
+    
+    lazy var pageControl: UIPageControl = {
+        let pageControl = UIPageControl()
+        pageControl.frame = CGRect(x: 10, y: view.frame.size.height - 100, width: view.frame.size.width - 20, height: 70)
+        pageControl.hidesForSinglePage = true
+        pageControl.numberOfPages = 3
+        pageControl.backgroundColor = .red
+        return pageControl
+    }()
+    
     let synthesizer = AVSpeechSynthesizer()
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        SpeechService.shared.speak(text: destionation?.description ?? "No description") {
-        }
+//        SpeechService.shared.speak(text: destionation?.description ?? "No description") {
+//        }
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         initViews()
         setupNavigation()
-        
-        let header = StretchyTableHeaderView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 240))
+//        let header = StretchyTableHeaderView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 240))
 //        header.imageView.image = UIImage(named: "Registan")!
-        header.addSwipeActions()
-        tableView.tableHeaderView = header
+//        header.addSwipeActions()
+        tableView.tableHeaderView = collectionView
+        configurePageControl()
+    }
+    
+    private func configurePageControl() {
+        pageControl.numberOfPages = 5
+        pageControl.currentPage = 0
     }
     
     private func setupNavigation() {
@@ -149,5 +177,30 @@ extension ExploreViewController: UITableViewDelegate, UITableViewDataSource {
             navigationController?.navigationBar.transform = .init(translationX: 0, y: min(0, -offset))
         guard let header = tableView.tableHeaderView as? StretchyTableHeaderView else { return }
         header.scrollViewDidScroll(scrollView: tableView)
+    }
+}
+
+extension ExploreViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        2
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HeaderImagesCollectionViewCell.identifier, for: indexPath) as? HeaderImagesCollectionViewCell else { return UICollectionViewCell()}
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        self.pageControl.currentPage = indexPath.section
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        thisWidth = CGFloat(UIScreen.main.bounds.width)
+        return CGSize(width: thisWidth, height: 240)
     }
 }

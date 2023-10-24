@@ -24,7 +24,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.windowScene = windowScene
         setMode()
         // MARK: Login
-        // let vc = LoginViewController()
+//        if let token = UD.token, token.replacingOccurrences(of: " ", with: "") != "" {
+//            let vc = MainTabBarController()
+//            window?.rootViewController = vc
+//        } else {
+//            let vc = LoginViewController()
+//            window?.rootViewController = vc
+//        }
+        
         let vc = MainTabBarController()
         window?.rootViewController = vc
         window?.makeKeyAndVisible()

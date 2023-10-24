@@ -60,7 +60,7 @@ class ViewController: BaseViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = UIColor(named: "search_color")
         view.addSubview(label)
         view.addSubview(textField)
         view.addSubview(tableView)
@@ -72,7 +72,7 @@ class ViewController: BaseViewController, UITextFieldDelegate {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         label.sizeToFit()
-        label.frame = CGRect(x: 20, y: 25, width: label.frame.size.width, height: label.frame.size.height)
+        label.frame = CGRect(x: 20, y: 25, width: view.frame.size.width - 40, height: label.frame.size.height)
         textField.frame = CGRect(x: 10, y: 25 + 10 + label.frame.size.height, width: view.frame.size.width - 20, height: 45)
         let tableY: CGFloat = textField.frame.origin.y + textField.frame.size.height + 5
         tableView.frame = CGRect(x: 0, y: tableY, width: view.frame.size.width, height: view.frame.size.height - tableY)
@@ -80,14 +80,26 @@ class ViewController: BaseViewController, UITextFieldDelegate {
     
     override func languageDidChange() {
         super.languageDidChange()
+        title = "search".translate()
         label.text = "search".translate()
         textField.placeholder = "search_place".translate()
         tableView.reloadData()
     }
     
+    var isLoading: Bool = false
+    
     @objc func textFieldDidChange(_ textField: UITextField) {
         if let text = textField.text, !text.isEmpty {
+            if isLoading {
+                self.dissmissLoadingView()
+            }
+            showLoadingView()
+            isLoading = true
             API.shared.searchDestination(name: text) { result in
+                if self.isLoading != false {
+                    self.dissmissLoadingView()
+                    self.isLoading = false
+                }
                 switch result {
                 case .success(let data):
                     DispatchQueue.main.async {
@@ -97,6 +109,11 @@ class ViewController: BaseViewController, UITextFieldDelegate {
                 case .failure(let error):
                     print(error.localizedDescription)
                 }
+            }
+        } else {
+            DispatchQueue.main.async {
+                self.places = []
+                self.tableView.reloadData()
             }
         }
     }
@@ -110,7 +127,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = places[indexPath.row].name
+        cell.textLabel?.text = places[indexPath.row].name?.getName()
         cell.textLabel?.textColor = .black
         cell.textLabel?.numberOfLines = 0
         cell.contentView.backgroundColor = .clear
@@ -121,12 +138,12 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let place = places[indexPath.row]
-        self.delegate?.marker?.title = place.name
+        self.delegate?.marker?.title = place.name?.getName()
         GooglePlacesManager.shared.resolveLocation(for: place) { [weak self] result in
             switch result {
             case .success(let coordinate):
                 DispatchQueue.main.async {
-                    self?.delegate?.didTapPlace(with: coordinate, text: place.name, name: place.city_name, images: place.gallery ?? [])
+                    self?.delegate?.didTapPlace(with: coordinate, text: place.name?.getName(), name: place.city_name?.getCityName(), images: place.gallery ?? [])
                 }
             case .failure(let error):
                 print(error.localizedDescription)

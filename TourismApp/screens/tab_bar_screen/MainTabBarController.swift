@@ -17,11 +17,16 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         navigationItem.hidesBackButton = true
         
         let nc1 = UINavigationController(rootViewController: MainViewController())
+        nc1.title = "home".translate()
         let nc2 = UINavigationController(rootViewController: SearchVC())
+        nc2.title = "search".translate()
         let nc3 = UINavigationController(rootViewController: FavoritesViewController())
         let nc4 = UINavigationController(rootViewController: FavoritesViewController())
+        nc4.title = "favorites".translate()
         let nc5 = UINavigationController(rootViewController: ProfileViewController())
-        
+        nc5.title = "profile".translate()
+
+                
         nc1.tabBarItem.image = UIImage(systemName: "house")
         nc2.tabBarItem.image = UIImage(systemName: "magnifyingglass")
         nc4.tabBarItem.image = UIImage(systemName: "heart")
@@ -45,43 +50,36 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         tabBar.shadowImage = UIImage()
         tabBar.backgroundImage = UIImage()
         tabBar.clipsToBounds = false
-//        tabBar.frame.size.height = 90
+
     }
     
     private func addTabBarShadowBG() {
-        let tabBarCornerRadius: CGFloat = 24
         let shapeLayer = CAShapeLayer()
-        shapeLayer.path = UIBezierPath(
-            roundedRect: tabBar.bounds,
-            byRoundingCorners: [.topLeft, .topRight],
-            cornerRadii: CGSize(width: tabBarCornerRadius, height: 1.0)).cgPath
         shapeLayer.path = createPath()
-        shapeLayer.fillColor = UIColor.white.cgColor
-        shapeLayer.shadowPath =  UIBezierPath(roundedRect: tabBar.bounds, cornerRadius: tabBarCornerRadius).cgPath
-        shapeLayer.shadowColor = UIColor.black.cgColor
-        shapeLayer.borderWidth = 1
-        shapeLayer.shadowOffset = CGSize(width: 0, height: -2)
+        shapeLayer.fillColor = UIColor(named: "tabbar")?.cgColor
+        shapeLayer.strokeColor = UIColor.systemGray6.cgColor
+        shapeLayer.lineWidth = 1
         shapeLayer.shouldRasterize = true
         shapeLayer.rasterizationScale = UIScreen.main.scale
-
         if let oldShapeLayer = self.shapeLayer {
             tabBar.layer.replaceSublayer(oldShapeLayer, with: shapeLayer)
         } else {
             tabBar.layer.insertSublayer(shapeLayer, at: 0)
         }
         self.shapeLayer = shapeLayer
+
     }
     
     func createPath() -> CGPath {
-           let height: CGFloat = 80
+           let height: CGFloat = 74
            let path = UIBezierPath()
            let centerWidth = tabBar.frame.width / 2
            path.move(to: CGPoint(x: 0, y: 0))
            path.addLine(to: CGPoint(x: (centerWidth - height), y: 0))
-           path.addCurve(to: CGPoint(x: centerWidth, y: height - 40),
-                         controlPoint1: CGPoint(x: (centerWidth - 30), y: 0), controlPoint2: CGPoint(x: centerWidth - 35, y: height - 40))
+           path.addCurve(to: CGPoint(x: centerWidth, y: height / 2),
+                         controlPoint1: CGPoint(x: (centerWidth - 30), y: 0), controlPoint2: CGPoint(x: centerWidth - 35, y: height / 2))
            path.addCurve(to: CGPoint(x: (centerWidth + height), y: 0),
-                         controlPoint1: CGPoint(x: centerWidth + 35, y: height - 40), controlPoint2: CGPoint(x: (centerWidth + 30), y: 0))
+                         controlPoint1: CGPoint(x: centerWidth + 35, y: height / 2), controlPoint2: CGPoint(x: (centerWidth + 30), y: 0))
            path.addLine(to: CGPoint(x: tabBar.frame.width, y: 0))
            path.addLine(to: CGPoint(x: tabBar.frame.width, y: tabBar.frame.height))
            path.addLine(to: CGPoint(x: 0, y: tabBar.frame.height))
@@ -92,14 +90,15 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
     let menuButton = ActualGradientButton(frame: CGRect(x: 0, y: 0, width: 64, height: 64))
 
     func setupMiddleButton() {
-         var menuButtonFrame = menuButton.frame
-         menuButtonFrame.origin.y = view.bounds.height - menuButtonFrame.height - 50
-         menuButtonFrame.origin.x = view.bounds.width/2 - menuButtonFrame.size.width/2
-         menuButton.frame = menuButtonFrame
+        view.addSubview(menuButton)
+        menuButton.snp.makeConstraints { make in
+            make.top.equalTo(tabBar.snp.top).offset(-32)
+            make.centerX.equalToSuperview()
+            make.width.height.equalTo(64)
+        }
 
          //menuButton.backgroundColor = UIColor.init(hex: "6980FD")
-         menuButton.layer.cornerRadius = menuButtonFrame.height / 2
-         view.addSubview(menuButton)
+         menuButton.layer.cornerRadius = 32
 
         let image = UIImage(systemName: "mic.fill")?.withTintColor(.white)
         menuButton.imageView?.tintColor = .white
@@ -143,14 +142,6 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
     
 }
 
-extension UITabBar {
-    override open func sizeThatFits(_ size: CGSize) -> CGSize {
-        var sizeThatFits = super.sizeThatFits(size)
-        sizeThatFits.height = 74
-        return sizeThatFits
-    }
-}
-
 
 class ActualGradientButton: UIButton {
     
@@ -183,3 +174,14 @@ class ActualGradientButton: UIButton {
     }()
 }
 
+
+extension UITabBarController{
+
+    func getHeight()->CGFloat{
+        return self.tabBar.frame.size.height
+    }
+
+    func getWidth()->CGFloat{
+         return self.tabBar.frame.size.width
+    }
+}

@@ -84,6 +84,7 @@ class MainViewController: BaseViewController {
     
     override func languageDidChange() {
         super.languageDidChange()
+        title = "home".translate()
         titles = ["near_destinations".translate(), "cities".translate(), "popular_destinations".translate()]
         tableView.reloadData()
     }
@@ -119,7 +120,7 @@ class MainViewController: BaseViewController {
         API.shared.getPopularCities { [weak self] result in
             switch result {
             case .success(let data):
-                self?.popularDestionations = data.our_results
+                self?.popularDestionations = data.destinations
                 self?.tableView.reloadData()
             case .failure(let error):
                 print(error)

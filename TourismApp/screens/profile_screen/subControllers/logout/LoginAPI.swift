@@ -37,7 +37,7 @@ extension API {
     
     
     func signUp(username: String, password: String, email: String, complition: @escaping (Result<String, Error>) -> Void) {
-        let url = API_URL_LOGIN
+        let url = API_URL_SIGN_UP
         
         let parameters: [String: String] = [
             "username": username,

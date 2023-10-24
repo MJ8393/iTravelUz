@@ -50,6 +50,16 @@ extension UserDefaults {
                 set(encodedObject, forKey: key)
             }
     }
+    
+    var token: String? {
+        get { return self.string(forKey: "token") }
+        set { self.set(newValue, forKey: "token") }
+    }
+    
+    var username: String? {
+        get { return self.string(forKey: "token") }
+        set { self.set(newValue, forKey: "token") }
+    }
 }
 
 extension Optional {

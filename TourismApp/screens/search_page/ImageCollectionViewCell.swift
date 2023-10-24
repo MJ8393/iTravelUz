@@ -10,7 +10,7 @@ import Kingfisher
 
 class ImageCollectionViewCell: UICollectionViewCell {
 
-    static let identifier = "ImageTableViewCell"
+    static let identifier = "ImageCollectionViewCell"
     
     lazy var iconImage: UIImageView = {
         let imageView = UIImageView()

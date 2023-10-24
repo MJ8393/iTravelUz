@@ -136,14 +136,23 @@ class SignInViewController: UIViewController {
     }
     
     @objc func logInButtonTapped() {
-//        API.shared.login(username: "aslon", password: "aslon2001") { result in
-//            switch result {
-//            case .success(_):
-//                print("xxx")
-//            case.failure(let error):
-//                print(error)
-//            }
-//        }
+        if let userName = textField1.text, userName.replacingOccurrences(of: " ", with: "") != "", let password = textField2.text, password.replacingOccurrences(of: " ", with: "") != "" {
+            print(userName, password, "xxxx")
+            API.shared.login(username: userName, password: password) { [weak self] result in
+                switch result {
+                case .success(let data):
+                    UD.token = data.Authorization
+                    UD.username = self?.textField1.text ?? ""
+                    self?.setNewRootViewController()
+                case.failure(let error):
+                    self?.showAlert(title: "Error", message: "Please, enter valid login and password")
+                    print(error)
+                }
+            }
+        } else {
+            showAlert(title: "Error", message: "Please, enter valid login and password")
+        }
+       
     }
     
     @objc func viewTapped() {

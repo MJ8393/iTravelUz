@@ -82,8 +82,8 @@ class MainCollectionView: UICollectionViewCell {
     }
     
     func setData(destination: MainDestination) {
-        titleLabel.text = destination.name
-        addressLabel.text = (destination.city_name ?? "") + ", Uzbekistan"
+        titleLabel.text = destination.name?.getName()
+        addressLabel.text = (destination.city_name?.getCityName() ?? "Tashkent") + ", Uzbekistan"
         if let gallery = destination.gallery {
             if gallery.count != 0 {
                 mainIcon.loadImage(url: gallery[0].url)
@@ -98,8 +98,8 @@ class MainCollectionView: UICollectionViewCell {
     }
     
     func setCity(city: City) {
-        titleLabel.text = city.name
-        addressLabel.text = city.country
+        titleLabel.text = city.name?.getName()
+        addressLabel.text = city.country?.getCountry()
         if let gallery = city.gallery {
             if gallery.count != 0 {
                 mainIcon.loadImage(url: gallery[0].url)

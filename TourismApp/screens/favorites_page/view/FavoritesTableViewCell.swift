@@ -61,8 +61,8 @@ class FavoritesTableViewCell: UITableViewCell {
             iconImageView.stopLoading()
             iconImageView.image = nil
         }
-        nameLabel.text = destionation.name
-        if let city_name = destionation.city_name {
+        nameLabel.text = destionation.name?.getName()
+        if let city_name = destionation.city_name?.getCityName() {
             cityLabel.text = "\(city_name), Uzbekistan"
         }
     }

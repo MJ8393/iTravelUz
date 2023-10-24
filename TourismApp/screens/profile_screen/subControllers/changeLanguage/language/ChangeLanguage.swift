@@ -27,14 +27,14 @@ enum AppMode {
 }
 
 let languages: [Language] = [
-    Language(image: UIImage(named: "us")!, name: "English", language: .English),
-    Language(image: UIImage(named: "uz")!, name: "Uzbek", language: .Uzbek)
+    Language(image: UIImage(named: "us")!, name: "english".translate(), language: .English),
+    Language(image: UIImage(named: "uz")!, name: "uzbek".translate(), language: .Uzbek)
 ]
 
 let modes: [Mode] = [
-    Mode(image: UIImage(systemName: "cloud.moon")!, name: "Dark", mode: .dark),
-    Mode(image:  UIImage(systemName: "sun.max")!, name: "Light", mode: .light),
-    Mode(image:  UIImage(systemName: "iphone.gen1")!, name: "System", mode: .system)
+    Mode(image: UIImage(systemName: "cloud.moon")!, name: "dark".translate(), mode: .dark),
+    Mode(image:  UIImage(systemName: "sun.max")!, name: "light".translate(), mode: .light),
+    Mode(image:  UIImage(systemName: "iphone.gen1")!, name: "system".translate(), mode: .system)
 ]
 
 class ChangeLanguage: UIViewController {
@@ -97,9 +97,9 @@ class ChangeLanguage: UIViewController {
         }
         
         if isModeChange {
-            chooseLanguageLabel.text = "Choose language"
+            chooseLanguageLabel.text = "choose_language".translate()
         } else {
-            chooseLanguageLabel.text = "Choose mode"
+            chooseLanguageLabel.text = "choose_mode".translate()
         }
     }
     

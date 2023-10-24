@@ -11,7 +11,7 @@ class LoaderView: UIView {
 
     lazy var subView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor.white.withAlphaComponent(0.8)
+        view.backgroundColor = UIColor.clear
         return view
     }()
     
