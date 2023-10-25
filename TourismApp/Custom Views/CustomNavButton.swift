@@ -19,12 +19,12 @@ class CustomBarButtonView: UIView {
     init(image: UIImage) {
         super.init(frame: .zero)
         self.backgroundColor = .clear
-        customButton.backgroundColor = UIColor.white.withAlphaComponent(0.5)
+        customButton.backgroundColor = UIColor.clear
         customButton.layer.cornerRadius = 40 / 2
         customButton.setImage(image, for: .normal)
         customButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
         customButton.imageView?.contentMode = .scaleAspectFit
-        customButton.tintColor = .black
+        customButton.tintColor = .label
         customButton.imageView!.snp.makeConstraints { make in
             make.width.height.equalTo(22)
         }

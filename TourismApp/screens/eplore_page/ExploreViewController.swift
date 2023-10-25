@@ -25,9 +25,12 @@ class ExploreViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(ExploreContentTableCell.self, forCellReuseIdentifier: String.init(describing: ExploreContentTableCell.self))
+        tableView.register(CommentsTableViewCell.self, forCellReuseIdentifier: String.init(describing: CommentsTableViewCell.self))
+        tableView.register(MapTableViewCell.self, forCellReuseIdentifier: String.init(describing: MapTableViewCell.self))
+        tableView.register(CommentsSmallTableViewCell.self, forCellReuseIdentifier: String.init(describing: CommentsSmallTableViewCell.self))
         tableView.separatorStyle = .none
         tableView.showsVerticalScrollIndicator = false
-        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: 5, left: 0, bottom: 0, right: 0)
         return tableView
     }()
     
@@ -39,6 +42,7 @@ class ExploreViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.isScrollEnabled = true
+        collectionView.showsHorizontalScrollIndicator = false
         collectionView.isPagingEnabled = true
         collectionView.register(HeaderImagesCollectionViewCell.self, forCellWithReuseIdentifier: HeaderImagesCollectionViewCell.identifier)
         collectionView.addSubview(pageControl)
@@ -92,11 +96,11 @@ class ExploreViewController: UIViewController {
             if favorites.contains(destionation.id) {
                 isLiked = true
                 likeButton.customButton.setImage(UIImage(systemName: "heart.fill")!)
-                likeButton.customButton.tintColor = UIColor.init(hex: "ED2B2A")
+                likeButton.customButton.tintColor =  UIColor.label
             } else {
                 isLiked = false
                 likeButton.customButton.setImage(UIImage(systemName: "heart")!)
-                likeButton.customButton.tintColor = UIColor.black
+                likeButton.customButton.tintColor = UIColor.label
             }
         }
         
@@ -104,32 +108,32 @@ class ExploreViewController: UIViewController {
         likeButton.buttonAction = { [weak self] in
             if self!.isLiked {
                 likeButton.customButton.setImage(UIImage(systemName: "heart")!)
-                likeButton.customButton.tintColor = UIColor.black
+                likeButton.customButton.tintColor = UIColor.label
                 if let id = self!.destionation?.id {
                     API.shared.removeFromFavorites(destionationID: id) { result in
                         switch result {
                         case .success(_):
-                            self!.showAlert(title: "Success", message: "\(self!.destionation!.name) successfully removed from favorites")
+                            self!.showAlert(title: "Success", message: "\(self!.destionation!.name?.getName() ?? "") successfully removed from favorites")
                         case .failure(let error):
                             print(error)
-                            self!.showAlert(title: "Failure", message: "\(self!.destionation!.name) could be removed from favorites")
+                            self!.showAlert(title: "Failure", message: "\(self!.destionation!.name?.getName() ?? "") could be removed from favorites")
                             likeButton.customButton.setImage(UIImage(systemName: "heart.fill")!)
-                            likeButton.customButton.tintColor = UIColor.init(hex: "ED2B2A")
+                            likeButton.customButton.tintColor = UIColor.label
                         }
                     }
                 }
             } else {
                 Vibration.light.vibrate()
                 likeButton.customButton.setImage(UIImage(systemName: "heart.fill")!)
-                likeButton.customButton.tintColor = UIColor.init(hex: "ED2B2A")
+                likeButton.customButton.tintColor =  UIColor.label
                 if let id = self!.destionation?.id {
                     API.shared.addToFavorites(destionationID: id) { result in
                         switch result {
                         case .success(_):
-                            self!.showAlert(title: "Success", message: "\(self!.destionation!.name) successfully added to favorites")
+                            self!.showAlert(title: "Success", message: "\(self!.destionation!.name?.getName() ?? "") successfully added to favorites")
                         case .failure(let error):
                             print(error)
-                            self!.showAlert(title: "Failure", message: "\(self!.destionation!.name) could be added to favorites")
+                            self!.showAlert(title: "Failure", message: "\(self!.destionation!.name?.getName() ?? "") could be added to favorites")
                             likeButton.customButton.setImage(UIImage(systemName: "heart")!)
                             likeButton.customButton.tintColor = UIColor.black
                         }
@@ -142,7 +146,7 @@ class ExploreViewController: UIViewController {
     }
     
     private func initViews() {
-        view.backgroundColor = UIColor.white
+        view.backgroundColor = UIColor.systemBackground
         view.addSubview(subView)
         subView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
@@ -157,32 +161,72 @@ class ExploreViewController: UIViewController {
 
 extension ExploreViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        if let destination = destionation {
+            return 2 + (destination.comments?.count ?? 0) + 1
+        }
+        return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: String.init(describing: ExploreContentTableCell.self), for: indexPath) as? ExploreContentTableCell else { return UITableViewCell() }
-//        if let destination = destionation {
-//            cell.setData(destination.name, destination.description ?? "No description")
-//        }
-        cell.setData("", "")
-        cell.backgroundColor = .clear
-        cell.selectionStyle = .none
-        return cell
+        if indexPath.row == 0 {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: String.init(describing: ExploreContentTableCell.self), for: indexPath) as? ExploreContentTableCell else { return UITableViewCell() }
+            if let destination = destionation {
+                cell.setData(destination.name?.getName() ?? "No name", destination.description?.getDescription() ?? "No description")
+            }
+            cell.backgroundColor = .clear
+            cell.selectionStyle = .none
+            return cell
+        } else if indexPath.row == 1 {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: String.init(describing: MapTableViewCell.self), for: indexPath) as? MapTableViewCell else { return UITableViewCell() }
+            if let destionation = destionation {
+                cell.setMap(latitude: destionation.location.latitude, longitude: destionation.location.latitude, title: destionation.name?.getName() ?? "", Snippet: destionation.city_name?.getCityName() ?? "")
+            }
+            cell.backgroundColor = .clear
+            cell.selectionStyle = .none
+            return cell
+        } else if indexPath.row == 2 {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: String.init(describing: CommentsTableViewCell.self), for: indexPath) as? CommentsTableViewCell else { return UITableViewCell() }
+            if let destination = destionation, let comments = destination.comments {
+                cell.setCommands(count: comments.count)
+            }
+            cell.backgroundColor = .clear
+            cell.selectionStyle = .none
+            return cell
+        } else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: String.init(describing: CommentsSmallTableViewCell.self), for: indexPath) as? CommentsSmallTableViewCell else { return UITableViewCell() }
+            if let destination = destionation, let comments = destination.comments {
+                cell.setCommend(comments[indexPath.row - 3].text ?? "")
+            }
+            cell.backgroundColor = .clear
+            cell.selectionStyle = .none
+            return cell
+        }
+        
+        
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let defaultOffset = view.safeAreaInsets.top
-            let offset = scrollView.contentOffset.y + defaultOffset
-            navigationController?.navigationBar.transform = .init(translationX: 0, y: min(0, -offset))
-        guard let header = tableView.tableHeaderView as? StretchyTableHeaderView else { return }
-        header.scrollViewDidScroll(scrollView: tableView)
+//        let defaultOffset = view.safeAreaInsets.top
+//        let offset = scrollView.contentOffset.y + defaultOffset
+//        navigationController?.navigationBar.transform = .init(translationX: 0, y: min(0, -offset))
+        if let collectionView = scrollView as? UITableView {
+                // It's a UICollectionView scrolling
+                let defaultOffset = view.safeAreaInsets.top
+                let offset = collectionView.contentOffset.y + defaultOffset
+                navigationController?.navigationBar.transform = .init(translationX: 0, y: min(0, -offset))
+            } else {
+                // It's some other type of UIScrollView scrolling
+                // Handle it accordingly
+            }
     }
 }
 
 extension ExploreViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        2
+        if let destionation = destionation, let gattery = destionation.gallery {
+            return gattery.count
+        }
+        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -191,7 +235,9 @@ extension ExploreViewController: UICollectionViewDelegate, UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HeaderImagesCollectionViewCell.identifier, for: indexPath) as? HeaderImagesCollectionViewCell else { return UICollectionViewCell()}
-        
+        if let destionation = destionation, let gattery = destionation.gallery {
+            cell.setImage(with: gattery[indexPath.section].url)
+        }
         return cell
     }
     

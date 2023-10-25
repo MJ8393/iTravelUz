@@ -11,9 +11,9 @@ import UIKit
 class HeaderImagesCollectionViewCell: UICollectionViewCell {
     static let identifier = "HeaderImagesCollectionViewCell"
     
-    private var headerImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "Registan")!
+    private var headerImageView: ActivityImageView = {
+        let imageView = ActivityImageView(frame: .zero)
+//        imageView.image = UIImage(named: "Registan")!
         imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFill
         return imageView
@@ -37,14 +37,6 @@ class HeaderImagesCollectionViewCell: UICollectionViewCell {
     }
     
     func setImage(with: String) {
-        guard let url = URL(string: "") else { return }
-        headerImageView.kf.setImage(with: url) { result in
-            switch result {
-            case .success(_):
-                print("Image loaded successfully")
-            case .failure(let error):
-                print("Error loading image: ", error.localizedDescription)
-            }
-        }
+        headerImageView.loadImage(url: with)
     }
 }

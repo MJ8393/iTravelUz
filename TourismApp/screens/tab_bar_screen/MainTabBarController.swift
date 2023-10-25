@@ -17,13 +17,15 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         navigationItem.hidesBackButton = true
         
         let nc1 = UINavigationController(rootViewController: MainViewController())
-        nc1.title = "home".translate()
         let nc2 = UINavigationController(rootViewController: SearchVC())
-        nc2.title = "search".translate()
         let nc3 = UINavigationController(rootViewController: FavoritesViewController())
         let nc4 = UINavigationController(rootViewController: FavoritesViewController())
-        nc4.title = "favorites".translate()
         let nc5 = UINavigationController(rootViewController: ProfileViewController())
+
+        
+        nc1.title = "home".translate()
+        nc2.title = "search".translate()
+        nc4.title = "favorites".translate()
         nc5.title = "profile".translate()
 
                 
@@ -37,6 +39,13 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         self.delegate = self
         setViewControllers([nc1, nc2, nc3, nc4, nc5], animated: true)
         setupMiddleButton()
+        
+        NotificationCenter.default.addObserver(forName: NSNotification.Name("ChangeTabBar"), object: nil, queue: nil) { _ in
+            nc1.title = "home".translate()
+            nc2.title = "search".translate()
+            nc4.title = "favorites".translate()
+            nc5.title = "profile".translate()
+        }
     }
         
     override func viewDidLayoutSubviews() {
@@ -50,8 +59,8 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         tabBar.shadowImage = UIImage()
         tabBar.backgroundImage = UIImage()
         tabBar.clipsToBounds = false
-
     }
+
     
     private func addTabBarShadowBG() {
         let shapeLayer = CAShapeLayer()

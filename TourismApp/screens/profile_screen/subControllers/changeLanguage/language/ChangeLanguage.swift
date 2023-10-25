@@ -173,6 +173,7 @@ extension ChangeLanguage: UITableViewDelegate, UITableViewDataSource {
             let language = languages[indexPath.row]
             LanguageManager.setApplLang(language.language)
             tableView.reloadData()
+            NotificationCenter.default.post(name: NSNotification.Name("ChangeTabBar"), object: nil)
             NotificationCenter.default.post(name: .languageDidChange, object: nil)
         }
         dismiss(animated: true)

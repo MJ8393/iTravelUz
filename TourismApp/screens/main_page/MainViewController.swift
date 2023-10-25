@@ -46,7 +46,7 @@ class MainViewController: BaseViewController {
     var avatarView: AccountView!
     var avatarTopConstraint: NSLayoutConstraint!
     
-    let header = StretchyTableHeaderView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 180))
+    let header = StretchyTableHeaderView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 220))
 
     
     override func viewDidLoad() {
@@ -84,9 +84,20 @@ class MainViewController: BaseViewController {
     
     override func languageDidChange() {
         super.languageDidChange()
-        title = "home".translate()
         titles = ["near_destinations".translate(), "cities".translate(), "popular_destinations".translate()]
         tableView.reloadData()
+//        navigationController?.navigationBar.isHidden = true
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.tintColor = .white
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
     // MARK: Get Nearby
@@ -128,10 +139,6 @@ class MainViewController: BaseViewController {
         }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.navigationBar.tintColor = .white
-    }
     
     private func setupNavigation() {
 //        avatarView = AccountView()
@@ -216,8 +223,8 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
 extension MainViewController: MainControllerDelegate {
     func didSelectItem(index: Int) {
         let vc = ExploreViewController()
-//        let destination = nearbyDestinations[index]
-//        vc.destionation = destination
+        let destination = nearbyDestinations[index]
+        vc.destionation = destination
         navigationController?.pushViewController(vc, animated: true)
     }
     

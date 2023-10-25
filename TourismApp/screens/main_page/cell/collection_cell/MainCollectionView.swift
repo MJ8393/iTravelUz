@@ -26,7 +26,7 @@ class MainCollectionView: UICollectionViewCell {
     lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.text = "Registon Square"
-        label.textColor = UIColor.black
+        label.textColor = UIColor.label
         label.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
         return label
     }()
@@ -41,7 +41,7 @@ class MainCollectionView: UICollectionViewCell {
         let label = UILabel()
         label.text = "Samarkhand, Uzbekistan"
         label.font = UIFont.systemFont(ofSize: 12, weight: .regular)
-        label.textColor = UIColor.black
+        label.textColor = UIColor.label
         return label
     }()
     
@@ -83,7 +83,7 @@ class MainCollectionView: UICollectionViewCell {
     
     func setData(destination: MainDestination) {
         titleLabel.text = destination.name?.getName()
-        addressLabel.text = (destination.city_name?.getCityName() ?? "Tashkent") + ", Uzbekistan"
+        addressLabel.text = (destination.city_name?.getCityName() ?? "Tashkent") + "country_name".translate()
         if let gallery = destination.gallery {
             if gallery.count != 0 {
                 mainIcon.loadImage(url: gallery[0].url)

@@ -19,6 +19,7 @@ struct MainDestination: Codable {
     let description: DescriptionString?
     let recommendationLevel: MainRecomentationLevel?
     let gallery: [Gallery]?
+    let comments: [MainComment]?
 }
 
 struct MainLocation: Codable {
@@ -32,6 +33,12 @@ struct MainRecomentationLevel: Codable {
 
 struct Gallery: Codable {
     let url: String
+}
+
+struct MainComment: Codable {
+    let user: String?
+    let text: String?
+    let language: String?
 }
 
 // Cities

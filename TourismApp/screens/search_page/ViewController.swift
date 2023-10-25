@@ -128,7 +128,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         cell.textLabel?.text = places[indexPath.row].name?.getName()
-        cell.textLabel?.textColor = .black
+        cell.textLabel?.textColor = .label
         cell.textLabel?.numberOfLines = 0
         cell.contentView.backgroundColor = .clear
         cell.backgroundColor = .clear

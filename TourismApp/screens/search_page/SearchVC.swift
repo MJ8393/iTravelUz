@@ -34,7 +34,7 @@ class SearchVC: mapVC {
         appearance.shadows = [shadow]
         mainfpc.surfaceView.grabberHandle.backgroundColor = UIColor.chatGrayColor
         // Define corner radius and background color
-        appearance.cornerRadius = 30
+        appearance.cornerRadius = 22
         appearance.backgroundColor = .clear
         // Set the new appearance
         mainfpc.surfaceView.appearance = appearance
@@ -49,6 +49,11 @@ class SearchVC: mapVC {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         mapView?.frame = view.bounds
+    }
+    
+    override func languageDidChange() {
+        super.languageDidChange()
+        title = "search".translate()
     }
     
     override func viewDidAppear(_ animated: Bool) {

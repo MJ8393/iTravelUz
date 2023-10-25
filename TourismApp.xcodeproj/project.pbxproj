@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		100342572AE7CEEE0075DE9A /* HeaderImagesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100342562AE7CEEE0075DE9A /* HeaderImagesCollectionViewCell.swift */; };
+		100342592AE8729B0075DE9A /* CommentsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100342582AE8729B0075DE9A /* CommentsTableViewCell.swift */; };
+		1003425C2AE8740E0075DE9A /* CommentsSmallTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1003425B2AE8740E0075DE9A /* CommentsSmallTableViewCell.swift */; };
+		1003425E2AE884200075DE9A /* MapTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1003425D2AE884200075DE9A /* MapTableViewCell.swift */; };
 		10194BB82AC415CB00366A69 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10194BB72AC415CB00366A69 /* ProfileViewController.swift */; };
 		10194BBB2AC4181600366A69 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10194BBA2AC4181600366A69 /* ProfileTableViewCell.swift */; };
 		101CCFDC2AC492F000D6E90C /* ChangeLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 101CCFDB2AC492F000D6E90C /* ChangeLanguage.swift */; };
@@ -99,6 +102,9 @@
 
 /* Begin PBXFileReference section */
 		100342562AE7CEEE0075DE9A /* HeaderImagesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderImagesCollectionViewCell.swift; sourceTree = "<group>"; };
+		100342582AE8729B0075DE9A /* CommentsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsTableViewCell.swift; sourceTree = "<group>"; };
+		1003425B2AE8740E0075DE9A /* CommentsSmallTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsSmallTableViewCell.swift; sourceTree = "<group>"; };
+		1003425D2AE884200075DE9A /* MapTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTableViewCell.swift; sourceTree = "<group>"; };
 		10194BB72AC415CB00366A69 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		10194BBA2AC4181600366A69 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		101CCFDB2AC492F000D6E90C /* ChangeLanguage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeLanguage.swift; sourceTree = "<group>"; };
@@ -209,6 +215,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1003425A2AE873FD0075DE9A /* cell2 */ = {
+			isa = PBXGroup;
+			children = (
+				100342582AE8729B0075DE9A /* CommentsTableViewCell.swift */,
+				1003425B2AE8740E0075DE9A /* CommentsSmallTableViewCell.swift */,
+				1003425D2AE884200075DE9A /* MapTableViewCell.swift */,
+			);
+			path = cell2;
+			sourceTree = "<group>";
+		};
 		10194BB62AC4159B00366A69 /* profile_screen */ = {
 			isa = PBXGroup;
 			children = (
@@ -326,6 +342,7 @@
 		10369B292AAC920500558A5E /* cell */ = {
 			isa = PBXGroup;
 			children = (
+				1003425A2AE873FD0075DE9A /* cell2 */,
 				10369B2A2AAC922400558A5E /* ExploreContentTableCell.swift */,
 				100342562AE7CEEE0075DE9A /* HeaderImagesCollectionViewCell.swift */,
 			);
@@ -950,6 +967,7 @@
 				1046C6A82AC0F4E100A7A8D4 /* ActivityImageView.swift in Sources */,
 				108FC87C2A883D5800A97BE0 /* UserDefaults.swift in Sources */,
 				8C7A9C412ABAD0FE005F790D /* mapVC.swift in Sources */,
+				1003425C2AE8740E0075DE9A /* CommentsSmallTableViewCell.swift in Sources */,
 				10369B4A2AACF25800558A5E /* label.proto in Sources */,
 				10369B4B2AACF25800558A5E /* code.proto in Sources */,
 				100342572AE7CEEE0075DE9A /* HeaderImagesCollectionViewCell.swift in Sources */,
@@ -958,6 +976,7 @@
 				8C56C12C2ABAD00B007D1781 /* GooglePlacesManager.swift in Sources */,
 				10C9163D2A7821FE0054B55C /* SceneDelegate.swift in Sources */,
 				101CCFEC2AC4BC6700D6E90C /* Ext_String.swift in Sources */,
+				1003425E2AE884200075DE9A /* MapTableViewCell.swift in Sources */,
 				10369B572AAD05BA00558A5E /* Bridge.m in Sources */,
 				102DC3492AE50BC6002AB6C3 /* UILabel.swift in Sources */,
 				10369B482AACF25800558A5E /* monitored_resource.proto in Sources */,
@@ -966,6 +985,7 @@
 				1091DE592AC0DDA4008664E9 /* FavoritesViewController.swift in Sources */,
 				10369B592AAD0F7D00558A5E /* GoogleSpeechManager.swift in Sources */,
 				8C56C12B2ABAD00B007D1781 /* SearchVC.swift in Sources */,
+				100342592AE8729B0075DE9A /* CommentsTableViewCell.swift in Sources */,
 				10369B622AAD461600558A5E /* waveUtils.swift in Sources */,
 				108FC8792A882EF900A97BE0 /* ChatModel.swift in Sources */,
 				105A0E712AC4820000019311 /* profileAPI.swift in Sources */,
