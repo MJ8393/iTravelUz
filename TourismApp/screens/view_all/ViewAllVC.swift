@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import GooglePlaces
 
 protocol ViewAllVCDelegate: AnyObject {
     func locationButtonTapped()
@@ -13,10 +14,17 @@ protocol ViewAllVCDelegate: AnyObject {
 
 class ViewAllVC: UIViewController {
     
-    private let viewAllTableView: UITableView = {
+    var latitude: Double?
+    var longitude: Double?
+    var gallery: [Gallery] = []
+    
+    lazy var viewAllTableView: UITableView = {
         let table = UITableView(frame: .zero, style: .grouped)
+        table.delegate = self
+        table.dataSource = self
+        table.frame = view.bounds
         table.register(TableViewCell.self, forCellReuseIdentifier: TableViewCell.identifier)
-        table.backgroundColor = .clear
+        table.backgroundColor = .systemBackground
         table.separatorStyle = .none
         table.showsVerticalScrollIndicator = false
         return table
@@ -28,13 +36,10 @@ class ViewAllVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
         view.addSubview(viewAllTableView)
-        viewAllTableView.frame = view.bounds
-        viewAllTableView.delegate = self
-        viewAllTableView.dataSource = self
-        navigationController?.navigationBar.tintColor = .black
         self.navigationController?.navigationBar.topItem?.title = " "
+        self.navigationController?.navigationBar.tintColor = UIColor(named: "view_all_colorSet")
     }
 }
 
@@ -54,7 +59,13 @@ extension ViewAllVC: UITableViewDelegate, UITableViewDataSource {
             cell.setCity(city: cities[indexPath.row])
         } else {
             cell.setData(destination: destionations[indexPath.row])
+            self.latitude = destionations[indexPath.row].location.latitude
+            self.longitude = destionations[indexPath.row].location.longitude
+            if let gallery = destionations[indexPath.row].gallery {
+                self.gallery[indexPath.row] = gallery[indexPath.row]
+            }
         }
+        
         cell.backgroundColor = .clear
         cell.selectionStyle = .none
         return cell
@@ -79,6 +90,10 @@ extension ViewAllVC: UITableViewDelegate, UITableViewDataSource {
 extension ViewAllVC: ViewAllVCDelegate {
     func locationButtonTapped() {
         let vc = LocationVC()
+        guard let latitude = latitude, let longitude = longitude else { return }
+        vc.coordinate.latitude = latitude
+        vc.coordinate.longitude = longitude
+        vc.gallery = gallery
         navigationController?.pushViewController(vc, animated: true)
     }
 }

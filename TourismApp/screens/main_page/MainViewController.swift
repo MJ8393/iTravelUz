@@ -52,6 +52,7 @@ class MainViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.systemBackground
+//        self.navigationController?.navigationBar.tintColor = UIColor.mainColor
         initViews()
         
         // API
@@ -65,8 +66,10 @@ class MainViewController: BaseViewController {
         tableView.tableHeaderView = header
         setupNavigation()
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+         navigationController?.navigationBar.barTintColor = UIColor.mainColor
             navigationController?.navigationBar.shadowImage = UIImage()
                navigationController?.navigationBar.isTranslucent = true
+        
         performTaskWithTimer()
     }
     
@@ -91,7 +94,6 @@ class MainViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.navigationBar.tintColor = .white
         navigationController?.setNavigationBarHidden(true, animated: animated)
     }
 

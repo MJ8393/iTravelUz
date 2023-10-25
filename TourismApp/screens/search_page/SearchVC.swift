@@ -16,13 +16,17 @@ class SearchVC: mapVC {
     let mainfpc = FloatingPanelController()
     let panel = FloatingPanelController()
     var coordinate: CLLocationCoordinate2D?
-    let vc = ViewController()
+    let vc = SearchPlaceVC()
     let appearance = SurfaceAppearance()
+    
+    override func loadView() {
+        setMapView()
+        view = mapView
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setMapView()
         vc.delegate = self
         mainfpc.set(contentViewController: vc)
         // Define shadows
@@ -48,7 +52,7 @@ class SearchVC: mapVC {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        mapView?.frame = view.bounds
+       // mapView?.frame = view.bounds
     }
     
     override func languageDidChange() {
@@ -131,7 +135,7 @@ extension SearchVC: InfoWindowVCDelegate {
     
     func didTapXButton() {
         panel.dismiss(animated: true)
-        let vc = ViewController()
+        let vc = SearchPlaceVC()
         vc.delegate = self
         mainfpc.set(contentViewController: vc)
         mainfpc.addPanel(toParent: self)

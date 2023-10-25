@@ -72,7 +72,6 @@ class ChatViewController: UIViewController, ChatControllerDelegate {
     
     private func setupNavigation() {
         title = "AI Travel Assistent"
-        navigationController?.navigationBar.tintColor = .black
     }
     
     private func initViews() {

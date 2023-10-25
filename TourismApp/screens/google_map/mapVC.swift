@@ -15,15 +15,12 @@ class mapVC: BaseViewController {
     let manager = CLLocationManager()
     var mapView: GMSMapView?
     var marker: GMSMarker?
-    var markerImageView: UIImageView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         manager.requestWhenInUseAuthorization()
-        manager.startUpdatingLocation()
-        
-        navigationController?.navigationBar.tintColor = .black
+        //manager.startUpdatingLocation()
     }
     
     override func languageDidChange() {
@@ -31,14 +28,12 @@ class mapVC: BaseViewController {
     }
 
     func setMapView(latitude: Double = 41.377491, longitude: Double = 64.585262, zoom: Float = 5.0) {
-        let camera = GMSCameraPosition.camera(withLatitude: latitude, longitude: longitude, zoom: zoom)
-        mapView = GMSMapView.map(withFrame: view.bounds, camera: camera)
+        let camera: GMSCameraPosition = GMSCameraPosition.camera(withLatitude: latitude, longitude: longitude, zoom: zoom)
+        mapView = GMSMapView.map(withFrame: .zero, camera: camera)
         marker = GMSMarker()
         marker?.map = mapView
         mapView?.selectedMarker = marker
-        view.addSubview(mapView!)
     }
-    
     
     func setMarkerImageView(with gallery: [GalleryModel]) -> UIImageView {
         let markerImageView = ActivityImageView(frame: CGRect(x: 0, y: 0, width: 60, height: 60))
@@ -55,5 +50,4 @@ class mapVC: BaseViewController {
         markerImageView.contentMode = .scaleAspectFill
         return markerImageView
     }
-    
 }

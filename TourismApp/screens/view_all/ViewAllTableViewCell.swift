@@ -6,11 +6,13 @@
 //
 
 import UIKit
+import GooglePlaces
 
 class TableViewCell: UITableViewCell {
 
     weak var delegate: ViewAllVCDelegate?
     static let identifier = "TableViewCell"
+    var coordinate: MainLocation?
     
     private let headerImageView: ActivityImageView = {
         let imageView = ActivityImageView(frame: .zero)
@@ -27,7 +29,7 @@ class TableViewCell: UITableViewCell {
     private let cityLabel: UILabel = {
         let headerLabel = UILabel()
         headerLabel.translatesAutoresizingMaskIntoConstraints = false
-        headerLabel.textColor = .black
+        headerLabel.textColor = UIColor(named: "view_all_colorSet")
         headerLabel.font = .boldSystemFont(ofSize: 17)
         headerLabel.text = "City Label"
         return headerLabel
@@ -37,7 +39,7 @@ class TableViewCell: UITableViewCell {
     private let locationLabel: UILabel = {
         let locationLabel = UILabel()
         locationLabel.translatesAutoresizingMaskIntoConstraints = false
-        locationLabel.textColor = .black
+        locationLabel.textColor = UIColor(named: "view_all_colorSet")
         locationLabel.text = "Tashkent, Uzbekistan"
         return locationLabel
     }()
@@ -46,7 +48,7 @@ class TableViewCell: UITableViewCell {
     private let locationButton: UIButton = {
         let locationButton = UIButton()
         locationButton.translatesAutoresizingMaskIntoConstraints = false
-        locationButton.tintColor = .black
+        locationButton.tintColor = UIColor(named: "view_all_colorSet")
         locationButton.backgroundColor = .secondarySystemBackground
         let image = UIImage(systemName: "mappin.and.ellipse")
         locationButton.setImage(image)
@@ -69,6 +71,7 @@ class TableViewCell: UITableViewCell {
     
     func setData(destination: MainDestination) {
         headerImageView.image = nil
+        self.coordinate = destination.location
         cityLabel.text = destination.name?.getName()
         locationLabel.text = "\(destination.city_name?.getCityName() ?? ""), Uzbekistan"
         if let gallery = destination.gallery {
@@ -134,7 +137,6 @@ class TableViewCell: UITableViewCell {
     
     }
    
-    
     @objc func locationButtonTapped() {
         delegate?.locationButtonTapped()
     }

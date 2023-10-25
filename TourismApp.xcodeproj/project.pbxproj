@@ -86,7 +86,7 @@
 		10DEB8502A92791D008CE34F /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10DEB84F2A92791D008CE34F /* MainTableViewCell.swift */; };
 		10EB81442ABCBA1200D7126E /* Main_API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10EB81432ABCBA1200D7126E /* Main_API.swift */; };
 		10EB81462ABCBA7500D7126E /* MainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10EB81452ABCBA7500D7126E /* MainModel.swift */; };
-		8C0EFDBB2ABDFEFF008C101F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0EFDBA2ABDFEFF008C101F /* ViewController.swift */; };
+		8C0EFDBB2ABDFEFF008C101F /* SearchPlaceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0EFDBA2ABDFEFF008C101F /* SearchPlaceVC.swift */; };
 		8C56C12A2ABAD00B007D1781 /* InfoWindowVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C56C1262ABAD002007D1781 /* InfoWindowVC.swift */; };
 		8C56C12B2ABAD00B007D1781 /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C56C1272ABAD005007D1781 /* SearchVC.swift */; };
 		8C56C12C2ABAD00B007D1781 /* GooglePlacesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C56C1282ABAD008007D1781 /* GooglePlacesManager.swift */; };
@@ -189,7 +189,7 @@
 		10EB81452ABCBA7500D7126E /* MainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainModel.swift; sourceTree = "<group>"; };
 		1BE165FE71FEBCA7F0F275C3 /* Pods-TourismApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TourismApp.release.xcconfig"; path = "Target Support Files/Pods-TourismApp/Pods-TourismApp.release.xcconfig"; sourceTree = "<group>"; };
 		3F6A5C0325368C51BDC06D5A /* Pods_TourismApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TourismApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8C0EFDBA2ABDFEFF008C101F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		8C0EFDBA2ABDFEFF008C101F /* SearchPlaceVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPlaceVC.swift; sourceTree = "<group>"; };
 		8C56C1262ABAD002007D1781 /* InfoWindowVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoWindowVC.swift; sourceTree = "<group>"; };
 		8C56C1272ABAD005007D1781 /* SearchVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
 		8C56C1282ABAD008007D1781 /* GooglePlacesManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GooglePlacesManager.swift; sourceTree = "<group>"; };
@@ -725,7 +725,7 @@
 			children = (
 				8C93A19B2ABB7F76009F96BA /* search_api */,
 				8C56C1272ABAD005007D1781 /* SearchVC.swift */,
-				8C0EFDBA2ABDFEFF008C101F /* ViewController.swift */,
+				8C0EFDBA2ABDFEFF008C101F /* SearchPlaceVC.swift */,
 				8C56C1262ABAD002007D1781 /* InfoWindowVC.swift */,
 				8CA9559B2ABCC23B00F95261 /* ImageCollectionViewCell.swift */,
 				8C56C1282ABAD008007D1781 /* GooglePlacesManager.swift */,
@@ -941,7 +941,7 @@
 				10369B5E2AAD45EC00558A5E /* SiriWaveView.swift in Sources */,
 				10369B442AACF25800558A5E /* operations.proto in Sources */,
 				108FC86D2A87A0D500A97BE0 /* UIColor.swift in Sources */,
-				8C0EFDBB2ABDFEFF008C101F /* ViewController.swift in Sources */,
+				8C0EFDBB2ABDFEFF008C101F /* SearchPlaceVC.swift in Sources */,
 				10369B542AACF2B200558A5E /* SpeechRecognitionService.swift in Sources */,
 				10369B462AACF25800558A5E /* cloud_speech.proto in Sources */,
 				108B56542A9D25E3000DF967 /* SectionHeaderView.swift in Sources */,
@@ -1154,7 +1154,7 @@
 				CODE_SIGN_ENTITLEMENTS = TourismApp/TourismApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = FZU84SDGV7;
+				DEVELOPMENT_TEAM = L7D5MM5SF3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TourismApp/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";

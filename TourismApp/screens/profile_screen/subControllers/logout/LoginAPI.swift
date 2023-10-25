@@ -51,6 +51,7 @@ extension API {
                 case .success(_):
                     complition(.success("Success"))
                 case .failure(let error):
+                    print("xxx", error.localizedDescription)
                     complition(.failure(error))
                 }
             }

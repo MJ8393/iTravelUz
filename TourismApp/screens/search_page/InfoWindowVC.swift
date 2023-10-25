@@ -19,13 +19,13 @@ class InfoWindowVC: UIViewController {
     var images: [GalleryModel]?
     var cityLabelText: String?
     var cityName: String?
-    let vc = ViewController()
+    let vc = SearchPlaceVC()
     
     lazy var cityLabel: UILabel = {
         let label = UILabel()
         label.text = cityLabelText
         label.font = .systemFont(ofSize: 25, weight: .bold)
-        label.textColor = .black
+        label.textColor = UIColor(named: "view_all_colorSet")
         return label
     }()
     
@@ -34,16 +34,16 @@ class InfoWindowVC: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = cityName
         label.font = .systemFont(ofSize: 15)
-        label.textColor = .black
+        label.textColor = UIColor(named: "view_all_colorSet")
         return label
     }()
     
     private let goButton: UIButton = {
         let goButton = UIButton()
         goButton.translatesAutoresizingMaskIntoConstraints = false
-        goButton.backgroundColor = .systemBlue
+        goButton.backgroundColor = .secondarySystemBackground
         goButton.titleLabel?.lineBreakMode = .byWordWrapping
-        goButton.setTitleColor(.white, for: .normal)
+        goButton.setTitleColor(.systemBlue, for: .normal)
         goButton.setTitle("Open\nGoogle Maps", for: .normal)
         goButton.titleLabel?.textAlignment = .center
         goButton.layer.cornerRadius = 8
@@ -94,7 +94,7 @@ class InfoWindowVC: UIViewController {
     
     let collectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.itemSize = CGSize(width: 220, height: 260)
+        flowLayout.itemSize = CGSize(width: UIScreen.main.bounds.width, height: 260)
         flowLayout.scrollDirection = .horizontal
         flowLayout.minimumInteritemSpacing = 10
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
@@ -106,7 +106,7 @@ class InfoWindowVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.white
+        view.backgroundColor = .systemBackground
         
         let properties = [cityLabel, descriptionLabel, goButton, shareButton, saveButton, xButton, collectionView]
         for property in properties {
@@ -187,10 +187,13 @@ class InfoWindowVC: UIViewController {
 
 
 extension InfoWindowVC: UICollectionViewDelegate, UICollectionViewDataSource {
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         guard let count = images?.count else { return 0 }
         return count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
