@@ -9,7 +9,7 @@ import UIKit
 import GooglePlaces
 
 class TableViewCell: UITableViewCell {
-
+    
     weak var delegate: ViewAllVCDelegate?
     static let identifier = "TableViewCell"
     var coordinate: MainLocation?
@@ -24,7 +24,6 @@ class TableViewCell: UITableViewCell {
         imageView.image = UIImage(named: "Registan")
         return imageView
     }()
-    
     
     private let cityLabel: UILabel = {
         let headerLabel = UILabel()
@@ -117,12 +116,12 @@ class TableViewCell: UITableViewCell {
             cityLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             cityLabel.heightAnchor.constraint(equalToConstant: 50)
         ]
-    
+        
         let locationLabelConstraints = [
             locationLabel.topAnchor.constraint(equalTo: cityLabel.bottomAnchor, constant: 5),
             locationLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             cityLabel.heightAnchor.constraint(equalToConstant: 20)
-                
+            
         ]
         
         let locationButtonConstraints = [
@@ -134,9 +133,8 @@ class TableViewCell: UITableViewCell {
         
         let constraints = [headerImageViewConstraints, cityLabelConstraints, locationLabelConstraints, locationButtonConstraints]
         for constraint in constraints { NSLayoutConstraint.activate(constraint) }
-    
     }
-   
+    
     @objc func locationButtonTapped() {
         delegate?.locationButtonTapped()
     }

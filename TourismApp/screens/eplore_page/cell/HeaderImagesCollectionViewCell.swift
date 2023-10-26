@@ -36,7 +36,7 @@ class HeaderImagesCollectionViewCell: UICollectionViewCell {
         headerImageView.frame = contentView.bounds
     }
     
-    func setImage(with: String) {
-        headerImageView.loadImage(url: with)
+    func setImage(with url: String) {
+        headerImageView.loadImage(url: url)
     }
 }

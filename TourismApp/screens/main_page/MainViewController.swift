@@ -226,7 +226,7 @@ extension MainViewController: MainControllerDelegate {
     func didSelectItem(index: Int) {
         let vc = ExploreViewController()
         let destination = nearbyDestinations[index]
-        vc.destionation = destination
+        vc.destination = destination
         navigationController?.pushViewController(vc, animated: true)
     }
     

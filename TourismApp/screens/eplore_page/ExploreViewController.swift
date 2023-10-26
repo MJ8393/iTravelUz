@@ -15,7 +15,7 @@ class ExploreViewController: UIViewController {
         return view
     }()
     
-    var destionation: MainDestination?
+    var destination: MainDestination?
     var isLiked: Bool = false
     var thisWidth: CGFloat = CGFloat(UIScreen.main.bounds.width)
     
@@ -59,20 +59,20 @@ class ExploreViewController: UIViewController {
     }()
     
     let synthesizer = AVSpeechSynthesizer()
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        SpeechService.shared.speak(text: destionation?.description ?? "No description") {
-//        }
+        //        SpeechService.shared.speak(text: destionation?.description ?? "No description") {
+        //        }
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         initViews()
         setupNavigation()
-//        let header = StretchyTableHeaderView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 240))
-//        header.imageView.image = UIImage(named: "Registan")!
-//        header.addSwipeActions()
+        //        let header = StretchyTableHeaderView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 240))
+        //        header.imageView.image = UIImage(named: "Registan")!
+        //        header.addSwipeActions()
         tableView.tableHeaderView = collectionView
         configurePageControl()
     }
@@ -89,10 +89,10 @@ class ExploreViewController: UIViewController {
             self.navigationController?.popViewController(animated: true)
         }
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
-
+        
         // Like Button
         let likeButton = CustomBarButtonView(image: UIImage(systemName: "heart")!)
-        if let favorites = UD.favorites, let destionation = destionation {
+        if let favorites = UD.favorites, let destionation = destination {
             if favorites.contains(destionation.id) {
                 isLiked = true
                 likeButton.customButton.setImage(UIImage(systemName: "heart.fill")!)
@@ -109,14 +109,14 @@ class ExploreViewController: UIViewController {
             if self!.isLiked {
                 likeButton.customButton.setImage(UIImage(systemName: "heart")!)
                 likeButton.customButton.tintColor = UIColor.label
-                if let id = self!.destionation?.id {
+                if let id = self!.destination?.id {
                     API.shared.removeFromFavorites(destionationID: id) { result in
                         switch result {
                         case .success(_):
-                            self!.showAlert(title: "Success", message: "\(self!.destionation!.name?.getName() ?? "") successfully removed from favorites")
+                            self!.showAlert(title: "Success", message: "\(self!.destination!.name?.getName() ?? "") successfully removed from favorites")
                         case .failure(let error):
                             print(error)
-                            self!.showAlert(title: "Failure", message: "\(self!.destionation!.name?.getName() ?? "") could be removed from favorites")
+                            self!.showAlert(title: "Failure", message: "\(self!.destination!.name?.getName() ?? "") could be removed from favorites")
                             likeButton.customButton.setImage(UIImage(systemName: "heart.fill")!)
                             likeButton.customButton.tintColor = UIColor.label
                         }
@@ -126,14 +126,14 @@ class ExploreViewController: UIViewController {
                 Vibration.light.vibrate()
                 likeButton.customButton.setImage(UIImage(systemName: "heart.fill")!)
                 likeButton.customButton.tintColor =  UIColor.label
-                if let id = self!.destionation?.id {
+                if let id = self!.destination?.id {
                     API.shared.addToFavorites(destionationID: id) { result in
                         switch result {
                         case .success(_):
-                            self!.showAlert(title: "Success", message: "\(self!.destionation!.name?.getName() ?? "") successfully added to favorites")
+                            self!.showAlert(title: "Success", message: "\(self!.destination!.name?.getName() ?? "") successfully added to favorites")
                         case .failure(let error):
                             print(error)
-                            self!.showAlert(title: "Failure", message: "\(self!.destionation!.name?.getName() ?? "") could be added to favorites")
+                            self!.showAlert(title: "Failure", message: "\(self!.destination!.name?.getName() ?? "") could be added to favorites")
                             likeButton.customButton.setImage(UIImage(systemName: "heart")!)
                             likeButton.customButton.tintColor = UIColor.black
                         }
@@ -161,7 +161,7 @@ class ExploreViewController: UIViewController {
 
 extension ExploreViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let destination = destionation {
+        if let destination = destination {
             return 2 + (destination.comments?.count ?? 0) + 1
         }
         return 0
@@ -170,7 +170,7 @@ extension ExploreViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: String.init(describing: ExploreContentTableCell.self), for: indexPath) as? ExploreContentTableCell else { return UITableViewCell() }
-            if let destination = destionation {
+            if let destination = destination {
                 cell.setData(destination.name?.getName() ?? "No name", destination.description?.getDescription() ?? "No description")
             }
             cell.backgroundColor = .clear
@@ -178,7 +178,7 @@ extension ExploreViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         } else if indexPath.row == 1 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: String.init(describing: MapTableViewCell.self), for: indexPath) as? MapTableViewCell else { return UITableViewCell() }
-            if let destionation = destionation {
+            if let destionation = destination {
                 cell.setMap(latitude: destionation.location.latitude, longitude: destionation.location.latitude, title: destionation.name?.getName() ?? "", Snippet: destionation.city_name?.getCityName() ?? "")
             }
             cell.backgroundColor = .clear
@@ -186,7 +186,7 @@ extension ExploreViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         } else if indexPath.row == 2 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: String.init(describing: CommentsTableViewCell.self), for: indexPath) as? CommentsTableViewCell else { return UITableViewCell() }
-            if let destination = destionation, let comments = destination.comments {
+            if let destination = destination, let comments = destination.comments {
                 cell.setCommands(count: comments.count)
             }
             cell.backgroundColor = .clear
@@ -194,36 +194,48 @@ extension ExploreViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: String.init(describing: CommentsSmallTableViewCell.self), for: indexPath) as? CommentsSmallTableViewCell else { return UITableViewCell() }
-            if let destination = destionation, let comments = destination.comments {
+            if let destination = destination, let comments = destination.comments {
                 cell.setCommend(comments[indexPath.row - 3].text ?? "")
             }
             cell.backgroundColor = .clear
             cell.selectionStyle = .none
             return cell
         }
-        
-        
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if(indexPath.row == 1) {
+            let vc = InfoVC()
+            if let destination = destination, let cityLabelText = destination.name?.getName(), let cityName = destination.city_name?.getCityName(), let gallery = destination.gallery {
+                vc.coordinate.latitude = destination.location.latitude
+                vc.coordinate.longitude = destination.location.longitude
+                vc.cityLabelText = cityLabelText
+                vc.cityName = cityName
+                vc.gallery = gallery
+            }
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        let defaultOffset = view.safeAreaInsets.top
-//        let offset = scrollView.contentOffset.y + defaultOffset
-//        navigationController?.navigationBar.transform = .init(translationX: 0, y: min(0, -offset))
+        //        let defaultOffset = view.safeAreaInsets.top
+        //        let offset = scrollView.contentOffset.y + defaultOffset
+        //        navigationController?.navigationBar.transform = .init(translationX: 0, y: min(0, -offset))
         if let collectionView = scrollView as? UITableView {
-                // It's a UICollectionView scrolling
-                let defaultOffset = view.safeAreaInsets.top
-                let offset = collectionView.contentOffset.y + defaultOffset
-                navigationController?.navigationBar.transform = .init(translationX: 0, y: min(0, -offset))
-            } else {
-                // It's some other type of UIScrollView scrolling
-                // Handle it accordingly
-            }
+            // It's a UICollectionView scrolling
+            let defaultOffset = view.safeAreaInsets.top
+            let offset = collectionView.contentOffset.y + defaultOffset
+            navigationController?.navigationBar.transform = .init(translationX: 0, y: min(0, -offset))
+        } else {
+            // It's some other type of UIScrollView scrolling
+            // Handle it accordingly
+        }
     }
 }
 
 extension ExploreViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        if let destionation = destionation, let gattery = destionation.gallery {
+        if let destionation = destination, let gattery = destionation.gallery {
             return gattery.count
         }
         return 0
@@ -235,7 +247,7 @@ extension ExploreViewController: UICollectionViewDelegate, UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HeaderImagesCollectionViewCell.identifier, for: indexPath) as? HeaderImagesCollectionViewCell else { return UICollectionViewCell()}
-        if let destionation = destionation, let gattery = destionation.gallery {
+        if let destionation = destination, let gattery = destionation.gallery {
             cell.setImage(with: gattery[indexPath.section].url)
         }
         return cell

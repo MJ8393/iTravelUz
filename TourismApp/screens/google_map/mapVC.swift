@@ -11,7 +11,7 @@ import CoreLocation
 import GooglePlaces
 
 class mapVC: BaseViewController {
-
+    
     let manager = CLLocationManager()
     var mapView: GMSMapView?
     var marker: GMSMarker?
@@ -26,16 +26,18 @@ class mapVC: BaseViewController {
     override func languageDidChange() {
         super.languageDidChange()
     }
-
+    
     func setMapView(latitude: Double = 41.377491, longitude: Double = 64.585262, zoom: Float = 5.0) {
         let camera: GMSCameraPosition = GMSCameraPosition.camera(withLatitude: latitude, longitude: longitude, zoom: zoom)
         mapView = GMSMapView.map(withFrame: .zero, camera: camera)
-        marker = GMSMarker()
-        marker?.map = mapView
-        mapView?.selectedMarker = marker
     }
     
-    func setMarkerImageView(with gallery: [GalleryModel]) -> UIImageView {
+    func setMarker(coordinate: CLLocationCoordinate2D) {
+        marker = GMSMarker(position: coordinate)
+        marker?.map = mapView
+    }
+    
+    func setMarkerImageView(with gallery: [Gallery]) -> UIImageView {
         let markerImageView = ActivityImageView(frame: CGRect(x: 0, y: 0, width: 60, height: 60))
         markerImageView.layer.cornerRadius = markerImageView.frame.size.width / 2
         markerImageView.layer.masksToBounds = true

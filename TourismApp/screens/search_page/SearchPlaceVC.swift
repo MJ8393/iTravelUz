@@ -8,15 +8,15 @@
 import UIKit
 import CoreLocation
 
-protocol ViewControllerDelegate: AnyObject, mapVC {
-    func didTapPlace(with coordinate: CLLocationCoordinate2D, text: String?, name: String?, images: [GalleryModel])
+protocol SearchPlaceVCDelegate: AnyObject, mapVC {
+    func didTapPlace(with coordinate: CLLocationCoordinate2D, text: String?, name: String?, gallery: [Gallery])
     func textFieldBeginEditing()
 }
 
 class SearchPlaceVC: BaseViewController, UITextFieldDelegate {
-
-    weak var delegate: ViewControllerDelegate?
-    private var places: [SearchDestinationModel] = []
+    
+    weak var delegate: SearchPlaceVCDelegate?
+    var places: [SearchDestinationModel] = []
     
     private let label: UILabel = {
         let label = UILabel()
@@ -68,7 +68,7 @@ class SearchPlaceVC: BaseViewController, UITextFieldDelegate {
         tableView.delegate = self
         tableView.dataSource = self
     }
-
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         label.sizeToFit()
@@ -143,14 +143,14 @@ extension SearchPlaceVC: UITableViewDelegate, UITableViewDataSource {
             switch result {
             case .success(let coordinate):
                 DispatchQueue.main.async {
-                    self?.delegate?.didTapPlace(with: coordinate, text: place.name?.getName(), name: place.city_name?.getCityName(), images: place.gallery ?? [])
+                    self?.delegate?.didTapPlace(with: coordinate, text: place.name?.getName(), name: place.city_name?.getCityName(), gallery: place.gallery ?? [])
                 }
+                
             case .failure(let error):
                 print(error.localizedDescription)
             }
         }
     }
-    
 }
 
 extension SearchPlaceVC {
