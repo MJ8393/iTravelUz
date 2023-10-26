@@ -7,8 +7,6 @@
 
 import UIKit
 import GoogleMaps
-import CoreLocation
-import GooglePlaces
 
 class mapVC: BaseViewController {
     
@@ -32,8 +30,8 @@ class mapVC: BaseViewController {
         mapView = GMSMapView.map(withFrame: .zero, camera: camera)
     }
     
-    func setMarker(coordinate: CLLocationCoordinate2D) {
-        marker = GMSMarker(position: coordinate)
+    func setMarker(location: MainLocation) {
+        marker = GMSMarker(position: CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude))
         marker?.map = mapView
     }
     

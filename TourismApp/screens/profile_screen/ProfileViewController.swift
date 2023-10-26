@@ -37,7 +37,6 @@ class ProfileViewController: BaseViewController {
             Profile(image: UIImage(systemName: "info.circle")!, name: "my_info".translate()),
             Profile(image: UIImage(systemName: "network")!, name: "change_language".translate()),
             Profile(image: UIImage(systemName: "moon")!, name: "design".translate()),
-            Profile(image: UIImage(systemName: "bookmark")!, name: "your_comments".translate()),
             Profile(image: UIImage(systemName: "envelope")!, name: "share_feedback".translate()),
             Profile(image: UIImage(systemName: "star")!, name: "rate_app".translate()),
             Profile(image: UIImage(systemName: "rectangle.portrait.and.arrow.right")!, name: "log_out".translate()),
@@ -86,9 +85,6 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
             vc.isModeChange = true
             navigationController?.presentPanModal(vc)
         case 3:
-            let vc = FavoritesViewController()
-            present(UINavigationController(rootViewController: vc), animated: true)
-        case 4:
             let email = "mekhriddinjumaev10@gmail.com"
             if let url = URL(string: "mailto:\(email)") {
               if #available(iOS 10.0, *) {
@@ -97,7 +93,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
                 UIApplication.shared.openURL(url)
               }
             }
-        case 5:
+        case 4:
             guard let url = URL(string: "itms-apps://itunes.apple.com/app/" + "appId") else {
                 return
             }
@@ -107,7 +103,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
             } else {
                 UIApplication.shared.openURL(url)
             }
-        case 6:
+        case 5:
             let alertController = UIAlertController(title: "log_out".translate(), message: "log_out_alert".translate(), preferredStyle: .alert)
             
             // Create a Log Out action
@@ -139,7 +135,6 @@ var profiles = [
     Profile(image: UIImage(systemName: "info.circle")!, name: "my_info".translate()),
     Profile(image: UIImage(systemName: "network")!, name: "change_language".translate()),
     Profile(image: UIImage(systemName: "moon")!, name: "design".translate()),
-    Profile(image: UIImage(systemName: "bookmark")!, name: "your_comments".translate()),
     Profile(image: UIImage(systemName: "envelope")!, name: "share_feedback".translate()),
     Profile(image: UIImage(systemName: "star")!, name: "rate_app".translate()),
     Profile(image: UIImage(systemName: "rectangle.portrait.and.arrow.right")!, name: "log_out".translate()),

@@ -143,7 +143,6 @@ class ExploreViewController: UIViewController {
             self!.isLiked = !self!.isLiked
         }
         
-        
         let reviewButton = CustomBarButtonView(image: UIImage(systemName: "square.and.pencil")!)
         reviewButton.buttonAction = { [weak self] in
             let vc = CommentsViewController()
@@ -217,14 +216,8 @@ extension ExploreViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if(indexPath.row == 1) {
             let vc = InfoVC()
-            if let destination = destination, let cityLabelText = destination.name?.getName(), let cityName = destination.city_name?.getCityName(), let gallery = destination.gallery {
-                if let location = destination.location {
-                    vc.coordinate.latitude = location.latitude ?? Helper.getDefaultLocation().lat
-                    vc.coordinate.longitude = location.longitude ?? Helper.getDefaultLocation().lon
-                }
-                vc.cityLabelText = cityLabelText
-                vc.cityName = cityName
-                vc.gallery = gallery
+            if let destination = destination{
+                vc.destination = destination
             }
             navigationController?.pushViewController(vc, animated: true)
         }

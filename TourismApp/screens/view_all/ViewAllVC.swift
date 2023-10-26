@@ -6,17 +6,14 @@
 //
 
 import UIKit
-import GooglePlaces
 
 protocol ViewAllVCDelegate: AnyObject {
     func locationButtonTapped()
 }
 
 class ViewAllVC: UIViewController {
-    
-    var latitude: Double?
-    var longitude: Double?
-    var gallery: [Gallery] = []
+
+    var destination: MainDestination?
     
     lazy var viewAllTableView: UITableView = {
         let table = UITableView(frame: .zero, style: .grouped)
@@ -55,13 +52,13 @@ extension ViewAllVC: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCell.identifier, for: indexPath) as? TableViewCell else { return UITableViewCell() }
         cell.delegate = self
         if isCity {
-            cell.setCity(city: cities[indexPath.row])
+            let city = cities[indexPath.row]
+            cell.setCity(city: city)
+            destination = MainDestination(id: city.id, name: city.name, location: city.location, city_name: city.country, description: city.description, recommendationLevel: city.recommendationLevel, gallery: city.gallery, comments: city.comments)
         } else {
-            cell.setData(destination: destionations[indexPath.row])
-            if let location = destionations[indexPath.row].location {
-                self.latitude = location.latitude
-                self.longitude = location.longitude
-            }
+            let city = destionations[indexPath.row]
+            cell.setData(destination: city)
+            destination = MainDestination(id: city.id, name: city.name, location: city.location, city_name: city.city_name, description: city.description, recommendationLevel: city.recommendationLevel, gallery: city.gallery, comments: city.comments)
 //            if let gallery = destionations[indexPath.row].gallery {
 //                self.gallery[indexPath.row] = gallery[indexPath.row]
 //            }
@@ -91,10 +88,7 @@ extension ViewAllVC: UITableViewDelegate, UITableViewDataSource {
 extension ViewAllVC: ViewAllVCDelegate {
     func locationButtonTapped() {
         let vc = InfoVC()
-        guard let latitude = latitude, let longitude = longitude else { return }
-        vc.coordinate.latitude = latitude
-        vc.coordinate.longitude = longitude
-        vc.gallery = gallery
+        vc.destination = destination
         navigationController?.pushViewController(vc, animated: true)
     }
 }
