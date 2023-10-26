@@ -88,7 +88,7 @@ class TableViewCell: UITableViewCell {
     func setCity(city: City) {
         headerImageView.image = nil
         cityLabel.text = city.name?.getName()
-        locationLabel.text = "\(city.country?.getCountry())"
+        locationLabel.text = "\(String(describing: city.country?.getCityName()))"
         if let gallery = city.gallery {
             if gallery.count != 0 {
                 headerImageView.loadImage(url: gallery[0].url)

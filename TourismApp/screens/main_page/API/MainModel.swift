@@ -49,8 +49,12 @@ struct CityModel: Codable {
 struct City: Codable {
     let id: String
     let name: DestionationName?
-    let country: CountryName?
+    let location: MainLocation
+    let country: CityName?
     let gallery: [Gallery]?
+    let description: DescriptionString?
+    let recommendationLevel: MainRecomentationLevel?
+    let comments: [MainComment]?
 }
 
 struct CountryName: Codable {

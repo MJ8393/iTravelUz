@@ -45,10 +45,12 @@ struct SearchModel: Codable {
 struct SearchDestinationModel: Codable {
     let id: String
     let name: DestionationName?
-    let location: LocationModel?
+    let location: MainLocation?
     let city_name: CityName?
     let gallery: [Gallery]?
     let description: DescriptionString?
+    let recommendationLevel: MainRecomentationLevel?
+    let comments: [MainComment]?
 }
 
 struct LocationModel: Codable {

@@ -23,7 +23,8 @@ class InfoContentVC: UIViewController {
     
     lazy var cityLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 25, weight: .bold)
+        label.numberOfLines = 0
+        label.font = .systemFont(ofSize: 23, weight: .bold)
         label.textColor = UIColor(named: "view_all_colorSet")
         return label
     }()
@@ -60,7 +61,7 @@ class InfoContentVC: UIViewController {
         return shareButton
     }()
     
-    private let likeButton: UIButton = {
+    lazy var likeButton: UIButton = {
         let likeButton = UIButton()
         likeButton.translatesAutoresizingMaskIntoConstraints = false
         likeButton.backgroundColor = .secondarySystemBackground
@@ -85,8 +86,8 @@ class InfoContentVC: UIViewController {
             xButton.setImage(renderedImage, for: .normal)
         }
         //        xButton.setImage(image, for: .normal)
-        xButton.tintColor = .chatGrayColor
-        xButton.imageView?.tintColor = .chatGrayColor
+        xButton.tintColor = .systemBlue
+        xButton.imageView?.tintColor = .systemBlue
         xButton.addTarget(self, action: #selector(xButtonPressed), for: .touchUpInside)
         return xButton
     }()
@@ -117,7 +118,7 @@ class InfoContentVC: UIViewController {
         super.viewDidLayoutSubviews()
         
         cityLabel.sizeToFit()
-        cityLabel.frame = CGRect(x: 20, y: 15, width: cityLabel.frame.size.width, height: cityLabel.frame.size.height)
+        cityLabel.frame = CGRect(x: 20, y: 15, width: UIScreen.main.bounds.width - 10, height: cityLabel.frame.size.height)
     }
     
     @objc func goButtonPressed() {
@@ -136,8 +137,6 @@ class InfoContentVC: UIViewController {
         delegate?.didTapXButton()
     }
     
-    
-    
     private func addSubviews() {
         let properties = [cityLabel, descriptionLabel, goButton, shareButton, likeButton, xButton, collectionView]
         for property in properties {
@@ -149,7 +148,8 @@ class InfoContentVC: UIViewController {
         
         let descriptionLabelConstraints = [
             descriptionLabel.topAnchor.constraint(equalTo: cityLabel.bottomAnchor, constant: 5),
-            descriptionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20)
+            descriptionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            descriptionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
         ]
         
         let goButtonConstrains = [
@@ -166,7 +166,7 @@ class InfoContentVC: UIViewController {
             shareButton.widthAnchor.constraint(equalToConstant: 50)
         ]
         
-        let saveButtonConstraints = [
+        let likeButtonConstraints = [
             likeButton.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 40),
             likeButton.leadingAnchor.constraint(equalTo: shareButton.trailingAnchor, constant: 7),
             likeButton.heightAnchor.constraint(equalToConstant: 40),
@@ -187,7 +187,7 @@ class InfoContentVC: UIViewController {
             collectionView.heightAnchor.constraint(equalToConstant: 250)
         ]
         
-        let constraints = [descriptionLabelConstraints, goButtonConstrains, shareButtonConstraints, saveButtonConstraints, xButtonConstraints, collectionViewConstraints]
+        let constraints = [descriptionLabelConstraints, goButtonConstrains, shareButtonConstraints, likeButtonConstraints, xButtonConstraints, collectionViewConstraints]
         for constraint in constraints { NSLayoutConstraint.activate(constraint) }
     }
     

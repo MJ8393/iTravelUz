@@ -42,7 +42,7 @@ class SearchVC: mapVC {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         UIView.animate(withDuration: 0.3) {
-            self.fpc.move(to: .half, animated: true)
+            self.fpc.move(to: .full, animated: true)
         }
     }
     
@@ -97,12 +97,15 @@ class SearchFloatingPanelLayout: FloatingPanelLayout {
 }
 
 extension SearchVC: SearchContentVCDelegate {
-    func didTapPlace(with coordinate: CLLocationCoordinate2D, text: String?, name: String?, gallery: [Gallery]) {
+    func didTapPlace(model: SearchDestinationModel) {
         let vc = InfoVC()
-        vc.coordinate = coordinate
-        vc.cityLabelText = text
-        vc.cityName = name
-        vc.gallery = gallery
+        if let location = model.location {
+            vc.destination = MainDestination(id: model.id, name: model.name, location: location, city_name: model.city_name, description: model.description, recommendationLevel: model.recommendationLevel, gallery: model.gallery, comments: model.comments)
+        }
+//        vc.coordinate = coordinate
+//        vc.cityLabelText = text
+//        vc.cityName = name
+//        vc.gallery = gallery
         navigationController?.pushViewController(vc, animated: false)
         searchPlaceVC.textField.text = ""
     }
