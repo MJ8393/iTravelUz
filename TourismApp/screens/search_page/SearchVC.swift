@@ -7,14 +7,12 @@
 
 import UIKit
 import GoogleMaps
-import GooglePlaces
-import CoreLocation
 import FloatingPanel
 
 class SearchVC: mapVC {
     
     let fpc = FloatingPanelController()
-    let searchPlaceVC = SearchPlaceVC()
+    let searchPlaceVC = SearchCotentVC()
     let appearance = SurfaceAppearance()
     
     override func loadView() {
@@ -25,22 +23,6 @@ class SearchVC: mapVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Define shadows
-        let shadow = SurfaceAppearance.Shadow()
-        shadow.color = UIColor.black
-        shadow.offset = CGSize(width: 0, height: 16)
-        shadow.radius = 25
-        shadow.spread = 8
-        appearance.shadows = [shadow]
-        fpc.surfaceView.grabberHandle.backgroundColor = UIColor.chatGrayColor
-        // Define corner radius and background color
-        appearance.cornerRadius = 22
-        appearance.backgroundColor = .clear
-        // Set the new appearance
-        fpc.surfaceView.appearance = appearance
-        fpc.delegate = self
-        fpc.addPanel(toParent: self)
-        fpc.track(scrollView: searchPlaceVC.tableView)
         setFPC()
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIWindow.keyboardWillShowNotification, object: nil)
@@ -70,7 +52,7 @@ class SearchVC: mapVC {
         searchPlaceVC.delegate = self
         fpc.view.frame = view.bounds
         fpc.contentMode = .fitToBounds
-        fpc.layout = MyFloatingPanelLayout()
+        fpc.layout = SearchFloatingPanelLayout()
         fpc.addPanel(toParent: self, animated: true)
         fpc.view.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -82,6 +64,21 @@ class SearchVC: mapVC {
         fpc.show(animated: true) {
             self.fpc.didMove(toParent: self)
         }
+    
+        // Define shadows
+        let shadow = SurfaceAppearance.Shadow()
+        shadow.color = UIColor.black
+        shadow.offset = CGSize(width: 0, height: 16)
+        shadow.radius = 25
+        shadow.spread = 8
+        appearance.shadows = [shadow]
+        fpc.surfaceView.grabberHandle.backgroundColor = UIColor.chatGrayColor
+        // Define corner radius and background color
+        appearance.cornerRadius = 22
+        appearance.backgroundColor = .clear
+        // Set the new appearance
+        fpc.surfaceView.appearance = appearance
+        fpc.track(scrollView: searchPlaceVC.tableView)
     }
     
     @objc func viewTapped() {
@@ -89,11 +86,18 @@ class SearchVC: mapVC {
     }
 }
 
-extension SearchVC: SearchPlaceVCDelegate {
-    
+class SearchFloatingPanelLayout: FloatingPanelLayout {
+    let position: FloatingPanelPosition = .bottom
+    let initialState: FloatingPanelState = .half
+    let anchors: [FloatingPanelState: FloatingPanelLayoutAnchoring] = [
+        .full: FloatingPanelLayoutAnchor(absoluteInset: 16.0, edge: .top, referenceGuide: .safeArea),
+        .half: FloatingPanelLayoutAnchor(fractionalInset: 0.5, edge: .bottom, referenceGuide: .safeArea),
+        .tip: FloatingPanelLayoutAnchor(absoluteInset: 110.0, edge: .bottom, referenceGuide: .safeArea),
+    ]
+}
+
+extension SearchVC: SearchContentVCDelegate {
     func didTapPlace(with coordinate: CLLocationCoordinate2D, text: String?, name: String?, gallery: [Gallery]) {
-//        marker?.iconView = setMarkerImageView(with: images)
-//        marker?.position = coordinate
         let vc = InfoVC()
         vc.coordinate = coordinate
         vc.cityLabelText = text

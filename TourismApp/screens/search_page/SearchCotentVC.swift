@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  SearchContentVC.swift
 //  TourismApp
 //
 //  Created by Uyg'un Tursunov on 22/09/23.
@@ -8,14 +8,14 @@
 import UIKit
 import CoreLocation
 
-protocol SearchPlaceVCDelegate: AnyObject, mapVC {
+protocol SearchContentVCDelegate: AnyObject, mapVC {
     func didTapPlace(with coordinate: CLLocationCoordinate2D, text: String?, name: String?, gallery: [Gallery])
     func textFieldBeginEditing()
 }
 
-class SearchPlaceVC: BaseViewController, UITextFieldDelegate {
+class SearchCotentVC: BaseViewController, UITextFieldDelegate {
     
-    weak var delegate: SearchPlaceVCDelegate?
+    weak var delegate: SearchContentVCDelegate?
     var places: [SearchDestinationModel] = []
     
     private let label: UILabel = {
@@ -47,7 +47,7 @@ class SearchPlaceVC: BaseViewController, UITextFieldDelegate {
         let attributedText = NSAttributedString(string: "", attributes: attributes2)
         textField.attributedText = attributedText
         textField.tintColor = UIColor.mainColor
-        textField.addTarget(self, action: #selector(SearchPlaceVC.textFieldDidChange(_:)), for: .editingChanged)
+        textField.addTarget(self, action: #selector(SearchCotentVC.textFieldDidChange(_:)), for: .editingChanged)
         return textField
     }()
     
@@ -120,7 +120,7 @@ class SearchPlaceVC: BaseViewController, UITextFieldDelegate {
 }
 
 
-extension SearchPlaceVC: UITableViewDelegate, UITableViewDataSource {
+extension SearchCotentVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return places.count
     }
@@ -153,7 +153,7 @@ extension SearchPlaceVC: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-extension SearchPlaceVC {
+extension SearchCotentVC {
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         delegate?.textFieldBeginEditing()
         return true

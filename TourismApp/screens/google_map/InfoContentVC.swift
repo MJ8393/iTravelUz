@@ -1,5 +1,5 @@
 //
-//  FPContentVC.swift
+//  InfoContentVC.swift
 //  TourismApp
 //
 //  Created by Uyg'un Tursunov on 25/10/23.
@@ -14,7 +14,7 @@ protocol FPContentVCDelegate: AnyObject {
     func didTapLikeButton()
 }
 
-class FPContentVC: UIViewController {
+class InfoContentVC: UIViewController {
     
     weak var delegate: FPContentVCDelegate?
     var images: [Gallery] = []
@@ -67,6 +67,7 @@ class FPContentVC: UIViewController {
         let image = UIImage(systemName: "heart")
         likeButton.setImage(image, for: .normal)
         likeButton.layer.cornerRadius = 8
+        likeButton.addTarget(self, action: #selector(likeButtonPressed), for: .touchUpInside)
         return likeButton
     }()
     
@@ -116,7 +117,7 @@ class FPContentVC: UIViewController {
         super.viewDidLayoutSubviews()
         
         cityLabel.sizeToFit()
-        cityLabel.frame = CGRect(x: 20, y: 25, width: cityLabel.frame.size.width, height: cityLabel.frame.size.height)
+        cityLabel.frame = CGRect(x: 20, y: 15, width: cityLabel.frame.size.width, height: cityLabel.frame.size.height)
     }
     
     @objc func goButtonPressed() {
@@ -127,9 +128,15 @@ class FPContentVC: UIViewController {
         delegate?.didTapShareButton(sender)
     }
     
+    @objc func likeButtonPressed() {
+        delegate?.didTapLikeButton()
+    }
+    
     @objc func xButtonPressed() {
         delegate?.didTapXButton()
     }
+    
+    
     
     private func addSubviews() {
         let properties = [cityLabel, descriptionLabel, goButton, shareButton, likeButton, xButton, collectionView]
@@ -146,29 +153,29 @@ class FPContentVC: UIViewController {
         ]
         
         let goButtonConstrains = [
-            goButton.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 20),
+            goButton.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 40),
             goButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             goButton.heightAnchor.constraint(equalToConstant: 42),
             goButton.widthAnchor.constraint(equalToConstant: 120)
         ]
         
         let shareButtonConstraints = [
-            shareButton.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 20),
+            shareButton.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 40),
             shareButton.leadingAnchor.constraint(equalTo: goButton.trailingAnchor, constant: 7),
             shareButton.heightAnchor.constraint(equalToConstant: 40),
             shareButton.widthAnchor.constraint(equalToConstant: 50)
         ]
         
         let saveButtonConstraints = [
-            likeButton.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 20),
+            likeButton.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 40),
             likeButton.leadingAnchor.constraint(equalTo: shareButton.trailingAnchor, constant: 7),
             likeButton.heightAnchor.constraint(equalToConstant: 40),
             likeButton.widthAnchor.constraint(equalToConstant: 50)
         ]
         
         let xButtonConstraints = [
-            xButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 20),
-            xButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            xButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 10),
+            xButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
             xButton.heightAnchor.constraint(equalToConstant: 30),
             xButton.widthAnchor.constraint(equalToConstant: 30)
         ]
@@ -186,7 +193,7 @@ class FPContentVC: UIViewController {
     
 }
 
-extension FPContentVC: UICollectionViewDelegate, UICollectionViewDataSource {
+extension InfoContentVC: UICollectionViewDelegate, UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return gallery.count
     }

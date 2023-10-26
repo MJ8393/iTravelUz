@@ -1,12 +1,11 @@
 //
-//  TableViewCell.swift
+//  ViewAllTableViewCell.swift
 //  TourismApp
 //
 //  Created by Uyg'un Tursunov on 10/09/23.
 //
 
 import UIKit
-import GooglePlaces
 
 class TableViewCell: UITableViewCell {
     

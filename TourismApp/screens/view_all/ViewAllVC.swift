@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import GooglePlaces
 
 protocol ViewAllVCDelegate: AnyObject {
     func locationButtonTapped()

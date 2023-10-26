@@ -7,8 +7,6 @@
 
 import UIKit
 import GoogleMaps
-import CoreLocation
-import GooglePlaces
 
 class mapVC: BaseViewController {
     

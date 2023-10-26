@@ -6,15 +6,14 @@
 //
 
 import UIKit
-import GoogleMaps
-import GooglePlaces
 import CoreLocation
 import FloatingPanel
 
-class InfoVC: mapVC, FloatingPanelControllerDelegate {
+class InfoVC: mapVC {
     
     let fpc = FloatingPanelController()
-    let contentVC = FPContentVC()
+    let contentVC = InfoContentVC()
+    let appearance = SurfaceAppearance()
     
     var coordinate: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 41.377491, longitude: 64.585262)
     var cityLabelText: String?
@@ -22,7 +21,7 @@ class InfoVC: mapVC, FloatingPanelControllerDelegate {
     var gallery: [Gallery] = []
     
     override func loadView() {
-        setMapView(latitude: coordinate.latitude, longitude: coordinate.longitude)
+        setMapView(latitude: coordinate.latitude, longitude: coordinate.longitude, zoom: 15.3)
         self.view = mapView
     }
     
@@ -52,7 +51,7 @@ class InfoVC: mapVC, FloatingPanelControllerDelegate {
         fpc.delegate = self
         fpc.view.frame = view.bounds
         fpc.contentMode = .fitToBounds
-        fpc.layout = MyFloatingPanelLayout()
+        fpc.layout = InfoFloatingPanelLayout()
         contentVC.delegate = self
         fpc.set(contentViewController: contentVC)
         fpc.addPanel(toParent: self, animated: true)
@@ -66,21 +65,33 @@ class InfoVC: mapVC, FloatingPanelControllerDelegate {
         fpc.show(animated: true) {
             self.fpc.didMove(toParent: self)
         }
+        
+        let shadow = SurfaceAppearance.Shadow()
+        shadow.color = UIColor.black
+        shadow.offset = CGSize(width: 0, height: 16)
+        shadow.radius = 25
+        shadow.spread = 8
+        appearance.shadows = [shadow]
+        fpc.surfaceView.grabberHandle.backgroundColor = UIColor.chatGrayColor
+        // Define corner radius and background color
+        appearance.cornerRadius = 22
+        appearance.backgroundColor = .clear
+        // Set the new appearance
+        fpc.surfaceView.appearance = appearance
     }
 }
 
-class MyFloatingPanelLayout: FloatingPanelLayout {
+class InfoFloatingPanelLayout: FloatingPanelLayout {
     let position: FloatingPanelPosition = .bottom
     let initialState: FloatingPanelState = .half
     let anchors: [FloatingPanelState: FloatingPanelLayoutAnchoring] = [
         .full: FloatingPanelLayoutAnchor(absoluteInset: 16.0, edge: .top, referenceGuide: .safeArea),
         .half: FloatingPanelLayoutAnchor(fractionalInset: 0.4, edge: .bottom, referenceGuide: .safeArea),
-        .tip: FloatingPanelLayoutAnchor(absoluteInset: 44.0, edge: .bottom, referenceGuide: .safeArea),
+        .tip: FloatingPanelLayoutAnchor(absoluteInset: 80.0, edge: .bottom, referenceGuide: .safeArea),
     ]
 }
 
 extension InfoVC: FPContentVCDelegate {
-    
     func didTapGoButton() {
         let googleMapsURLString = "comgooglemaps://?q=\(String(describing: coordinate.latitude)),\(String(describing: coordinate.longitude))"
         
@@ -110,5 +121,24 @@ extension InfoVC: FPContentVCDelegate {
         fpc.dismiss(animated: true)
         navigationController?.popViewController(animated: true)
         mapView?.clear()
+    }
+}
+
+extension InfoVC: FloatingPanelControllerDelegate {
+    func floatingPanelDidMove(_ vc: FloatingPanelController) {
+        if vc.isAttracting == false {
+            let loc = vc.surfaceLocation
+            let minY = vc.surfaceLocation(for: .full).y
+            let maxY = vc.surfaceLocation(for: .tip).y + 15.0
+            vc.surfaceLocation = CGPoint(x: loc.x, y: min(max(loc.y, minY), maxY))
+        }
+    }
+    
+    func shouldProjectMomentum(_ fpc: FloatingPanelController, to proposedState: FloatingPanelPosition) -> Bool {
+        return true
+    }
+    
+    func allowsRubberBanding(for edge: UIRectEdge) -> Bool {
+        return true
     }
 }
