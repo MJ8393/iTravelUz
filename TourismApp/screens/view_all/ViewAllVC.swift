@@ -59,6 +59,10 @@ extension ViewAllVC: UITableViewDelegate, UITableViewDataSource {
             cell.setData(destination: destionations[indexPath.row])
             self.latitude = destionations[indexPath.row].location.latitude
             self.longitude = destionations[indexPath.row].location.longitude
+//            if let gallery = destionations[indexPath.row].gallery {
+//                self.gallery[indexPath.row] = gallery[indexPath.row]
+//            }
+            
         }
         
         cell.backgroundColor = .clear

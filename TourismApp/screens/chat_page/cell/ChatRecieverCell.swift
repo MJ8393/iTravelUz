@@ -19,13 +19,13 @@ class ChatRecieverCell: UITableViewCell {
         view.layer.cornerRadius = 16
         view.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner, .layerMaxXMinYCorner]
         view.clipsToBounds = true
-        view.backgroundColor = UIColor.chatGrayColor
+        view.backgroundColor = UIColor(named: "chatcellColor")
         return view
     }()
     
     lazy var mainLabel: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor.black
+        label.textColor = UIColor.label
         label.numberOfLines = 0
         return label
     }()

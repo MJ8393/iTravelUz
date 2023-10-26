@@ -121,24 +121,19 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
      }
     
     @objc func menuButtonAction(sender: UIButton) {
-//        if sender.isUserInteractionEnabled == true {
-//            sender.isUserInteractionEnabled = false
-//        }
-//        NotificationCenter.default.post(name: NSNotification.Name("scan"), object: nil)
-//        self.tabBar.isHidden = true
-//        menuButton.isHidden = true
-        
-//        DispatchQueue.main.async {
-//            let alertVC = UINavigationController(rootViewController: QRScanerViewController())
-//            alertVC.modalPresentationStyle  = .formSheet
-//            alertVC.modalTransitionStyle    = .coverVertical
-//            self.present(alertVC, animated: true)
-//        }
-//
-        //self.navigationController?.pushViewController(QRScanerViewController(), animated: true)
-        //present(QRScanerViewController(), animated: true)
-        let vc = ChatViewController()
-        self.present(UINavigationController(rootViewController: vc), animated: true)
+        let registerVC = ChatViewController()
+        let navigationController = UINavigationController(rootViewController: registerVC)
+        navigationController.modalPresentationStyle = .fullScreen
+
+        let backButton = UIBarButtonItem(image: UIImage(systemName: "chevron.backward")!, style: .plain, target: self, action: #selector(dismissRegisterViewController))
+        backButton.tintColor = .label
+
+        registerVC.navigationItem.leftBarButtonItem = backButton
+        present(navigationController, animated: true, completion: nil)
+    }
+    
+    @objc func dismissRegisterViewController() {
+        self.dismiss(animated: true)
     }
     
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {

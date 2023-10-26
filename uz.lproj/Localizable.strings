@@ -36,3 +36,12 @@
 "empty" = "Hozircha bo'sh";
 "country_name" = ", O'zbekiston";
 "comments" = "Izohlar";
+"ai_assistent" = "Aqilli yordamchi";
+"register" = "Ro'yxatdan o'tish";
+"username" = "Username";
+"enter_username" = "Usernamingizni kiriting";
+"parol" = "Password";
+"enter_password" = "Parolingizni kiriting";
+"email" = "Email";
+"enter_email" = "Emailingizni kiriting";
+"enter_text" = "Biror matn kiriting";

@@ -57,7 +57,18 @@ class SpeechRecognitionService {
       let recognitionConfig = RecognitionConfig()
       recognitionConfig.encoding =  .linear16
       recognitionConfig.sampleRateHertz = Int32(sampleRate)
-      recognitionConfig.languageCode = "en-US"
+        
+        let language = LanguageManager.getAppLang()
+        var appLanguage = "en-US"
+        switch language {
+        case .English:
+            appLanguage = "en-US"
+        case .Uzbek:
+            appLanguage = "uz-UZ"
+        case .lanDesc:
+            appLanguage = "en-US"
+        }
+      recognitionConfig.languageCode = appLanguage
       recognitionConfig.maxAlternatives = 30
       recognitionConfig.enableWordTimeOffsets = true
 

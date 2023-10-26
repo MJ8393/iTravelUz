@@ -142,7 +142,16 @@ class ExploreViewController: UIViewController {
             }
             self!.isLiked = !self!.isLiked
         }
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: likeButton)
+        
+        
+        let reviewButton = CustomBarButtonView(image: UIImage(systemName: "square.and.pencil")!)
+        reviewButton.buttonAction = { [weak self] in
+            let vc = CommentsViewController()
+            vc.destionation = self?.destination
+            self?.presentPanModal(vc)
+        }
+        
+        navigationItem.rightBarButtonItems = [UIBarButtonItem(customView: likeButton), UIBarButtonItem(customView: reviewButton)]
     }
     
     private func initViews() {
