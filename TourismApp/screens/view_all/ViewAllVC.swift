@@ -38,11 +38,10 @@ class ViewAllVC: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         view.addSubview(viewAllTableView)
-        self.navigationController?.navigationBar.topItem?.title = " "
+        //self.navigationController?.navigationBar.topItem?.title = " "
         self.navigationController?.navigationBar.tintColor = UIColor(named: "view_all_colorSet")
     }
 }
-
 
 extension ViewAllVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -87,10 +86,9 @@ extension ViewAllVC: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-
 extension ViewAllVC: ViewAllVCDelegate {
     func locationButtonTapped() {
-        let vc = LocationVC()
+        let vc = InfoVC()
         guard let latitude = latitude, let longitude = longitude else { return }
         vc.coordinate.latitude = latitude
         vc.coordinate.longitude = longitude

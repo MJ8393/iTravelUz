@@ -1,29 +1,28 @@
 //
-//  InfoWindowVC.swift
+//  FPContentVC.swift
 //  TourismApp
 //
-//  Created by Uyg'un Tursunov on 18/09/23.
+//  Created by Uyg'un Tursunov on 25/10/23.
 //
 
 import UIKit
 
-protocol InfoWindowVCDelegate: AnyObject {
+protocol FPContentVCDelegate: AnyObject {
     func didTapXButton()
-    func didTapShareButton(_: UIButton)
     func didTapGoButton()
+    func didTapShareButton(_: UIButton)
+    func didTapLikeButton()
 }
 
-class InfoWindowVC: UIViewController {
-
-    weak var delegate: InfoWindowVCDelegate?
-    var images: [GalleryModel]?
-    var cityLabelText: String?
-    var cityName: String?
-    let vc = SearchPlaceVC()
+class FPContentVC: UIViewController {
+    
+    weak var delegate: FPContentVCDelegate?
+    var images: [Gallery] = []
+    var gallery: [Gallery] = []
+    let thisWidth = CGFloat(UIScreen.main.bounds.width)
     
     lazy var cityLabel: UILabel = {
         let label = UILabel()
-        label.text = cityLabelText
         label.font = .systemFont(ofSize: 25, weight: .bold)
         label.textColor = UIColor(named: "view_all_colorSet")
         return label
@@ -32,7 +31,6 @@ class InfoWindowVC: UIViewController {
     lazy var descriptionLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = cityName
         label.font = .systemFont(ofSize: 15)
         label.textColor = UIColor(named: "view_all_colorSet")
         return label
@@ -62,14 +60,14 @@ class InfoWindowVC: UIViewController {
         return shareButton
     }()
     
-    private let saveButton: UIButton = {
-        let saveButton = UIButton()
-        saveButton.translatesAutoresizingMaskIntoConstraints = false
-        saveButton.backgroundColor = .secondarySystemBackground
+    private let likeButton: UIButton = {
+        let likeButton = UIButton()
+        likeButton.translatesAutoresizingMaskIntoConstraints = false
+        likeButton.backgroundColor = .secondarySystemBackground
         let image = UIImage(systemName: "heart")
-        saveButton.setImage(image, for: .normal)
-        saveButton.layer.cornerRadius = 8
-        return saveButton
+        likeButton.setImage(image, for: .normal)
+        likeButton.layer.cornerRadius = 8
+        return likeButton
     }()
     
     private let xButton: UIButton = {
@@ -77,45 +75,40 @@ class InfoWindowVC: UIViewController {
         xButton.translatesAutoresizingMaskIntoConstraints = false
         xButton.backgroundColor = .clear
         if let image = UIImage(systemName: "xmark.circle.fill") {
-               let imageSize = CGSize(width: 24, height: 24) // Adjust the width and height as needed
-               let resizedImage = image.withRenderingMode(.alwaysTemplate)
-               let renderer = UIGraphicsImageRenderer(size: imageSize)
-               let renderedImage = renderer.image { _ in
-                   resizedImage.draw(in: CGRect(origin: .zero, size: imageSize))
-               }
-               xButton.setImage(renderedImage, for: .normal)
-           }
-//        xButton.setImage(image, for: .normal)
+            let imageSize = CGSize(width: 24, height: 24) // Adjust the width and height as needed
+            let resizedImage = image.withRenderingMode(.alwaysTemplate)
+            let renderer = UIGraphicsImageRenderer(size: imageSize)
+            let renderedImage = renderer.image { _ in
+                resizedImage.draw(in: CGRect(origin: .zero, size: imageSize))
+            }
+            xButton.setImage(renderedImage, for: .normal)
+        }
+        //        xButton.setImage(image, for: .normal)
         xButton.tintColor = .chatGrayColor
         xButton.imageView?.tintColor = .chatGrayColor
         xButton.addTarget(self, action: #selector(xButtonPressed), for: .touchUpInside)
         return xButton
     }()
     
-    let collectionView: UICollectionView = {
+    lazy var collectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.itemSize = CGSize(width: UIScreen.main.bounds.width, height: 260)
+        flowLayout.itemSize = CGSize(width: thisWidth, height: 260)
         flowLayout.scrollDirection = .horizontal
-        flowLayout.minimumInteritemSpacing = 10
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
+        let collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: thisWidth, height: 260), collectionViewLayout: flowLayout)
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.isScrollEnabled = true
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.register(ImageCollectionViewCell.self, forCellWithReuseIdentifier: ImageCollectionViewCell.identifier)
+        collectionView.register(HeaderImagesCollectionViewCell.self, forCellWithReuseIdentifier: HeaderImagesCollectionViewCell.identifier)
         collectionView.showsHorizontalScrollIndicator = false
         return collectionView
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         view.backgroundColor = .systemBackground
-        
-        let properties = [cityLabel, descriptionLabel, goButton, shareButton, saveButton, xButton, collectionView]
-        for property in properties {
-            view.addSubview(property)
-        }
-        
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        
+        addSubviews()
         applyConstraints()
     }
     
@@ -124,6 +117,25 @@ class InfoWindowVC: UIViewController {
         
         cityLabel.sizeToFit()
         cityLabel.frame = CGRect(x: 20, y: 25, width: cityLabel.frame.size.width, height: cityLabel.frame.size.height)
+    }
+    
+    @objc func goButtonPressed() {
+        delegate?.didTapGoButton()
+    }
+    
+    @objc func shareButtonPressed(_ sender: UIButton) {
+        delegate?.didTapShareButton(sender)
+    }
+    
+    @objc func xButtonPressed() {
+        delegate?.didTapXButton()
+    }
+    
+    private func addSubviews() {
+        let properties = [cityLabel, descriptionLabel, goButton, shareButton, likeButton, xButton, collectionView]
+        for property in properties {
+            view.addSubview(property)
+        }
     }
     
     func applyConstraints() {
@@ -148,10 +160,10 @@ class InfoWindowVC: UIViewController {
         ]
         
         let saveButtonConstraints = [
-            saveButton.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 20),
-            saveButton.leadingAnchor.constraint(equalTo: shareButton.trailingAnchor, constant: 7),
-            saveButton.heightAnchor.constraint(equalToConstant: 40),
-            saveButton.widthAnchor.constraint(equalToConstant: 50)
+            likeButton.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 20),
+            likeButton.leadingAnchor.constraint(equalTo: shareButton.trailingAnchor, constant: 7),
+            likeButton.heightAnchor.constraint(equalToConstant: 40),
+            likeButton.widthAnchor.constraint(equalToConstant: 50)
         ]
         
         let xButtonConstraints = [
@@ -172,35 +184,21 @@ class InfoWindowVC: UIViewController {
         for constraint in constraints { NSLayoutConstraint.activate(constraint) }
     }
     
-    @objc func xButtonPressed() {
-        delegate?.didTapXButton()
-    }
-    
-    @objc func shareButtonPressed(_ sender: UIButton) {
-        delegate?.didTapShareButton(sender)
-    }
-    
-    @objc func goButtonPressed() {
-        delegate?.didTapGoButton()
-    }
 }
 
-
-extension InfoWindowVC: UICollectionViewDelegate, UICollectionViewDataSource {
+extension FPContentVC: UICollectionViewDelegate, UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        guard let count = images?.count else { return 0 }
-        return count
+        return gallery.count
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+        1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageCollectionViewCell.identifier, for: indexPath) as? ImageCollectionViewCell else { return UICollectionViewCell() }
-        if let url = images?[indexPath.row].url {
-            cell.setImage(url: url)
-        }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HeaderImagesCollectionViewCell.identifier, for: indexPath) as? HeaderImagesCollectionViewCell else { return UICollectionViewCell() }
+        
+        cell.setImage(with: gallery[indexPath.row].url)
         cell.clipsToBounds = true
         cell.backgroundColor = .clear
         return cell

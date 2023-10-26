@@ -13,10 +13,8 @@ import FloatingPanel
 
 class SearchVC: mapVC {
     
-    let mainfpc = FloatingPanelController()
-    let panel = FloatingPanelController()
-    var coordinate: CLLocationCoordinate2D?
-    let vc = SearchPlaceVC()
+    let fpc = FloatingPanelController()
+    let searchPlaceVC = SearchPlaceVC()
     let appearance = SurfaceAppearance()
     
     override func loadView() {
@@ -27,8 +25,6 @@ class SearchVC: mapVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        vc.delegate = self
-        mainfpc.set(contentViewController: vc)
         // Define shadows
         let shadow = SurfaceAppearance.Shadow()
         shadow.color = UIColor.black
@@ -36,15 +32,16 @@ class SearchVC: mapVC {
         shadow.radius = 25
         shadow.spread = 8
         appearance.shadows = [shadow]
-        mainfpc.surfaceView.grabberHandle.backgroundColor = UIColor.chatGrayColor
+        fpc.surfaceView.grabberHandle.backgroundColor = UIColor.chatGrayColor
         // Define corner radius and background color
         appearance.cornerRadius = 22
         appearance.backgroundColor = .clear
         // Set the new appearance
-        mainfpc.surfaceView.appearance = appearance
-        mainfpc.delegate = self
-        mainfpc.addPanel(toParent: self)
-        mainfpc.track(scrollView: vc.tableView)
+        fpc.surfaceView.appearance = appearance
+        fpc.delegate = self
+        fpc.addPanel(toParent: self)
+        fpc.track(scrollView: searchPlaceVC.tableView)
+        setFPC()
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIWindow.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIWindow.keyboardWillHideNotification, object: nil)
@@ -63,7 +60,27 @@ class SearchVC: mapVC {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         UIView.animate(withDuration: 0.3) {
-            self.mainfpc.move(to: .half, animated: true)
+            self.fpc.move(to: .half, animated: true)
+        }
+    }
+    
+    private func setFPC() {
+        fpc.delegate = self
+        fpc.set(contentViewController: searchPlaceVC)
+        searchPlaceVC.delegate = self
+        fpc.view.frame = view.bounds
+        fpc.contentMode = .fitToBounds
+        fpc.layout = MyFloatingPanelLayout()
+        fpc.addPanel(toParent: self, animated: true)
+        fpc.view.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            fpc.view.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 0.0),
+          fpc.view.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 0.0),
+          fpc.view.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: 0.0),
+          fpc.view.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 0.0),
+        ])
+        fpc.show(animated: true) {
+            self.fpc.didMove(toParent: self)
         }
     }
     
@@ -72,29 +89,23 @@ class SearchVC: mapVC {
     }
 }
 
-extension SearchVC: ViewControllerDelegate {
+extension SearchVC: SearchPlaceVCDelegate {
     
-    func didTapPlace(with coordinate: CLLocationCoordinate2D, text: String?, name: String?, images: [GalleryModel]) {
-        mainfpc.dismiss(animated: true)
-        self.coordinate = coordinate
-        setMapView(latitude: coordinate.latitude, longitude: coordinate.longitude, zoom: 17)
-        marker?.iconView = setMarkerImageView(with: images)
-        marker?.position = coordinate
-        let vc = InfoWindowVC()
-        vc.delegate = self
+    func didTapPlace(with coordinate: CLLocationCoordinate2D, text: String?, name: String?, gallery: [Gallery]) {
+//        marker?.iconView = setMarkerImageView(with: images)
+//        marker?.position = coordinate
+        let vc = InfoVC()
+        vc.coordinate = coordinate
         vc.cityLabelText = text
         vc.cityName = name
-        vc.images = images
-        self.panel.surfaceView.appearance = self.appearance
-        self.panel.set(contentViewController: vc)
-        self.panel.addPanel(toParent: self)
-        self.panel.delegate = self
-        self.panel.track(scrollView: vc.collectionView)
+        vc.gallery = gallery
+        navigationController?.pushViewController(vc, animated: false)
+        searchPlaceVC.textField.text = ""
     }
     
     func textFieldBeginEditing() {
         UIView.animate(withDuration: 0.3) {
-            self.mainfpc.move(to: .full, animated: true)
+            self.fpc.move(to: .full, animated: true)
         }
     }
     
@@ -109,44 +120,10 @@ extension SearchVC: ViewControllerDelegate {
     
 }
 
-
-extension SearchVC: InfoWindowVCDelegate {
-    func didTapGoButton() {
-        let googleMapsURLString = "comgooglemaps://?q=\(String(describing: coordinate!.latitude)),\(String(describing: coordinate!.longitude))"
-        
-        if let googleMapsURL = URL(string: googleMapsURLString), UIApplication.shared.canOpenURL(googleMapsURL) {
-            UIApplication.shared.open(googleMapsURL, options: [:], completionHandler: nil)
-        } else {
-            let googleMapsWebURLString = "https://maps.google.com/?q=\(coordinate!.latitude),\(coordinate!.longitude)"
-            if let googleMapsWebURL = URL(string: googleMapsWebURLString) {
-                UIApplication.shared.open(googleMapsWebURL, options: [:], completionHandler: nil)
-            }
-        }
-    }
-    
-    func didTapShareButton(_ sender: UIButton) {
-        guard let url = URL(string: "https://maps.google.com/maps?q=\(String(describing: coordinate!.latitude)),\(String(describing: coordinate!.longitude))") else { return }
-        let shareSheetVC = UIActivityViewController(activityItems: [url], applicationActivities: nil)
-        present(shareSheetVC, animated: true)
-        shareSheetVC.popoverPresentationController?.sourceView = sender
-        shareSheetVC.popoverPresentationController?.sourceRect = view.frame
-    }
-    
-    
-    func didTapXButton() {
-        panel.dismiss(animated: true)
-        let vc = SearchPlaceVC()
-        vc.delegate = self
-        mainfpc.set(contentViewController: vc)
-        mainfpc.addPanel(toParent: self)
-        mapView?.clear()
-    }
-}
-
 extension SearchVC: FloatingPanelControllerDelegate {
     func floatingPanelDidEndAttracting(_ fpc: FloatingPanelController) {
         if fpc.state == .full {
-            self.vc.textField.becomeFirstResponder()
+            self.searchPlaceVC.textField.becomeFirstResponder()
         } else {
             self.view.endEditing(true)
         }
@@ -169,3 +146,4 @@ extension SearchVC: FloatingPanelControllerDelegate {
         return true
     }
 }
+
