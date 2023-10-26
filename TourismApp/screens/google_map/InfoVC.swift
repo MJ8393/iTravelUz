@@ -21,7 +21,9 @@ class InfoVC: mapVC {
     
     override func loadView() {
         if let destination = destination {
-            setMapView(latitude: destination.location.latitude, longitude: destination.location.longitude, zoom: 15.3)
+            if let location = destination.location {
+                setMapView(latitude: location.latitude ?? Helper.getDefaultLocation().lat, longitude: location.longitude ?? Helper.getDefaultLocation().lon, zoom: 15.3)
+            }
         }
         self.view = mapView
     }
@@ -39,7 +41,9 @@ class InfoVC: mapVC {
     
     private func setMarker() {
         if let destination = destination, let gallery = destination.gallery {
-            setMarker(location: destination.location)
+            if let location = destination.location {
+                setMarker(location: location)
+            }
             marker?.iconView = setMarkerImageView(with: gallery)
         }
     }
@@ -108,12 +112,12 @@ class InfoFloatingPanelLayout: FloatingPanelLayout {
 
 extension InfoVC: FPContentVCDelegate {
     func didTapGoButton() {
-        let googleMapsURLString = "comgooglemaps://?q=\(String(describing: destination?.location.latitude)),\(String(describing: destination?.location.longitude))"
+        let googleMapsURLString = "comgooglemaps://?q=\(String(describing: destination?.location?.latitude)),\(String(describing: destination?.location?.longitude))"
         
         if let googleMapsURL = URL(string: googleMapsURLString), UIApplication.shared.canOpenURL(googleMapsURL) {
             UIApplication.shared.open(googleMapsURL, options: [:], completionHandler: nil)
         } else {
-            let googleMapsWebURLString = "https://maps.google.com/?q=\(String(describing: destination?.location.latitude)),\(String(describing: destination?.location.longitude))"
+            let googleMapsWebURLString = "https://maps.google.com/?q=\(String(describing: destination?.location?.latitude)),\(String(describing: destination?.location?.longitude))"
             if let googleMapsWebURL = URL(string: googleMapsWebURLString) {
                 UIApplication.shared.open(googleMapsWebURL, options: [:], completionHandler: nil)
             }
@@ -121,7 +125,7 @@ extension InfoVC: FPContentVCDelegate {
     }
     
     func didTapShareButton(_ sender: UIButton) {
-        if let latitude = destination?.location.latitude, let longitude = destination?.location.longitude {
+        if let latitude = destination?.location?.latitude, let longitude = destination?.location?.longitude {
             guard let url = URL(string: "https://maps.google.com/maps?q=\(latitude)),\(longitude))") else { return }
             let shareSheetVC = UIActivityViewController(activityItems: [url], applicationActivities: nil)
             present(shareSheetVC, animated: true)

@@ -31,7 +31,7 @@ class mapVC: BaseViewController {
     }
     
     func setMarker(location: MainLocation) {
-        marker = GMSMarker(position: CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude))
+        marker = GMSMarker(position: CLLocationCoordinate2D(latitude: location.latitude ?? Helper.getDefaultLocation().lat, longitude: location.longitude ?? Helper.getDefaultLocation().lon))
         marker?.map = mapView
     }
     
