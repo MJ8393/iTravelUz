@@ -147,7 +147,7 @@ class ExploreViewController: UIViewController {
         let reviewButton = CustomBarButtonView(image: UIImage(systemName: "square.and.pencil")!)
         reviewButton.buttonAction = { [weak self] in
             let vc = CommentsViewController()
-            vc.destionation = self?.destionation
+            vc.destionation = self?.destination
             self?.presentPanModal(vc)
         }
         
