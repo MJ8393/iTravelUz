@@ -14,7 +14,7 @@ struct MainDestionationModel: Codable {
 struct MainDestination: Codable {
     let id: String
     let name: DestionationName?
-    let location: MainLocation
+    let location: MainLocation?
     let city_name: CityName?
     let description: DescriptionString?
     let recommendationLevel: MainRecomentationLevel?
@@ -23,8 +23,8 @@ struct MainDestination: Codable {
 }
 
 struct MainLocation: Codable {
-    let latitude: Double
-    let longitude: Double
+    let latitude: Double?
+    let longitude: Double?
 }
 
 struct MainRecomentationLevel: Codable {

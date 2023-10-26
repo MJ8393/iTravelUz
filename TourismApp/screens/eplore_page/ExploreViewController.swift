@@ -188,7 +188,9 @@ extension ExploreViewController: UITableViewDelegate, UITableViewDataSource {
         } else if indexPath.row == 1 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: String.init(describing: MapTableViewCell.self), for: indexPath) as? MapTableViewCell else { return UITableViewCell() }
             if let destionation = destination {
-                cell.setMap(latitude: destionation.location.latitude, longitude: destionation.location.latitude, title: destionation.name?.getName() ?? "", Snippet: destionation.city_name?.getCityName() ?? "")
+                if let location = destionation.location {
+                    cell.setMap(latitude: location.latitude ?? Helper.getDefaultLocation().lat, longitude: location.longitude ?? Helper.getDefaultLocation().lon, title: destionation.name?.getName() ?? "", Snippet: destionation.city_name?.getCityName() ?? "")
+                }
             }
             cell.backgroundColor = .clear
             cell.selectionStyle = .none
@@ -216,8 +218,10 @@ extension ExploreViewController: UITableViewDelegate, UITableViewDataSource {
         if(indexPath.row == 1) {
             let vc = InfoVC()
             if let destination = destination, let cityLabelText = destination.name?.getName(), let cityName = destination.city_name?.getCityName(), let gallery = destination.gallery {
-                vc.coordinate.latitude = destination.location.latitude
-                vc.coordinate.longitude = destination.location.longitude
+                if let location = destination.location {
+                    vc.coordinate.latitude = location.latitude ?? Helper.getDefaultLocation().lat
+                    vc.coordinate.longitude = location.longitude ?? Helper.getDefaultLocation().lon
+                }
                 vc.cityLabelText = cityLabelText
                 vc.cityName = cityName
                 vc.gallery = gallery
@@ -269,5 +273,11 @@ extension ExploreViewController: UICollectionViewDelegate, UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         thisWidth = CGFloat(UIScreen.main.bounds.width)
         return CGSize(width: thisWidth, height: 240)
+    }
+}
+
+extension Helper {
+    static func getDefaultLocation() -> (lat: Double, lon: Double){
+        return (41.2995, 69.2401)
     }
 }

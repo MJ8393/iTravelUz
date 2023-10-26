@@ -57,7 +57,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 if mode == .light {
                     window?.overrideUserInterfaceStyle = .light
                 } else if mode == .dark {
-                    window?.overrideUserInterfaceStyle = .light
+                    window?.overrideUserInterfaceStyle = .dark
                 } else {
                     window?.overrideUserInterfaceStyle = .light
                 }
@@ -67,7 +67,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             if mode == .light {
                 window?.overrideUserInterfaceStyle = .light
             } else if mode == .dark {
-                window?.overrideUserInterfaceStyle = .light
+                window?.overrideUserInterfaceStyle = .dark
             } else {
                 window?.overrideUserInterfaceStyle = .light
             }

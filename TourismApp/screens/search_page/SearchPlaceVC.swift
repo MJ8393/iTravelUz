@@ -69,6 +69,15 @@ class SearchPlaceVC: BaseViewController, UITextFieldDelegate {
         tableView.dataSource = self
     }
     
+//    override func viewDidAppear(_ animated: Bool) {
+//        super.viewDidAppear(animated)
+//        let seconds = 0.5
+//        DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
+//            self.delegate?.textFieldBeginEditing()
+//        }
+//
+//    }
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         label.sizeToFit()

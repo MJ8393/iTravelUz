@@ -60,7 +60,7 @@ class SearchVC: mapVC {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         UIView.animate(withDuration: 0.3) {
-            self.fpc.move(to: .half, animated: true)
+            self.fpc.move(to: .full, animated: true)
         }
     }
     

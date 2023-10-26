@@ -58,8 +58,10 @@ extension ViewAllVC: UITableViewDelegate, UITableViewDataSource {
             cell.setCity(city: cities[indexPath.row])
         } else {
             cell.setData(destination: destionations[indexPath.row])
-            self.latitude = destionations[indexPath.row].location.latitude
-            self.longitude = destionations[indexPath.row].location.longitude
+            if let location = destionations[indexPath.row].location {
+                self.latitude = location.latitude
+                self.longitude = location.longitude
+            }
 //            if let gallery = destionations[indexPath.row].gallery {
 //                self.gallery[indexPath.row] = gallery[indexPath.row]
 //            }
