@@ -1001,8 +1001,6 @@
 				105A0E712AC4820000019311 /* profileAPI.swift in Sources */,
 				102DC33B2AE44AC3002AB6C3 /* PersonalHeaderView.swift in Sources */,
 				101CCFDC2AC492F000D6E90C /* ChangeLanguage.swift in Sources */,
-				8CA9559C2ABCC23B00F95261 /* ImageCollectionViewCell.swift in Sources */,
-				8C7A9C482ABAD115005F790D /* LocationVC.swift in Sources */,
 				10DD0F0C2AE97E1600EEF9CE /* CommentsViewController.swift in Sources */,
 				1091DE5C2AC0DE12008664E9 /* FavoritesTableViewCell.swift in Sources */,
 				10EB81442ABCBA1200D7126E /* Main_API.swift in Sources */,
@@ -1164,7 +1162,7 @@
 				CODE_SIGN_ENTITLEMENTS = TourismApp/TourismApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = FZU84SDGV7;
+				DEVELOPMENT_TEAM = L7D5MM5SF3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TourismApp/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
