@@ -10,14 +10,15 @@ import SwiftyStarRatingView
 
 class PersonalTableViewCell: UITableViewCell {
     
+    var userID = ""
+    
     lazy var subView: UIView = {
         let view = UIView()
         return view
     }()
     
-    lazy var mainImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "Registan")!
+    lazy var mainImageView: ActivityImageView = {
+        let imageView = ActivityImageView(frame: .zero)
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 12
@@ -106,6 +107,7 @@ class PersonalTableViewCell: UITableViewCell {
         starRatingView.minimumValue = 0
         starRatingView.backgroundColor = .clear
         starRatingView.value = 3
+        starRatingView.isHidden = true
         starRatingView.tintColor = UIColor.mainColor
         starRatingView.allowsHalfStars = false
         starRatingView.isUserInteractionEnabled = false
@@ -121,6 +123,21 @@ class PersonalTableViewCell: UITableViewCell {
     
     func setStar(value: Int) {
         starRatingView.value = CGFloat(value)
+    }
+    
+    func setData(destionation: MainDestination) {
+        nameLabel.text = destionation.name?.getName()
+        placeLabel.text = (destionation.city_name?.getCityName() ?? "Tashkent") + "country_name".translate()
+        if let comment = destionation.comments?.filter( { $0.user == userID }) {
+            if comment.count != 0 {
+                descriptionLabel.text = comment[0].text
+            }
+        }
+        if let gallery = destionation.gallery {
+            if gallery.count != 0 {
+                mainImageView.loadImage(url: gallery[0].url)
+            }
+        }
     }
     
 }

@@ -19,7 +19,7 @@ class RegisterViewController: UIViewController {
     private let teamLbl: UILabel = {
         let teamLbl = UILabel()
         teamLbl.config(font: UIFont.boldSystemFont(ofSize: 30), color: UIColor.black, numberOfLines: 2, textAlignment: .none)
-        teamLbl.text = "Register"
+        teamLbl.text = "register".translate()
         teamLbl.textColor = .label
         return teamLbl
     }()
@@ -27,14 +27,14 @@ class RegisterViewController: UIViewController {
     private let titleLabel1: UILabel = {
         let titleLabel = UILabel()
         titleLabel.config(font: UIFont.systemFont(ofSize: 16, weight: .medium), color: UIColor.black, numberOfLines: 1, textAlignment: .left)
-        titleLabel.text = "Username"
+        titleLabel.text = "username".translate()
         titleLabel.textColor = .label
         return titleLabel
     }()
         
     private let textField1: CustomizedTextField = {
         let textField = CustomizedTextField()
-        textField.placeholder = "Enter your username"
+        textField.placeholder = "enter_username".translate()
         textField.layer.borderColor = UIColor.black.cgColor
         textField.layer.cornerRadius = 16
         textField.backgroundColor = UIColor.systemGray5
@@ -44,14 +44,14 @@ class RegisterViewController: UIViewController {
     private let titleLabel2: UILabel = {
         let titleLabel = UILabel()
         titleLabel.config(font: UIFont.systemFont(ofSize: 16, weight: .medium), color: UIColor.black, numberOfLines: 1, textAlignment: .left)
-        titleLabel.text = "Password"
+        titleLabel.text = "parol".translate()
         titleLabel.textColor = .label
         return titleLabel
     }()
         
     private let textField2: CustomizedTextField = {
         let textField = CustomizedTextField()
-        textField.placeholder = "Enter your password"
+        textField.placeholder = "enter_password".translate()
         textField.layer.borderColor = UIColor.black.cgColor
         textField.isSecureTextEntry = true
         textField.layer.cornerRadius = 16
@@ -62,14 +62,14 @@ class RegisterViewController: UIViewController {
     private let titleLabel3: UILabel = {
         let titleLabel = UILabel()
         titleLabel.config(font: UIFont.systemFont(ofSize: 16, weight: .medium), color: UIColor.black, numberOfLines: 1, textAlignment: .left)
-        titleLabel.text = "Email"
+        titleLabel.text = "email".translate()
         titleLabel.textColor = .label
         return titleLabel
     }()
         
     private let textField3: CustomizedTextField = {
         let textField = CustomizedTextField()
-        textField.placeholder = "Enter your email"
+        textField.placeholder = "enter_email".translate()
         textField.layer.borderColor = UIColor.black.cgColor
         textField.layer.cornerRadius = 16
         textField.backgroundColor = UIColor.systemGray5
@@ -80,7 +80,7 @@ class RegisterViewController: UIViewController {
         let logInButton = UIButton(type: .system)
         logInButton.layer.cornerRadius = 16
         logInButton.backgroundColor = UIColor(hex: "7F3DFF")
-        logInButton.setTitle("Register", for: .normal)
+        logInButton.setTitle("register".translate(), for: .normal)
         logInButton.tintColor = .white
         logInButton.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
         return logInButton

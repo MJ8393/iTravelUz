@@ -82,6 +82,7 @@
 		10C9163D2A7821FE0054B55C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C9163C2A7821FE0054B55C /* SceneDelegate.swift */; };
 		10C916442A7821FE0054B55C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 10C916432A7821FE0054B55C /* Assets.xcassets */; };
 		10C916472A7821FE0054B55C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10C916452A7821FE0054B55C /* LaunchScreen.storyboard */; };
+		10DD0F0C2AE97E1600EEF9CE /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10DD0F0B2AE97E1600EEF9CE /* CommentsViewController.swift */; };
 		10DEB84D2A927877008CE34F /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10DEB84C2A927877008CE34F /* MainViewController.swift */; };
 		10DEB8502A92791D008CE34F /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10DEB84F2A92791D008CE34F /* MainTableViewCell.swift */; };
 		10EB81442ABCBA1200D7126E /* Main_API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10EB81432ABCBA1200D7126E /* Main_API.swift */; };
@@ -183,6 +184,7 @@
 		10C916432A7821FE0054B55C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		10C916462A7821FE0054B55C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		10C916482A7821FE0054B55C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		10DD0F0B2AE97E1600EEF9CE /* CommentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsViewController.swift; sourceTree = "<group>"; };
 		10DEB84C2A927877008CE34F /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		10DEB84F2A92791D008CE34F /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
 		10EB81432ABCBA1200D7126E /* Main_API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main_API.swift; sourceTree = "<group>"; };
@@ -480,6 +482,7 @@
 		10740E642AA517AE00C2D6C0 /* eplore_page */ = {
 			isa = PBXGroup;
 			children = (
+				10DD0F0A2AE97DC500EEF9CE /* comment */,
 				10369B292AAC920500558A5E /* cell */,
 				10369B272AABB98C00558A5E /* ExploreViewController.swift */,
 			);
@@ -689,6 +692,14 @@
 				10369B552AAD05B900558A5E /* TourismApp-Bridging-Header.h */,
 			);
 			path = TourismApp;
+			sourceTree = "<group>";
+		};
+		10DD0F0A2AE97DC500EEF9CE /* comment */ = {
+			isa = PBXGroup;
+			children = (
+				10DD0F0B2AE97E1600EEF9CE /* CommentsViewController.swift */,
+			);
+			path = comment;
 			sourceTree = "<group>";
 		};
 		10DEB84B2A92748E008CE34F /* main_page */ = {
@@ -993,6 +1004,7 @@
 				101CCFDC2AC492F000D6E90C /* ChangeLanguage.swift in Sources */,
 				8CA9559C2ABCC23B00F95261 /* ImageCollectionViewCell.swift in Sources */,
 				8C7A9C482ABAD115005F790D /* LocationVC.swift in Sources */,
+				10DD0F0C2AE97E1600EEF9CE /* CommentsViewController.swift in Sources */,
 				1091DE5C2AC0DE12008664E9 /* FavoritesTableViewCell.swift in Sources */,
 				10EB81442ABCBA1200D7126E /* Main_API.swift in Sources */,
 				8C7A9C462ABAD115005F790D /* ViewAllTableViewCell.swift in Sources */,
@@ -1154,7 +1166,7 @@
 				CODE_SIGN_ENTITLEMENTS = TourismApp/TourismApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = L7D5MM5SF3;
+				DEVELOPMENT_TEAM = FZU84SDGV7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TourismApp/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";

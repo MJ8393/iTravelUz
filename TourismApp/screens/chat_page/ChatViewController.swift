@@ -38,6 +38,7 @@ class ChatViewController: UIViewController, ChatControllerDelegate {
         tableView.register(ChatRecieverCell.self, forCellReuseIdentifier: String.init(describing: ChatRecieverCell.self))
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0)
         tableView.showsVerticalScrollIndicator = false
         return tableView
     }()
@@ -55,27 +56,41 @@ class ChatViewController: UIViewController, ChatControllerDelegate {
         setupNavigation()
         initViews()
         addObservers()
-        print("Get Chat History")
         AudioController.sharedInstance.delegate = self
         getChatHistory()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+    }
+    
+    var chatLanguage: String = "english"
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         checkMicPermission()
+        
+        let languague = LanguageManager.getAppLang()
+        switch languague {
+        case .English:
+            chatLanguage = "english"
+        case .Uzbek:
+            chatLanguage = "uzbek"
+        case .lanDesc:
+            chatLanguage = "english"
+        }
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        print("Closing chat")
+    override func viewWillDisappear(_ animated: Bool) {
         closeChat()
     }
     
     private func setupNavigation() {
-        title = "AI Travel Assistent"
+        title = "ai_assistent".translate()
     }
     
     private func initViews() {
-        view.backgroundColor = UIColor.white
+        view.backgroundColor = UIColor.systemBackground
         let tap = UITapGestureRecognizer(target: self, action: #selector(viewTapped))
         view.addGestureRecognizer(tap)
         
@@ -87,7 +102,7 @@ class ChatViewController: UIViewController, ChatControllerDelegate {
         view.addSubview(bottomSendView)
         
         bottomSendView.snp.makeConstraints { make in
-            make.bottom.equalToSuperview().offset(-getBottomMargin())
+            make.bottom.equalToSuperview().offset(0)
             make.left.right.equalToSuperview()
         }
         
@@ -104,7 +119,9 @@ class ChatViewController: UIViewController, ChatControllerDelegate {
     
     func openChat() {
         showLoadingView()
-        API.shared.openChat { [weak self] result in
+        print("xxxxx", chatLanguage)
+        
+        API.shared.openChat(language: chatLanguage) { [weak self] result in
             self?.dissmissLoadingView()
             switch result {
             case .success(let chatData):
@@ -118,15 +135,13 @@ class ChatViewController: UIViewController, ChatControllerDelegate {
     func askQuestion(_ question: String) {
         self.bottomSendView.sendButton.showLoader(userInteraction: false)
         self.bottomSendView.sendButton.isUserInteractionEnabled = false
-        API.shared.queryChat(question: question) { [weak self] result in
+        API.shared.queryChat(question: question, language: chatLanguage) { [weak self] result in
             switch result {
             case .success(let data):
                 self?.bottomSendView.hideLoadingView()
                 self?.insertCell(str: data.answer, type: .recieved)
-                
                 self?.bottomSendView.sendButton.isUserInteractionEnabled = false
                 SpeechService.shared.speak(text: data.answer) {
-                    print("xxxxx")
                     self?.bottomSendView.sendButton.isUserInteractionEnabled = true
                 }
             case .failure(let error):
@@ -136,7 +151,9 @@ class ChatViewController: UIViewController, ChatControllerDelegate {
     }
     
     func closeChat() {
-        API.shared.closeChat { result in
+        print("yyyyyy", chatLanguage)
+        
+        API.shared.closeChat(language: chatLanguage) { result in
             switch result {
             case .success(let data):
                 UD.conversationID = ""
@@ -299,7 +316,6 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 // MARK: Google Cloud Services
-// I am writing motherf*cking code :)
 extension ChatViewController: AudioControllerDelegate {
 
     func processSampleData(_ data: Data) -> Void {

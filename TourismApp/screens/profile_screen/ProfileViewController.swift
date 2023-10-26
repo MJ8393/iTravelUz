@@ -139,7 +139,7 @@ var profiles = [
     Profile(image: UIImage(systemName: "info.circle")!, name: "my_info".translate()),
     Profile(image: UIImage(systemName: "network")!, name: "change_language".translate()),
     Profile(image: UIImage(systemName: "moon")!, name: "design".translate()),
-    Profile(image: UIImage(systemName: "keyboard")!, name: "your_comments".translate()),
+    Profile(image: UIImage(systemName: "bookmark")!, name: "your_comments".translate()),
     Profile(image: UIImage(systemName: "envelope")!, name: "share_feedback".translate()),
     Profile(image: UIImage(systemName: "star")!, name: "rate_app".translate()),
     Profile(image: UIImage(systemName: "rectangle.portrait.and.arrow.right")!, name: "log_out".translate()),

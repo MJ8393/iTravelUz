@@ -27,6 +27,7 @@ class ChatSenderCell: UITableViewCell {
     lazy var mainLabel: UILabel = {
         let label = UILabel()
         label.textColor = UIColor.white
+        label.numberOfLines = 0
         return label
     }()
 

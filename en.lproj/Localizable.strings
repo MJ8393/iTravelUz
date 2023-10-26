@@ -35,3 +35,12 @@
 "empty" = "Empty";
 "country_name" = ", Uzbekistan";
 "comments" = "Comments";
+"ai_assistent" = "AI Travel Assistent";
+"register" = "Register";
+"username" = "Username";
+"enter_username" = "Enter your username";
+"password" = "Password";
+"enter_password" = "Enter your password";
+"email" = "Email";
+"enter_email" = "Enter your email";
+"enter_text" = "Enter some text";

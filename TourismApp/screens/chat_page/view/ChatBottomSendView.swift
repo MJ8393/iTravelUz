@@ -36,7 +36,7 @@ class ChatBottomSendView: UIView {
     
     lazy var containerView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor.chatGrayColor
+        view.backgroundColor = UIColor(named: "chatcellColor")
         view.layer.cornerRadius = 45.0 / 2
         return view
     }()
@@ -45,7 +45,7 @@ class ChatBottomSendView: UIView {
         let textField = UITextField()
         textField.backgroundColor = .clear
         textField.autocorrectionType = .no
-        let placeholderText = "Enter your text"
+        let placeholderText = "enter_text".translate()
         let attributes: [NSAttributedString.Key: Any] = [
             .foregroundColor: UIColor.placeHolderColor,
             .font: UIFont.systemFont(ofSize: 17)
@@ -83,6 +83,7 @@ class ChatBottomSendView: UIView {
     
     private func initViews() {
         self.addSubview(subView)
+        subView.backgroundColor = UIColor(named: "tabbar")
         subView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
@@ -91,7 +92,7 @@ class ChatBottomSendView: UIView {
         sendButton.snp.makeConstraints { make in
             make.right.equalToSuperview().offset(-16)
             make.top.equalToSuperview().offset(10)
-            make.bottom.equalToSuperview().offset(-10)
+            make.bottom.equalToSuperview().offset(-10 - Helper.getBottomPadding())
             make.height.width.equalTo(45)
         }
         
@@ -99,7 +100,7 @@ class ChatBottomSendView: UIView {
         containerView.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(16)
             make.top.equalToSuperview().offset(10)
-            make.bottom.equalToSuperview().offset(-10)
+            make.bottom.equalToSuperview().offset(-10 - Helper.getBottomPadding())
             make.height.equalTo(45)
             make.right.equalTo(sendButton.snp.left).offset(-16)
         }
