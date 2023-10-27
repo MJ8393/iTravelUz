@@ -41,6 +41,7 @@ class LoginViewController: UIViewController {
         teamLbl.config(font: UIFont.systemFont(ofSize: 22, weight: .semibold), color: UIColor.black, numberOfLines: 2, textAlignment: .none)
         teamLbl.text = "GuideMe"
         teamLbl.textColor = .label
+        teamLbl.isHidden = true
         return teamLbl
     }()
 

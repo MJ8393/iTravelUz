@@ -14,6 +14,7 @@ class SignInViewController: UIViewController {
     private let imageView : UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "star1")
+        imageView.isHidden = true
         return imageView
     }()
     
