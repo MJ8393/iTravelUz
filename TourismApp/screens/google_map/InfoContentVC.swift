@@ -118,7 +118,7 @@ class InfoContentVC: UIViewController {
         super.viewDidLayoutSubviews()
         
         cityLabel.sizeToFit()
-        cityLabel.frame = CGRect(x: 20, y: 15, width: UIScreen.main.bounds.width - 10, height: cityLabel.frame.size.height)
+        cityLabel.frame = CGRect(x: 20, y: 15, width: UIScreen.main.bounds.width - 20, height: cityLabel.frame.size.height)
     }
     
     @objc func goButtonPressed() {
@@ -147,7 +147,7 @@ class InfoContentVC: UIViewController {
     func applyConstraints() {
         
         let descriptionLabelConstraints = [
-            descriptionLabel.topAnchor.constraint(equalTo: cityLabel.bottomAnchor, constant: 5),
+            descriptionLabel.topAnchor.constraint(equalTo: cityLabel.bottomAnchor, constant: 7),
             descriptionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             descriptionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
         ]
