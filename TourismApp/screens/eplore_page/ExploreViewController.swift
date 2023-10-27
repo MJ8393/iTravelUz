@@ -8,7 +8,7 @@
 import UIKit
 import AVKit
 
-class ExploreViewController: UIViewController {
+class ExploreViewController: BaseViewController {
     
     lazy var subView: UIView = {
         let view = UIView()
@@ -66,6 +66,11 @@ class ExploreViewController: UIViewController {
         super.viewWillAppear(animated)
         //        SpeechService.shared.speak(text: destionation?.description ?? "No description") {
         //        }
+    }
+    
+    override func languageDidChange() {
+        super.languageDidChange()
+        tableView.reloadData()
     }
     
     override func viewDidLoad() {
@@ -204,6 +209,7 @@ extension ExploreViewController: UITableViewDelegate, UITableViewDataSource {
                     cell.setData(destination.name?.getName() ?? "No name", destination.description?.getDescription() ?? "No description")
                 }
             }
+            cell.setLanguage()
             cell.backgroundColor = .clear
             cell.selectionStyle = .none
             return cell

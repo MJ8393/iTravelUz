@@ -23,8 +23,8 @@ class MainViewController: BaseViewController {
     
     var index = 0
     
-    var images = [ UIImage(named: "bukhara")!, UIImage(named: "juma")!, UIImage(named: "nodira_begim")!]
-    let titlesMain = ["Bukhara", "Juma Mosque, Khiva", "Nadir Divan-Begi Madrasa"]
+    var images = [ UIImage(named: "bukhara")!, UIImage(named: "khiva")!, UIImage(named: "juma")!, UIImage(named: "nodira_begim")!, UIImage(named: "Shohi_zinda")!]
+    var titlesMain = ["poi_kalon".translate(), "khiva".translate(), "juma_mosque".translate(), "nadiragebim".translate(), "shoxizinda".translate()]
 
     lazy var subView: UIView = {
         let view = UIView()
@@ -92,6 +92,7 @@ class MainViewController: BaseViewController {
         super.languageDidChange()
         titles = ["near_destinations".translate(), "cities".translate(), "popular_destinations".translate()]
         tableView.reloadData()
+        titlesMain = ["poi_kalon".translate(), "juma_mosque".translate(), "nadiragebim".translate(), "shoxizinda".translate(), "khiva".translate()]
 //        navigationController?.navigationBar.isHidden = true
     }
     

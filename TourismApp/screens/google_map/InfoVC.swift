@@ -79,6 +79,7 @@ class InfoVC: mapVC {
     private func setContentVC() {
         if isCity {
             if let city = city {
+                contentVC.city = city
                 contentVC.isCity = true
                 contentVC.cityLabel.text = city.name?.getName()
                 contentVC.descriptionLabel.text = city.country?.getCountry()
@@ -89,6 +90,7 @@ class InfoVC: mapVC {
             }
 
         } else {
+            contentVC.destination = destination
             contentVC.cityLabel.text = destination?.name?.getName()
             contentVC.descriptionLabel.text = destination?.city_name?.getCityName()
             if let gallery = destination?.gallery {

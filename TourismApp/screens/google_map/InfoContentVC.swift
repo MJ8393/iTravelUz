@@ -14,7 +14,7 @@ protocol FPContentVCDelegate: AnyObject {
     func didTapLikeButton()
 }
 
-class InfoContentVC: UIViewController {
+class InfoContentVC: BaseViewController {
     
     weak var delegate: FPContentVCDelegate?
     var images: [Gallery] = []
@@ -22,6 +22,8 @@ class InfoContentVC: UIViewController {
     let thisWidth = CGFloat(UIScreen.main.bounds.width - 40.0)
     var cityGallery: [String] = []
     var isCity = false
+    var city: City?
+    var destination: MainDestination?
     
     lazy var cityLabel: UILabel = {
         let label = UILabel()
@@ -122,6 +124,17 @@ class InfoContentVC: UIViewController {
         view.backgroundColor = .systemBackground
         addSubviews()
         applyConstraints()
+    }
+    
+    override func languageDidChange() {
+        goButton.setTitle("open_google_map".translate(), for: .normal)
+        if isCity {
+            cityLabel.text = city?.name?.getName()
+            descriptionLabel.text = city?.country?.getCountry()
+        } else {
+            cityLabel.text = destination?.name?.getName()
+            descriptionLabel.text = destination?.city_name?.getCityName()
+        }
     }
     
     override func viewDidLayoutSubviews() {
