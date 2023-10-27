@@ -27,13 +27,13 @@ class InfoVC: mapVC {
         if isCity {
             if let city = city {
                 if let location = city.location {
-                    setMapView(latitude: location.latitude ?? Helper.getDefaultLocation().lat, longitude: location.longitude ?? Helper.getDefaultLocation().lon, zoom: 15.3)
+                    setMapView(latitude: location.latitude ?? Helper.getDefaultLocation().lat, longitude: location.longitude ?? Helper.getDefaultLocation().lon, zoom: 6.3)
                 }
             }
         } else {
             if let destination = destination {
                 if let location = destination.location {
-                    setMapView(latitude: location.latitude ?? Helper.getDefaultLocation().lat, longitude: location.longitude ?? Helper.getDefaultLocation().lon, zoom: 15.3)
+                    setMapView(latitude: location.latitude ?? Helper.getDefaultLocation().lat, longitude: location.longitude ?? Helper.getDefaultLocation().lon, zoom: 6.3)
                 }
             }
         }
