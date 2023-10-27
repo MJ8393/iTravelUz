@@ -1162,7 +1162,7 @@
 				CODE_SIGN_ENTITLEMENTS = TourismApp/TourismApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = L7D5MM5SF3;
+				DEVELOPMENT_TEAM = FZU84SDGV7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TourismApp/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = guideMe;

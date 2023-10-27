@@ -205,11 +205,8 @@ class RegisterViewController: UIViewController {
                         case .success(let data):
                             UD.token = data.Authorization
                             UD.username = username
-                            let seconds = 0.5
-                            DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
-                                self?.dissmissLoadingView()
-                                self?.setNewRootViewController()
-                            }
+                            self?.dissmissLoadingView()
+                            self?.setNewRootViewController()
                         case.failure(let error):
                             self?.showAlert(title: "Error", message: "Something went wrong")
                             print(error)

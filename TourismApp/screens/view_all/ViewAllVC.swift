@@ -15,6 +15,8 @@ class ViewAllVC: UIViewController {
 
     var destination: MainDestination?
     
+    var lastOffset: CGFloat = 0.0
+    
     lazy var viewAllTableView: UITableView = {
         let table = UITableView(frame: .zero, style: .grouped)
         table.delegate = self
@@ -47,7 +49,7 @@ class ViewAllVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        viewAllTableView.setContentOffset(CGPoint(x: 0, y: navigationController?.navigationBar.frame.height ?? 0 + Helper.getTopPadding() + 100), animated:true)
+        navigationController?.navigationBar.transform = .init(translationX: 0, y: min(0, -lastOffset))
     }
 }
 
@@ -103,9 +105,11 @@ extension ViewAllVC: UITableViewDelegate, UITableViewDataSource {
 
     }
     
+    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let defaultOffset = view.safeAreaInsets.top
         let offset = scrollView.contentOffset.y + defaultOffset
+        lastOffset = offset
         navigationController?.navigationBar.transform = .init(translationX: 0, y: min(0, -offset))
     }
 }

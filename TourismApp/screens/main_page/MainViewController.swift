@@ -48,7 +48,9 @@ class MainViewController: BaseViewController {
     
     let header = StretchyTableHeaderView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 220))
 
-    
+    var cityRequestFinished: Bool = false
+    var popularRequestFinished: Bool = false
+    var nearbyRequestFinished: Bool = false
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.systemBackground
@@ -56,6 +58,7 @@ class MainViewController: BaseViewController {
         initViews()
         
         // API
+        showLoadingView()
         getCities()
         getPopular()
         locationManager.delegate = self
@@ -104,7 +107,10 @@ class MainViewController: BaseViewController {
     
     // MARK: Get Nearby
     func getNearbyCities(lat: Double, long: Double) {
+        nearbyRequestFinished = false
         API.shared.getNearbyPlace(lat: lat, long: long) { [weak self] result in
+            self?.nearbyRequestFinished = true
+            self?.hideLoader()
             switch result {
             case .success(let data):
                 self?.nearbyDestinations = data.destinations
@@ -116,7 +122,10 @@ class MainViewController: BaseViewController {
     }
     
     func getCities() {
+        cityRequestFinished = false
         API.shared.getMainCities { [weak self] result in
+            self?.cityRequestFinished = true
+            self?.hideLoader()
             switch result {
             case .success(let data):
                 if let cities = data.cities {
@@ -130,7 +139,10 @@ class MainViewController: BaseViewController {
     }
     
     func getPopular() {
+        popularRequestFinished = false
         API.shared.getPopularCities { [weak self] result in
+            self?.popularRequestFinished = true
+            self?.hideLoader()
             switch result {
             case .success(let data):
                 self?.popularDestionations = data.destinations
@@ -138,6 +150,12 @@ class MainViewController: BaseViewController {
             case .failure(let error):
                 print(error)
             }
+        }
+    }
+    
+    func hideLoader() {
+        if popularRequestFinished && cityRequestFinished && nearbyRequestFinished {
+            self.dissmissLoadingView()
         }
     }
     

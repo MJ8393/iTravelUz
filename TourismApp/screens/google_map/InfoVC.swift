@@ -8,6 +8,7 @@
 import UIKit
 import CoreLocation
 import FloatingPanel
+import MapKit
 
 class InfoVC: mapVC {
     
@@ -154,26 +155,16 @@ class InfoFloatingPanelLayout: FloatingPanelLayout {
 extension InfoVC: FPContentVCDelegate {
     func didTapGoButton() {
         if isCity {
-            let googleMapsURLString = "comgooglemaps://?q=\(String(describing: city?.location?.latitude)),\(String(describing: city?.location?.longitude))"
-            
-            if let googleMapsURL = URL(string: googleMapsURLString), UIApplication.shared.canOpenURL(googleMapsURL) {
-                UIApplication.shared.open(googleMapsURL, options: [:], completionHandler: nil)
+            if let location = city?.location {
+                openMapForPlace(lat: location.latitude ?? Helper.getDefaultLocation().lat, lon: location.longitude ?? Helper.getDefaultLocation().lon, name: city?.name?.getName() ?? "Error")
             } else {
-                let googleMapsWebURLString = "https://maps.google.com/?q=\(String(describing: city?.location?.latitude)),\(String(describing: city?.location?.longitude))"
-                if let googleMapsWebURL = URL(string: googleMapsWebURLString) {
-                    UIApplication.shared.open(googleMapsWebURL, options: [:], completionHandler: nil)
-                }
+                showAlert(title: "Error", message: "Location is not valid")
             }
         } else {
-            let googleMapsURLString = "comgooglemaps://?q=\(String(describing: destination?.location?.latitude)),\(String(describing: destination?.location?.longitude))"
-            
-            if let googleMapsURL = URL(string: googleMapsURLString), UIApplication.shared.canOpenURL(googleMapsURL) {
-                UIApplication.shared.open(googleMapsURL, options: [:], completionHandler: nil)
+            if let location = destination?.location {
+                openMapForPlace(lat: location.latitude ?? Helper.getDefaultLocation().lat, lon: location.longitude ?? Helper.getDefaultLocation().lon, name: city?.name?.getName() ?? "Error")
             } else {
-                let googleMapsWebURLString = "https://maps.google.com/?q=\(String(describing: destination?.location?.latitude)),\(String(describing: destination?.location?.longitude))"
-                if let googleMapsWebURL = URL(string: googleMapsWebURLString) {
-                    UIApplication.shared.open(googleMapsWebURL, options: [:], completionHandler: nil)
-                }
+                showAlert(title: "Error", message: "Location is not valid")
             }
         }
     }
@@ -256,4 +247,24 @@ extension InfoVC: FloatingPanelControllerDelegate {
     func allowsRubberBanding(for edge: UIRectEdge) -> Bool {
         return true
     }
+}
+extension UIViewController {
+    func openMapForPlace(lat: Double, lon: Double, name: String) {
+        let latitude: CLLocationDegrees = lat
+        let longitude: CLLocationDegrees = lon
+        let regionDistance:CLLocationDistance = 10000
+        let coordinates = CLLocationCoordinate2DMake(latitude, longitude)
+        let regionSpan = MKCoordinateRegion(center: coordinates, latitudinalMeters: regionDistance, longitudinalMeters: regionDistance)
+        let options = [
+            MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: regionSpan.center),
+            MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: regionSpan.span)
+        ]
+        let placemark = MKPlacemark(coordinate: coordinates, addressDictionary: nil)
+        let mapItem = MKMapItem(placemark: placemark)
+        mapItem.name = name
+        mapItem.openInMaps(launchOptions: options)
+    }
+
+    
+
 }

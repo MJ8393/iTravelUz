@@ -15,18 +15,19 @@ extension UIViewController {
         loaderView = LoaderView(frame: view.bounds)
         view.addSubview(loaderView)
         loaderView.alpha = 0
-        UIView.animate(withDuration: 0.25) { loaderView.alpha = 1 }
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: [], animations: {
+             loaderView.alpha = 1
+         }, completion: nil)
     }
     
     func dissmissLoadingView(){
         guard let loaderView = loaderView else {
             return
         }
-        loaderView.removeFromSuperview()
-        UIView.animate(withDuration: 0.25, animations: {
-            loaderView.alpha = 0
-        }) { _ in
-            
-        }
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: [], animations: {
+              loaderView.alpha = 0
+          }) { _ in
+              loaderView.removeFromSuperview()
+          }
     }
 }

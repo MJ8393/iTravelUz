@@ -15,7 +15,8 @@ extension API {
         let parameters: Parameters = [
             "name": name
         ]
-        
+        let headers = Token.getToken()
+
         AF.request(url, method: .get, parameters: parameters, encoding: URLEncoding.default, headers: headers, interceptor: nil)
             .response{ resp in
                 switch resp.result {

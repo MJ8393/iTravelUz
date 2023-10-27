@@ -40,11 +40,6 @@ class API {
     let API_URL_RATE = BASE_URL + "/accounts/rate_destination/"
     let API_URL_COMMENT = BASE_URL + "/geo/city/destination/"
     
-    let headers: HTTPHeaders = [
-        "Cookie": "Authorization=\(testToken)",
-        "Postman-Token": "<calculated when request is sent>"
-    ]
-    
     func openChat(language: String, complition: @escaping (Result<OpenChatModel, Error>) -> Void) {
         let url = API_URL_OPEN_CHAT
         
@@ -52,7 +47,7 @@ class API {
             "language": language
          ]
         
-        
+        let headers = Token.getToken()
         AF.request(url, method: .get, parameters: parameters, encoding: URLEncoding.default, headers: headers, interceptor: nil)
             .response{ resp in
                 switch resp.result {
@@ -79,7 +74,8 @@ class API {
              "question": question,
             "language": language
          ]
-        
+        let headers = Token.getToken()
+
         AF.request(url, method: .get, parameters: parameters, encoding: URLEncoding.default, headers: headers, interceptor: nil)
             .response{ resp in
                 switch resp.result {
@@ -106,6 +102,7 @@ class API {
             "language": language
          ]
         
+        let headers = Token.getToken()
         AF.request(url, method: .get, parameters: parameters, encoding: URLEncoding.default, headers: headers, interceptor: nil)
             .response{ resp in
                 switch resp.result {
@@ -126,6 +123,7 @@ class API {
     
     func getChatHistory(complition: @escaping (Result<ChatHistoryModel, Error>) -> Void) {
         let url = API_URL_GET_CHAT_HISTORY
+        let headers = Token.getToken()
         AF.request(url, method: .get, parameters: nil, encoding: URLEncoding.default, headers: headers, interceptor: nil)
             .response{ resp in
                 switch resp.result {
@@ -142,5 +140,15 @@ class API {
                     complition(.failure(error))
                 }
             }
+    }
+}
+
+class Token {
+    static func getToken() -> HTTPHeaders {
+        let headers: HTTPHeaders = [
+            "Cookie": "Authorization=\(UD.token ?? "")",
+            "Postman-Token": "<calculated when request is sent>"
+        ]
+        return headers
     }
 }

@@ -12,6 +12,7 @@ extension API {
     
     func getUserData(complition: @escaping (Result<ProfileInfo, Error>) -> Void) {
         let url = API_URL_GET_FAVORITES
+        let headers = Token.getToken()
         AF.request(url, method: .get, parameters: nil, encoding: URLEncoding.default, headers: headers, interceptor: nil)
             .response{ resp in
                 switch resp.result {

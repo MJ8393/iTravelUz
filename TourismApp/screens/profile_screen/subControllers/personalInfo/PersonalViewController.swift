@@ -38,7 +38,7 @@ class PersonalViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = UD.username
+        title = "my_info".translate()
         view.backgroundColor = UIColor.systemBackground
         initViews()
         getPersonalInfo()

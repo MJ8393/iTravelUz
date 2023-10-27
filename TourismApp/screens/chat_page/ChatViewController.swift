@@ -40,6 +40,8 @@ class ChatViewController: UIViewController, ChatControllerDelegate {
         tableView.dataSource = self
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0)
         tableView.showsVerticalScrollIndicator = false
+        let tap = UITapGestureRecognizer(target: self, action: #selector(tableViewTapped))
+        tableView.addGestureRecognizer(tap)
         return tableView
     }()
     
@@ -90,7 +92,7 @@ class ChatViewController: UIViewController, ChatControllerDelegate {
     }
     
     private func initViews() {
-        view.backgroundColor = UIColor(named: "chatcellColor")
+        view.backgroundColor = UIColor(named: "tabbar")
         let tap = UITapGestureRecognizer(target: self, action: #selector(viewTapped))
         view.addGestureRecognizer(tap)
         
@@ -172,6 +174,7 @@ class ChatViewController: UIViewController, ChatControllerDelegate {
             case .success(let data):
                 self?.setData(data.conversations)
                 self?.tableView.reloadData()
+                self?.scrollToBottom()
                 self?.openChat()
             case .failure(let error):
                 print(error.localizedDescription)
@@ -219,6 +222,7 @@ class ChatViewController: UIViewController, ChatControllerDelegate {
     
     
     func showWaveView() {
+        sifiOpened = true
         if isRecording {
             view.endEditing(true)
         }
@@ -226,16 +230,19 @@ class ChatViewController: UIViewController, ChatControllerDelegate {
             self.bottomSendView.snp.updateConstraints { make in
                 make.bottom.equalToSuperview().offset(-self.getBottomMargin() - 120.0)
             }
-            self.siriWave.frame.origin.y = UIScreen.main.bounds.height - (110.0 + 3 * self.getBottomMargin())
+            self.siriWave.frame.origin.y = UIScreen.main.bounds.height - (110.0 + 2 * self.getBottomMargin())
             self.view.layoutIfNeeded()
         })
         scrollToBottom()
     }
     
+    var sifiOpened: Bool = false
+    
     func closeWaveView() {
+        sifiOpened = false
         UIView.animate(withDuration: 0.3, animations: {
             self.bottomSendView.snp.updateConstraints { make in
-                make.bottom.equalToSuperview().offset(-self.getBottomMargin())
+                make.bottom.equalToSuperview().offset(0)
             }
             self.siriWave.frame.origin.y = UIScreen.main.bounds.height
             self.view.layoutIfNeeded()
@@ -257,18 +264,29 @@ class ChatViewController: UIViewController, ChatControllerDelegate {
             let keyboardHeight = keyboardSize.height
             UIView.animate(withDuration: 0.3) {
                 self.bottomSendView.snp.updateConstraints { make in
-                    make.bottom.equalToSuperview().offset(-keyboardHeight)
+                    make.bottom.equalToSuperview().offset(-keyboardHeight + self.getBottomMargin())
                 }
                 self.view.layoutIfNeeded()
             }
         }
+    }
+    
+    @objc func tableViewTapped() {
+        if sifiOpened {
+            isRecording = false
+            bottomSendView.textField.isUserInteractionEnabled = true
+            stopAudio()
+            closeWaveView()
+            stopRecording()
+        }
+        view.endEditing(true)
     }
 
     @objc func keyboardWillHide(_ notification: Notification) {
         if isRecording { return }
         UIView.animate(withDuration: 0.3) {
             self.bottomSendView.snp.updateConstraints { make in
-                make.bottom.equalToSuperview().offset(-self.getBottomMargin())
+                make.bottom.equalToSuperview().offset(0)
             }
             self.view.layoutIfNeeded()
         }
@@ -357,10 +375,8 @@ extension ChatViewController: AudioControllerDelegate {
                       }
                   }
 
-                  print("XXXX", transcript)
                   self?.bottomSendView.textField.text = transcript
                   if finished {
-                      print("Finished")
                       self?.isRecording = false
                       self?.sendButtonTapped()
                       self?.stopAudio()

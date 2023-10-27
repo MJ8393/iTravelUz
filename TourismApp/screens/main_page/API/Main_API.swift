@@ -18,6 +18,8 @@ extension API {
             "radius": 10000
          ]
         
+        let headers = Token.getToken()
+
         AF.request(url, method: .get, parameters: parameters, encoding: URLEncoding.default, headers: headers, interceptor: nil)
             .response{ resp in
                 switch resp.result {
@@ -38,6 +40,8 @@ extension API {
     func getMainCities(complition: @escaping (Result<CityModel, Error>) -> Void) {
         let url = API_URL_GET_CITIES
         
+        let headers = Token.getToken()
+
         AF.request(url, method: .get, parameters: nil, encoding: URLEncoding.default, headers: headers, interceptor: nil)
             .response{ resp in
                 switch resp.result {
@@ -57,7 +61,10 @@ extension API {
     
     func getPopularCities(complition: @escaping (Result<PopularModel, Error>) -> Void) {
         let url = API_URL_GET_POPULAR
+       
+        let headers = Token.getToken()
         print(UD.token, "xxx")
+        print("ppp", headers)
         AF.request(url, method: .get, parameters: nil, encoding: URLEncoding.default, headers: headers, interceptor: nil)
             .response{ resp in
                 switch resp.result {

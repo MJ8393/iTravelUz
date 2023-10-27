@@ -12,7 +12,8 @@ extension API {
     
     func addToFavorites(destionationID: String, complition: @escaping (Result<String, Error>) -> Void) {
         let url = API_URL_ADD_FAVORITES + destionationID
-        
+        let headers = Token.getToken()
+
         AF.request(url, method: .put, parameters: nil, encoding: URLEncoding.default, headers: headers, interceptor: nil)
             .response{ resp in
                 switch resp.result {
@@ -27,7 +28,8 @@ extension API {
     
     func removeFromFavorites(destionationID: String, complition: @escaping (Result<String, Error>) -> Void) {
         let url = API_URL_DELETE_FAVORITES + destionationID
-        
+        let headers = Token.getToken()
+
         AF.request(url, method: .delete, parameters: nil, encoding: URLEncoding.default, headers: headers, interceptor: nil)
             .response{ resp in
                 switch resp.result {
@@ -47,6 +49,8 @@ extension API {
     
     func getFavorites(complition: @escaping (Result<UserData, Error>) -> Void) {
         let url = API_URL_GET_FAVORITES
+        let headers = Token.getToken()
+
         AF.request(url, method: .get, parameters: nil, encoding: URLEncoding.default, headers: headers, interceptor: nil)
             .response{ resp in
                 switch resp.result {
