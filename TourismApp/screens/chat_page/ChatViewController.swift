@@ -32,7 +32,7 @@ class ChatViewController: UIViewController, ChatControllerDelegate {
     
     lazy var tableView: UITableView = {
         let tableView = UITableView()
-        tableView.backgroundColor = UIColor.clear
+        tableView.backgroundColor = UIColor.systemBackground
         tableView.separatorStyle = .none
         tableView.register(ChatSenderCell.self, forCellReuseIdentifier: String.init(describing: ChatSenderCell.self))
         tableView.register(ChatRecieverCell.self, forCellReuseIdentifier: String.init(describing: ChatRecieverCell.self))
@@ -90,7 +90,7 @@ class ChatViewController: UIViewController, ChatControllerDelegate {
     }
     
     private func initViews() {
-        view.backgroundColor = UIColor.systemBackground
+        view.backgroundColor = UIColor(named: "chatcellColor")
         let tap = UITapGestureRecognizer(target: self, action: #selector(viewTapped))
         view.addGestureRecognizer(tap)
         

@@ -99,10 +99,10 @@ class MainCollectionView: UICollectionViewCell {
     
     func setCity(city: City) {
         titleLabel.text = city.name?.getName()
-        addressLabel.text = city.country?.getCityName()
+        addressLabel.text = city.country?.getCountry()
         if let gallery = city.gallery {
             if gallery.count != 0 {
-                mainIcon.loadImage(url: gallery[0].url)
+                mainIcon.loadImage(url: gallery[0])
             } else {
                 mainIcon.image = nil
                 mainIcon.stopLoading()

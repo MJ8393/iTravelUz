@@ -52,5 +52,53 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "30F735D8-CDEE-42AD-B82D-C3BDB92ABF4C"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TourismApp/screens/eplore_page/cell/cell2/MapTableViewCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
+            landmarkName = "mapViewTapped()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "30F735D8-CDEE-42AD-B82D-C3BDB92ABF4C - 630c7a6660619ac"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TourismApp.MapTableViewCell.mapViewTapped() -&gt; ()"
+                  moduleName = "TourismApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mekhriddinjumaev/Desktop/iTravelUz/TourismApp/screens/eplore_page/cell/cell2/MapTableViewCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "55"
+                  endingLineNumber = "55"
+                  offsetFromSymbolStart = "156">
+               </Location>
+               <Location
+                  uuid = "30F735D8-CDEE-42AD-B82D-C3BDB92ABF4C - 630c7a6660619ac"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TourismApp.MapTableViewCell.mapViewTapped() -&gt; ()"
+                  moduleName = "TourismApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mekhriddinjumaev/Desktop/iTravelUz/TourismApp/screens/eplore_page/cell/cell2/MapTableViewCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "55"
+                  endingLineNumber = "55"
+                  offsetFromSymbolStart = "28">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

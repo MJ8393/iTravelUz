@@ -41,7 +41,7 @@ class PersonalHeaderView: UIView {
     
     lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Reviews"
+        label.text = "reviews".translate()
         label.font = UIFont.systemFont(ofSize: 22, weight: .semibold)
         label.textColor = .label
         return label

@@ -44,7 +44,7 @@ class CommentsViewController: UIViewController {
     
     lazy var scoreLabel: UILabel = {
         let label = UILabel()
-        label.text = "What is your score?"
+        label.text = "score".translate()
         label.font = UIFont.systemFont(ofSize: 18, weight: .medium)
         label.textColor = UIColor.label
         return label
@@ -54,7 +54,7 @@ class CommentsViewController: UIViewController {
     
     lazy var yourComments: UILabel = {
         let label = UILabel()
-        label.text = "What is your comment?"
+        label.text = "comment_dest".translate()
         label.font = UIFont.systemFont(ofSize: 18, weight: .medium)
         label.textColor = UIColor.label
         return label
@@ -94,7 +94,7 @@ class CommentsViewController: UIViewController {
         let logInButton = UIButton(type: .system)
         logInButton.layer.cornerRadius = 16
         logInButton.backgroundColor = UIColor(hex: "7F3DFF")
-        logInButton.setTitle("Publish", for: .normal)
+        logInButton.setTitle("publish".translate(), for: .normal)
         logInButton.tintColor = .white
         logInButton.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
         logInButton.addTarget(self, action: #selector(publishButtonTapped), for: .touchUpInside)

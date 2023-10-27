@@ -57,7 +57,7 @@ extension API {
     
     func getPopularCities(complition: @escaping (Result<PopularModel, Error>) -> Void) {
         let url = API_URL_GET_POPULAR
-        
+        print(UD.token, "xxx")
         AF.request(url, method: .get, parameters: nil, encoding: URLEncoding.default, headers: headers, interceptor: nil)
             .response{ resp in
                 switch resp.result {

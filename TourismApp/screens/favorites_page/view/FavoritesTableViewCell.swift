@@ -63,7 +63,7 @@ class FavoritesTableViewCell: UITableViewCell {
         }
         nameLabel.text = destionation.name?.getName()
         if let city_name = destionation.city_name?.getCityName() {
-            cityLabel.text = "\(city_name), Uzbekistan"
+            cityLabel.text = "\(city_name)" + "country_name".translate()
         }
     }
     

@@ -16,6 +16,8 @@ class ExploreViewController: UIViewController {
     }()
     
     var destination: MainDestination?
+    var city: City?
+    var isCity = false
     var isLiked: Bool = false
     var thisWidth: CGFloat = CGFloat(UIScreen.main.bounds.width)
     
@@ -77,6 +79,13 @@ class ExploreViewController: UIViewController {
         configurePageControl()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        if let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? ExploreContentTableCell  {
+            cell.stopSpeech()
+        }
+    }
+    
     private func configurePageControl() {
         pageControl.numberOfPages = 5
         pageControl.currentPage = 0
@@ -90,6 +99,9 @@ class ExploreViewController: UIViewController {
         }
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
         
+        if isCity {
+            return
+        }
         // Like Button
         let likeButton = CustomBarButtonView(image: UIImage(systemName: "heart")!)
         if let favorites = UD.favorites, let destionation = destination {
@@ -104,7 +116,6 @@ class ExploreViewController: UIViewController {
             }
         }
         
-        
         likeButton.buttonAction = { [weak self] in
             if self!.isLiked {
                 likeButton.customButton.setImage(UIImage(systemName: "heart")!)
@@ -113,10 +124,10 @@ class ExploreViewController: UIViewController {
                     API.shared.removeFromFavorites(destionationID: id) { result in
                         switch result {
                         case .success(_):
-                            self!.showAlert(title: "Success", message: "\(self!.destination!.name?.getName() ?? "") successfully removed from favorites")
+                            self?.showAlert(title: "success".translate(), message: "\(self?.destination?.name?.getName() ?? "") " + "success_message_2".translate())
                         case .failure(let error):
                             print(error)
-                            self!.showAlert(title: "Failure", message: "\(self!.destination!.name?.getName() ?? "") could be removed from favorites")
+                            self?.showAlert(title: "fail".translate(), message: "\(self?.destination?.name?.getName() ?? "") " + "fail_message_2".translate())
                             likeButton.customButton.setImage(UIImage(systemName: "heart.fill")!)
                             likeButton.customButton.tintColor = UIColor.label
                         }
@@ -130,10 +141,10 @@ class ExploreViewController: UIViewController {
                     API.shared.addToFavorites(destionationID: id) { result in
                         switch result {
                         case .success(_):
-                            self!.showAlert(title: "Success", message: "\(self!.destination!.name?.getName() ?? "") successfully added to favorites")
+                            self?.showAlert(title: "success".translate(), message: "\(self?.destination?.name?.getName() ?? "") " + "success_message_1".translate())
                         case .failure(let error):
                             print(error)
-                            self!.showAlert(title: "Failure", message: "\(self!.destination!.name?.getName() ?? "") could be added to favorites")
+                            self?.showAlert(title: "fail".translate(), message: "\(self?.destination?.name?.getName() ?? "") " + "fail_message_1".translate())
                             likeButton.customButton.setImage(UIImage(systemName: "heart")!)
                             likeButton.customButton.tintColor = UIColor.black
                         }
@@ -169,8 +180,14 @@ class ExploreViewController: UIViewController {
 
 extension ExploreViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let destination = destination {
-            return 2 + (destination.comments?.count ?? 0) + 1
+        if isCity {
+            if let city = city {
+                return 2
+            }
+        } else {
+            if let destination = destination {
+                return 2 + (destination.comments?.count ?? 0) + 1
+            }
         }
         return 0
     }
@@ -178,19 +195,32 @@ extension ExploreViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: String.init(describing: ExploreContentTableCell.self), for: indexPath) as? ExploreContentTableCell else { return UITableViewCell() }
-            if let destination = destination {
-                cell.setData(destination.name?.getName() ?? "No name", destination.description?.getDescription() ?? "No description")
+            if isCity {
+                if let city = city {
+                    cell.setData(city.name?.getName() ?? "No name", city.description?.getDescription() ?? "No description")
+                }
+            } else {
+                if let destination = destination {
+                    cell.setData(destination.name?.getName() ?? "No name", destination.description?.getDescription() ?? "No description")
+                }
             }
             cell.backgroundColor = .clear
             cell.selectionStyle = .none
             return cell
         } else if indexPath.row == 1 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: String.init(describing: MapTableViewCell.self), for: indexPath) as? MapTableViewCell else { return UITableViewCell() }
-            if let destionation = destination {
-                if let location = destionation.location {
-                    cell.setMap(latitude: location.latitude ?? Helper.getDefaultLocation().lat, longitude: location.longitude ?? Helper.getDefaultLocation().lon, title: destionation.name?.getName() ?? "", Snippet: destionation.city_name?.getCityName() ?? "")
+            if isCity {
+                if let city = city, let location = city.location {
+                    cell.setMap(latitude: location.latitude ?? Helper.getDefaultLocation().lat, longitude: location.longitude ?? Helper.getDefaultLocation().lon, title: city.name?.getName() ?? "", Snippet: city.country?.getCountry() ?? "")
+                }
+            } else {
+                if let destionation = destination {
+                    if let location = destionation.location {
+                        cell.setMap(latitude: location.latitude ?? Helper.getDefaultLocation().lat, longitude: location.longitude ?? Helper.getDefaultLocation().lon, title: destionation.name?.getName() ?? "", Snippet: destionation.city_name?.getCityName() ?? "")
+                    }
                 }
             }
+            cell.delegate = self
             cell.backgroundColor = .clear
             cell.selectionStyle = .none
             return cell
@@ -213,16 +243,6 @@ extension ExploreViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if(indexPath.row == 1) {
-            let vc = InfoVC()
-            if let destination = destination{
-                vc.destination = destination
-            }
-            navigationController?.pushViewController(vc, animated: true)
-        }
-    }
-    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         //        let defaultOffset = view.safeAreaInsets.top
         //        let offset = scrollView.contentOffset.y + defaultOffset
@@ -241,8 +261,14 @@ extension ExploreViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension ExploreViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        if let destionation = destination, let gattery = destionation.gallery {
-            return gattery.count
+        if isCity {
+            if let city = city, let gallery = city.gallery {
+                return gallery.count
+            }
+        } else {
+            if let destionation = destination, let gattery = destionation.gallery {
+                return gattery.count
+            }
         }
         return 0
     }
@@ -253,8 +279,14 @@ extension ExploreViewController: UICollectionViewDelegate, UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HeaderImagesCollectionViewCell.identifier, for: indexPath) as? HeaderImagesCollectionViewCell else { return UICollectionViewCell()}
-        if let destionation = destination, let gattery = destionation.gallery {
-            cell.setImage(with: gattery[indexPath.section].url)
+        if isCity {
+            if let city = city, let gallery = city.gallery {
+                cell.setImage(with: gallery[indexPath.section])
+            }
+        } else {
+            if let destionation = destination, let gattery = destionation.gallery {
+                cell.setImage(with: gattery[indexPath.section].url ?? "destination_653a701b0ba11ced210daa73_5-0-0-0-0-1583403867-0-0-0-0-1583403914.jpg")
+            }
         }
         return cell
     }
@@ -269,8 +301,30 @@ extension ExploreViewController: UICollectionViewDelegate, UICollectionViewDataS
     }
 }
 
-extension Helper {
-    static func getDefaultLocation() -> (lat: Double, lon: Double){
-        return (41.2995, 69.2401)
+extension ExploreViewController: MapTableViewCellDelegate {
+    func mapViewTapped() {
+        let vc = InfoVC()
+        if isCity {
+            if let city = city {
+                vc.city = city
+                vc.isCity = true
+            }
+        } else {
+            if let destination = destination {
+                vc.destination = destination
+                vc.isCity = false
+            }
+        }
+        let backButton = UIBarButtonItem(image: UIImage(systemName: "chevron.backward")!, style: .plain, target: self, action: #selector(dismissRegisterViewController))
+        backButton.tintColor = .label
+
+        navigationController?.navigationItem.leftBarButtonItem = backButton
+        navigationController?.pushViewController(vc, animated: true)
     }
+    
+    @objc func dismissRegisterViewController() {
+        navigationController?.popViewController(animated: true)
+    }
+    
 }
+

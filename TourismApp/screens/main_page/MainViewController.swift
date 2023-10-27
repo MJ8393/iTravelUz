@@ -181,10 +181,13 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: String.init(describing: MainTableViewCell.self), for: indexPath) as? MainTableViewCell else { return UITableViewCell() }
         if indexPath.section == 0 {
             cell.setData(destinations: nearbyDestinations)
+            cell.sectionIndex = 0
         } else if indexPath.section == 1 {
             cell.setCity(cities: cities)
+            cell.sectionIndex = 1
         } else if indexPath.section == 2 {
             cell.setData(destinations: popularDestionations)
+            cell.sectionIndex = 2
         }
         cell.backgroundColor = .clear
         cell.selectionStyle = .none
@@ -223,11 +226,26 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension MainViewController: MainControllerDelegate {
-    func didSelectItem(index: Int) {
-        let vc = ExploreViewController()
-        let destination = nearbyDestinations[index]
-        vc.destination = destination
-        navigationController?.pushViewController(vc, animated: true)
+    func didSelectItem(index: Int, section: Int) {
+        if section == 0 {
+            let vc = ExploreViewController()
+            let destination = nearbyDestinations[index]
+            vc.destination = destination
+            vc.isCity = false
+            navigationController?.pushViewController(vc, animated: true)
+        } else if section == 1 {
+            let vc = ExploreViewController()
+            let destination = cities[index]
+            vc.city = destination
+            vc.isCity = true
+            navigationController?.pushViewController(vc, animated: true)
+        } else if section == 2 {
+            let vc = ExploreViewController()
+            let destination = popularDestionations[index]
+            vc.destination = destination
+            vc.isCity = false
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     func viewAllTapped(index: Int) {

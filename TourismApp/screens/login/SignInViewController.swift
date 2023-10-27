@@ -20,7 +20,7 @@ class SignInViewController: UIViewController {
     private let teamLbl: UILabel = {
         let teamLbl = UILabel()
         teamLbl.config(font: UIFont.boldSystemFont(ofSize: 30), color: UIColor.black, numberOfLines: 2, textAlignment: .none)
-        teamLbl.text = "Log in"
+        teamLbl.text = "login".translate()
         teamLbl.textColor = .label
         return teamLbl
     }()
@@ -28,14 +28,14 @@ class SignInViewController: UIViewController {
     private let titleLabel1: UILabel = {
         let titleLabel = UILabel()
         titleLabel.config(font: UIFont.systemFont(ofSize: 16, weight: .medium), color: UIColor.black, numberOfLines: 1, textAlignment: .left)
-        titleLabel.text = "Username"
+        titleLabel.text = "username".translate()
         titleLabel.textColor = .label
         return titleLabel
     }()
         
     private let textField1: CustomizedTextField = {
         let textField = CustomizedTextField()
-        textField.placeholder = "Enter your username"
+        textField.placeholder = "enter_username".translate()
         textField.layer.borderColor = UIColor.black.cgColor
         textField.layer.cornerRadius = 16
         textField.backgroundColor = UIColor.systemGray5
@@ -45,14 +45,14 @@ class SignInViewController: UIViewController {
     private let titleLabel2: UILabel = {
         let titleLabel = UILabel()
         titleLabel.config(font: UIFont.systemFont(ofSize: 16, weight: .medium), color: UIColor.black, numberOfLines: 1, textAlignment: .left)
-        titleLabel.text = "Password"
+        titleLabel.text = "parol".translate()
         titleLabel.textColor = .label
         return titleLabel
     }()
         
     private let textField2: CustomizedTextField = {
         let textField = CustomizedTextField()
-        textField.placeholder = "Enter your password"
+        textField.placeholder = "enter_password".translate()
         textField.layer.borderColor = UIColor.black.cgColor
         textField.isSecureTextEntry = true
         textField.layer.cornerRadius = 16
@@ -64,7 +64,7 @@ class SignInViewController: UIViewController {
         let logInButton = UIButton(type: .system)
         logInButton.layer.cornerRadius = 16
         logInButton.backgroundColor = UIColor(hex: "7F3DFF")
-        logInButton.setTitle("Log in", for: .normal)
+        logInButton.setTitle("login".translate(), for: .normal)
         logInButton.tintColor = .white
         logInButton.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
         logInButton.addTarget(self, action: #selector(logInButtonTapped), for: .touchUpInside)
@@ -137,13 +137,19 @@ class SignInViewController: UIViewController {
     
     @objc func logInButtonTapped() {
         if let userName = textField1.text, userName.replacingOccurrences(of: " ", with: "") != "", let password = textField2.text, password.replacingOccurrences(of: " ", with: "") != "" {
+            showLoadingView()
             API.shared.login(username: userName, password: password) { [weak self] result in
                 switch result {
                 case .success(let data):
                     UD.token = data.Authorization
                     UD.username = self?.textField1.text ?? ""
-                    self?.setNewRootViewController()
+                    let seconds = 0.5
+                    DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
+                        self?.dissmissLoadingView()
+                        self?.setNewRootViewController()
+                    }
                 case.failure(let error):
+                    self?.dissmissLoadingView()
                     self?.showAlert(title: "Error", message: "Please, enter valid login and password")
                     print(error)
                 }
@@ -151,7 +157,6 @@ class SignInViewController: UIViewController {
         } else {
             showAlert(title: "Error", message: "Please, enter valid login and password")
         }
-       
     }
     
     @objc func viewTapped() {

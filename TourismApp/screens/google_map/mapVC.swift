@@ -50,4 +50,20 @@ class mapVC: BaseViewController {
         markerImageView.contentMode = .scaleAspectFill
         return markerImageView
     }
+    
+    func setMarkerImageViewString(with gallery: [String]) -> UIImageView {
+        let markerImageView = ActivityImageView(frame: CGRect(x: 0, y: 0, width: 60, height: 60))
+        markerImageView.layer.cornerRadius = markerImageView.frame.size.width / 2
+        markerImageView.layer.masksToBounds = true
+        markerImageView.layer.borderWidth = 3
+        markerImageView.layer.borderColor = UIColor.white.cgColor
+        if !gallery.isEmpty {
+            markerImageView.loadImage(url: gallery[0])
+        } else {
+            markerImageView.stopLoading()
+            markerImageView.image = nil
+        }
+        markerImageView.contentMode = .scaleAspectFill
+        return markerImageView
+    }
 }

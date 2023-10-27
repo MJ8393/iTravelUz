@@ -151,4 +151,11 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource, U
 //        data.insert(mover, at: destinationIndexPath.row)
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = ExploreViewController()
+        let destination = favoriteDestinations[indexPath.row]
+        vc.destination = destination
+        vc.isCity = false
+        navigationController?.pushViewController(vc, animated: true)
+    }
 }

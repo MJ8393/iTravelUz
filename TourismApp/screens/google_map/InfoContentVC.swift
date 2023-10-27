@@ -19,7 +19,9 @@ class InfoContentVC: UIViewController {
     weak var delegate: FPContentVCDelegate?
     var images: [Gallery] = []
     var gallery: [Gallery] = []
-    let thisWidth = CGFloat(UIScreen.main.bounds.width)
+    let thisWidth = CGFloat(UIScreen.main.bounds.width - 40.0)
+    var cityGallery: [String] = []
+    var isCity = false
     
     lazy var cityLabel: UILabel = {
         let label = UILabel()
@@ -43,9 +45,10 @@ class InfoContentVC: UIViewController {
         goButton.backgroundColor = .secondarySystemBackground
         goButton.titleLabel?.lineBreakMode = .byWordWrapping
         goButton.setTitleColor(.systemBlue, for: .normal)
-        goButton.setTitle("Open\nGoogle Maps", for: .normal)
+        goButton.setTitle("open_google_map".translate(), for: .normal)
         goButton.titleLabel?.textAlignment = .center
         goButton.layer.cornerRadius = 8
+        goButton.setTitleColor(UIColor.mainColor, for: .normal)
         goButton.addTarget(self, action: #selector(goButtonPressed), for: .touchUpInside)
         return goButton
     }()
@@ -56,6 +59,7 @@ class InfoContentVC: UIViewController {
         shareButton.backgroundColor = .secondarySystemBackground
         let image = UIImage(systemName: "square.and.arrow.up")
         shareButton.setImage(image, for: .normal)
+        shareButton.tintColor = .mainColor
         shareButton.layer.cornerRadius = 8
         shareButton.addTarget(self, action: #selector(shareButtonPressed(_:)), for: .touchUpInside)
         return shareButton
@@ -68,6 +72,7 @@ class InfoContentVC: UIViewController {
         let image = UIImage(systemName: "heart")
         likeButton.setImage(image, for: .normal)
         likeButton.layer.cornerRadius = 8
+        likeButton.tintColor = .mainColor
         likeButton.addTarget(self, action: #selector(likeButtonPressed), for: .touchUpInside)
         return likeButton
     }()
@@ -79,11 +84,13 @@ class InfoContentVC: UIViewController {
         if let image = UIImage(systemName: "xmark.circle.fill") {
             let imageSize = CGSize(width: 24, height: 24) // Adjust the width and height as needed
             let resizedImage = image.withRenderingMode(.alwaysTemplate)
+            
             let renderer = UIGraphicsImageRenderer(size: imageSize)
             let renderedImage = renderer.image { _ in
                 resizedImage.draw(in: CGRect(origin: .zero, size: imageSize))
             }
-            xButton.setImage(renderedImage, for: .normal)
+            xButton.setImage(renderedImage.withTintColor(.label), for: .normal)
+//            xButton.setTi
         }
         //        xButton.setImage(image, for: .normal)
         xButton.tintColor = .systemBlue
@@ -94,7 +101,7 @@ class InfoContentVC: UIViewController {
     
     lazy var collectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.itemSize = CGSize(width: thisWidth, height: 260)
+        flowLayout.itemSize = CGSize(width: thisWidth, height: 250)
         flowLayout.scrollDirection = .horizontal
         let collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: thisWidth, height: 260), collectionViewLayout: flowLayout)
         collectionView.delegate = self
@@ -103,6 +110,9 @@ class InfoContentVC: UIViewController {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.register(HeaderImagesCollectionViewCell.self, forCellWithReuseIdentifier: HeaderImagesCollectionViewCell.identifier)
         collectionView.showsHorizontalScrollIndicator = false
+        collectionView.isPagingEnabled = true
+        collectionView.layer.cornerRadius = 15
+        collectionView.clipsToBounds = true
         return collectionView
     }()
     
@@ -118,7 +128,7 @@ class InfoContentVC: UIViewController {
         super.viewDidLayoutSubviews()
         
         cityLabel.sizeToFit()
-        cityLabel.frame = CGRect(x: 20, y: 15, width: UIScreen.main.bounds.width - 10, height: cityLabel.frame.size.height)
+        cityLabel.frame = CGRect(x: 20, y: 15, width: UIScreen.main.bounds.width - 60, height: cityLabel.frame.size.height)
     }
     
     @objc func goButtonPressed() {
@@ -152,25 +162,27 @@ class InfoContentVC: UIViewController {
             descriptionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
         ]
         
-        let goButtonConstrains = [
-            goButton.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 40),
-            goButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            goButton.heightAnchor.constraint(equalToConstant: 42),
-            goButton.widthAnchor.constraint(equalToConstant: 120)
+        let likeButtonConstraints = [
+            likeButton.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 20),
+            likeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            likeButton.heightAnchor.constraint(equalToConstant: 40),
+            likeButton.widthAnchor.constraint(equalToConstant: 50)
         ]
         
         let shareButtonConstraints = [
-            shareButton.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 40),
-            shareButton.leadingAnchor.constraint(equalTo: goButton.trailingAnchor, constant: 7),
+            shareButton.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 20),
+            shareButton.trailingAnchor.constraint(equalTo: likeButton.leadingAnchor, constant: -7),
             shareButton.heightAnchor.constraint(equalToConstant: 40),
             shareButton.widthAnchor.constraint(equalToConstant: 50)
         ]
-        
-        let likeButtonConstraints = [
-            likeButton.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 40),
-            likeButton.leadingAnchor.constraint(equalTo: shareButton.trailingAnchor, constant: 7),
-            likeButton.heightAnchor.constraint(equalToConstant: 40),
-            likeButton.widthAnchor.constraint(equalToConstant: 50)
+
+        let goButtonConstrains = [
+            goButton.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 20),
+            goButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            goButton.heightAnchor.constraint(equalToConstant: 42),
+//            goButton.widthAnchor.constraint(equalToConstant: 150)
+            goButton.trailingAnchor.constraint(equalTo: shareButton.leadingAnchor, constant: -7),
+
         ]
         
         let xButtonConstraints = [
@@ -182,12 +194,12 @@ class InfoContentVC: UIViewController {
         
         let collectionViewConstraints = [
             collectionView.topAnchor.constraint(equalTo: goButton.bottomAnchor, constant: 30),
-            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
-            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             collectionView.heightAnchor.constraint(equalToConstant: 250)
         ]
         
-        let constraints = [descriptionLabelConstraints, goButtonConstrains, shareButtonConstraints, likeButtonConstraints, xButtonConstraints, collectionViewConstraints]
+        let constraints = [descriptionLabelConstraints, shareButtonConstraints, likeButtonConstraints, goButtonConstrains, xButtonConstraints, collectionViewConstraints]
         for constraint in constraints { NSLayoutConstraint.activate(constraint) }
     }
     
@@ -195,6 +207,9 @@ class InfoContentVC: UIViewController {
 
 extension InfoContentVC: UICollectionViewDelegate, UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
+        if isCity {
+            return cityGallery.count
+        }
         return gallery.count
     }
     
@@ -204,10 +219,21 @@ extension InfoContentVC: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HeaderImagesCollectionViewCell.identifier, for: indexPath) as? HeaderImagesCollectionViewCell else { return UICollectionViewCell() }
-        
-        cell.setImage(with: gallery[indexPath.row].url)
-        cell.clipsToBounds = true
-        cell.backgroundColor = .clear
+        if isCity {
+            if  cityGallery.count == 0 {
+                cell.setImage(with: "destination_653a701b0ba11ced210daa73_5-0-0-0-0-1583403867-0-0-0-0-1583403914.jpg")
+            } else {
+                cell.setImage(with: cityGallery[indexPath.section])
+            }
+            cell.clipsToBounds = true
+            cell.layer.cornerRadius = 15
+            cell.backgroundColor = .clear
+        } else {
+            cell.setImage(with: gallery[indexPath.section].url ?? "destination_653a701b0ba11ced210daa73_5-0-0-0-0-1583403867-0-0-0-0-1583403914.jpg")
+            cell.clipsToBounds = true
+            cell.layer.cornerRadius = 15
+            cell.backgroundColor = .clear
+        }
         return cell
     }
 }

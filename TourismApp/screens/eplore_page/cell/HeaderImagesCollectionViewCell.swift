@@ -11,7 +11,7 @@ import UIKit
 class HeaderImagesCollectionViewCell: UICollectionViewCell {
     static let identifier = "HeaderImagesCollectionViewCell"
     
-    private var headerImageView: ActivityImageView = {
+    lazy var headerImageView: ActivityImageView = {
         let imageView = ActivityImageView(frame: .zero)
 //        imageView.image = UIImage(named: "Registan")!
         imageView.clipsToBounds = true
