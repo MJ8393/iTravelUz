@@ -157,7 +157,7 @@ class InfoContentVC: UIViewController {
     func applyConstraints() {
         
         let descriptionLabelConstraints = [
-            descriptionLabel.topAnchor.constraint(equalTo: cityLabel.bottomAnchor, constant: 5),
+            descriptionLabel.topAnchor.constraint(equalTo: cityLabel.bottomAnchor, constant: 7),
             descriptionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             descriptionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
         ]
