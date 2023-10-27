@@ -134,4 +134,15 @@ class SpeechService: NSObject, AVAudioPlayerDelegate {
         self.completionHandler!()
         self.completionHandler = nil
     }
+    
+    func stopPlaying() {
+        if let player = self.player, player.isPlaying {
+            self.player?.delegate = nil
+            self.player = nil
+            self.busy = false
+            
+            self.completionHandler!()
+            self.completionHandler = nil
+        }
+    }
 }

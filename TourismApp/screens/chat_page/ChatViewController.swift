@@ -85,6 +85,7 @@ class ChatViewController: UIViewController, ChatControllerDelegate {
     
     override func viewWillDisappear(_ animated: Bool) {
         closeChat()
+        SpeechService.shared.stopPlaying()
     }
     
     private func setupNavigation() {
