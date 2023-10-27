@@ -104,9 +104,18 @@ extension ViewAllVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let defaultOffset = view.safeAreaInsets.top
-        let offset = scrollView.contentOffset.y + defaultOffset
-        navigationController?.navigationBar.transform = .init(translationX: 0, y: min(0, -offset))
+        //        let defaultOffset = view.safeAreaInsets.top
+        //        let offset = scrollView.contentOffset.y + defaultOffset
+        //        navigationController?.navigationBar.transform = .init(translationX: 0, y: min(0, -offset))
+        if let collectionView = scrollView as? UITableView {
+            // It's a UICollectionView scrolling
+            let defaultOffset = view.safeAreaInsets.top
+            let offset = collectionView.contentOffset.y + defaultOffset
+            navigationController?.navigationBar.transform = .init(translationX: 0, y: min(0, -offset))
+        } else {
+            // It's some other type of UIScrollView scrolling
+            // Handle it accordingly
+        }
     }
 }
 
