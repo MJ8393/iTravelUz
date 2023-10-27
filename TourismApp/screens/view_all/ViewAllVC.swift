@@ -37,6 +37,17 @@ class ViewAllVC: UIViewController {
         view.addSubview(viewAllTableView)
         //self.navigationController?.navigationBar.topItem?.title = " "
         self.navigationController?.navigationBar.tintColor = UIColor(named: "view_all_colorSet")
+        
+        let backButton = CustomBarButtonView(image: UIImage(systemName: "chevron.backward")!)
+        backButton.buttonAction = {
+            self.navigationController?.popViewController(animated: true)
+        }
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+//        viewAllTableView.setContentOffset(CGPoint(x: 0, y: navigationController?.navigationBar.frame.height ?? 0 + Helper.getTopPadding() + 100), animated:true)
     }
 }
 
@@ -54,7 +65,7 @@ extension ViewAllVC: UITableViewDelegate, UITableViewDataSource {
         if isCity {
             let city = cities[indexPath.row]
             cell.setCity(city: city)
-            destination = MainDestination(id: city.id, name: city.name, location: city.location, city_name: city.country, description: city.description, recommendationLevel: city.recommendationLevel, gallery: city.gallery, comments: city.comments)
+//            destination = MainDestination(id: city.id, name: city.name, location: city.location, city_name: city.country, description: city.description, recommendationLevel: city.recommendationLevel, gallery: city.gallery, comments: city.comments)
         } else {
             let city = destionations[indexPath.row]
             cell.setData(destination: city)
@@ -76,6 +87,20 @@ extension ViewAllVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        if isCity {
+            let vc = ExploreViewController()
+            let destination = cities[indexPath.row]
+            vc.city = destination
+            vc.isCity = true
+            navigationController?.pushViewController(vc, animated: true)
+        } else {
+            let vc = ExploreViewController()
+            let destination = destionations[indexPath.row]
+            vc.destination = destination
+            vc.isCity = false
+            navigationController?.pushViewController(vc, animated: true)
+        }
+
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

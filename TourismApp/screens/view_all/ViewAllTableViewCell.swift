@@ -52,6 +52,7 @@ class TableViewCell: UITableViewCell {
         locationButton.setImage(image)
         locationButton.layer.cornerRadius = 12.5
         locationButton.addTarget(self, action: #selector(locationButtonTapped), for: .touchUpInside)
+        locationButton.isHidden = true
         return locationButton
     }()
     
@@ -71,7 +72,7 @@ class TableViewCell: UITableViewCell {
         headerImageView.image = nil
         self.coordinate = destination.location
         cityLabel.text = destination.name?.getName()
-        locationLabel.text = "\(destination.city_name?.getCityName() ?? ""), Uzbekistan"
+        locationLabel.text = "\(destination.city_name?.getCityName() ?? "")" + "country_name".translate()
         if let gallery = destination.gallery {
             if gallery.count != 0 {
                 headerImageView.loadImage(url: gallery[0].url)
@@ -88,10 +89,10 @@ class TableViewCell: UITableViewCell {
     func setCity(city: City) {
         headerImageView.image = nil
         cityLabel.text = city.name?.getName()
-        locationLabel.text = "\(String(describing: city.country?.getCityName()))"
+        locationLabel.text = city.country?.getCountry()
         if let gallery = city.gallery {
             if gallery.count != 0 {
-                headerImageView.loadImage(url: gallery[0].url)
+                headerImageView.loadImage(url: gallery[0])
             } else {
                 headerImageView.image = nil
                 headerImageView.stopLoading()

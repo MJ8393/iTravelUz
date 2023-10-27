@@ -32,7 +32,7 @@ struct MainRecomentationLevel: Codable {
 }
 
 struct Gallery: Codable {
-    let url: String
+    let url: String?
 }
 
 struct MainComment: Codable {
@@ -49,12 +49,10 @@ struct CityModel: Codable {
 struct City: Codable {
     let id: String
     let name: DestionationName?
-    let location: MainLocation
-    let country: CityName?
-    let gallery: [Gallery]?
+    let location: MainLocation?
+    let country: CountryName?
+    let gallery: [String]?
     let description: DescriptionString?
-    let recommendationLevel: MainRecomentationLevel?
-    let comments: [MainComment]?
 }
 
 struct CountryName: Codable {
@@ -66,4 +64,5 @@ struct CountryName: Codable {
 struct PopularModel: Codable {
     let destinations: [MainDestination]
 }
+
 

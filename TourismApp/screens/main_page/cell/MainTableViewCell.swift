@@ -8,7 +8,7 @@
 import UIKit
 
 protocol MainControllerDelegate: AnyObject {
-    func didSelectItem(index: Int)
+    func didSelectItem(index: Int, section: Int)
     func viewAllTapped(index: Int)
 }
 
@@ -19,6 +19,8 @@ class MainTableViewCell: UITableViewCell {
     var destinations = [MainDestination]()
     
     var isCity: Bool = false
+    
+    var sectionIndex: Int = 0
     
     var cities = [City]()
 
@@ -99,6 +101,6 @@ extension MainTableViewCell: UICollectionViewDelegate, UICollectionViewDataSourc
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        delegate?.didSelectItem(index: indexPath.row)
+        delegate?.didSelectItem(index: indexPath.row, section: sectionIndex)
     }
 }

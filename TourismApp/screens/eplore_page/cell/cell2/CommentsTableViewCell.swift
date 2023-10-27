@@ -16,7 +16,7 @@ class CommentsTableViewCell: UITableViewCell {
     
     lazy var commentsLabel: UILabel = {
         let label = UILabel()
-        label.text = "comments".translate()
+        label.text = "comments".translate() + "(0)"
         label.font = .systemFont(ofSize: 20, weight: .semibold)
         label.textColor = .label
         return label

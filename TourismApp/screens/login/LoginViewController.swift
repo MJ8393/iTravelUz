@@ -20,7 +20,7 @@ class LoginViewController: UIViewController {
         let logInButton = UIButton(type: .system)
         logInButton.layer.cornerRadius = 16
         logInButton.backgroundColor = UIColor(hex: "7F3DFF")
-        logInButton.setTitle("Log in", for: .normal)
+        logInButton.setTitle("login".translate(), for: .normal)
         logInButton.tintColor = .white
         logInButton.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
         return logInButton
@@ -30,7 +30,7 @@ class LoginViewController: UIViewController {
         let registerButton = UIButton(type: .system)
         registerButton.layer.cornerRadius = 16
         registerButton.backgroundColor = .label
-        registerButton.setTitle("Create account",for: .normal)
+        registerButton.setTitle("create_account".translate(), for: .normal)
         registerButton.tintColor = .systemBackground
         registerButton.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
         return registerButton
@@ -39,7 +39,7 @@ class LoginViewController: UIViewController {
     private let teamLbl: UILabel = {
         let teamLbl = UILabel()
         teamLbl.config(font: UIFont.systemFont(ofSize: 22, weight: .semibold), color: UIColor.black, numberOfLines: 2, textAlignment: .none)
-        teamLbl.text = "iTravel"
+        teamLbl.text = "GuideMe"
         teamLbl.textColor = .label
         return teamLbl
     }()
@@ -117,8 +117,6 @@ class LoginViewController: UIViewController {
         loginVC.navigationItem.leftBarButtonItem = backButton
         present(navigationController, animated: true, completion: nil)
     }
-    
-    
      
 
     @objc private func dismissRegisterViewController() {

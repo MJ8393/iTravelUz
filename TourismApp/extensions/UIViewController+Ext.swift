@@ -71,4 +71,8 @@ class Helper {
         }
         return 0.0
     }
+    
+    static func getDefaultLocation() -> (lat: Double, lon: Double){
+        return (41.2995, 69.2401)
+    }
 }

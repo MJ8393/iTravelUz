@@ -19,6 +19,7 @@ class ExploreContentTableCell: UITableViewCell, AVSpeechSynthesizerDelegate {
         label.font = UIFont.systemFont(ofSize: 22, weight: .semibold)
         label.textColor = .label
         label.numberOfLines = 0
+        label.lineBreakMode = .byWordWrapping
         return label
     }()
     
@@ -26,6 +27,7 @@ class ExploreContentTableCell: UITableViewCell, AVSpeechSynthesizerDelegate {
         let label = UILabel()
         label.textColor = .label
         label.numberOfLines = 0
+        label.lineBreakMode = .byWordWrapping
         return label
     }()
     
@@ -71,7 +73,7 @@ class ExploreContentTableCell: UITableViewCell, AVSpeechSynthesizerDelegate {
         subView.addSubview(titleLabel)
         titleLabel.snp.makeConstraints { make in
             make.top.left.equalToSuperview().offset(20)
-            make.right.equalToSuperview().offset(-20)
+            make.right.equalToSuperview().offset(-20 - 40 - 10)
         }
         
         subView.addSubview(playButton)
@@ -88,11 +90,26 @@ class ExploreContentTableCell: UITableViewCell, AVSpeechSynthesizerDelegate {
             make.left.equalToSuperview().offset(20)
             make.right.equalToSuperview().offset(-20)
         }
+        setLanguage()
+    }
+    
+    func setLanguage() {
+        let language = LanguageManager.getAppLang()
+        switch language {
+        case .English:
+            playButton.isHidden = false
+        case .Uzbek:
+            playButton.isHidden = true
+        case .lanDesc:
+            playButton.isHidden = false
+        }
     }
     
     func setData(_ title: String, _ description: String) {
         titleLabel.text = title
-        descriptionLabel.text = description
+        let newText = description.replacingOccurrences(of: "\\n\\n", with: "\n\n\n")
+        let newText2 = newText.replacingOccurrences(of: "\\n", with: "\n\n")
+        descriptionLabel.text = newText2
     }
     @objc func playButtonTapped() {
         if isSpeechPlaying {
@@ -108,7 +125,6 @@ class ExploreContentTableCell: UITableViewCell, AVSpeechSynthesizerDelegate {
             // Start speaking and change the button image to "stop.fill"
             let spokenText = descriptionLabel.text ?? ""
             let speechUtterance = AVSpeechUtterance(string: spokenText)
-            print(spokenText, "xxx")
             speechSynthesizer.speak(speechUtterance)
             let stopIconImage = UIImage(systemName: "stop.fill")
             playButton.setImage(stopIconImage, for: .normal)
@@ -116,6 +132,14 @@ class ExploreContentTableCell: UITableViewCell, AVSpeechSynthesizerDelegate {
         
         // Toggle the state
         isSpeechPlaying.toggle()
+    }
+    
+    func stopSpeech() {
+        speechSynthesizer.stopSpeaking(at: .immediate)
+        let playIconImage = UIImage(systemName: "play.fill")
+        playButton.setImage(playIconImage, for: .normal)
+        isSpeechPlaying.toggle()
+//        descriptionLabel.attributedText = attributedTextWithHighlighting
     }
     
     func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, willSpeakRangeOfSpeechString characterRange: NSRange, utterance: AVSpeechUtterance) {

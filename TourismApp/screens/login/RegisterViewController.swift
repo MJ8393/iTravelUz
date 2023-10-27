@@ -178,7 +178,7 @@ class RegisterViewController: UIViewController {
         }
         
         if let password = textField2.text?.replacingOccurrences(of: " ", with: "") {
-            if password.count <= 5 {
+            if password.count < 5 {
                 showAlert(message: "Password should contains at least 5 characters")
                 return
             }
@@ -196,6 +196,7 @@ class RegisterViewController: UIViewController {
         }
         
         if let username = textField1.text, let password = textField2.text, let email = textField3.text {
+            self.showLoadingView()
             API.shared.signUp(username: username, password: password, email: email) { [weak self] result in
                 switch result {
                 case .success(_):
@@ -204,7 +205,11 @@ class RegisterViewController: UIViewController {
                         case .success(let data):
                             UD.token = data.Authorization
                             UD.username = username
-                            self?.setNewRootViewController()
+                            let seconds = 0.5
+                            DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
+                                self?.dissmissLoadingView()
+                                self?.setNewRootViewController()
+                            }
                         case.failure(let error):
                             self?.showAlert(title: "Error", message: "Something went wrong")
                             print(error)
