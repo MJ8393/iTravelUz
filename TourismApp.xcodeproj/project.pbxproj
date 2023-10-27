@@ -1165,8 +1165,8 @@
 				DEVELOPMENT_TEAM = FZU84SDGV7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TourismApp/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = guideMe;
-				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_CFBundleDisplayName = GuideMe;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.travel";
 				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "We need your location";
 				INFOPLIST_KEY_NSLocationUsageDescription = "Please allow app to get your location";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Please allow app to get your location";
@@ -1206,8 +1206,8 @@
 				DEVELOPMENT_TEAM = FZU84SDGV7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TourismApp/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = guideMe;
-				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_CFBundleDisplayName = GuideMe;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.travel";
 				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "We need your location";
 				INFOPLIST_KEY_NSLocationUsageDescription = "Please allow app to get your location";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Please allow app to get your location";

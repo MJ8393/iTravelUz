@@ -85,7 +85,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
             vc.isModeChange = true
             navigationController?.presentPanModal(vc)
         case 3:
-            let email = "mekhriddinjumaev10@gmail.com"
+            let email = "guidemesaamteam@gmail.com"
             if let url = URL(string: "mailto:\(email)") {
               if #available(iOS 10.0, *) {
                 UIApplication.shared.open(url)
