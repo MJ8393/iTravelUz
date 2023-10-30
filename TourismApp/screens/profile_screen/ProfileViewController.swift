@@ -94,16 +94,6 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
               }
             }
         case 4:
-            guard let url = URL(string: "itms-apps://itunes.apple.com/app/" + "appId") else {
-                return
-            }
-            if #available(iOS 10, *) {
-                UIApplication.shared.open(url, options: [:], completionHandler: nil)
-                
-            } else {
-                UIApplication.shared.openURL(url)
-            }
-        case 5:
             let alertController = UIAlertController(title: "log_out".translate(), message: "log_out_alert".translate(), preferredStyle: .alert)
             
             // Create a Log Out action
