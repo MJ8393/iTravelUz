@@ -36,6 +36,18 @@ class PersonalViewController: UIViewController {
         return label
     }()
     
+    private let deleteAccount: UIButton = {
+        let registerButton = UIButton(type: .system)
+        registerButton.layer.cornerRadius = 16
+        registerButton.backgroundColor = .label
+        registerButton.setTitle("delete_account".translate(), for: .normal)
+        registerButton.tintColor = .systemBackground
+        registerButton.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
+        registerButton.addTarget(self, action: #selector(deleteAccountTarget), for: .touchUpInside)
+        return registerButton
+    }()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "my_info".translate()
@@ -45,20 +57,62 @@ class PersonalViewController: UIViewController {
     }
     
     
+    @objc func deleteAccountTarget() {
+        showCustomAlert()
+    }
+    
     private func initViews() {
         view.addSubview(subView)
         subView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
         
-        subView.addSubview(tableView)
-        tableView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
-        
         subView.addSubview(emptyLabel)
         emptyLabel.snp.makeConstraints { make in
             make.center.equalToSuperview()
+        }
+        
+        subView.addSubview(deleteAccount)
+        deleteAccount.snp.makeConstraints { make in
+            make.bottom.equalToSuperview().offset(-getBottomMargin() - 20)
+            make.left.equalToSuperview().offset(20)
+            make.right.equalToSuperview().offset(-20)
+            make.height.equalTo(55)
+        }
+        
+        subView.addSubview(tableView)
+        tableView.snp.makeConstraints { make in
+            make.top.left.right.equalToSuperview()
+            make.bottom.equalTo(deleteAccount.snp.top)
+        }
+    }
+    
+    func showCustomAlert() {
+        let alertController = UIAlertController(title: "delete_account".translate(), message: "are_you_sure".translate(), preferredStyle: .alert)
+        
+        let deleteAction = UIAlertAction(title: "delete".translate(), style: .destructive) { (action) in
+            self.performDeleteAction()
+        }
+        
+        let cancelAction = UIAlertAction(title: "calcel".translate(), style: .cancel) { (action) in
+        }
+        
+        alertController.addAction(deleteAction)
+        alertController.addAction(cancelAction)
+        
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func performDeleteAction() {
+        API.shared.deleteUser { result in
+            switch result {
+            case .success(_):
+                UD.token = ""
+                UD.username = ""
+                self.goLoginPage()
+            case .failure(_):
+                self.showAlert(title: "Error", message: "Can not delete account.")
+            }
         }
     }
 
@@ -92,9 +146,7 @@ extension PersonalViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: String.init(describing: PersonalTableViewCell.self), for: indexPath) as? PersonalTableViewCell else { return UITableViewCell() }
         if let profile = profile, let destionations = profile.comments {
             cell.userID = profile.user_id ?? ""
-
             cell.setData(destionation: destionations[indexPath.row])
-            print("xxxx", profile.user_id ?? "")
         }
         cell.selectionStyle = .none
         cell.backgroundColor = .clear
@@ -106,6 +158,13 @@ extension PersonalViewController: UITableViewDelegate, UITableViewDataSource {
         if let profile = profile {
             view.userNameLabel.text = profile.username ?? "Username"
             view.emailLabel.text = profile.email ?? "Email"
+        }
+        if let profile = profile, let destionations = profile.comments {
+            if destionations.count == 0 {
+                view.titleLabel.isHidden = true
+            } else {
+                view.titleLabel.isHidden = false
+            }
         }
         view.backgroundColor = .clear
         return view

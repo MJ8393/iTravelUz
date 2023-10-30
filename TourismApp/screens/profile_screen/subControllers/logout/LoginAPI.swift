@@ -57,6 +57,22 @@ extension API {
             }
     }
     
+    func deleteUser(complition: @escaping (Result<String, Error>) -> Void) {
+        let url = API_URL_DELETE_USER
+        
+        let headers = Token.getToken()
+
+        AF.request(url, method: .delete, encoding: JSONEncoding.default, headers: headers)
+            .response{ resp in
+                switch resp.result {
+                case .success(_):
+                    complition(.success("Success"))
+                case .failure(let error):
+                    complition(.failure(error))
+                }
+            }
+    }
+    
     
 }
 

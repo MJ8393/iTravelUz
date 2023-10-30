@@ -35,6 +35,7 @@ class API {
     // Login
     let API_URL_LOGIN = BASE_URL + "/accounts/login"
     let API_URL_SIGN_UP = BASE_URL + "/accounts/signup"
+    let API_URL_DELETE_USER = BASE_URL + "/accounts"
 
     // Rate Destionation
     let API_URL_RATE = BASE_URL + "/accounts/rate_destination/"

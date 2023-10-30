@@ -7,7 +7,7 @@
 */
 // Profile
 "profile" = "Profile";
-"my_info" = "My information";
+"my_info" = "Personal information";
 "change_language" = "Change language";
 "design" = "Design";
 "your_comments" = "Favorite places";
@@ -62,3 +62,5 @@
 "juma_mosque" = "Juma Mosque, Khiva";
 "poi_kalon" = "Po-i-Kalyan, Bukhara";
 "khiva" = "Khiva, Uzbekistan";
+"delete_account" = "Delete Account";
+"are_you_sure" = "Are you sure you want to delete your account?";

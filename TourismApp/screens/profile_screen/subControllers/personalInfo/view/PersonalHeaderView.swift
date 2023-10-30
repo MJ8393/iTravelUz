@@ -44,6 +44,7 @@ class PersonalHeaderView: UIView {
         label.text = "reviews".translate()
         label.font = UIFont.systemFont(ofSize: 22, weight: .semibold)
         label.textColor = .label
+        label.isHidden = true
         return label
     }()
     

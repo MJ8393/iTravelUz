@@ -8,7 +8,7 @@
 
 // Profile
 "profile" = "Profil";
-"my_info" = "Mening ma'lumotlarim";
+"my_info" = "Shaxsiy ma'lumotlarim";
 "change_language" = "Tilni o'zgartirish";
 "design" = "Dizayn";
 "your_comments" = "Sevimli joylar";
@@ -63,3 +63,5 @@
 "juma_mosque" = "Juma Masjidi, Xiva";
 "poi_kalon" = "Poi Kalon, Buxoro";
 "khiva" = "Xiva, O'zbekiston";
+"delete_account" = "Akkountni o'chirish";
+"are_you_sure" = "Akkauntingizni o'chirishga aminmisiz?";
