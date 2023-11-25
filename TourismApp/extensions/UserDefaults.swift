@@ -60,6 +60,16 @@ extension UserDefaults {
         get { return self.string(forKey: "username") }
         set { self.set(newValue, forKey: "username") }
     }
+    
+    var from: String? {
+        get { return self.string(forKey: "from") }
+        set { self.set(newValue, forKey: "from") }
+    }
+    
+    var to: String? {
+        get { return self.string(forKey: "to") }
+        set { self.set(newValue, forKey: "to") }
+    }
 }
 
 extension Optional {

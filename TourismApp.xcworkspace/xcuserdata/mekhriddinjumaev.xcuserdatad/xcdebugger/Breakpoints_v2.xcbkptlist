@@ -100,5 +100,101 @@
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B7FD9C81-7E79-41A4-8C23-52C19EC15123"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TourismApp/update/screen/TranslatorViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "203"
+            endingLineNumber = "203"
+            landmarkName = "didSelectCountry(key:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "B7FD9C81-7E79-41A4-8C23-52C19EC15123 - 7af38e001b9e77d2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TourismApp.TranslatorViewController.didSelectCountry(key: Swift.String) -&gt; ()"
+                  moduleName = "TourismApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mekhriddinjumaev/Desktop/iTravelUz/TourismApp/update/screen/TranslatorViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "203"
+                  endingLineNumber = "203"
+                  offsetFromSymbolStart = "404">
+               </Location>
+               <Location
+                  uuid = "B7FD9C81-7E79-41A4-8C23-52C19EC15123 - 7af38e001b9e77d2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TourismApp.TranslatorViewController.didSelectCountry(key: Swift.String) -&gt; ()"
+                  moduleName = "TourismApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mekhriddinjumaev/Desktop/iTravelUz/TourismApp/update/screen/TranslatorViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "203"
+                  endingLineNumber = "203"
+                  offsetFromSymbolStart = "519">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "03FEDCF3-2095-4FBA-BAF7-6BDDD11F2468"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TourismApp/update/screen/TranslatorViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "207"
+            endingLineNumber = "207"
+            landmarkName = "didSelectCountry(key:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "03FEDCF3-2095-4FBA-BAF7-6BDDD11F2468 - 7af38e001b9e7756"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TourismApp.TranslatorViewController.didSelectCountry(key: Swift.String) -&gt; ()"
+                  moduleName = "TourismApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mekhriddinjumaev/Desktop/iTravelUz/TourismApp/update/screen/TranslatorViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "207"
+                  endingLineNumber = "207"
+                  offsetFromSymbolStart = "1060">
+               </Location>
+               <Location
+                  uuid = "03FEDCF3-2095-4FBA-BAF7-6BDDD11F2468 - 7af38e001b9e7756"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TourismApp.TranslatorViewController.didSelectCountry(key: Swift.String) -&gt; ()"
+                  moduleName = "TourismApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mekhriddinjumaev/Desktop/iTravelUz/TourismApp/update/screen/TranslatorViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "207"
+                  endingLineNumber = "207"
+                  offsetFromSymbolStart = "1348">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

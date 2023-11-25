@@ -24,6 +24,11 @@ typealias SpeechRecognitionCompletionHandler = (StreamingRecognizeResponse?, NSE
 class SpeechRecognitionService {
   var sampleRate: Int = 16000
   private var streaming = false
+    
+    // Property for app's translate screen
+    var isTranslatePage: Bool = false
+    var translatorLang: String = "en-US"
+    
 
   private var client : Speech!
   private var writer : GRXBufferedPipe!
@@ -57,18 +62,25 @@ class SpeechRecognitionService {
       let recognitionConfig = RecognitionConfig()
       recognitionConfig.encoding =  .linear16
       recognitionConfig.sampleRateHertz = Int32(sampleRate)
-        
-        let language = LanguageManager.getAppLang()
-        var appLanguage = "en-US"
-        switch language {
-        case .English:
-            appLanguage = "en-US"
-        case .Uzbek:
-            appLanguage = "uz-UZ"
-        case .lanDesc:
-            appLanguage = "en-US"
+    
+        if isTranslatePage {
+            recognitionConfig.languageCode = translatorLang
+            print("xxxx", translatorLang)
+        } else {
+            let language = LanguageManager.getAppLang()
+            var appLanguage = "en-US"
+            switch language {
+            case .English:
+                appLanguage = "en-US"
+            case .Uzbek:
+                appLanguage = "uz-UZ"
+            case .lanDesc:
+                appLanguage = "en-US"
+            }
+            recognitionConfig.languageCode = appLanguage
         }
-      recognitionConfig.languageCode = appLanguage
+       
+        
       recognitionConfig.maxAlternatives = 30
       recognitionConfig.enableWordTimeOffsets = true
 

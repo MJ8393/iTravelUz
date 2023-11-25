@@ -25,7 +25,9 @@ extension UIViewController {
             return
         }
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: [], animations: {
-              loaderView.alpha = 0
+            DispatchQueue.main.async {
+                loaderView.alpha = 0
+            }
           }) { _ in
               loaderView.removeFromSuperview()
           }

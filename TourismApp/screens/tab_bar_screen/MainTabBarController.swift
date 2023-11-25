@@ -19,19 +19,19 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         let nc1 = UINavigationController(rootViewController: MainViewController())
         let nc2 = UINavigationController(rootViewController: SearchVC())
         let nc3 = UINavigationController(rootViewController: FavoritesViewController())
-        let nc4 = UINavigationController(rootViewController: FavoritesViewController())
+        let nc4 = UINavigationController(rootViewController: TranslatorViewController())
         let nc5 = UINavigationController(rootViewController: ProfileViewController())
 
         
         nc1.title = "home".translate()
         nc2.title = "search".translate()
-        nc4.title = "favorites".translate()
+        nc4.title = "translator".translate()
         nc5.title = "profile".translate()
 
                 
         nc1.tabBarItem.image = UIImage(systemName: "house")
         nc2.tabBarItem.image = UIImage(systemName: "magnifyingglass")
-        nc4.tabBarItem.image = UIImage(systemName: "heart")
+        nc4.tabBarItem.image = UIImage(systemName: "globe")
         nc5.tabBarItem.image = UIImage(systemName: "person.crop.circle")
         nc3.tabBarItem.tag = 2
         
@@ -43,7 +43,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         NotificationCenter.default.addObserver(forName: NSNotification.Name("ChangeTabBar"), object: nil, queue: nil) { _ in
             nc1.title = "home".translate()
             nc2.title = "search".translate()
-            nc4.title = "favorites".translate()
+            nc4.title = "translator".translate()
             nc5.title = "profile".translate()
         }
     }

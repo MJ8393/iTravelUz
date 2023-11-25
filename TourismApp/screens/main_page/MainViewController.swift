@@ -23,8 +23,8 @@ class MainViewController: BaseViewController {
     
     var index = 0
     
-    var images = [ UIImage(named: "bukhara")!, UIImage(named: "khiva")!, UIImage(named: "juma")!, UIImage(named: "nodira_begim")!, UIImage(named: "Shohi_zinda")!]
-    var titlesMain = ["poi_kalon".translate(), "khiva".translate(), "juma_mosque".translate(), "nadiragebim".translate(), "shoxizinda".translate()]
+    var images = [ UIImage(named: "bukhara")!, UIImage(named: "khiva")!, UIImage(named: "juma")!, UIImage(named: "nodira_begim")!]
+    var titlesMain = ["poi_kalon".translate(), "khiva".translate(), "juma_mosque".translate(), "nadiragebim".translate()]
 
     lazy var subView: UIView = {
         let view = UIView()

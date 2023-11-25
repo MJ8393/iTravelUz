@@ -23,6 +23,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
         setMode()
+        SwiftGoogleTranslate.shared.start(with: "AIzaSyC485-l38_P2OP1xZA710_qbo2j3jQMtRs")
         // MARK: Login
         if let token = UD.token, token.replacingOccurrences(of: " ", with: "") != "" {
             let vc = MainTabBarController()

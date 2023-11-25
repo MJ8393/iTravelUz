@@ -35,10 +35,11 @@ class ProfileViewController: BaseViewController {
         title = "profile".translate()
         profiles = [
             Profile(image: UIImage(systemName: "info.circle")!, name: "my_info".translate()),
+            Profile(image: UIImage(systemName: "heart")!, name: "favorites".translate()),
             Profile(image: UIImage(systemName: "network")!, name: "change_language".translate()),
             Profile(image: UIImage(systemName: "moon")!, name: "design".translate()),
             Profile(image: UIImage(systemName: "envelope")!, name: "share_feedback".translate()),
-//            Profile(image: UIImage(systemName: "star")!, name: "rate_app".translate()),
+            Profile(image: UIImage(systemName: "star")!, name: "rate_app".translate()),
             Profile(image: UIImage(systemName: "rectangle.portrait.and.arrow.right")!, name: "log_out".translate()),
         ]
         tableView.reloadData()
@@ -78,13 +79,16 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
             let vc = PersonalViewController()
             present(UINavigationController(rootViewController: vc), animated: true)
         case 1:
+            let vc = FavoritesViewController()
+            present(UINavigationController(rootViewController: vc), animated: true)
+        case 2:
             let vc = ChangeLanguage()
             navigationController?.presentPanModal(vc)
-        case 2:
+        case 3:
             let vc = ChangeLanguage()
             vc.isModeChange = true
             navigationController?.presentPanModal(vc)
-        case 3:
+        case 4:
             let email = "guidemesaamteam@gmail.com"
             if let url = URL(string: "mailto:\(email)") {
               if #available(iOS 10.0, *) {
@@ -93,7 +97,17 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
                 UIApplication.shared.openURL(url)
               }
             }
-        case 4:
+        case 5:
+            guard let url = URL(string: "itms-apps://itunes.apple.com/app/" + "6470687622") else {
+                  return
+              }
+              if #available(iOS 10, *) {
+                  UIApplication.shared.open(url, options: [:], completionHandler: nil)
+
+              } else {
+                  UIApplication.shared.openURL(url)
+              }
+        case 6:
             let alertController = UIAlertController(title: "log_out".translate(), message: "log_out_alert".translate(), preferredStyle: .alert)
             
             // Create a Log Out action
@@ -123,10 +137,11 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
 
 var profiles = [
     Profile(image: UIImage(systemName: "info.circle")!, name: "my_info".translate()),
+    Profile(image: UIImage(systemName: "heart")!, name: "favorites".translate()),
     Profile(image: UIImage(systemName: "network")!, name: "change_language".translate()),
     Profile(image: UIImage(systemName: "moon")!, name: "design".translate()),
     Profile(image: UIImage(systemName: "envelope")!, name: "share_feedback".translate()),
-//    Profile(image: UIImage(systemName: "star")!, name: "rate_app".translate()),
+    Profile(image: UIImage(systemName: "star")!, name: "rate_app".translate()),
     Profile(image: UIImage(systemName: "rectangle.portrait.and.arrow.right")!, name: "log_out".translate()),
 ]
 

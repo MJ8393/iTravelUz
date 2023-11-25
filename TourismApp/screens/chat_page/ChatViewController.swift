@@ -20,7 +20,7 @@ class ChatViewController: UIViewController, ChatControllerDelegate {
     
     let SAMPLE_RATE = 16000
     
-    private var recorder:AVAudioRecorder!
+    var recorder:AVAudioRecorder!
     
     lazy var subView: UIView = {
         let view = UIView()
@@ -154,8 +154,6 @@ class ChatViewController: UIViewController, ChatControllerDelegate {
     }
     
     func closeChat() {
-        print("yyyyyy", chatLanguage)
-        
         API.shared.closeChat(language: chatLanguage) { result in
             switch result {
             case .success(let data):
@@ -165,6 +163,8 @@ class ChatViewController: UIViewController, ChatControllerDelegate {
                 print(error.localizedDescription)
             }
         }
+        
+        
     }
     
     func getChatHistory() {

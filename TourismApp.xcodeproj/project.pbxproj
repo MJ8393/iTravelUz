@@ -11,6 +11,10 @@
 		100342592AE8729B0075DE9A /* CommentsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100342582AE8729B0075DE9A /* CommentsTableViewCell.swift */; };
 		1003425C2AE8740E0075DE9A /* CommentsSmallTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1003425B2AE8740E0075DE9A /* CommentsSmallTableViewCell.swift */; };
 		1003425E2AE884200075DE9A /* MapTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1003425D2AE884200075DE9A /* MapTableViewCell.swift */; };
+		101388C42AF829E700918635 /* SwiftGoogleTranslate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 101388C32AF829E700918635 /* SwiftGoogleTranslate.swift */; };
+		101388C82AF82A0D00918635 /* TranslatorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 101388C72AF82A0D00918635 /* TranslatorTableViewCell.swift */; };
+		101388CA2AF82A2200918635 /* TopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 101388C92AF82A2100918635 /* TopView.swift */; };
+		101388CC2AF82A3900918635 /* TranslatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 101388CB2AF82A3900918635 /* TranslatorViewController.swift */; };
 		10194BB82AC415CB00366A69 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10194BB72AC415CB00366A69 /* ProfileViewController.swift */; };
 		10194BBB2AC4181600366A69 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10194BBA2AC4181600366A69 /* ProfileTableViewCell.swift */; };
 		101CCFDC2AC492F000D6E90C /* ChangeLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 101CCFDB2AC492F000D6E90C /* ChangeLanguage.swift */; };
@@ -60,6 +64,8 @@
 		106B01442A9E694600D9290D /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106B01432A9E694600D9290D /* AccountView.swift */; };
 		10740E662AA517D500C2D6C0 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10740E652AA517D500C2D6C0 /* MainTabBarController.swift */; };
 		108847E22ABEE5F700B835F8 /* CustomNavButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108847E12ABEE5F700B835F8 /* CustomNavButton.swift */; };
+		108A32742AF8A96B003ABF4C /* CountriesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108A32732AF8A96B003ABF4C /* CountriesListViewController.swift */; };
+		108A32762AF8AAE7003ABF4C /* CountryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108A32752AF8AAE7003ABF4C /* CountryTableViewCell.swift */; };
 		108B56522A9D1541000DF967 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108B56512A9D1541000DF967 /* HeaderView.swift */; };
 		108B56542A9D25E3000DF967 /* SectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108B56532A9D25E3000DF967 /* SectionHeaderView.swift */; };
 		108B56572A9D2EFE000DF967 /* MainCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108B56562A9D2EFE000DF967 /* MainCollectionView.swift */; };
@@ -105,6 +111,10 @@
 		100342582AE8729B0075DE9A /* CommentsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsTableViewCell.swift; sourceTree = "<group>"; };
 		1003425B2AE8740E0075DE9A /* CommentsSmallTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsSmallTableViewCell.swift; sourceTree = "<group>"; };
 		1003425D2AE884200075DE9A /* MapTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTableViewCell.swift; sourceTree = "<group>"; };
+		101388C32AF829E700918635 /* SwiftGoogleTranslate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftGoogleTranslate.swift; sourceTree = "<group>"; };
+		101388C72AF82A0D00918635 /* TranslatorTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TranslatorTableViewCell.swift; sourceTree = "<group>"; };
+		101388C92AF82A2100918635 /* TopView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopView.swift; sourceTree = "<group>"; };
+		101388CB2AF82A3900918635 /* TranslatorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TranslatorViewController.swift; sourceTree = "<group>"; };
 		10194BB72AC415CB00366A69 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		10194BBA2AC4181600366A69 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		101CCFDB2AC492F000D6E90C /* ChangeLanguage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeLanguage.swift; sourceTree = "<group>"; };
@@ -158,6 +168,8 @@
 		106B01432A9E694600D9290D /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 		10740E652AA517D500C2D6C0 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		108847E12ABEE5F700B835F8 /* CustomNavButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavButton.swift; sourceTree = "<group>"; };
+		108A32732AF8A96B003ABF4C /* CountriesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesListViewController.swift; sourceTree = "<group>"; };
+		108A32752AF8AAE7003ABF4C /* CountryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryTableViewCell.swift; sourceTree = "<group>"; };
 		108B56512A9D1541000DF967 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		108B56532A9D25E3000DF967 /* SectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeaderView.swift; sourceTree = "<group>"; };
 		108B56562A9D2EFE000DF967 /* MainCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionView.swift; sourceTree = "<group>"; };
@@ -223,6 +235,43 @@
 				1003425D2AE884200075DE9A /* MapTableViewCell.swift */,
 			);
 			path = cell2;
+			sourceTree = "<group>";
+		};
+		101388C12AF829C400918635 /* release_1.1 */ = {
+			isa = PBXGroup;
+			children = (
+				101388C62AF82A0100918635 /* view */,
+				101388C52AF829FB00918635 /* screen */,
+				101388C22AF829D800918635 /* translator */,
+			);
+			path = release_1.1;
+			sourceTree = "<group>";
+		};
+		101388C22AF829D800918635 /* translator */ = {
+			isa = PBXGroup;
+			children = (
+				101388C32AF829E700918635 /* SwiftGoogleTranslate.swift */,
+			);
+			path = translator;
+			sourceTree = "<group>";
+		};
+		101388C52AF829FB00918635 /* screen */ = {
+			isa = PBXGroup;
+			children = (
+				101388CB2AF82A3900918635 /* TranslatorViewController.swift */,
+				108A32732AF8A96B003ABF4C /* CountriesListViewController.swift */,
+			);
+			path = screen;
+			sourceTree = "<group>";
+		};
+		101388C62AF82A0100918635 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				101388C72AF82A0D00918635 /* TranslatorTableViewCell.swift */,
+				101388C92AF82A2100918635 /* TopView.swift */,
+				108A32752AF8AAE7003ABF4C /* CountryTableViewCell.swift */,
+			);
+			path = view;
 			sourceTree = "<group>";
 		};
 		10194BB62AC4159B00366A69 /* profile_screen */ = {
@@ -670,6 +719,7 @@
 		10C916392A7821FE0054B55C /* TourismApp */ = {
 			isa = PBXGroup;
 			children = (
+				101388C12AF829C400918635 /* release_1.1 */,
 				108847E02ABEE5A800B835F8 /* Custom Views */,
 				10369B532AACF2B100558A5E /* SpeechRecognitionService.swift */,
 				10369B512AACF2A800558A5E /* AudioController.swift */,
@@ -943,6 +993,8 @@
 				10369B4C2AACF25800558A5E /* status.proto in Sources */,
 				102DC3382AE44922002AB6C3 /* PersonalTableViewCell.swift in Sources */,
 				108FC86A2A87A09C00A97BE0 /* UIColor+Ext.swift in Sources */,
+				101388C42AF829E700918635 /* SwiftGoogleTranslate.swift in Sources */,
+				108A32762AF8AAE7003ABF4C /* CountryTableViewCell.swift in Sources */,
 				102DC3452AE50B7E002AB6C3 /* LoginViewController.swift in Sources */,
 				108B56572A9D2EFE000DF967 /* MainCollectionView.swift in Sources */,
 				8C93A19D2ABB7F9C009F96BA /* search_api.swift in Sources */,
@@ -953,6 +1005,7 @@
 				108FC86D2A87A0D500A97BE0 /* UIColor.swift in Sources */,
 				8C0EFDBB2ABDFEFF008C101F /* SearchCotentVC.swift in Sources */,
 				10369B542AACF2B200558A5E /* SpeechRecognitionService.swift in Sources */,
+				101388CC2AF82A3900918635 /* TranslatorViewController.swift in Sources */,
 				10369B462AACF25800558A5E /* cloud_speech.proto in Sources */,
 				108B56542A9D25E3000DF967 /* SectionHeaderView.swift in Sources */,
 				10369B4E2AACF25800558A5E /* error_details.proto in Sources */,
@@ -965,10 +1018,12 @@
 				102DC3462AE50B7E002AB6C3 /* SignInViewController.swift in Sources */,
 				101CCFE32AC4B62400D6E90C /* LanguageManager.swift in Sources */,
 				108FC8632A878FF900A97BE0 /* ChatViewController.swift in Sources */,
+				108A32742AF8A96B003ABF4C /* CountriesListViewController.swift in Sources */,
 				10369B472AACF25800558A5E /* http.proto in Sources */,
 				10369B282AABB98C00558A5E /* ExploreViewController.swift in Sources */,
 				108FC8762A882D6000A97BE0 /* API.swift in Sources */,
 				101CCFE02AC4950300D6E90C /* ChangeLanguageCell.swift in Sources */,
+				101388CA2AF82A2200918635 /* TopView.swift in Sources */,
 				10EB81462ABCBA7500D7126E /* MainModel.swift in Sources */,
 				10AD11E02ABF01A600F68BC9 /* Vibration.swift in Sources */,
 				1051A2BC2A9BE8B50083D25D /* TestViewController.swift in Sources */,
@@ -989,6 +1044,7 @@
 				1003425E2AE884200075DE9A /* MapTableViewCell.swift in Sources */,
 				10369B572AAD05BA00558A5E /* Bridge.m in Sources */,
 				102DC3492AE50BC6002AB6C3 /* UILabel.swift in Sources */,
+				101388C82AF82A0D00918635 /* TranslatorTableViewCell.swift in Sources */,
 				10369B482AACF25800558A5E /* monitored_resource.proto in Sources */,
 				1046C6AB2AC122C800A7A8D4 /* StretchyCollectionViewCell.swift in Sources */,
 				10740E662AA517D500C2D6C0 /* MainTabBarController.swift in Sources */,
@@ -1180,7 +1236,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mekhriddin.GuideMe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1221,7 +1277,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mekhriddin.GuideMe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
