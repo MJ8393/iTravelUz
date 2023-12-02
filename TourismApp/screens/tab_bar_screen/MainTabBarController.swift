@@ -121,15 +121,8 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
      }
     
     @objc func menuButtonAction(sender: UIButton) {
-        let registerVC = ChatViewController()
-        let navigationController = UINavigationController(rootViewController: registerVC)
-        navigationController.modalPresentationStyle = .fullScreen
-
-        let backButton = UIBarButtonItem(image: UIImage(systemName: "chevron.backward")!, style: .plain, target: self, action: #selector(dismissRegisterViewController))
-        backButton.tintColor = .label
-
-        registerVC.navigationItem.leftBarButtonItem = backButton
-        present(navigationController, animated: true, completion: nil)
+        Vibration.medium.vibrate()
+        self.presentXXXXOnMainThread()
     }
     
     @objc func dismissRegisterViewController() {
