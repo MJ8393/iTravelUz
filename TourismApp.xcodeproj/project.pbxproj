@@ -107,6 +107,8 @@
 		8C7A9C472ABAD115005F790D /* ViewAllVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7A9C442ABAD114005F790D /* ViewAllVC.swift */; };
 		8C93A19D2ABB7F9C009F96BA /* search_api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C93A19C2ABB7F9C009F96BA /* search_api.swift */; };
 		8CC44D4C2ABEE92900A5ACC0 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC44D4B2ABEE92900A5ACC0 /* UIImageView.swift */; };
+		8CC5F2062B1C65060081D56F /* HotelsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC5F2052B1C65060081D56F /* HotelsVC.swift */; };
+		8CC5F2082B1C653F0081D56F /* HotelsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC5F2072B1C653F0081D56F /* HotelsTableViewCell.swift */; };
 		CC9919E76C879291F05D5D09 /* Pods_TourismApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F6A5C0325368C51BDC06D5A /* Pods_TourismApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -220,6 +222,8 @@
 		8C7A9C442ABAD114005F790D /* ViewAllVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewAllVC.swift; sourceTree = "<group>"; };
 		8C93A19C2ABB7F9C009F96BA /* search_api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = search_api.swift; sourceTree = "<group>"; };
 		8CC44D4B2ABEE92900A5ACC0 /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
+		8CC5F2052B1C65060081D56F /* HotelsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotelsVC.swift; sourceTree = "<group>"; };
+		8CC5F2072B1C653F0081D56F /* HotelsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotelsTableViewCell.swift; sourceTree = "<group>"; };
 		C2302B2CBEDB114D937A8CB9 /* Pods-TourismApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TourismApp.debug.xcconfig"; path = "Target Support Files/Pods-TourismApp/Pods-TourismApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -548,6 +552,7 @@
 				10B389C82B167D52007FCAD7 /* FuckYouViewController.swift */,
 				10DDB2482B16A81B00276787 /* CameraViewController.swift */,
 				105359192B19495F00C6BE21 /* ImageLoaderViewController.swift */,
+				8CC5F2052B1C65060081D56F /* HotelsVC.swift */,
 			);
 			path = screens;
 			sourceTree = "<group>";
@@ -715,6 +720,7 @@
 		10B389C52B163324007FCAD7 /* release_1.2 */ = {
 			isa = PBXGroup;
 			children = (
+				8CC5F2092B1C65440081D56F /* views */,
 				105359182B19492900C6BE21 /* screens */,
 				105359172B19492000C6BE21 /* managers */,
 			);
@@ -851,6 +857,14 @@
 				8C93A19C2ABB7F9C009F96BA /* search_api.swift */,
 			);
 			path = search_api;
+			sourceTree = "<group>";
+		};
+		8CC5F2092B1C65440081D56F /* views */ = {
+			isa = PBXGroup;
+			children = (
+				8CC5F2072B1C653F0081D56F /* HotelsTableViewCell.swift */,
+			);
+			path = views;
 			sourceTree = "<group>";
 		};
 		90D7170E2EAFBC4D7F5265EA /* Frameworks */ = {
@@ -1093,12 +1107,14 @@
 				100342592AE8729B0075DE9A /* CommentsTableViewCell.swift in Sources */,
 				10369B622AAD461600558A5E /* waveUtils.swift in Sources */,
 				108FC8792A882EF900A97BE0 /* ChatModel.swift in Sources */,
+				8CC5F2062B1C65060081D56F /* HotelsVC.swift in Sources */,
 				1053591A2B19495F00C6BE21 /* ImageLoaderViewController.swift in Sources */,
 				105A0E712AC4820000019311 /* profileAPI.swift in Sources */,
 				102DC33B2AE44AC3002AB6C3 /* PersonalHeaderView.swift in Sources */,
 				101CCFDC2AC492F000D6E90C /* ChangeLanguage.swift in Sources */,
 				10DD0F0C2AE97E1600EEF9CE /* CommentsViewController.swift in Sources */,
 				1091DE5C2AC0DE12008664E9 /* FavoritesTableViewCell.swift in Sources */,
+				8CC5F2082B1C653F0081D56F /* HotelsTableViewCell.swift in Sources */,
 				10EB81442ABCBA1200D7126E /* Main_API.swift in Sources */,
 				8C7A9C462ABAD115005F790D /* ViewAllTableViewCell.swift in Sources */,
 				1051A2C32A9BF3320083D25D /* SpinnerView.swift in Sources */,
@@ -1258,7 +1274,7 @@
 				CODE_SIGN_ENTITLEMENTS = TourismApp/TourismApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 2PRTB3DVMF;
+				DEVELOPMENT_TEAM = L7D5MM5SF3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TourismApp/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = GuideMe;
@@ -1279,7 +1295,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mekhriddin.GuideMe;
+				PRODUCT_BUNDLE_IDENTIFIER = com.uyguntursunov.GuideMe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;

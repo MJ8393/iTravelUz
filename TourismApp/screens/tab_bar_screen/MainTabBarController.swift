@@ -19,7 +19,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         let nc1 = UINavigationController(rootViewController: MainViewController())
         let nc2 = UINavigationController(rootViewController: SearchVC())
         let nc3 = UINavigationController(rootViewController: FavoritesViewController())
-        let nc4 = UINavigationController(rootViewController: TranslatorViewController())
+        let nc4 = UINavigationController(rootViewController: HotelsVC())
         let nc5 = UINavigationController(rootViewController: ProfileViewController())
 
         
