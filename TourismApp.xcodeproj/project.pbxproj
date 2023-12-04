@@ -758,6 +758,7 @@
 		10B389C52B163324007FCAD7 /* release_1.2 */ = {
 			isa = PBXGroup;
 			children = (
+				10760A352B1D20A5007DC2C3 /* dependencies */,
 				10760A302B1BEE7A007DC2C3 /* restaurant */,
 				10CA8A292B1BD4980065E8E4 /* hotel */,
 				8CC5F2092B1C65440081D56F /* views */,
@@ -800,7 +801,6 @@
 		10C916392A7821FE0054B55C /* TourismApp */ = {
 			isa = PBXGroup;
 			children = (
-				10760A352B1D20A5007DC2C3 /* dependencies */,
 				10B389C52B163324007FCAD7 /* release_1.2 */,
 				101388C12AF829C400918635 /* release_1.1 */,
 				108847E02ABEE5A800B835F8 /* Custom Views */,
