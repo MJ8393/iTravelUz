@@ -158,13 +158,13 @@ extension InfoVC: FPContentVCDelegate {
     func didTapGoButton() {
         if isCity {
             if let location = city?.location {
-                openMapForPlace(lat: location.latitude ?? Helper.getDefaultLocation().lat, lon: location.longitude ?? Helper.getDefaultLocation().lon, name: city?.name?.getName() ?? "Error")
+                openMapForPlace(lat: location.latitude ?? Helper.getDefaultLocation().lat, lon: location.longitude ?? Helper.getDefaultLocation().lon, name: city?.name?.getName() ?? "")
             } else {
                 showAlert(title: "Error", message: "Location is not valid")
             }
         } else {
             if let location = destination?.location {
-                openMapForPlace(lat: location.latitude ?? Helper.getDefaultLocation().lat, lon: location.longitude ?? Helper.getDefaultLocation().lon, name: city?.name?.getName() ?? "Error")
+                openMapForPlace(lat: location.latitude ?? Helper.getDefaultLocation().lat, lon: location.longitude ?? Helper.getDefaultLocation().lon, name: destination?.name?.getName() ?? "")
             } else {
                 showAlert(title: "Error", message: "Location is not valid")
             }

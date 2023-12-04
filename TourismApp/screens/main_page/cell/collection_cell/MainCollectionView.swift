@@ -83,7 +83,7 @@ class MainCollectionView: UICollectionViewCell {
     
     func setData(destination: MainDestination) {
         titleLabel.text = destination.name?.getName()
-        addressLabel.text = (destination.city_name?.getCityName() ?? "Tashkent") + "country_name".translate()
+        addressLabel.text = (destination.city_name?.getCityName() ?? "Tashkent")
         if let gallery = destination.gallery {
             if gallery.count != 0 {
                 mainIcon.loadImage(url: gallery[0].url)
