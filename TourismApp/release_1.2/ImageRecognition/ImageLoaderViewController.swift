@@ -67,7 +67,6 @@ class ImageLoaderViewController: UIViewController {
         squareWidth = view.frame.width * 0.6
         topLeftPosX = view.frame.width * 0.2
         topLeftPosY = view.frame.midY - (squareWidth / 2)
-        
         view.backgroundColor = .black
         
         createScanningFrame()
@@ -75,8 +74,8 @@ class ImageLoaderViewController: UIViewController {
         initViews()
         activityIndicator.startAnimating()
         
-        API.shared.uploadImage(uploadImage, filename: "image") { str in
-            print("TTTTT", str)
+        if let image = uploadImage.resizedTo1MB() {
+            uploadImageFor(image: image, username: "x")
         }
     }
     
@@ -249,40 +248,126 @@ class HeroHeaderView: UIView {
     }
 }
 
-extension API {
-    func uploadDocument(_ file: Data, filename : String, handler : @escaping (String) -> Void) {
+extension UIImage {
+    func resizedTo1MB() -> UIImage? {
+        let megaByte = 1490000.0 // 1 MB = 1,000,000 bytes
 
-           AF.upload(
-               multipartFormData: { multipartFormData in
-                   multipartFormData.append(file, withName: "upload_data" , fileName: filename, mimeType: "application/pdf")
-           },
-               to: "http://35.215.137.189:8000", method: .post , headers: nil)
-               .response { response in
-                   if let data = response.data{
-                       //handle the response however you like
-                   }
+        var resizingImage = self
+        var imageSizeBytes = Double(self.jpegData(compressionQuality: 1.0)?.count ?? 0)
 
-           }
-     }
-    
-    func uploadImage(_ image: UIImage, filename: String, handler: @escaping (String) -> Void) {
-        // Convert UIImage to Data
-        guard let imageData = image.jpegData(compressionQuality: 1.0) else {
-            // Handle error if conversion fails
-            return
+        while imageSizeBytes > megaByte {
+
+            guard let resizedImage = resizingImage.resized(withPercentage: 0.75),
+                  let resizedImageData = resizedImage.jpegData(compressionQuality: 1.0) else {
+                break
+            }
+
+            resizingImage = resizedImage
+            imageSizeBytes = Double(resizedImageData.count)
         }
 
-        AF.upload(
-            multipartFormData: { multipartFormData in
-                multipartFormData.append(imageData, withName: "file", mimeType: "image/jpeg")
-            },
-            to: "http://35.215.137.189:8000", method: .get, headers: nil)
-            .response { response in
-                if let data = response.data {
-                    // Handle the response however you like
-                    handler(String(data: data, encoding: .utf8) ?? "")
-                }
-        }
+        return resizingImage
     }
 
+    func resized(withPercentage percentage: CGFloat) -> UIImage? {
+        let canvasSize = CGSize(width: size.width * percentage, height: size.height * percentage)
+        UIGraphicsBeginImageContextWithOptions(canvasSize, false, scale)
+        defer { UIGraphicsEndImageContext() }
+        draw(in: CGRect(origin: .zero, size: canvasSize))
+        return UIGraphicsGetImageFromCurrentImageContext()
+    }
+}
+
+extension ImageLoaderViewController {
+    private func uploadImageFor(image: UIImage, username: String) {
+        let url = URL(string: "http://35.215.137.189:8000/")!
+        var request = URLRequest(url: url)
+        let boundary = UUID().uuidString
+        
+        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField:"Content-Type")
+        request.httpMethod = "POST"
+        guard let mediaImage = Media(withImage: image, forKey: "file") else { return }
+        let params = ["full_name": "\(username)"]
+        let dataBody = createDataBody(withParameters: params, media: [mediaImage], boundary: boundary)
+        request.httpBody = dataBody
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+           
+            if let httpResponse = response as? HTTPURLResponse {
+                   print("statusCode: \(httpResponse.statusCode)")
+                let jsonResponse = data?.prettyPrintedJSONString
+                    print("JSON String: \(jsonResponse)")
+                
+                if httpResponse.statusCode == 401 {
+                    // error
+                    DispatchQueue.main.async {
+                        self.showAlert(title: "Error", message: "We could not indentify the historical destination in the photo you took.") {
+                            self.dismiss(animated: true)
+                        }
+                    }
+                } else if httpResponse.statusCode == 200 {
+                    DispatchQueue.main.async {
+                        self.showAlert(title: "Error", message: "We could not indentify the historical destination in the photo you took.") {
+                            self.dismiss(animated: true)
+                        }
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        self.showAlert(title: "Error", message: "We could not indentify the historical destination in the photo you took.") {
+                            self.dismiss(animated: true)
+                        }
+                    }
+                }
+            }
+        }
+        
+        task.resume()
+    } //END OF uploadImage
+    
+    
+    func createDataBody(withParameters params: Parameters?, media: [Media]?, boundary: String) -> Data {
+       let lineBreak = "\r\n"
+       var body = Data()
+       if let parameters = params {
+          for (key, value) in parameters {
+              body.append("--\(boundary + lineBreak)".data(using: .utf8)!)
+             body.append("Content-Disposition: form-data; name=\"\(key)\"\(lineBreak + lineBreak)".data(using: .utf8)!)
+             body.append("\(value as! String + lineBreak)".data(using: .utf8)!)
+          }
+       }
+       if let media = media {
+          for photo in media {
+             body.append("--\(boundary + lineBreak)".data(using: .utf8)!)
+             body.append("Content-Disposition: form-data; name=\"\(photo.key)\"; filename=\"\(photo.filename)\"\(lineBreak)".data(using: .utf8)!)
+             body.append("Content-Type: \(photo.mimeType + lineBreak + lineBreak)".data(using: .utf8)!)
+             body.append(photo.data)
+             body.append(lineBreak.data(using: .utf8)!)
+          }
+       }
+       body.append("--\(boundary)--\(lineBreak)".data(using: .utf8)!)
+       return body
+    }
+}
+
+struct Media {
+    let key: String
+    let filename: String
+    let data: Data
+    let mimeType: String
+    init?(withImage image: UIImage, forKey key: String) {
+        self.key = key
+        self.mimeType = "image/jpeg"
+        self.filename = "imagefile.jpg"
+        guard let data = image.jpegData(compressionQuality: 0.7) else { return nil }
+        self.data = data
+    }
+}
+
+extension Data {
+    var prettyPrintedJSONString: NSString? { /// NSString gives us a nice sanitized debugDescription
+        guard let object = try? JSONSerialization.jsonObject(with: self, options: []),
+              let data = try? JSONSerialization.data(withJSONObject: object, options: [.prettyPrinted]),
+              let prettyPrintedString = NSString(data: data, encoding: String.Encoding.utf8.rawValue) else { return nil }
+        return prettyPrintedString
+    }
 }

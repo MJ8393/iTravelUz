@@ -41,6 +41,12 @@ class API {
     let API_URL_RATE = BASE_URL + "/accounts/rate_destination/"
     let API_URL_COMMENT = BASE_URL + "/geo/city/destination/"
     
+    // Hotel
+    let API_URL_GET_HOTELS = BASE_URL + "/hotels"
+    let API_URL_GET_RESTRAURANT = BASE_URL + "/restaurants"
+
+
+    
     func openChat(language: String, complition: @escaping (Result<OpenChatModel, Error>) -> Void) {
         let url = API_URL_OPEN_CHAT
         

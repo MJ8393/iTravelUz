@@ -20,5 +20,6 @@ pod 'Localize-Swift', '~> 3.2'
 	pod 'SwiftyStarRatingView'
 pod 'CameraManager', '~> 5.1'
 
+
   
 end

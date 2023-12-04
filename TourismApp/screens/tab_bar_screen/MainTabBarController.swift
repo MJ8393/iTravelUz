@@ -19,7 +19,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         let nc1 = UINavigationController(rootViewController: MainViewController())
         let nc2 = UINavigationController(rootViewController: SearchVC())
         let nc3 = UINavigationController(rootViewController: FavoritesViewController())
-        let nc4 = UINavigationController(rootViewController: TranslatorViewController())
+        let nc4 = UINavigationController(rootViewController: PagerController())
         let nc5 = UINavigationController(rootViewController: ProfileViewController())
 
         
@@ -51,7 +51,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         tabBar.backgroundColor = .clear
-        tabBar.unselectedItemTintColor = UIColor.init(hex: "#E3E3E3")
+        tabBar.unselectedItemTintColor = UIColor(named: "tabbarbutton")
         UITabBar.appearance().layer.cornerRadius = 30
         UITabBar.appearance().layer.borderColor = UIColor.black.cgColor
         UITabBar.appearance().layer.borderWidth = 1

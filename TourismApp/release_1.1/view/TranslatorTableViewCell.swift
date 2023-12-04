@@ -192,7 +192,6 @@ class TranslatorTableViewCell: UITableViewCell, UITextViewDelegate {
                 print(t)
                   self.delegate?.translatedText(t)
               } else {
-                  print("xxxx")
               }
             }
         }
@@ -215,7 +214,6 @@ extension TranslatorTableViewCell {
                 print(t)
                   self.delegate?.translatedText(t)
               } else {
-                  print("xxxx")
               }
             }
         }

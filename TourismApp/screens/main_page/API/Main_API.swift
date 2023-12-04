@@ -63,8 +63,6 @@ extension API {
         let url = API_URL_GET_POPULAR
        
         let headers = Token.getToken()
-        print(UD.token, "xxx")
-        print("ppp", headers)
         AF.request(url, method: .get, parameters: nil, encoding: URLEncoding.default, headers: headers, interceptor: nil)
             .response{ resp in
                 switch resp.result {

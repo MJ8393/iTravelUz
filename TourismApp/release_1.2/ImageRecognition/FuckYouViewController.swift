@@ -40,7 +40,7 @@ class AlertVC: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    let blurEffectView = UIVisualEffectView(effect:  UIBlurEffect(style: UIBlurEffect.Style.dark))
+    let blurEffectView = UIVisualEffectView(effect:  UIBlurEffect(style: UIBlurEffect.Style.regular))
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -313,7 +313,6 @@ class AlertVC: UIViewController {
     
     
     @objc func cameraButtonAction() {
-        print("xxxx")
         // Dismiss the current view controller
         weak var pvc = self.presentingViewController
         

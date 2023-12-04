@@ -87,11 +87,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneDidBecomeActive(_ scene: UIScene) {
         // Called when the scene has moved from an inactive state to an active state.
         // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
+        
+        // Active
+        window?.rootViewController?.hideBlurFront()
     }
 
     func sceneWillResignActive(_ scene: UIScene) {
         // Called when the scene will move from an active state to an inactive state.
         // This may occur due to temporary interruptions (ex. an incoming phone call).
+        
+        // View in foreground
+        window?.rootViewController?.showBlurFront()
     }
 
     func sceneWillEnterForeground(_ scene: UIScene) {
@@ -123,5 +129,35 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
     }
 
+}
+
+extension UIViewController {
+    func showBlurFront() {
+        let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.regular)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = view.bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        blurEffectView.accessibilityIdentifier = "blur_front"
+        view.addSubview(blurEffectView)
+
+        blurEffectView.alpha = 0
+        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseIn, animations: {
+            blurEffectView.alpha = 1
+        }, completion: nil)
+
+        blurEffectView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+    }
+
+    func hideBlurFront() {
+        if let blurEffectView = view.subviews.first(where: { $0.accessibilityIdentifier == "blur_front" }) as? UIVisualEffectView {
+            UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
+                blurEffectView.alpha = 0
+            }, completion: { _ in
+                blurEffectView.removeFromSuperview()
+            })
+        }
+    }
 }
 

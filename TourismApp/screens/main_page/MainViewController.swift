@@ -282,6 +282,7 @@ extension MainViewController: MainControllerDelegate {
             vc.isCity = false
             vc.title = titles[2]
         }
+
         navigationController?.pushViewController(vc, animated: true)
     }
 }

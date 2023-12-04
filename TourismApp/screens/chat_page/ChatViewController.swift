@@ -122,7 +122,6 @@ class ChatViewController: UIViewController, ChatControllerDelegate {
     
     func openChat() {
         showLoadingView()
-        print("xxxxx", chatLanguage)
         
         API.shared.openChat(language: chatLanguage) { [weak self] result in
             self?.dissmissLoadingView()
