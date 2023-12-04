@@ -67,9 +67,6 @@
 		10740E662AA517D500C2D6C0 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10740E652AA517D500C2D6C0 /* MainTabBarController.swift */; };
 		10760A322B1BEE99007DC2C3 /* RestaurantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10760A312B1BEE99007DC2C3 /* RestaurantViewController.swift */; };
 		10760A342B1BF15D007DC2C3 /* PagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10760A332B1BF15D007DC2C3 /* PagerViewController.swift */; };
-		10760A3D2B1D221E007DC2C3 /* DTPagerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10760A3C2B1D221E007DC2C3 /* DTPagerController.swift */; };
-		10760A3F2B1D2241007DC2C3 /* DTSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10760A3E2B1D2241007DC2C3 /* DTSegmentedControl.swift */; };
-		10760A412B1D465F007DC2C3 /* CustomSegmentControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10760A402B1D465F007DC2C3 /* CustomSegmentControl.swift */; };
 		108847E22ABEE5F700B835F8 /* CustomNavButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108847E12ABEE5F700B835F8 /* CustomNavButton.swift */; };
 		108A32742AF8A96B003ABF4C /* CountriesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108A32732AF8A96B003ABF4C /* CountriesListViewController.swift */; };
 		108A32762AF8AAE7003ABF4C /* CountryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108A32752AF8AAE7003ABF4C /* CountryTableViewCell.swift */; };
@@ -105,6 +102,9 @@
 		10E80D982B1D60EB00E90841 /* RestaurantTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E80D972B1D60EB00E90841 /* RestaurantTableViewCell.swift */; };
 		10E80D9A2B1D68CD00E90841 /* HotelAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E80D992B1D68CD00E90841 /* HotelAPI.swift */; };
 		10E80D9C2B1D6A6800E90841 /* RestaurantAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E80D9B2B1D6A6800E90841 /* RestaurantAPI.swift */; };
+		10E80DA52B1E048400E90841 /* CustomSegmentControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E80DA42B1E048400E90841 /* CustomSegmentControl.swift */; };
+		10E80DA72B1E048900E90841 /* DTPagerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E80DA62B1E048900E90841 /* DTPagerController.swift */; };
+		10E80DA92B1E049100E90841 /* DTSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E80DA82B1E049100E90841 /* DTSegmentedControl.swift */; };
 		10EB81442ABCBA1200D7126E /* Main_API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10EB81432ABCBA1200D7126E /* Main_API.swift */; };
 		10EB81462ABCBA7500D7126E /* MainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10EB81452ABCBA7500D7126E /* MainModel.swift */; };
 		8C0EFDBB2ABDFEFF008C101F /* SearchCotentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0EFDBA2ABDFEFF008C101F /* SearchCotentVC.swift */; };
@@ -186,9 +186,6 @@
 		10740E652AA517D500C2D6C0 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		10760A312B1BEE99007DC2C3 /* RestaurantViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantViewController.swift; sourceTree = "<group>"; };
 		10760A332B1BF15D007DC2C3 /* PagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagerViewController.swift; sourceTree = "<group>"; };
-		10760A3C2B1D221E007DC2C3 /* DTPagerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTPagerController.swift; sourceTree = "<group>"; };
-		10760A3E2B1D2241007DC2C3 /* DTSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTSegmentedControl.swift; sourceTree = "<group>"; };
-		10760A402B1D465F007DC2C3 /* CustomSegmentControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegmentControl.swift; sourceTree = "<group>"; };
 		108847E12ABEE5F700B835F8 /* CustomNavButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavButton.swift; sourceTree = "<group>"; };
 		108A32732AF8A96B003ABF4C /* CountriesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesListViewController.swift; sourceTree = "<group>"; };
 		108A32752AF8AAE7003ABF4C /* CountryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryTableViewCell.swift; sourceTree = "<group>"; };
@@ -227,6 +224,9 @@
 		10E80D972B1D60EB00E90841 /* RestaurantTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantTableViewCell.swift; sourceTree = "<group>"; };
 		10E80D992B1D68CD00E90841 /* HotelAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotelAPI.swift; sourceTree = "<group>"; };
 		10E80D9B2B1D6A6800E90841 /* RestaurantAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantAPI.swift; sourceTree = "<group>"; };
+		10E80DA42B1E048400E90841 /* CustomSegmentControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSegmentControl.swift; sourceTree = "<group>"; };
+		10E80DA62B1E048900E90841 /* DTPagerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DTPagerController.swift; sourceTree = "<group>"; };
+		10E80DA82B1E049100E90841 /* DTSegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DTSegmentedControl.swift; sourceTree = "<group>"; };
 		10EB81432ABCBA1200D7126E /* Main_API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main_API.swift; sourceTree = "<group>"; };
 		10EB81452ABCBA7500D7126E /* MainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainModel.swift; sourceTree = "<group>"; };
 		1BE165FE71FEBCA7F0F275C3 /* Pods-TourismApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TourismApp.release.xcconfig"; path = "Target Support Files/Pods-TourismApp/Pods-TourismApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -595,16 +595,6 @@
 			path = restaurant;
 			sourceTree = "<group>";
 		};
-		10760A352B1D20A5007DC2C3 /* dependencies */ = {
-			isa = PBXGroup;
-			children = (
-				10760A3C2B1D221E007DC2C3 /* DTPagerController.swift */,
-				10760A3E2B1D2241007DC2C3 /* DTSegmentedControl.swift */,
-				10760A402B1D465F007DC2C3 /* CustomSegmentControl.swift */,
-			);
-			path = dependencies;
-			sourceTree = "<group>";
-		};
 		108847E02ABEE5A800B835F8 /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -758,7 +748,7 @@
 		10B389C52B163324007FCAD7 /* release_1.2 */ = {
 			isa = PBXGroup;
 			children = (
-				10760A352B1D20A5007DC2C3 /* dependencies */,
+				10E80DA32B1E047900E90841 /* other */,
 				10760A302B1BEE7A007DC2C3 /* restaurant */,
 				10CA8A292B1BD4980065E8E4 /* hotel */,
 				8CC5F2092B1C65440081D56F /* views */,
@@ -869,6 +859,16 @@
 				10E80D972B1D60EB00E90841 /* RestaurantTableViewCell.swift */,
 			);
 			path = cell;
+			sourceTree = "<group>";
+		};
+		10E80DA32B1E047900E90841 /* other */ = {
+			isa = PBXGroup;
+			children = (
+				10E80DA62B1E048900E90841 /* DTPagerController.swift */,
+				10E80DA42B1E048400E90841 /* CustomSegmentControl.swift */,
+				10E80DA82B1E049100E90841 /* DTSegmentedControl.swift */,
+			);
+			path = other;
 			sourceTree = "<group>";
 		};
 		10EB81422ABCBA0700D7126E /* API */ = {
@@ -1102,7 +1102,6 @@
 				8C7A9C472ABAD115005F790D /* ViewAllVC.swift in Sources */,
 				10369B4C2AACF25800558A5E /* status.proto in Sources */,
 				102DC3382AE44922002AB6C3 /* PersonalTableViewCell.swift in Sources */,
-				10760A412B1D465F007DC2C3 /* CustomSegmentControl.swift in Sources */,
 				108FC86A2A87A09C00A97BE0 /* UIColor+Ext.swift in Sources */,
 				101388C42AF829E700918635 /* SwiftGoogleTranslate.swift in Sources */,
 				108A32762AF8AAE7003ABF4C /* CountryTableViewCell.swift in Sources */,
@@ -1113,7 +1112,6 @@
 				10E80D9C2B1D6A6800E90841 /* RestaurantAPI.swift in Sources */,
 				1091DE562AC0DAC7008664E9 /* FavoritesModel.swift in Sources */,
 				108847E22ABEE5F700B835F8 /* CustomNavButton.swift in Sources */,
-				10760A3D2B1D221E007DC2C3 /* DTPagerController.swift in Sources */,
 				10369B5E2AAD45EC00558A5E /* SiriWaveView.swift in Sources */,
 				10369B442AACF25800558A5E /* operations.proto in Sources */,
 				108FC86D2A87A0D500A97BE0 /* UIColor.swift in Sources */,
@@ -1134,14 +1132,17 @@
 				102DC3462AE50B7E002AB6C3 /* SignInViewController.swift in Sources */,
 				101CCFE32AC4B62400D6E90C /* LanguageManager.swift in Sources */,
 				108FC8632A878FF900A97BE0 /* ChatViewController.swift in Sources */,
+				10E80DA72B1E048900E90841 /* DTPagerController.swift in Sources */,
 				108A32742AF8A96B003ABF4C /* CountriesListViewController.swift in Sources */,
 				10369B472AACF25800558A5E /* http.proto in Sources */,
 				10369B282AABB98C00558A5E /* ExploreViewController.swift in Sources */,
 				108FC8762A882D6000A97BE0 /* API.swift in Sources */,
 				101CCFE02AC4950300D6E90C /* ChangeLanguageCell.swift in Sources */,
+				10E80DA52B1E048400E90841 /* CustomSegmentControl.swift in Sources */,
 				101388CA2AF82A2200918635 /* TopView.swift in Sources */,
 				10760A342B1BF15D007DC2C3 /* PagerViewController.swift in Sources */,
 				10EB81462ABCBA7500D7126E /* MainModel.swift in Sources */,
+				10E80DA92B1E049100E90841 /* DTSegmentedControl.swift in Sources */,
 				10AD11E02ABF01A600F68BC9 /* Vibration.swift in Sources */,
 				1051A2BC2A9BE8B50083D25D /* TestViewController.swift in Sources */,
 				1051A2BF2A9BEE790083D25D /* LoaderView+ext.swift in Sources */,
@@ -1188,7 +1189,6 @@
 				10194BB82AC415CB00366A69 /* ProfileViewController.swift in Sources */,
 				10369B522AACF2A800558A5E /* AudioController.swift in Sources */,
 				102DC3352AE43904002AB6C3 /* PersonalViewController.swift in Sources */,
-				10760A3F2B1D2241007DC2C3 /* DTSegmentedControl.swift in Sources */,
 				10369B4F2AACF25800558A5E /* descriptor.proto in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
