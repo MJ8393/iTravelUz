@@ -108,6 +108,8 @@
 		10EB81442ABCBA1200D7126E /* Main_API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10EB81432ABCBA1200D7126E /* Main_API.swift */; };
 		10EB81462ABCBA7500D7126E /* MainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10EB81452ABCBA7500D7126E /* MainModel.swift */; };
 		8C0EFDBB2ABDFEFF008C101F /* SearchCotentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0EFDBA2ABDFEFF008C101F /* SearchCotentVC.swift */; };
+		8C3281D92B1F267D000FD0DD /* ServicesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3281D82B1F267D000FD0DD /* ServicesCollectionViewCell.swift */; };
+		8C3281DB2B1F2890000FD0DD /* ServicesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3281DA2B1F2890000FD0DD /* ServicesTableViewCell.swift */; };
 		8C56C12B2ABAD00B007D1781 /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C56C1272ABAD005007D1781 /* SearchVC.swift */; };
 		8C56C12C2ABAD00B007D1781 /* GooglePlacesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C56C1282ABAD008007D1781 /* GooglePlacesManager.swift */; };
 		8C6C875A2AE9721F0068F43A /* InfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6C87592AE9721F0068F43A /* InfoVC.swift */; };
@@ -115,9 +117,13 @@
 		8C7A9C412ABAD0FE005F790D /* mapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7A9C402ABAD0FE005F790D /* mapVC.swift */; };
 		8C7A9C462ABAD115005F790D /* ViewAllTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7A9C432ABAD113005F790D /* ViewAllTableViewCell.swift */; };
 		8C7A9C472ABAD115005F790D /* ViewAllVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7A9C442ABAD114005F790D /* ViewAllVC.swift */; };
+		8C82DCBC2B1E338E00AD788E /* HotelDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C82DCBB2B1E338E00AD788E /* HotelDetailsViewController.swift */; };
+		8C82DCBE2B1E38E800AD788E /* CollectionViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C82DCBD2B1E38E800AD788E /* CollectionViewTableViewCell.swift */; };
+		8C82DCC12B1E3CF300AD788E /* MainImagesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C82DCC02B1E3CF300AD788E /* MainImagesCollectionViewCell.swift */; };
+		8C82DCC52B1E52BC00AD788E /* HotelsDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C82DCC42B1E52BC00AD788E /* HotelsDetailsTableViewCell.swift */; };
+		8C82DCC72B1E709300AD788E /* GoogleMapTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C82DCC62B1E709300AD788E /* GoogleMapTableViewCell.swift */; };
 		8C93A19D2ABB7F9C009F96BA /* search_api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C93A19C2ABB7F9C009F96BA /* search_api.swift */; };
 		8CC44D4C2ABEE92900A5ACC0 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC44D4B2ABEE92900A5ACC0 /* UIImageView.swift */; };
-		8CC5F2082B1C653F0081D56F /* HotelsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC5F2072B1C653F0081D56F /* HotelsTableViewCell.swift */; };
 		CC9919E76C879291F05D5D09 /* Pods_TourismApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F6A5C0325368C51BDC06D5A /* Pods_TourismApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -232,6 +238,8 @@
 		1BE165FE71FEBCA7F0F275C3 /* Pods-TourismApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TourismApp.release.xcconfig"; path = "Target Support Files/Pods-TourismApp/Pods-TourismApp.release.xcconfig"; sourceTree = "<group>"; };
 		3F6A5C0325368C51BDC06D5A /* Pods_TourismApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TourismApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C0EFDBA2ABDFEFF008C101F /* SearchCotentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCotentVC.swift; sourceTree = "<group>"; };
+		8C3281D82B1F267D000FD0DD /* ServicesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesCollectionViewCell.swift; sourceTree = "<group>"; };
+		8C3281DA2B1F2890000FD0DD /* ServicesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesTableViewCell.swift; sourceTree = "<group>"; };
 		8C56C1272ABAD005007D1781 /* SearchVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
 		8C56C1282ABAD008007D1781 /* GooglePlacesManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GooglePlacesManager.swift; sourceTree = "<group>"; };
 		8C6C87592AE9721F0068F43A /* InfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoVC.swift; sourceTree = "<group>"; };
@@ -239,9 +247,13 @@
 		8C7A9C402ABAD0FE005F790D /* mapVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = mapVC.swift; sourceTree = "<group>"; };
 		8C7A9C432ABAD113005F790D /* ViewAllTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewAllTableViewCell.swift; sourceTree = "<group>"; };
 		8C7A9C442ABAD114005F790D /* ViewAllVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewAllVC.swift; sourceTree = "<group>"; };
+		8C82DCBB2B1E338E00AD788E /* HotelDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotelDetailsViewController.swift; sourceTree = "<group>"; };
+		8C82DCBD2B1E38E800AD788E /* CollectionViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewTableViewCell.swift; sourceTree = "<group>"; };
+		8C82DCC02B1E3CF300AD788E /* MainImagesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainImagesCollectionViewCell.swift; sourceTree = "<group>"; };
+		8C82DCC42B1E52BC00AD788E /* HotelsDetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotelsDetailsTableViewCell.swift; sourceTree = "<group>"; };
+		8C82DCC62B1E709300AD788E /* GoogleMapTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMapTableViewCell.swift; sourceTree = "<group>"; };
 		8C93A19C2ABB7F9C009F96BA /* search_api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = search_api.swift; sourceTree = "<group>"; };
 		8CC44D4B2ABEE92900A5ACC0 /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
-		8CC5F2072B1C653F0081D56F /* HotelsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotelsTableViewCell.swift; sourceTree = "<group>"; };
 		C2302B2CBEDB114D937A8CB9 /* Pods-TourismApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TourismApp.debug.xcconfig"; path = "Target Support Files/Pods-TourismApp/Pods-TourismApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -751,7 +763,6 @@
 				10E80DA32B1E047900E90841 /* other */,
 				10760A302B1BEE7A007DC2C3 /* restaurant */,
 				10CA8A292B1BD4980065E8E4 /* hotel */,
-				8CC5F2092B1C65440081D56F /* views */,
 				105359182B19492900C6BE21 /* ImageRecognition */,
 				105359172B19492000C6BE21 /* managers */,
 			);
@@ -821,6 +832,8 @@
 				10CA8A2A2B1BD4A10065E8E4 /* HotelViewController.swift */,
 				10CA8A2C2B1BD56B0065E8E4 /* HotelTableViewCell.swift */,
 				10E80D992B1D68CD00E90841 /* HotelAPI.swift */,
+				8C82DCBB2B1E338E00AD788E /* HotelDetailsViewController.swift */,
+				8C82DCBF2B1E38EF00AD788E /* cell */,
 			);
 			path = hotel;
 			sourceTree = "<group>";
@@ -910,20 +923,25 @@
 			path = view_all;
 			sourceTree = "<group>";
 		};
+		8C82DCBF2B1E38EF00AD788E /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				8C82DCBD2B1E38E800AD788E /* CollectionViewTableViewCell.swift */,
+				8C82DCC02B1E3CF300AD788E /* MainImagesCollectionViewCell.swift */,
+				8C3281DA2B1F2890000FD0DD /* ServicesTableViewCell.swift */,
+				8C3281D82B1F267D000FD0DD /* ServicesCollectionViewCell.swift */,
+				8C82DCC42B1E52BC00AD788E /* HotelsDetailsTableViewCell.swift */,
+				8C82DCC62B1E709300AD788E /* GoogleMapTableViewCell.swift */,
+			);
+			path = cell;
+			sourceTree = "<group>";
+		};
 		8C93A19B2ABB7F76009F96BA /* search_api */ = {
 			isa = PBXGroup;
 			children = (
 				8C93A19C2ABB7F9C009F96BA /* search_api.swift */,
 			);
 			path = search_api;
-			sourceTree = "<group>";
-		};
-		8CC5F2092B1C65440081D56F /* views */ = {
-			isa = PBXGroup;
-			children = (
-				8CC5F2072B1C653F0081D56F /* HotelsTableViewCell.swift */,
-			);
-			path = views;
 			sourceTree = "<group>";
 		};
 		90D7170E2EAFBC4D7F5265EA /* Frameworks */ = {
@@ -1099,6 +1117,7 @@
 				1065AD522AE3D973005A9A4C /* Functions.swift in Sources */,
 				102DC3472AE50B7E002AB6C3 /* RegisterViewController.swift in Sources */,
 				8C6C875C2AE977400068F43A /* InfoContentVC.swift in Sources */,
+				8C3281DB2B1F2890000FD0DD /* ServicesTableViewCell.swift in Sources */,
 				8C7A9C472ABAD115005F790D /* ViewAllVC.swift in Sources */,
 				10369B4C2AACF25800558A5E /* status.proto in Sources */,
 				102DC3382AE44922002AB6C3 /* PersonalTableViewCell.swift in Sources */,
@@ -1116,11 +1135,13 @@
 				10369B442AACF25800558A5E /* operations.proto in Sources */,
 				108FC86D2A87A0D500A97BE0 /* UIColor.swift in Sources */,
 				10760A322B1BEE99007DC2C3 /* RestaurantViewController.swift in Sources */,
+				8C82DCBE2B1E38E800AD788E /* CollectionViewTableViewCell.swift in Sources */,
 				8C0EFDBB2ABDFEFF008C101F /* SearchCotentVC.swift in Sources */,
 				10369B542AACF2B200558A5E /* SpeechRecognitionService.swift in Sources */,
 				101388CC2AF82A3900918635 /* TranslatorViewController.swift in Sources */,
 				10369B462AACF25800558A5E /* cloud_speech.proto in Sources */,
 				108B56542A9D25E3000DF967 /* SectionHeaderView.swift in Sources */,
+				8C82DCC12B1E3CF300AD788E /* MainImagesCollectionViewCell.swift in Sources */,
 				10369B4E2AACF25800558A5E /* error_details.proto in Sources */,
 				10AD11E22ABF020E00F68BC9 /* AddToFavorite.swift in Sources */,
 				10C9163B2A7821FE0054B55C /* AppDelegate.swift in Sources */,
@@ -1146,15 +1167,18 @@
 				10AD11E02ABF01A600F68BC9 /* Vibration.swift in Sources */,
 				1051A2BC2A9BE8B50083D25D /* TestViewController.swift in Sources */,
 				1051A2BF2A9BEE790083D25D /* LoaderView+ext.swift in Sources */,
+				8C82DCC72B1E709300AD788E /* GoogleMapTableViewCell.swift in Sources */,
 				10DEB8502A92791D008CE34F /* MainTableViewCell.swift in Sources */,
 				1046C6A82AC0F4E100A7A8D4 /* ActivityImageView.swift in Sources */,
 				108FC87C2A883D5800A97BE0 /* UserDefaults.swift in Sources */,
 				8C7A9C412ABAD0FE005F790D /* mapVC.swift in Sources */,
+				8C82DCC52B1E52BC00AD788E /* HotelsDetailsTableViewCell.swift in Sources */,
 				1003425C2AE8740E0075DE9A /* CommentsSmallTableViewCell.swift in Sources */,
 				10CA8A2B2B1BD4A10065E8E4 /* HotelViewController.swift in Sources */,
 				10B389C92B167D52007FCAD7 /* FuckYouViewController.swift in Sources */,
 				10369B4A2AACF25800558A5E /* label.proto in Sources */,
 				10369B4B2AACF25800558A5E /* code.proto in Sources */,
+				8C3281D92B1F267D000FD0DD /* ServicesCollectionViewCell.swift in Sources */,
 				100342572AE7CEEE0075DE9A /* HeaderImagesCollectionViewCell.swift in Sources */,
 				1051A2C12A9BEFB90083D25D /* LoaderView.swift in Sources */,
 				108B56522A9D1541000DF967 /* HeaderView.swift in Sources */,
@@ -1163,6 +1187,7 @@
 				101CCFEC2AC4BC6700D6E90C /* Ext_String.swift in Sources */,
 				10E80D982B1D60EB00E90841 /* RestaurantTableViewCell.swift in Sources */,
 				1003425E2AE884200075DE9A /* MapTableViewCell.swift in Sources */,
+				8C82DCBC2B1E338E00AD788E /* HotelDetailsViewController.swift in Sources */,
 				10369B572AAD05BA00558A5E /* Bridge.m in Sources */,
 				102DC3492AE50BC6002AB6C3 /* UILabel.swift in Sources */,
 				101388C82AF82A0D00918635 /* TranslatorTableViewCell.swift in Sources */,
@@ -1182,7 +1207,6 @@
 				101CCFDC2AC492F000D6E90C /* ChangeLanguage.swift in Sources */,
 				10DD0F0C2AE97E1600EEF9CE /* CommentsViewController.swift in Sources */,
 				1091DE5C2AC0DE12008664E9 /* FavoritesTableViewCell.swift in Sources */,
-				8CC5F2082B1C653F0081D56F /* HotelsTableViewCell.swift in Sources */,
 				10EB81442ABCBA1200D7126E /* Main_API.swift in Sources */,
 				8C7A9C462ABAD115005F790D /* ViewAllTableViewCell.swift in Sources */,
 				1051A2C32A9BF3320083D25D /* SpinnerView.swift in Sources */,
@@ -1342,7 +1366,7 @@
 				CODE_SIGN_ENTITLEMENTS = TourismApp/TourismApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 2PRTB3DVMF;
+				DEVELOPMENT_TEAM = L7D5MM5SF3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TourismApp/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = GuideMe;
@@ -1363,7 +1387,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mekhriddin.GuideMe;
+				PRODUCT_BUNDLE_IDENTIFIER = com.uyguntursunovGuideMe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;

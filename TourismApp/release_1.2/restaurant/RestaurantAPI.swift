@@ -39,4 +39,5 @@ struct RestaurantModel: Codable {
     let location: MainLocation?
     let city: String?
     let photos: [String]?
+    let description: String
 }

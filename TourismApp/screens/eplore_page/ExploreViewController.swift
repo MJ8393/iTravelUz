@@ -226,7 +226,7 @@ extension ExploreViewController: UITableViewDelegate, UITableViewDataSource {
                     }
                 }
             }
-            cell.delegate = self
+            
             cell.backgroundColor = .clear
             cell.selectionStyle = .none
             return cell

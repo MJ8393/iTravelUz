@@ -68,4 +68,11 @@ extension HotelViewController: UITableViewDelegate, UITableViewDataSource {
         cell.backgroundColor = .clear
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = HotelDetailsViewController()
+        vc.isRestaurant = false
+        vc.hotel = hotels[indexPath.row]
+        navigationController?.pushViewController(vc, animated: true)
+    }
 }
