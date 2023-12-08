@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ServicesCollectionViewCell: UICollectionViewCell {
+class FacilitiesCollectionViewCell: UICollectionViewCell {
     
     lazy var subView: UIView = {
        let view = UIView()
@@ -60,7 +60,7 @@ class ServicesCollectionViewCell: UICollectionViewCell {
         subView.addSubview(iconBackView)
         iconBackView.snp_makeConstraints { make in
             make.top.equalToSuperview()
-            make.leading.equalToSuperview().offset(10)
+            make.centerX.equalToSuperview()
             make.height.width.equalTo(40.0)
         }
         

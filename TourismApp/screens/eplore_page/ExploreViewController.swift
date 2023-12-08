@@ -20,6 +20,7 @@ class ExploreViewController: BaseViewController {
     var isCity = false
     var isLiked: Bool = false
     var thisWidth: CGFloat = CGFloat(UIScreen.main.bounds.width)
+    var numberOfImages: Int = 0
     
     lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
@@ -55,8 +56,15 @@ class ExploreViewController: BaseViewController {
         let pageControl = UIPageControl()
         pageControl.frame = CGRect(x: 10, y: view.frame.size.height - 100, width: view.frame.size.width - 20, height: 70)
         pageControl.hidesForSinglePage = true
-        pageControl.numberOfPages = 3
-        pageControl.backgroundColor = .red
+        if isCity {
+            numberOfImages = city?.gallery?.count ?? 1
+        } else {
+            numberOfImages = destination?.gallery?.count ?? 1
+        }
+        pageControl.numberOfPages = numberOfImages
+        pageControl.currentPage = 0
+        pageControl.pageIndicatorTintColor = .secondaryLabel
+        pageControl.currentPageIndicatorTintColor = .systemBlue
         return pageControl
     }()
     
@@ -180,6 +188,11 @@ class ExploreViewController: BaseViewController {
         tableView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+        
+//        subView.addSubview(pageControl)
+//        pageControl.snp_makeConstraints { make in
+//            make.centerX.equalToSuperview()
+//        }
     }
 }
 
@@ -304,6 +317,11 @@ extension ExploreViewController: UICollectionViewDelegate, UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         thisWidth = CGFloat(UIScreen.main.bounds.width)
         return CGSize(width: thisWidth, height: 240)
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let currentPage = Int(scrollView.contentOffset.x / scrollView.frame.width)
+        pageControl.currentPage = currentPage
     }
 }
 

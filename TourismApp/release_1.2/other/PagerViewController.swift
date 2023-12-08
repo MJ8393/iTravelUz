@@ -10,9 +10,8 @@ import UIKit
 class PagerController: DTPagerController {
     
     let viewController1 = HotelViewController()
-    
     let viewController2 = RestaurantViewController()
-
+    
     init() {
         super.init(viewControllers: [])
         title = "Explore"
@@ -29,6 +28,9 @@ class PagerController: DTPagerController {
         let rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "line.3.horizontal.decrease.circle"), style: .done, target: self, action: #selector(filterTapped))
         rightBarButtonItem.tintColor = .label
         self.navigationItem.rightBarButtonItem = rightBarButtonItem
+        
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        navigationItem.backBarButtonItem?.tintColor = .mainColor
 
         perferredScrollIndicatorHeight = 2.0
         
@@ -55,8 +57,9 @@ class PagerController: DTPagerController {
     }
     
     @objc func filterTapped() {
-            // Code to be executed when the right navigation item is tapped
-        }
+        let vc = FilterViewController()
+        navigationController?.presentPanModal(vc)
+    }
     
     func getAllHotels() {
         API.shared.getAllHotels { [weak self] result in
@@ -79,5 +82,4 @@ class PagerController: DTPagerController {
             }
         }
     }
-
 }

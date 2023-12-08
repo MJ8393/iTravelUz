@@ -133,6 +133,6 @@ class HotelTableViewCell: UITableViewCell {
         }
         nameLabel.text = hotel.name
         starLabel.text = "\(Double(hotel.star ?? 0))"
-        locationLabel.text = hotel.city ?? "Tashkent" + "Uzbekistan"
+        locationLabel.text = hotel.city
     }
 }

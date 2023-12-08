@@ -35,7 +35,7 @@ extension API {
 
 struct HotelModel: Codable {
     let _id: String
-    let name: String
+    let name: String?
     let description: String
     let location: MainLocation?
     let star: Int?

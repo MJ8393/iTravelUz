@@ -17,6 +17,17 @@ class CollectionViewTableViewCell: UITableViewCell {
         return view
     }()
     
+    lazy var pageControl: UIPageControl = {
+       let pageControl = UIPageControl()
+        pageControl.currentPage = 0
+        pageControl.tintColor = .green
+        pageControl.backgroundColor = .red
+        pageControl.hidesForSinglePage = true
+        pageControl.pageIndicatorTintColor = .blue
+        pageControl.currentPageIndicatorTintColor = .brown
+        return pageControl
+    }()
+    
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -52,12 +63,19 @@ class CollectionViewTableViewCell: UITableViewCell {
         subView.snp_makeConstraints { make in
             make.edges.equalToSuperview()
         }
+        
         subView.addSubview(collectionView)
         collectionView.snp_makeConstraints { make in
             make.top.bottom.equalToSuperview()
             make.leading.equalToSuperview().offset(10)
             make.trailing.equalToSuperview().offset(-10)
             make.height.equalTo(200)
+        }
+        
+        subView.addSubview(pageControl)
+        pageControl.snp_makeConstraints { make in
+            make.bottom.equalToSuperview().offset(-10)
+            make.centerX.equalToSuperview()
         }
     }
 }
@@ -80,5 +98,10 @@ extension CollectionViewTableViewCell: UICollectionViewDelegate, UICollectionVie
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: width, height: 200)
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let currentPage = Int(scrollView.contentOffset.x / scrollView.frame.width)
+        pageControl.currentPage = currentPage
     }
 }

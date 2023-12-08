@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ServicesTableViewCell: UITableViewCell {
+class FacilitiesTableViewCell: UITableViewCell {
 
     var facilities: [String] = ["Free Wifi", "Cleaning room", "Indoor pool", "Outdoor pool", "Housekeeping"]
     var width = UIScreen.main.bounds.width - 10 - 10
@@ -29,7 +29,7 @@ class ServicesTableViewCell: UITableViewCell {
         collectionView.isScrollEnabled = true
         collectionView.layer.cornerRadius = 10
         collectionView.showsHorizontalScrollIndicator = false
-        collectionView.register(ServicesCollectionViewCell.self, forCellWithReuseIdentifier: String.init(describing: ServicesCollectionViewCell.self))
+        collectionView.register(FacilitiesCollectionViewCell.self, forCellWithReuseIdentifier: String.init(describing: FacilitiesCollectionViewCell.self))
         return collectionView
     }()
     
@@ -56,6 +56,7 @@ class ServicesTableViewCell: UITableViewCell {
         subView.addSubview(collectionView)
         collectionView.snp_makeConstraints { make in
             make.top.equalToSuperview().offset(5)
+            make.centerX.equalToSuperview()
             make.left.equalToSuperview().offset(10)
             make.right.equalToSuperview().offset(-10)
             make.bottom.equalToSuperview()
@@ -64,13 +65,13 @@ class ServicesTableViewCell: UITableViewCell {
     }
 }
 
-extension ServicesTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension FacilitiesTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String.init(describing: ServicesCollectionViewCell.self), for: indexPath) as? ServicesCollectionViewCell else { return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String.init(describing: FacilitiesCollectionViewCell.self), for: indexPath) as? FacilitiesCollectionViewCell else { return UICollectionViewCell() }
         cell.setData("wifi", facilities[indexPath.row])
         return cell
     }

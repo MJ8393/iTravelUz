@@ -24,7 +24,7 @@ class HotelDetailsViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(CollectionViewTableViewCell.self, forCellReuseIdentifier: String.init(describing: CollectionViewTableViewCell.self))
-        tableView.register(ServicesTableViewCell.self, forCellReuseIdentifier: String.init(describing: ServicesTableViewCell.self))
+        tableView.register(FacilitiesTableViewCell.self, forCellReuseIdentifier: String.init(describing: FacilitiesTableViewCell.self))
         tableView.register(HotelsDetailsTableViewCell.self, forCellReuseIdentifier: String.init(describing: HotelsDetailsTableViewCell.self))
         tableView.register(GoogleMapTableViewCell.self, forCellReuseIdentifier: String.init(describing: GoogleMapTableViewCell.self))
         tableView.separatorStyle = .none
@@ -73,7 +73,7 @@ extension HotelDetailsViewController: UITableViewDelegate, UITableViewDataSource
             cell.selectionStyle = .none
             return cell
         } else if indexPath.row == 1{
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: String.init(describing: ServicesTableViewCell.self), for: indexPath) as? ServicesTableViewCell else { return UITableViewCell() }
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: String.init(describing: FacilitiesTableViewCell.self), for: indexPath) as? FacilitiesTableViewCell else { return UITableViewCell() }
             if isRestaurant {
 //                if let meals = restaurant. {
 //                    cell.facilities = meals
@@ -91,11 +91,11 @@ extension HotelDetailsViewController: UITableViewDelegate, UITableViewDataSource
             
             if isRestaurant {
                 if let restaurant = restaurant {
-                    cell.setData(restaurant._id, restaurant.name, restaurant.city ?? "", restaurant.description)
+                    cell.setData(restaurant._id, restaurant.name?.getName() ?? "", restaurant.city?.getCityName() ?? "", restaurant.description?.getDescription() ?? "")
                 }
             } else {
                 if let hotel = hotel {
-                    cell.setData(hotel._id, hotel.name, hotel.city ?? "", hotel.description)
+                    cell.setData(hotel._id, hotel.name ?? "", hotel.city ?? "", hotel.description)
                 }
             }
             cell.backgroundColor = .clear
@@ -106,11 +106,11 @@ extension HotelDetailsViewController: UITableViewDelegate, UITableViewDataSource
             
             if isRestaurant {
                 if let restaurant = restaurant {
-                    cell.setMap(latitude: restaurant.location?.latitude ?? Helper.getDefaultLocation().lat, longitude: restaurant.location?.longitude ?? Helper.getDefaultLocation().lon, title: restaurant.name, Snippet: restaurant.city ?? "")
+                    cell.setMap(latitude: restaurant.location?.latitude ?? Helper.getDefaultLocation().lat, longitude: restaurant.location?.longitude ?? Helper.getDefaultLocation().lon, title: restaurant.name?.getName() ?? "", Snippet: restaurant.city?.getCityName() ?? "")
                 }
             } else {
                 if let hotel = hotel {
-                    cell.setMap(latitude: hotel.location?.latitude ?? Helper.getDefaultLocation().lat, longitude: hotel.location?.longitude ?? Helper.getDefaultLocation().lon, title: hotel.name, Snippet: hotel.city ?? "")
+                    cell.setMap(latitude: hotel.location?.latitude ?? Helper.getDefaultLocation().lat, longitude: hotel.location?.longitude ?? Helper.getDefaultLocation().lon, title: hotel.name ?? "", Snippet: hotel.city ?? "")
                 }
             }
             cell.backgroundColor = .clear

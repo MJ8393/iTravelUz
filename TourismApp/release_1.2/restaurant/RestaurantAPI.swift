@@ -35,9 +35,9 @@ extension API {
 
 struct RestaurantModel: Codable {
     let _id: String
-    let name: String
+    let name: RestaurantName?
     let location: MainLocation?
-    let city: String?
+    let city: CityName?
     let photos: [String]?
-    let description: String
+    let description: DescriptionString?
 }
