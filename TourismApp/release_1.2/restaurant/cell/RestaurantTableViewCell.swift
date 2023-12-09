@@ -136,8 +136,8 @@ class RestaurantTableViewCell: UITableViewCell {
         if let photos = model.photos, photos.count != 0 {
             mainImageView.loadImage(url: photos[0])
         }
-        nameLabel.text = model.name
-        locationLabel.text = model.city ?? "No location"
+        nameLabel.text = model.name?.getName()
+        locationLabel.text = model.city?.getCityName() ?? "No location"
         starLabel.text = "5.0"
     }
 }

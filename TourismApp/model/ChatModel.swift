@@ -68,6 +68,16 @@ struct CityName: Codable {
     let uzbek: String?
 }
 
+struct HotelName: Codable {
+    let english: String?
+    let uzbek: String?
+}
+
+struct RestaurantName: Codable {
+    let english: String?
+    let uzbek: String?
+}
+
 struct DescriptionString: Codable {
     let english: String?
     let uzbek: String?

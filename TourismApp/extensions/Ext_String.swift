@@ -41,6 +41,34 @@ extension CityName {
     }
 }
 
+extension HotelName {
+    func getName() -> String {
+        let language = LanguageManager.getAppLang()
+        switch language {
+        case .Uzbek:
+            return self.uzbek ?? ""
+        case .English:
+            return self.english ?? ""
+        default:
+            return ""
+        }
+    }
+}
+
+extension RestaurantName {
+    func getName() -> String {
+        let language = LanguageManager.getAppLang()
+        switch language {
+        case .Uzbek:
+            return self.uzbek ?? ""
+        case .English:
+            return self.english ?? ""
+        default:
+            return ""
+        }
+    }
+}
+
 extension DescriptionString {
     func getDescription() -> String {
         let language = LanguageManager.getAppLang()

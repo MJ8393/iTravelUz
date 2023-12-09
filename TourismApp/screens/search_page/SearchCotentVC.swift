@@ -26,13 +26,26 @@ class SearchCotentVC: BaseViewController, UITextFieldDelegate {
         return label
     }()
     
-    let textField: UITextField = {
+    lazy var searchIconImageView: UIImageView = {
+        let imageView = UIImageView(frame: CGRect(x: 5, y: 3, width: 20, height: 20))
+        imageView.contentMode = .scaleAspectFit
+        imageView.tintColor = .secondaryLabel
+        imageView.clipsToBounds = true
+        imageView.image = UIImage(systemName: "magnifyingglass")
+        return imageView
+    }()
+    
+    lazy var textField: UITextField = {
         let textField = UITextField()
         textField.layer.cornerRadius = 45 / 2
         textField.backgroundColor = .systemGray6
-        textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: 45))
+        
+        let leftView = UIView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+        leftView.addSubview(searchIconImageView)
+        textField.leftView = leftView
         textField.leftViewMode = .always
         textField.autocorrectionType = .no
+        
         let placeholderText = "search_place".translate()
         let attributes: [NSAttributedString.Key: Any] = [
             .foregroundColor: UIColor.systemGray,
