@@ -71,7 +71,7 @@ extension ViewAllVC: UITableViewDelegate, UITableViewDataSource {
         } else {
             let city = destionations[indexPath.row]
             cell.setData(destination: city)
-            destination = MainDestination(id: city.id, name: city.name, location: city.location, city_name: city.city_name, description: city.description, recommendationLevel: city.recommendationLevel, gallery: city.gallery, comments: city.comments)
+            destination = MainDestination(id: city.id, name: city.name, location: city.location, city_name: city.city_name, description: city.description, recommendationLevel: city.recommendationLevel, gallery: city.gallery, comments: city.comments, tts: nil)
 //            if let gallery = destionations[indexPath.row].gallery {
 //                self.gallery[indexPath.row] = gallery[indexPath.row]
 //            }

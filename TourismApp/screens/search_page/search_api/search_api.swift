@@ -25,6 +25,7 @@ extension API {
                     do {
                         let decoder = JSONDecoder()
                         let data = try decoder.decode(SearchModel.self, from: data!)
+                        print("xxx", data.destinations.count)
                         complition(.success(data))
                     } catch {
                         complition(.failure(error))

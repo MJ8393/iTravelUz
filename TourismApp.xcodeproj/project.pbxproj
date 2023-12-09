@@ -88,7 +88,11 @@
 		1091DE5C2AC0DE12008664E9 /* FavoritesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1091DE5B2AC0DE12008664E9 /* FavoritesTableViewCell.swift */; };
 		10AD11E02ABF01A600F68BC9 /* Vibration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10AD11DF2ABF01A600F68BC9 /* Vibration.swift */; };
 		10AD11E22ABF020E00F68BC9 /* AddToFavorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10AD11E12ABF020E00F68BC9 /* AddToFavorite.swift */; };
+		10B0D9072B1FE87900CFA9BE /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B0D9062B1FE87900CFA9BE /* NetworkMonitor.swift */; };
+		10B0D9092B1FEC5E00CFA9BE /* NetworkExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B0D9082B1FEC5E00CFA9BE /* NetworkExtension.swift */; };
 		10B389C92B167D52007FCAD7 /* FuckYouViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B389C82B167D52007FCAD7 /* FuckYouViewController.swift */; };
+		10C193932B2021B0006A2770 /* NoInternetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C193922B2021B0006A2770 /* NoInternetViewController.swift */; };
+		10C193962B202261006A2770 /* NoInternetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C193952B202261006A2770 /* NoInternetView.swift */; };
 		10C9163B2A7821FE0054B55C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C9163A2A7821FE0054B55C /* AppDelegate.swift */; };
 		10C9163D2A7821FE0054B55C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C9163C2A7821FE0054B55C /* SceneDelegate.swift */; };
 		10C916442A7821FE0054B55C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 10C916432A7821FE0054B55C /* Assets.xcassets */; };
@@ -208,7 +212,11 @@
 		1091DE5B2AC0DE12008664E9 /* FavoritesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesTableViewCell.swift; sourceTree = "<group>"; };
 		10AD11DF2ABF01A600F68BC9 /* Vibration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vibration.swift; sourceTree = "<group>"; };
 		10AD11E12ABF020E00F68BC9 /* AddToFavorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToFavorite.swift; sourceTree = "<group>"; };
+		10B0D9062B1FE87900CFA9BE /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
+		10B0D9082B1FEC5E00CFA9BE /* NetworkExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkExtension.swift; sourceTree = "<group>"; };
 		10B389C82B167D52007FCAD7 /* FuckYouViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuckYouViewController.swift; sourceTree = "<group>"; };
+		10C193922B2021B0006A2770 /* NoInternetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoInternetViewController.swift; sourceTree = "<group>"; };
+		10C193952B202261006A2770 /* NoInternetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoInternetView.swift; sourceTree = "<group>"; };
 		10C916372A7821FE0054B55C /* TourismApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TourismApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		10C9163A2A7821FE0054B55C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		10C9163C2A7821FE0054B55C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -745,9 +753,20 @@
 			path = view;
 			sourceTree = "<group>";
 		};
+		10B0D9052B1FE86200CFA9BE /* NetworkMonitor */ = {
+			isa = PBXGroup;
+			children = (
+				10C193942B202247006A2770 /* screen */,
+				10B0D9062B1FE87900CFA9BE /* NetworkMonitor.swift */,
+				10B0D9082B1FEC5E00CFA9BE /* NetworkExtension.swift */,
+			);
+			path = NetworkMonitor;
+			sourceTree = "<group>";
+		};
 		10B389C52B163324007FCAD7 /* release_1.2 */ = {
 			isa = PBXGroup;
 			children = (
+				10B0D9052B1FE86200CFA9BE /* NetworkMonitor */,
 				10E80DA32B1E047900E90841 /* other */,
 				10760A302B1BEE7A007DC2C3 /* restaurant */,
 				10CA8A292B1BD4980065E8E4 /* hotel */,
@@ -765,6 +784,15 @@
 				101CCFDE2AC494F000D6E90C /* cell */,
 			);
 			path = language;
+			sourceTree = "<group>";
+		};
+		10C193942B202247006A2770 /* screen */ = {
+			isa = PBXGroup;
+			children = (
+				10C193922B2021B0006A2770 /* NoInternetViewController.swift */,
+				10C193952B202261006A2770 /* NoInternetView.swift */,
+			);
+			path = screen;
 			sourceTree = "<group>";
 		};
 		10C9162E2A7821FE0054B55C = {
@@ -1119,7 +1147,9 @@
 				8C0EFDBB2ABDFEFF008C101F /* SearchCotentVC.swift in Sources */,
 				10369B542AACF2B200558A5E /* SpeechRecognitionService.swift in Sources */,
 				101388CC2AF82A3900918635 /* TranslatorViewController.swift in Sources */,
+				10B0D9092B1FEC5E00CFA9BE /* NetworkExtension.swift in Sources */,
 				10369B462AACF25800558A5E /* cloud_speech.proto in Sources */,
+				10B0D9072B1FE87900CFA9BE /* NetworkMonitor.swift in Sources */,
 				108B56542A9D25E3000DF967 /* SectionHeaderView.swift in Sources */,
 				10369B4E2AACF25800558A5E /* error_details.proto in Sources */,
 				10AD11E22ABF020E00F68BC9 /* AddToFavorite.swift in Sources */,
@@ -1134,6 +1164,7 @@
 				108FC8632A878FF900A97BE0 /* ChatViewController.swift in Sources */,
 				10E80DA72B1E048900E90841 /* DTPagerController.swift in Sources */,
 				108A32742AF8A96B003ABF4C /* CountriesListViewController.swift in Sources */,
+				10C193962B202261006A2770 /* NoInternetView.swift in Sources */,
 				10369B472AACF25800558A5E /* http.proto in Sources */,
 				10369B282AABB98C00558A5E /* ExploreViewController.swift in Sources */,
 				108FC8762A882D6000A97BE0 /* API.swift in Sources */,
@@ -1169,6 +1200,7 @@
 				10369B482AACF25800558A5E /* monitored_resource.proto in Sources */,
 				10E80D9A2B1D68CD00E90841 /* HotelAPI.swift in Sources */,
 				1046C6AB2AC122C800A7A8D4 /* StretchyCollectionViewCell.swift in Sources */,
+				10C193932B2021B0006A2770 /* NoInternetViewController.swift in Sources */,
 				10740E662AA517D500C2D6C0 /* MainTabBarController.swift in Sources */,
 				1091DE592AC0DDA4008664E9 /* FavoritesViewController.swift in Sources */,
 				10369B592AAD0F7D00558A5E /* GoogleSpeechManager.swift in Sources */,

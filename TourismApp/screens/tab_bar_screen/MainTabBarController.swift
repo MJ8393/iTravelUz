@@ -10,7 +10,7 @@ import UIKit
 class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
     
     private var shapeLayer: CAShapeLayer?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground

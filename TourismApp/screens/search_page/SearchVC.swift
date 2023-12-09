@@ -100,7 +100,7 @@ extension SearchVC: SearchContentVCDelegate {
     func didTapPlace(model: SearchDestinationModel) {
         let vc = InfoVC()
         if let location = model.location {
-            vc.destination = MainDestination(id: model.id, name: model.name, location: location, city_name: model.city_name, description: model.description, recommendationLevel: model.recommendationLevel, gallery: model.gallery, comments: model.comments)
+            vc.destination = MainDestination(id: model.id, name: model.name, location: location, city_name: model.city_name, description: model.description, recommendationLevel: model.recommendationLevel, gallery: model.gallery, comments: model.comments, tts: nil)
         }
 //        vc.coordinate = coordinate
 //        vc.cityLabelText = text

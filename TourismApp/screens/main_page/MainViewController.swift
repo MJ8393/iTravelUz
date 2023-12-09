@@ -14,6 +14,15 @@ var titles = ["near_destinations".translate(), "cities".translate(), "popular_de
 
 class MainViewController: BaseViewController {
     
+    var isSuccessfullyLoadedR1: Bool = false
+    var isSuccessfullyLoadedR2: Bool = false
+    var isSuccessfullyLoadedR3: Bool = false
+    
+    var isReloadPageOpened: Bool = false
+    
+    var longitude: CLLocationDegrees = 41.2995
+    var latitude: CLLocationDegrees = 69.2401
+
     var nearbyDestinations = [MainDestination]()
     var cities = [City]()
     var popularDestionations = [MainDestination]()
@@ -56,6 +65,10 @@ class MainViewController: BaseViewController {
         view.backgroundColor = UIColor.systemBackground
 //        self.navigationController?.navigationBar.tintColor = UIColor.mainColor
         initViews()
+        isSuccessfullyLoadedR1 = false
+        isSuccessfullyLoadedR2 = false
+        isSuccessfullyLoadedR3 = false
+
         
         // API
         showLoadingView()
@@ -74,6 +87,7 @@ class MainViewController: BaseViewController {
                navigationController?.navigationBar.isTranslucent = true
         
         performTaskWithTimer()
+        NetworkMonitor.shared.delegate = self
     }
     
     func performTaskWithTimer() {
@@ -99,13 +113,15 @@ class MainViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
+        startMonitoring()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.setNavigationBarHidden(false, animated: animated)
+        stopMonitoring()
     }
-    
+
     // MARK: Get Nearby
     func getNearbyCities(lat: Double, long: Double) {
         nearbyRequestFinished = false
@@ -116,7 +132,9 @@ class MainViewController: BaseViewController {
             case .success(let data):
                 self?.nearbyDestinations = data.destinations
                 self?.tableView.reloadData()
+                self?.isSuccessfullyLoadedR1 = true
             case .failure(let error):
+                self?.isSuccessfullyLoadedR1 = false
                 print(error)
             }
         }
@@ -132,9 +150,11 @@ class MainViewController: BaseViewController {
                 if let cities = data.cities {
                     self?.cities = cities
                     self?.tableView.reloadData()
+                    self?.isSuccessfullyLoadedR2 = true
                 }
             case .failure(let error):
                 print(error)
+                self?.isSuccessfullyLoadedR2 = false
             }
         }
     }
@@ -148,7 +168,9 @@ class MainViewController: BaseViewController {
             case .success(let data):
                 self?.popularDestionations = data.destinations
                 self?.tableView.reloadData()
+                self?.isSuccessfullyLoadedR3 = true
             case .failure(let error):
+                self?.isSuccessfullyLoadedR3 = false
                 print(error)
             }
         }
@@ -293,6 +315,8 @@ extension MainViewController: CLLocationManagerDelegate {
            case .authorizedWhenInUse, .authorizedAlways:
                locationManager.startUpdatingLocation()
            case .denied, .restricted:
+               longitude = 41.2995
+               latitude = 69.2401
                getNearbyCities(lat: 41.2995, long: 69.2401)
            default:
                break
@@ -307,9 +331,13 @@ extension MainViewController: CLLocationManagerDelegate {
                 // Check if the location has changed significantly
                 if let previousLocation = self.previousLocation {
                     if location.distance(from: previousLocation) > 10.0 {
+                        self.longitude = latitude
+                        self.latitude = longitude
                         getNearbyCities(lat: latitude, long: longitude) // Change 10.0 to your desired threshold in meters
                     }
                 } else {
+                    self.longitude = latitude
+                    self.latitude = longitude
                     getNearbyCities(lat: latitude, long: longitude)
                 }
                 // Store the current location as the previous location
@@ -319,4 +347,38 @@ extension MainViewController: CLLocationManagerDelegate {
             }
         }
 
+}
+
+extension MainViewController: NetworkMonitorDelegate {
+    func checkInternetConnection(isOnline: Bool) {
+        if !isOnline && !isSuccessfullyLoadedR1 && !isSuccessfullyLoadedR2 && !isSuccessfullyLoadedR3 && !isReloadPageOpened {
+            let vc = NoInternetViewController()
+            vc.noInternetView.delegate = self
+            vc.modalPresentationStyle = .overFullScreen
+            Vibration.heavy.vibrate()
+            self.present(vc, animated: true)
+            isReloadPageOpened = true
+        }
+        
+        if isOnline && isReloadPageOpened {
+            self.dismiss(animated: true)
+            isReloadPageOpened = false
+            showLoadingView()
+            getCities()
+            getPopular()
+            locationManager.delegate = self
+            locationManager.requestWhenInUseAuthorization()
+        }
+    }
+}
+
+extension MainViewController: NoInternetViewDelegate {
+    func reloadTapped() {
+        isReloadPageOpened = false
+        self.dismiss(animated: true)
+        showLoadingView()
+        getCities()
+        getPopular()
+        getNearbyCities(lat: latitude, long: longitude)
+    }
 }

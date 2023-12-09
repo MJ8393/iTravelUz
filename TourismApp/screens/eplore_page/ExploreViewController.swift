@@ -207,6 +207,9 @@ extension ExploreViewController: UITableViewDelegate, UITableViewDataSource {
             } else {
                 if let destination = destination {
                     cell.setData(destination.name?.getName() ?? "No name", destination.description?.getDescription() ?? "No description")
+                    if let tts = destination.tts {
+                        cell.setTTS(tts: tts)
+                    }
                 }
             }
             cell.setLanguage()

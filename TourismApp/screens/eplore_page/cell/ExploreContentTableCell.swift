@@ -14,6 +14,9 @@ class ExploreContentTableCell: UITableViewCell, AVSpeechSynthesizerDelegate {
         return view
     }()
     
+    var uzbekVoices = [URL]()
+    
+    
     let titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 22, weight: .semibold)
@@ -111,6 +114,50 @@ class ExploreContentTableCell: UITableViewCell, AVSpeechSynthesizerDelegate {
         let newText2 = newText.replacingOccurrences(of: "\\n", with: "\n\n")
         descriptionLabel.text = newText2
     }
+    
+    let audioPlayer = AudioPlayer()
+
+    
+    func setTTS(tts: TTSModel) {
+        uzbekVoices = []
+        if let uzbek = tts.uzbek {
+            for uz in uzbek {
+                if let url = URL(string: "https://storage.googleapis.com/saam/" + uz) {
+                    uzbekVoices.append(url)
+                }
+            }
+        }
+        
+        print("xxx", uzbekVoices.count)
+        
+        downloadAudioFiles(urls: uzbekVoices) { (downloadedData, error) in
+            if let error = error {
+                print("Error downloading audio files: \(error)")
+                return
+            }
+            
+            
+//            
+//            if let downloadedData = downloadedData {
+//                          self.audioPlayer.playAudioFiles(Array(downloadedData.values))
+//                    }
+//            
+
+            // Sorting the dictionary by keys in string order
+            if let downloadedData = downloadedData {
+                let sortedDictionary = downloadedData.sorted { $0.key.absoluteString < $1.key.absoluteString }
+
+                // Extracting sorted values and inserting them into an array
+                let sortedValuesArray = sortedDictionary.map { $0.value }
+                
+                self.audioPlayer.playAudioFiles(sortedValuesArray)
+            }
+          
+            // Process downloaded audio data
+            // For example, save it to local files or play it directly
+        }
+    }
+    
     @objc func playButtonTapped() {
         if isSpeechPlaying {
             // Stop the speech and change the button image to "play.fill"
@@ -124,10 +171,11 @@ class ExploreContentTableCell: UITableViewCell, AVSpeechSynthesizerDelegate {
         } else {
             // Start speaking and change the button image to "stop.fill"
             let spokenText = descriptionLabel.text ?? ""
-            let speechUtterance = AVSpeechUtterance(string: spokenText)
-            speechSynthesizer.speak(speechUtterance)
-            let stopIconImage = UIImage(systemName: "stop.fill")
-            playButton.setImage(stopIconImage, for: .normal)
+//            let speechUtterance = AVSpeechUtterance(string: spokenText)
+//            speechSynthesizer.speak(speechUtterance)
+//            let stopIconImage = UIImage(systemName: "stop.fill")
+//            playButton.setImage(stopIconImage, for: .normal)
+//
         }
         
         // Toggle the state
@@ -176,4 +224,61 @@ class ExploreContentTableCell: UITableViewCell, AVSpeechSynthesizerDelegate {
             
             return nil
         }
+    
+    func downloadAudioFiles(urls: [URL], completion: @escaping ([URL: Data]?, Error?) -> Void) {
+        let group = DispatchGroup()
+        var downloadedData = [URL: Data]()
+
+        for url in urls {
+            group.enter()
+
+            URLSession.shared.dataTask(with: url) { data, response, error in
+                defer { group.leave() }
+
+                if let data = data {
+                    downloadedData[url] = data
+                }
+            }.resume()
+        }
+
+        group.notify(queue: DispatchQueue.global()) {
+            completion(downloadedData, nil)
+        }
+    }
+
+}
+
+class AudioPlayer: NSObject {
+    var player: AVAudioPlayer?
+    var audioDataArray: [Data] = []
+    var currentAudioIndex: Int = 0
+
+    func playAudioFiles(_ audioDataArray: [Data]) {
+        self.audioDataArray = audioDataArray
+        playNextAudio()
+    }
+
+    func playNextAudio() {
+        guard currentAudioIndex < audioDataArray.count else {
+            // All audio files have been played
+            return
+        }
+        do {
+            print("xxxx", currentAudioIndex)
+            let audioData = audioDataArray[currentAudioIndex]
+            player = try AVAudioPlayer(data: audioData)
+            player?.delegate = self
+            player?.play()
+        } catch {
+            print("Error playing audio: \(error)")
+            // Handle error as needed
+        }
+    }
+}
+
+extension AudioPlayer: AVAudioPlayerDelegate {
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        currentAudioIndex += 1
+        playNextAudio()
+    }
 }

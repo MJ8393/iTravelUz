@@ -20,6 +20,7 @@ struct MainDestination: Codable {
     let recommendationLevel: MainRecomentationLevel?
     let gallery: [Gallery]?
     let comments: [MainComment]?
+    let tts: TTSModel?
 }
 
 struct MainLocation: Codable {
@@ -65,4 +66,7 @@ struct PopularModel: Codable {
     let destinations: [MainDestination]
 }
 
-
+// TTS
+struct TTSModel: Codable {
+    let uzbek: [String]?
+}
