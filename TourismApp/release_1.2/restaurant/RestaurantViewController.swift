@@ -7,7 +7,13 @@
 
 import UIKit
 
+protocol RestaurantViewControllerDelegate: AnyObject {
+    func restaurantTapped(index: Int)
+}
+
 class RestaurantViewController: UIViewController {
+    
+    weak var delegate: RestaurantViewControllerDelegate?
     
     var restaurants = [RestaurantModel]() {
         didSet {
@@ -65,9 +71,6 @@ extension RestaurantViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = HotelDetailsViewController()
-        vc.isRestaurant = true
-        vc.restaurant = restaurants[indexPath.row]
-        navigationController?.pushViewController(vc, animated: true)
+        delegate?.restaurantTapped(index: indexPath.row)
     }
 }

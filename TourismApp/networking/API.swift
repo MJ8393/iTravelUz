@@ -8,7 +8,7 @@
 import Foundation
 import Alamofire
 
-let BASE_URL = "http://35.215.137.189"
+let BASE_URL = "http://guide-me.uz"
 let testToken = UD.token ?? ""
 //let testToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MDA3MzAyODYsInVzZXIiOiJhc2xvbiJ9.IKB0rjKM5_5Y-ps6_aM6Tcau5aJpevkB2DIDS_wuo7w"
 

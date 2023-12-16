@@ -35,9 +35,31 @@ extension API {
 
 struct RestaurantModel: Codable {
     let _id: String
-    let name: RestaurantName?
-    let location: MainLocation?
-    let city: CityName?
+    let name: String?
+//    let location: RestaurantLocation?
+    let city: String?
+//    let cousine: String?
+//    let meals: [MealModel]?
+//    let workingHours: WorkingHours?
     let photos: [String]?
-    let description: DescriptionString?
+//    let features: [String]?
+//    let phone: [String]?
 }
+
+struct RestaurantLocation: Codable {
+    let latitude: Double?
+    let longitude: Double?
+    let addressInString: String?
+}
+
+struct MealModel: Codable {
+    let name: String?
+    let averagePrice: String?
+    let photo: String?
+}
+
+struct WorkingHours: Codable {
+    let from: String?
+    let to: String?
+}
+

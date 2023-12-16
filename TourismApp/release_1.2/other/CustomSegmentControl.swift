@@ -45,6 +45,17 @@ class CustomSegmentControl: UIView {
         return button
     }()
     
+    lazy var thirdButton: UIButton = {
+        let button = UIButton()
+        let attributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: UIColor.gray,
+            .font: UIFont.systemFont(ofSize: 16, weight: .bold)
+        ]
+        let attributedString = NSAttributedString(string: "Flights", attributes: attributes)
+        button.setAttributedTitle(attributedString, for: .normal)
+        button.addTarget(self, action: #selector(thidButtonTapped), for: .touchUpInside)
+        return button
+    }()
         
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -65,28 +76,47 @@ class CustomSegmentControl: UIView {
         leftButton.snp.makeConstraints { make in
             make.left.equalToSuperview()
             make.top.bottom.equalToSuperview()
-            make.right.equalTo(self.snp.centerX)
+            make.width.equalTo(UIScreen.main.bounds.width / 3)
         }
         
         subView.addSubview(rightButton)
         rightButton.snp.makeConstraints { make in
-            make.right.equalToSuperview()
             make.top.bottom.equalToSuperview()
-            make.left.equalTo(self.snp.centerX)
+            make.left.equalTo(leftButton.snp.right)
+            make.width.equalTo(UIScreen.main.bounds.width / 3)
+        }
+        
+        subView.addSubview(thirdButton)
+        thirdButton.snp.makeConstraints { make in
+            make.top.bottom.equalToSuperview()
+            make.left.equalTo(rightButton.snp.right)
+            make.right.equalToSuperview()
+            make.width.equalTo(UIScreen.main.bounds.width / 3)
         }
     }
     
     @objc func leftButtonTapped() {
+        callback?(0, currentIndeX)
         currentIndeX = 0
-        self.leftButton.titleLabel?.textColor = .mainColor
-        self.rightButton.titleLabel?.textColor = .gray
-        callback?(0, 1)
+        self.leftButton.setTitleColor(.mainColor, for: .normal)
+        self.rightButton.setTitleColor(.gray, for: .normal)
+        self.thirdButton.setTitleColor(.gray, for: .normal)
     }
     
     @objc func rightButtonTapped() {
+        callback?(1, currentIndeX)
         currentIndeX = 1
-        self.leftButton.titleLabel?.textColor = .gray
-        self.rightButton.titleLabel?.textColor = .mainColor
-        callback?(1, 0)
+        self.leftButton.setTitleColor(.gray, for: .normal)
+        self.rightButton.setTitleColor(.mainColor, for: .normal)
+        self.thirdButton.setTitleColor(.gray, for: .normal)
+    }
+    
+    @objc func thidButtonTapped() {
+        callback?(2, currentIndeX)
+        currentIndeX = 2
+        self.leftButton.setTitleColor(.gray, for: .normal)
+        self.rightButton.setTitleColor(.gray, for: .normal)
+        self.thirdButton.setTitleColor(.mainColor, for: .normal)
+
     }
 }

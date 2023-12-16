@@ -25,7 +25,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         
         nc1.title = "home".translate()
         nc2.title = "search".translate()
-        nc4.title = "translator".translate()
+        nc4.title = "Exprole"
         nc5.title = "profile".translate()
 
                 

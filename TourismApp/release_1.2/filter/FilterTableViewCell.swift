@@ -16,7 +16,7 @@ class FilterTableViewCell: UITableViewCell {
 
     let cityNameLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
+        label.font = UIFont.systemFont(ofSize: 15, weight: .medium)
         label.textColor = .label
         label.lineBreakMode = .byWordWrapping
         return label
@@ -48,9 +48,11 @@ class FilterTableViewCell: UITableViewCell {
         
         subView.addSubview(cityNameLabel)
         cityNameLabel.snp.makeConstraints { make in
-            make.top.bottom.equalToSuperview()
+            make.top.equalToSuperview().offset(5)
             make.leading.equalToSuperview().offset(20)
-            make.bottom.equalToSuperview().offset(-10)
+            make.right.equalToSuperview().offset(-20)
+            make.bottom.equalToSuperview().offset(-5)
+            make.height.equalTo(25)
         }
         
         subView.addSubview(chooseImageView)
@@ -61,7 +63,7 @@ class FilterTableViewCell: UITableViewCell {
         }
     }
     
-    func setData(_ city: CityFilter) {
-        cityNameLabel.text = city.name
+    func setData(_ city: String) {
+        cityNameLabel.text = city
     }
 }

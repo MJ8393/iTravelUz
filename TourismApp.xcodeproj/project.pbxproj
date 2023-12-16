@@ -63,6 +63,8 @@
 		1053591A2B19495F00C6BE21 /* ImageLoaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105359192B19495F00C6BE21 /* ImageLoaderViewController.swift */; };
 		105A0E712AC4820000019311 /* profileAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105A0E702AC4820000019311 /* profileAPI.swift */; };
 		1065AD522AE3D973005A9A4C /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1065AD512AE3D973005A9A4C /* Functions.swift */; };
+		1069AA402B2D0A3F0063C1D8 /* FlightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1069AA3F2B2D0A3F0063C1D8 /* FlightViewController.swift */; };
+		1069AA422B2D0AC70063C1D8 /* FloightTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1069AA412B2D0AC70063C1D8 /* FloightTableViewCell.swift */; };
 		106B01442A9E694600D9290D /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106B01432A9E694600D9290D /* AccountView.swift */; };
 		10740E662AA517D500C2D6C0 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10740E652AA517D500C2D6C0 /* MainTabBarController.swift */; };
 		10760A322B1BEE99007DC2C3 /* RestaurantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10760A312B1BEE99007DC2C3 /* RestaurantViewController.swift */; };
@@ -86,6 +88,7 @@
 		1091DE562AC0DAC7008664E9 /* FavoritesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1091DE552AC0DAC7008664E9 /* FavoritesModel.swift */; };
 		1091DE592AC0DDA4008664E9 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1091DE582AC0DDA4008664E9 /* FavoritesViewController.swift */; };
 		1091DE5C2AC0DE12008664E9 /* FavoritesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1091DE5B2AC0DE12008664E9 /* FavoritesTableViewCell.swift */; };
+		10953A7F2B2D56EC008FDAB4 /* RestaurantDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10953A7E2B2D56EC008FDAB4 /* RestaurantDetailViewController.swift */; };
 		10AD11E02ABF01A600F68BC9 /* Vibration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10AD11DF2ABF01A600F68BC9 /* Vibration.swift */; };
 		10AD11E22ABF020E00F68BC9 /* AddToFavorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10AD11E12ABF020E00F68BC9 /* AddToFavorite.swift */; };
 		10B0D9072B1FE87900CFA9BE /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B0D9062B1FE87900CFA9BE /* NetworkMonitor.swift */; };
@@ -194,6 +197,8 @@
 		105359192B19495F00C6BE21 /* ImageLoaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoaderViewController.swift; sourceTree = "<group>"; };
 		105A0E702AC4820000019311 /* profileAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = profileAPI.swift; sourceTree = "<group>"; };
 		1065AD512AE3D973005A9A4C /* Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
+		1069AA3F2B2D0A3F0063C1D8 /* FlightViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightViewController.swift; sourceTree = "<group>"; };
+		1069AA412B2D0AC70063C1D8 /* FloightTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloightTableViewCell.swift; sourceTree = "<group>"; };
 		106B01432A9E694600D9290D /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 		10740E652AA517D500C2D6C0 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		10760A312B1BEE99007DC2C3 /* RestaurantViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantViewController.swift; sourceTree = "<group>"; };
@@ -218,6 +223,7 @@
 		1091DE552AC0DAC7008664E9 /* FavoritesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesModel.swift; sourceTree = "<group>"; };
 		1091DE582AC0DDA4008664E9 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		1091DE5B2AC0DE12008664E9 /* FavoritesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesTableViewCell.swift; sourceTree = "<group>"; };
+		10953A7E2B2D56EC008FDAB4 /* RestaurantDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailViewController.swift; sourceTree = "<group>"; };
 		10AD11DF2ABF01A600F68BC9 /* Vibration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vibration.swift; sourceTree = "<group>"; };
 		10AD11E12ABF020E00F68BC9 /* AddToFavorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToFavorite.swift; sourceTree = "<group>"; };
 		10B0D9062B1FE87900CFA9BE /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
@@ -598,6 +604,15 @@
 			path = ImageRecognition;
 			sourceTree = "<group>";
 		};
+		1069AA3E2B2D0A340063C1D8 /* Flight */ = {
+			isa = PBXGroup;
+			children = (
+				1069AA3F2B2D0A3F0063C1D8 /* FlightViewController.swift */,
+				1069AA412B2D0AC70063C1D8 /* FloightTableViewCell.swift */,
+			);
+			path = Flight;
+			sourceTree = "<group>";
+		};
 		10740E642AA517AE00C2D6C0 /* eplore_page */ = {
 			isa = PBXGroup;
 			children = (
@@ -614,6 +629,7 @@
 				10E80D962B1D60DA00E90841 /* cell */,
 				10760A312B1BEE99007DC2C3 /* RestaurantViewController.swift */,
 				10E80D9B2B1D6A6800E90841 /* RestaurantAPI.swift */,
+				10953A7E2B2D56EC008FDAB4 /* RestaurantDetailViewController.swift */,
 			);
 			path = restaurant;
 			sourceTree = "<group>";
@@ -909,6 +925,7 @@
 		10E80DA32B1E047900E90841 /* other */ = {
 			isa = PBXGroup;
 			children = (
+				1069AA3E2B2D0A340063C1D8 /* Flight */,
 				10E80DA62B1E048900E90841 /* DTPagerController.swift */,
 				10E80DA42B1E048400E90841 /* CustomSegmentControl.swift */,
 				10E80DA82B1E049100E90841 /* DTSegmentedControl.swift */,
@@ -1209,6 +1226,7 @@
 				10760A342B1BF15D007DC2C3 /* PagerViewController.swift in Sources */,
 				10EB81462ABCBA7500D7126E /* MainModel.swift in Sources */,
 				10E80DA92B1E049100E90841 /* DTSegmentedControl.swift in Sources */,
+				10953A7F2B2D56EC008FDAB4 /* RestaurantDetailViewController.swift in Sources */,
 				10AD11E02ABF01A600F68BC9 /* Vibration.swift in Sources */,
 				1051A2BC2A9BE8B50083D25D /* TestViewController.swift in Sources */,
 				1051A2BF2A9BEE790083D25D /* LoaderView+ext.swift in Sources */,
@@ -1217,6 +1235,7 @@
 				1046C6A82AC0F4E100A7A8D4 /* ActivityImageView.swift in Sources */,
 				8CF6F1492B204CF200A68AF9 /* FilterTableViewCell.swift in Sources */,
 				108FC87C2A883D5800A97BE0 /* UserDefaults.swift in Sources */,
+				1069AA402B2D0A3F0063C1D8 /* FlightViewController.swift in Sources */,
 				8C7A9C412ABAD0FE005F790D /* mapVC.swift in Sources */,
 				8C82DCC52B1E52BC00AD788E /* HotelsDetailsTableViewCell.swift in Sources */,
 				1003425C2AE8740E0075DE9A /* CommentsSmallTableViewCell.swift in Sources */,
@@ -1258,6 +1277,7 @@
 				8C7A9C462ABAD115005F790D /* ViewAllTableViewCell.swift in Sources */,
 				8CE3B15D2B20432300A9FF08 /* FilterViewController.swift in Sources */,
 				1051A2C32A9BF3320083D25D /* SpinnerView.swift in Sources */,
+				1069AA422B2D0AC70063C1D8 /* FloightTableViewCell.swift in Sources */,
 				10194BB82AC415CB00366A69 /* ProfileViewController.swift in Sources */,
 				10369B522AACF2A800558A5E /* AudioController.swift in Sources */,
 				102DC3352AE43904002AB6C3 /* PersonalViewController.swift in Sources */,

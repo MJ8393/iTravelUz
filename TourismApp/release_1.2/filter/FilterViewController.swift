@@ -8,6 +8,9 @@
 import UIKit
 import PanModal
 
+let flightFilterData = ["Flights inside Uzbekistan", "International Flights"]
+
+
 protocol FilterViewControllerDelegate: AnyObject {
     
 }
@@ -16,18 +19,14 @@ struct CityFilter {
     let name: String
 }
 
-let cities: [CityFilter] = [
-    CityFilter(name: "Tashkent"),
-    CityFilter(name: "Bukhara"),
-    CityFilter(name: "Samarkand"),
-    CityFilter(name: "Khiva"),
-    CityFilter(name: "Shakhrisabz")
-]
 
 class FilterViewController: UIViewController {
     
     weak var delegate: FilterViewControllerDelegate?
-    var contentHeight = 550.0
+    var contentHeight = 250.0
+    var cities = [String]()
+    
+    var filterType: FilterType = .hotel
     
     lazy var subView: UIView = {
         let view = UIView()
@@ -36,21 +35,21 @@ class FilterViewController: UIViewController {
     
     lazy var sortLabel: UILabel = {
         let label = UILabel()
-        label.text = "Sort by city"
+        label.text = "Filter"
         label.font = .systemFont(ofSize: 22, weight: .bold)
         label.textColor = .label
         return label
     }()
     
     lazy var tableView: UITableView = {
-        let tableView = UITableView(frame: .zero, style: .grouped)
+        let tableView = UITableView(frame: .zero)
         tableView.backgroundColor = .clear
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(FilterTableViewCell.self, forCellReuseIdentifier: String.init(describing: FilterTableViewCell.self))
         tableView.separatorStyle = .none
         tableView.showsVerticalScrollIndicator = false
-        tableView.backgroundColor = .red
+        tableView.backgroundColor = .clear
         //tableView.contentInset = UIEdgeInsets(top: 5, left: 0, bottom: 0, right: 0)
         return tableView
     }()
@@ -68,11 +67,9 @@ class FilterViewController: UIViewController {
     }
     
     func initViews() {
-        
-        view.backgroundColor = .secondarySystemBackground
-        
+        view.backgroundColor = .systemBackground
         view.addSubview(subView)
-        subView.snp_makeConstraints { make in
+        subView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
         
@@ -86,13 +83,13 @@ class FilterViewController: UIViewController {
         
         subView.addSubview(tableView)
         tableView.snp_makeConstraints { make in
-            make.top.equalTo(sortLabel.snp.bottom)
+            make.top.equalTo(sortLabel.snp.bottom).offset(10)
             make.left.right.bottom.equalToSuperview()
         }
     }
     
     private func setContentHeight() {
-        self.contentHeight = tableView.contentSize.height + 25 + 22 + 0
+        self.contentHeight = tableView.contentSize.height + 60.0
         self.panModalSetNeedsLayoutUpdate()
         self.panModalTransition(to: .shortForm)
     }
@@ -161,4 +158,10 @@ extension FilterViewController: PanModalPresentable {
     var panModalBackgroundColor: UIColor {
         return UIColor.black.withAlphaComponent(0.5)
     }
+}
+
+enum FilterType {
+    case hotel
+    case restaurant
+    case flight
 }

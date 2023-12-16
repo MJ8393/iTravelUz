@@ -421,13 +421,17 @@ open class DTPagerController: UIViewController, UIScrollViewDelegate {
     var currentIndeX = 0 {
         didSet {
             if currentIndeX == 0 {
-                pageSegmentedControl.currentIndeX = 0
                 pageSegmentedControl.leftButton.titleLabel?.textColor = .mainColor
                 pageSegmentedControl.rightButton.titleLabel?.textColor = .gray
-            } else {
-                pageSegmentedControl.currentIndeX = 1
+                pageSegmentedControl.thirdButton.titleLabel?.textColor = .gray
+            } else if currentIndeX == 1 {
                 pageSegmentedControl.leftButton.titleLabel?.textColor = .gray
                 pageSegmentedControl.rightButton.titleLabel?.textColor = .mainColor
+                pageSegmentedControl.thirdButton.titleLabel?.textColor = .gray
+            } else {
+                pageSegmentedControl.leftButton.titleLabel?.textColor = .gray
+                pageSegmentedControl.rightButton.titleLabel?.textColor = .gray
+                pageSegmentedControl.thirdButton.titleLabel?.textColor = .mainColor
             }
         }
     }

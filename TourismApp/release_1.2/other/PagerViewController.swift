@@ -7,10 +7,19 @@
 
 import UIKit
 
+
 class PagerController: DTPagerController {
     
     let viewController1 = HotelViewController()
     let viewController2 = RestaurantViewController()
+    let viewController3 = FlightViewController()
+    
+    var hotelFilterData = [String]()
+    var restaurantFilterData = [String]()
+    
+    var restaurant = [RestaurantModel]()
+    var hotels = [HotelModel]()
+
     
     init() {
         super.init(viewControllers: [])
@@ -35,13 +44,13 @@ class PagerController: DTPagerController {
         perferredScrollIndicatorHeight = 2.0
         
         viewController1.title = "Hotels"
-
         viewController2.title = "Restaurants"
-
-        viewControllers = [viewController1, viewController2]
+        viewController2.delegate = self
+        viewController1.delegate = self
+        viewController3.title = "Flights"
+        viewControllers = [viewController1, viewController2, viewController3]
         scrollIndicator.backgroundColor = UIColor.mainColor
         scrollIndicator.layer.cornerRadius = 0
-
         setSelectedPageIndex(0, animated: false)
 
 //        pageSegmentedControl.setTitleTextAttributes([.foregroundColor: UIColor.mainColor], for: .selected)
@@ -54,18 +63,39 @@ class PagerController: DTPagerController {
         font = UIFont.systemFont(ofSize: 15, weight: .medium)
         getAllHotels()
         getAllRestaurants()
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
     }
     
     @objc func filterTapped() {
         let vc = FilterViewController()
+        if currentIndeX == 0 {
+            vc.cities = hotelFilterData
+        } else if currentIndeX == 1 {
+            vc.cities = restaurantFilterData
+        } else if currentIndeX == 2 {
+            vc.cities = flightFilterData
+        }
         navigationController?.presentPanModal(vc)
     }
     
     func getAllHotels() {
+        hotelFilterData = []
+        hotels = []
         API.shared.getAllHotels { [weak self] result in
             switch result {
             case .success(let hotels):
+                self?.hotels = hotels
                 self?.viewController1.hotels = hotels
+                for hotel in hotels {
+                    if let city = hotel.city, let hotelFilterData1 = self?.hotelFilterData {
+                        if !hotelFilterData1.contains(city) {
+                            self?.hotelFilterData.append(city)
+                        }
+                    }
+                }
             case .failure(let error):
                 print("xx", error)
             }
@@ -73,13 +103,40 @@ class PagerController: DTPagerController {
     }
     
     func getAllRestaurants() {
+        restaurantFilterData = []
+        restaurant = []
         API.shared.getAllRestaurant { [weak self] result in
             switch result {
             case .success(let restaurants):
+                self?.restaurant = restaurants
                 self?.viewController2.restaurants = restaurants
+                for hotel in restaurants {
+                    if let city = hotel.city, let resutrants = self?.restaurantFilterData {
+                        if !resutrants.contains(city) {
+                            self?.restaurantFilterData.append(city)
+                        }
+                    }
+                }
             case .failure(let error):
                 print("xx", error)
             }
         }
+    }
+}
+
+extension PagerController: RestaurantViewControllerDelegate {
+    func restaurantTapped(index: Int) {
+        let vc = RestaurantDetailViewController()
+        vc.restaurant = restaurant[index]
+        navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
+extension PagerController: HotelViewControllerDelegate {
+    func hotelTapped(index: Int) {
+        let vc = HotelDetailsViewController()
+        vc.isRestaurant = false
+        vc.hotel = hotels[index]
+        navigationController?.pushViewController(vc, animated: true)
     }
 }

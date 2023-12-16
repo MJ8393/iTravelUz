@@ -91,7 +91,7 @@ extension HotelDetailsViewController: UITableViewDelegate, UITableViewDataSource
             
             if isRestaurant {
                 if let restaurant = restaurant {
-                    cell.setData(restaurant._id, restaurant.name?.getName() ?? "", restaurant.city?.getCityName() ?? "", restaurant.description?.getDescription() ?? "")
+//                    cell.setData(restaurant._id, restaurant.name?.getName() ?? "", restaurant.city?.getCityName() ?? "", restaurant.description?.getDescription() ?? "")
                 }
             } else {
                 if let hotel = hotel {
@@ -106,7 +106,7 @@ extension HotelDetailsViewController: UITableViewDelegate, UITableViewDataSource
             
             if isRestaurant {
                 if let restaurant = restaurant {
-                    cell.setMap(latitude: restaurant.location?.latitude ?? Helper.getDefaultLocation().lat, longitude: restaurant.location?.longitude ?? Helper.getDefaultLocation().lon, title: restaurant.name?.getName() ?? "", Snippet: restaurant.city?.getCityName() ?? "")
+//                    cell.setMap(latitude: restaurant.location?.latitude ?? Helper.getDefaultLocation().lat, longitude: restaurant.location?.longitude ?? Helper.getDefaultLocation().lon, title: restaurant.name?.getName() ?? "", Snippet: restaurant.city?.getCityName() ?? "")
                 }
             } else {
                 if let hotel = hotel {
