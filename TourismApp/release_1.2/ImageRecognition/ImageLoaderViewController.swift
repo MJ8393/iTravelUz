@@ -294,33 +294,86 @@ extension ImageLoaderViewController {
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
            
             if let httpResponse = response as? HTTPURLResponse {
-                   print("statusCode: \(httpResponse.statusCode)")
+                print("statusCode: \(httpResponse.statusCode)")
                 let jsonResponse = data?.prettyPrintedJSONString
                     print("JSON String: \(jsonResponse)")
-                
-                if httpResponse.statusCode == 401 {
-                    // error
-                    DispatchQueue.main.async {
-                        self.showAlert(title: "Error", message: "We could not indentify the historical destination in the photo you took.") {
-                            self.dismiss(animated: true)
+
+                if let jsonData = data {
+                    do {
+                        // Parse JSON data into YourModel
+                        let decoder = JSONDecoder()
+                        let decodedData = try decoder.decode(ImageRecognitionModel.self, from: jsonData)
+                        
+
+                        if httpResponse.statusCode == 401 {
+                            // Handle 401 status code
+                            DispatchQueue.main.async {
+                                // Show alert for 401
+                                self.showAlert(title: "Failure", message: "We could not identify the historical destination in the photo you took.") {
+                                    self.dismiss(animated: true)
+                                }
+                            }
+                        } else if httpResponse.statusCode == 200 {
+                            // Handle 200 status code
+                            DispatchQueue.main.async {
+                                if decodedData.predictions?.count != 0 && decodedData.objects?.count != 0 {
+                                    if let prediction = decodedData.predictions {
+                                        
+                                        let rate = prediction[0].confidence
+                                        if rate >= 0.60 {
+                                            if let objects = decodedData.objects {
+                                                let vc = ExploreViewController()
+                                                let newDes = objects[0]
+                                                vc.isImageRecognition = true
+                                                let destination = MainDestination(id: newDes._id, name: newDes.name, location: newDes.location, city_name: newDes.city_name, description: newDes.description, recommendationLevel: newDes.recommendationLevel, gallery: newDes.gallery, comments: newDes.comments, tts: newDes.tts)
+                                                vc.destination = destination
+                                                vc.isCity = false
+                                                self.navigationController?.pushViewController(vc, animated: true)
+                                            } else {
+                                                DispatchQueue.main.async {
+                                                    self.showAlert(title: "Failure", message: "We could not identify the historical destination in the photo you took.") {
+                                                        self.dismiss(animated: true)
+                                                    }
+                                                }
+                                            }
+                                        } else {
+                                            DispatchQueue.main.async {
+                                                self.showAlert(title: "Failure", message: "We could not identify the historical destination in the photo you took.") {
+                                                    self.dismiss(animated: true)
+                                                }
+                                            }
+                                        }
+                                    }
+                                } else {
+                                    DispatchQueue.main.async {
+                                        self.showAlert(title: "Failure", message: "We could not identify the historical destination in the photo you took.") {
+                                            self.dismiss(animated: true)
+                                        }
+                                    }
+                                }
+                            }
+                        } else {
+                            // Handle other status codes
+                            DispatchQueue.main.async {
+                                self.showAlert(title: "Failure", message: "We could not identify the historical destination in the photo you took.") {
+                                    self.dismiss(animated: true)
+                                }
+                            }
                         }
-                    }
-                } else if httpResponse.statusCode == 200 {
-                    DispatchQueue.main.async {
-                        self.showAlert(title: "Error", message: "We could not indentify the historical destination in the photo you took.") {
-                            self.dismiss(animated: true)
-                        }
-                    }
-                } else {
-                    DispatchQueue.main.async {
-                        self.showAlert(title: "Error", message: "We could not indentify the historical destination in the photo you took.") {
-                            self.dismiss(animated: true)
+
+                    } catch {
+                        // Handle JSON decoding error
+                        print("Error decoding JSON: \(error)")
+                        DispatchQueue.main.async {
+                            self.showAlert(title: "Failure", message: "We could not identify the historical destination in the photo you took.") {
+                                self.dismiss(animated: true)
+                            }
                         }
                     }
                 }
             }
         }
-        
+
         task.resume()
     } //END OF uploadImage
     
@@ -370,4 +423,27 @@ extension Data {
               let prettyPrintedString = NSString(data: data, encoding: String.Encoding.utf8.rawValue) else { return nil }
         return prettyPrintedString
     }
+}
+
+struct ImageRecognitionModel: Codable {
+    let predictions: [Predictions]?
+    let objects: [ImageDestination]?
+}
+
+struct Predictions: Codable {
+    let display_name: String?
+    let ids: String?
+    let confidence: Double
+}
+
+struct ImageDestination: Codable {
+    let _id: String
+    let name: DestionationName?
+    let location: MainLocation?
+    let city_name: CityName?
+    let description: DescriptionString?
+    let recommendationLevel: MainRecomentationLevel?
+    let gallery: [Gallery]?
+    let comments: [MainComment]?
+    let tts: TTSModel?
 }

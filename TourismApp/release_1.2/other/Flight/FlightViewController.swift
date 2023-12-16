@@ -25,7 +25,6 @@ class FlightViewController: UIViewController {
         tableView.dataSource = self
         tableView.register(FloightTableViewCell.self, forCellReuseIdentifier: String.init(describing: FloightTableViewCell.self))
         tableView.backgroundColor = .clear
-        tableView.separatorStyle = .none
         tableView.showsVerticalScrollIndicator = false
         tableView.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 50, right: 0)
         return tableView

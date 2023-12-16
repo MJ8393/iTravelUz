@@ -21,6 +21,7 @@ class ExploreViewController: BaseViewController {
     var isLiked: Bool = false
     var thisWidth: CGFloat = CGFloat(UIScreen.main.bounds.width)
     var numberOfImages: Int = 0
+    var isImageRecognition: Bool = false
     
     lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
@@ -89,6 +90,9 @@ class ExploreViewController: BaseViewController {
         navigationController?.navigationBar.barTintColor = .systemBackground
         configurePageControl()
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
+        if isImageRecognition {
+            navigationController?.navigationBar.isHidden = false
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -107,6 +111,9 @@ class ExploreViewController: BaseViewController {
         // Back button
         let backButton = CustomBarButtonView(image: UIImage(systemName: "arrow.backward")!)
         backButton.buttonAction = {
+            if self.isImageRecognition {
+                self.dismiss(animated: true)
+            }
             self.navigationController?.popViewController(animated: true)
         }
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)

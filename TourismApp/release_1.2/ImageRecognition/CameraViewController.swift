@@ -83,13 +83,8 @@ class MyCameraViewController: UIViewController {
         
         fetchLastPhoto()
         
-        if cameraManager.flashMode == .off  {
-            cameraManager.flashMode = .on
-            flashButton.setImage(UIImage(systemName: "bolt.fill"), for: .normal)
-        } else {
-            cameraManager.flashMode = .off
-            flashButton.setImage(UIImage(systemName: "bolt.slash.fill"), for: .normal)
-        }
+        cameraManager.flashMode = .off
+        flashButton.setImage(UIImage(systemName: "bolt.slash.fill"), for: .normal)
     }
     
     private func initViews() {
