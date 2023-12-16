@@ -8,10 +8,9 @@
 import UIKit
 
 class HotelDetailsViewController: UIViewController {
-
+    
     var hotel: HotelModel?
     var restaurant: RestaurantModel?
-    var isRestaurant: Bool = false
     
     lazy var subView: UIView = {
         let view = UIView()
@@ -54,65 +53,38 @@ class HotelDetailsViewController: UIViewController {
 
 extension HotelDetailsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return 3
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: String.init(describing: CollectionViewTableViewCell.self), for: indexPath) as? CollectionViewTableViewCell else { return UITableViewCell() }
-            if isRestaurant {
-                if let photos = restaurant?.photos {
-                    cell.imageURLs = photos
-                }
-            } else {
-                if let photos = hotel?.photos {
-                    cell.imageURLs = photos
-                }
+            
+            if let photos = hotel?.photos {
+                cell.imageURLs = photos
             }
+            
             cell.backgroundColor = .clear
             cell.selectionStyle = .none
             return cell
-        } else if indexPath.row == 1{
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: String.init(describing: FacilitiesTableViewCell.self), for: indexPath) as? FacilitiesTableViewCell else { return UITableViewCell() }
-            if isRestaurant {
-//                if let meals = restaurant. {
-//                    cell.facilities = meals
-//                }
-            } else {
-                if let facilities = hotel?.mostPopularFacilities {
-                    cell.facilities = facilities
-                }
-            }
-            cell.backgroundColor = .clear
-            cell.selectionStyle = .none
-            return cell
-        } else if indexPath.row == 2 {
+        } else if indexPath.row == 1 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: String.init(describing: HotelsDetailsTableViewCell.self), for: indexPath) as? HotelsDetailsTableViewCell else { return UITableViewCell() }
             
-            if isRestaurant {
-                if let restaurant = restaurant {
-//                    cell.setData(restaurant._id, restaurant.name?.getName() ?? "", restaurant.city?.getCityName() ?? "", restaurant.description?.getDescription() ?? "")
-                }
-            } else {
-                if let hotel = hotel {
-                    cell.setData(hotel._id, hotel.name ?? "", hotel.city ?? "", hotel.description)
-                }
+            
+            if let hotel = hotel {
+                cell.setData(hotel._id, hotel.name ?? "", hotel.city ?? "", hotel.description)
             }
+            
             cell.backgroundColor = .clear
             cell.selectionStyle = .none
             return cell
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: String.init(describing: GoogleMapTableViewCell.self), for: indexPath) as? GoogleMapTableViewCell else { return UITableViewCell() }
             
-            if isRestaurant {
-                if let restaurant = restaurant {
-//                    cell.setMap(latitude: restaurant.location?.latitude ?? Helper.getDefaultLocation().lat, longitude: restaurant.location?.longitude ?? Helper.getDefaultLocation().lon, title: restaurant.name?.getName() ?? "", Snippet: restaurant.city?.getCityName() ?? "")
-                }
-            } else {
-                if let hotel = hotel {
-                    cell.setMap(latitude: hotel.location?.latitude ?? Helper.getDefaultLocation().lat, longitude: hotel.location?.longitude ?? Helper.getDefaultLocation().lon, title: hotel.name ?? "", Snippet: hotel.city ?? "")
-                }
+            if let hotel = hotel {
+                cell.setMap(latitude: hotel.location?.latitude ?? Helper.getDefaultLocation().lat, longitude: hotel.location?.longitude ?? Helper.getDefaultLocation().lon, title: hotel.name ?? "", Snippet: hotel.city ?? "")
             }
+            
             cell.backgroundColor = .clear
             cell.selectionStyle = .none
             return cell

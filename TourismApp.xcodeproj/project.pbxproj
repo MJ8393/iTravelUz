@@ -130,6 +130,10 @@
 		8C82DCC52B1E52BC00AD788E /* HotelsDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C82DCC42B1E52BC00AD788E /* HotelsDetailsTableViewCell.swift */; };
 		8C82DCC72B1E709300AD788E /* GoogleMapTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C82DCC62B1E709300AD788E /* GoogleMapTableViewCell.swift */; };
 		8C93A19D2ABB7F9C009F96BA /* search_api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C93A19C2ABB7F9C009F96BA /* search_api.swift */; };
+		8CC11FA92B2DFB6A0061EB70 /* HeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC11FA82B2DFB6A0061EB70 /* HeaderTableViewCell.swift */; };
+		8CC11FAB2B2DFB910061EB70 /* HeaderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC11FAA2B2DFB910061EB70 /* HeaderCollectionViewCell.swift */; };
+		8CC11FAD2B2E0BD90061EB70 /* EatsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC11FAC2B2E0BD90061EB70 /* EatsCollectionViewCell.swift */; };
+		8CC11FAF2B2E0BE60061EB70 /* EatsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC11FAE2B2E0BE60061EB70 /* EatsTableViewCell.swift */; };
 		8CC44D4C2ABEE92900A5ACC0 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC44D4B2ABEE92900A5ACC0 /* UIImageView.swift */; };
 		8CE3B15D2B20432300A9FF08 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE3B15C2B20432300A9FF08 /* FilterViewController.swift */; };
 		8CF6F1492B204CF200A68AF9 /* FilterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF6F1482B204CF200A68AF9 /* FilterTableViewCell.swift */; };
@@ -269,6 +273,10 @@
 		8C82DCC42B1E52BC00AD788E /* HotelsDetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotelsDetailsTableViewCell.swift; sourceTree = "<group>"; };
 		8C82DCC62B1E709300AD788E /* GoogleMapTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMapTableViewCell.swift; sourceTree = "<group>"; };
 		8C93A19C2ABB7F9C009F96BA /* search_api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = search_api.swift; sourceTree = "<group>"; };
+		8CC11FA82B2DFB6A0061EB70 /* HeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderTableViewCell.swift; sourceTree = "<group>"; };
+		8CC11FAA2B2DFB910061EB70 /* HeaderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCollectionViewCell.swift; sourceTree = "<group>"; };
+		8CC11FAC2B2E0BD90061EB70 /* EatsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EatsCollectionViewCell.swift; sourceTree = "<group>"; };
+		8CC11FAE2B2E0BE60061EB70 /* EatsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EatsTableViewCell.swift; sourceTree = "<group>"; };
 		8CC44D4B2ABEE92900A5ACC0 /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		8CE3B15C2B20432300A9FF08 /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		8CF6F1482B204CF200A68AF9 /* FilterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterTableViewCell.swift; sourceTree = "<group>"; };
@@ -626,10 +634,11 @@
 		10760A302B1BEE7A007DC2C3 /* restaurant */ = {
 			isa = PBXGroup;
 			children = (
-				10E80D962B1D60DA00E90841 /* cell */,
 				10760A312B1BEE99007DC2C3 /* RestaurantViewController.swift */,
 				10E80D9B2B1D6A6800E90841 /* RestaurantAPI.swift */,
 				10953A7E2B2D56EC008FDAB4 /* RestaurantDetailViewController.swift */,
+				10E80D972B1D60EB00E90841 /* RestaurantTableViewCell.swift */,
+				10E80D962B1D60DA00E90841 /* cell */,
 			);
 			path = restaurant;
 			sourceTree = "<group>";
@@ -897,6 +906,7 @@
 		10DEB84B2A92748E008CE34F /* main_page */ = {
 			isa = PBXGroup;
 			children = (
+				10EB81452ABCBA7500D7126E /* MainModel.swift */,
 				10EB81422ABCBA0700D7126E /* API */,
 				108B56502A9D1537000DF967 /* view */,
 				10DEB84E2A9278FF008CE34F /* cell */,
@@ -917,7 +927,10 @@
 		10E80D962B1D60DA00E90841 /* cell */ = {
 			isa = PBXGroup;
 			children = (
-				10E80D972B1D60EB00E90841 /* RestaurantTableViewCell.swift */,
+				8CC11FA82B2DFB6A0061EB70 /* HeaderTableViewCell.swift */,
+				8CC11FAA2B2DFB910061EB70 /* HeaderCollectionViewCell.swift */,
+				8CC11FAE2B2E0BE60061EB70 /* EatsTableViewCell.swift */,
+				8CC11FAC2B2E0BD90061EB70 /* EatsCollectionViewCell.swift */,
 			);
 			path = cell;
 			sourceTree = "<group>";
@@ -938,7 +951,6 @@
 			isa = PBXGroup;
 			children = (
 				10EB81432ABCBA1200D7126E /* Main_API.swift */,
-				10EB81452ABCBA7500D7126E /* MainModel.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -1163,6 +1175,7 @@
 				10369B602AAD45FC00558A5E /* SiriWaveLine.swift in Sources */,
 				108FC86F2A87A1B700A97BE0 /* ChatSenderCell.swift in Sources */,
 				102DC34C2AE52B50002AB6C3 /* LoginAPI.swift in Sources */,
+				8CC11FAD2B2E0BD90061EB70 /* EatsCollectionViewCell.swift in Sources */,
 				10369B492AACF25800558A5E /* annotations.proto in Sources */,
 				10194BBB2AC4181600366A69 /* ProfileTableViewCell.swift in Sources */,
 				102DC33E2AE50728002AB6C3 /* LogoutViewController.swift in Sources */,
@@ -1222,6 +1235,7 @@
 				108FC8762A882D6000A97BE0 /* API.swift in Sources */,
 				101CCFE02AC4950300D6E90C /* ChangeLanguageCell.swift in Sources */,
 				10E80DA52B1E048400E90841 /* CustomSegmentControl.swift in Sources */,
+				8CC11FAF2B2E0BE60061EB70 /* EatsTableViewCell.swift in Sources */,
 				101388CA2AF82A2200918635 /* TopView.swift in Sources */,
 				10760A342B1BF15D007DC2C3 /* PagerViewController.swift in Sources */,
 				10EB81462ABCBA7500D7126E /* MainModel.swift in Sources */,
@@ -1232,6 +1246,7 @@
 				1051A2BF2A9BEE790083D25D /* LoaderView+ext.swift in Sources */,
 				8C82DCC72B1E709300AD788E /* GoogleMapTableViewCell.swift in Sources */,
 				10DEB8502A92791D008CE34F /* MainTableViewCell.swift in Sources */,
+				8CC11FAB2B2DFB910061EB70 /* HeaderCollectionViewCell.swift in Sources */,
 				1046C6A82AC0F4E100A7A8D4 /* ActivityImageView.swift in Sources */,
 				8CF6F1492B204CF200A68AF9 /* FilterTableViewCell.swift in Sources */,
 				108FC87C2A883D5800A97BE0 /* UserDefaults.swift in Sources */,
@@ -1248,6 +1263,7 @@
 				1051A2C12A9BEFB90083D25D /* LoaderView.swift in Sources */,
 				108B56522A9D1541000DF967 /* HeaderView.swift in Sources */,
 				8C56C12C2ABAD00B007D1781 /* GooglePlacesManager.swift in Sources */,
+				8CC11FA92B2DFB6A0061EB70 /* HeaderTableViewCell.swift in Sources */,
 				10C9163D2A7821FE0054B55C /* SceneDelegate.swift in Sources */,
 				101CCFEC2AC4BC6700D6E90C /* Ext_String.swift in Sources */,
 				10E80D982B1D60EB00E90841 /* RestaurantTableViewCell.swift in Sources */,
@@ -1434,7 +1450,7 @@
 				CODE_SIGN_ENTITLEMENTS = TourismApp/TourismApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 2PRTB3DVMF;
+				DEVELOPMENT_TEAM = L7D5MM5SF3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TourismApp/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = GuideMe;
@@ -1455,7 +1471,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mekhriddin.GuideMe;
+				PRODUCT_BUNDLE_IDENTIFIER = com.uyguntursunov.GuideMe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
