@@ -71,16 +71,15 @@ class ChatViewController: UIViewController, ChatControllerDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         checkMicPermission()
-        
-        let languague = LanguageManager.getAppLang()
-        switch languague {
-        case .English:
-            chatLanguage = "english"
-        case .Uzbek:
-            chatLanguage = "uzbek"
-        case .lanDesc:
-            chatLanguage = "english"
-        }
+//        let languague = LanguageManager.getAppLang()
+//        switch languague {
+//        case .English:
+//            chatLanguage = "english"
+//        case .Uzbek:
+//            chatLanguage = "uzbek"
+//        case .lanDesc:
+//            chatLanguage = "english"
+//        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -140,6 +139,10 @@ class ChatViewController: UIViewController, ChatControllerDelegate {
         API.shared.queryChat(question: question, language: chatLanguage) { [weak self] result in
             switch result {
             case .success(let data):
+                // MARK: Do something here
+                
+                self?.bottomSendView.setMicrofone()
+                
                 self?.bottomSendView.hideLoadingView()
                 self?.insertCell(str: data.answer, type: .recieved)
                 self?.bottomSendView.sendButton.isUserInteractionEnabled = false
@@ -202,6 +205,7 @@ class ChatViewController: UIViewController, ChatControllerDelegate {
         if isRecording {
             startAudio()
             showWaveView()
+            SpeechService.shared.stopPlaying()
             setupRecorder()
             bottomSendView.textField.isUserInteractionEnabled = false
         } else {

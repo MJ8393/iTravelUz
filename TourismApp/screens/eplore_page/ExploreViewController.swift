@@ -85,11 +85,10 @@ class ExploreViewController: BaseViewController {
         super.viewDidLoad()
         initViews()
         setupNavigation()
-        //        let header = StretchyTableHeaderView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 240))
-        //        header.imageView.image = UIImage(named: "Registan")!
-        //        header.addSwipeActions()
         tableView.tableHeaderView = collectionView
+        navigationController?.navigationBar.barTintColor = .systemBackground
         configurePageControl()
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -269,15 +268,15 @@ extension ExploreViewController: UITableViewDelegate, UITableViewDataSource {
         //        let defaultOffset = view.safeAreaInsets.top
         //        let offset = scrollView.contentOffset.y + defaultOffset
         //        navigationController?.navigationBar.transform = .init(translationX: 0, y: min(0, -offset))
-        if let collectionView = scrollView as? UITableView {
-            // It's a UICollectionView scrolling
-            let defaultOffset = view.safeAreaInsets.top
-            let offset = collectionView.contentOffset.y + defaultOffset
-            navigationController?.navigationBar.transform = .init(translationX: 0, y: min(0, -offset))
-        } else {
-            // It's some other type of UIScrollView scrolling
-            // Handle it accordingly
-        }
+//        if let collectionView = scrollView as? UITableView {
+//            // It's a UICollectionView scrolling
+//            let defaultOffset = view.safeAreaInsets.top
+//            let offset = collectionView.contentOffset.y + defaultOffset
+//            navigationController?.navigationBar.transform = .init(translationX: 0, y: min(0, -offset))
+//        } else {
+//            // It's some other type of UIScrollView scrolling
+//            // Handle it accordingly
+//        }
     }
 }
 
@@ -355,3 +354,9 @@ extension ExploreViewController: MapTableViewCellDelegate {
     
 }
 
+
+extension ExploreViewController:UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
+}

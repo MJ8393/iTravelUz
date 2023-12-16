@@ -69,6 +69,14 @@ class SpeechService: NSObject, AVAudioPlayerDelegate {
         }
     }
     
+    func pausePlayer() {
+        player?.pause()
+    }
+    
+    func replay() {
+        player?.play()
+    }
+    
     private func buildPostData(text: String, voiceType: VoiceType) -> Data {
         
         var voiceParams: [String: Any] = [
@@ -130,7 +138,6 @@ class SpeechService: NSObject, AVAudioPlayerDelegate {
         self.player?.delegate = nil
         self.player = nil
         self.busy = false
-        
         self.completionHandler!()
         self.completionHandler = nil
     }

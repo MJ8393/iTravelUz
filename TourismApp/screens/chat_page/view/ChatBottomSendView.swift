@@ -109,9 +109,14 @@ class ChatBottomSendView: UIView {
         textField.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(15)
             make.right.equalToSuperview().offset(-15)
-            make.top.equalToSuperview().offset(10)
-            make.bottom.equalToSuperview().offset(-10)
+            make.top.equalToSuperview().offset(0)
+            make.bottom.equalToSuperview().offset(-0)
         }
+    }
+    
+    func setMicrofone() {
+        sendButton.setImage(UIImage(systemName: "mic.fill"))
+        isMicrophone = true
     }
         
     @objc func sendButtonTapped() {

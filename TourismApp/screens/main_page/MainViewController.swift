@@ -81,10 +81,9 @@ class MainViewController: BaseViewController {
         self.header.updateImageWithAnimation(images[0], titlesMain[0])
         tableView.tableHeaderView = header
         setupNavigation()
-        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-         navigationController?.navigationBar.barTintColor = UIColor.mainColor
-            navigationController?.navigationBar.shadowImage = UIImage()
-               navigationController?.navigationBar.isTranslucent = true
+//        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+//         navigationController?.navigationBar.barTintColor = UIColor.mainColor
+//   
         
         performTaskWithTimer()
         NetworkMonitor.shared.delegate = self

@@ -107,10 +107,10 @@ extension ViewAllVC: UITableViewDelegate, UITableViewDataSource {
     
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let defaultOffset = view.safeAreaInsets.top
-        let offset = scrollView.contentOffset.y + defaultOffset
-        lastOffset = offset
-        navigationController?.navigationBar.transform = .init(translationX: 0, y: min(0, -offset))
+//        let defaultOffset = view.safeAreaInsets.top
+//        let offset = scrollView.contentOffset.y + defaultOffset
+//        lastOffset = offset
+//        navigationController?.navigationBar.transform = .init(translationX: 0, y: min(0, -offset))
     }
 }
 
