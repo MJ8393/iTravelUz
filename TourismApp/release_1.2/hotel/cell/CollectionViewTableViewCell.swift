@@ -17,17 +17,6 @@ class CollectionViewTableViewCell: UITableViewCell {
         return view
     }()
     
-    lazy var pageControl: UIPageControl = {
-       let pageControl = UIPageControl()
-        pageControl.currentPage = 0
-        pageControl.tintColor = .green
-        pageControl.backgroundColor = .red
-        pageControl.hidesForSinglePage = true
-        pageControl.pageIndicatorTintColor = .blue
-        pageControl.currentPageIndicatorTintColor = .brown
-        return pageControl
-    }()
-    
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -41,6 +30,16 @@ class CollectionViewTableViewCell: UITableViewCell {
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.register(MainImagesCollectionViewCell.self, forCellWithReuseIdentifier: String.init(describing: MainImagesCollectionViewCell.self))
         return collectionView
+    }()
+    
+    lazy var pageControl: UIPageControl = {
+        let pageControl = UIPageControl()
+        pageControl.numberOfPages = imageURLs.count
+        pageControl.currentPage = 0
+        pageControl.pageIndicatorTintColor = .secondaryLabel
+        pageControl.currentPageIndicatorTintColor = .systemBlue
+        pageControl.hidesForSinglePage = true
+        return pageControl
     }()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

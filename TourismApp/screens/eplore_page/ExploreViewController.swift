@@ -65,6 +65,7 @@ class ExploreViewController: BaseViewController {
         pageControl.currentPage = 0
         pageControl.pageIndicatorTintColor = .secondaryLabel
         pageControl.currentPageIndicatorTintColor = .systemBlue
+        pageControl.hidesForSinglePage = true
         return pageControl
     }()
     
@@ -89,7 +90,6 @@ class ExploreViewController: BaseViewController {
         //        header.imageView.image = UIImage(named: "Registan")!
         //        header.addSwipeActions()
         tableView.tableHeaderView = collectionView
-        configurePageControl()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -97,11 +97,6 @@ class ExploreViewController: BaseViewController {
         if let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? ExploreContentTableCell  {
             cell.stopSpeech()
         }
-    }
-    
-    private func configurePageControl() {
-        pageControl.numberOfPages = 5
-        pageControl.currentPage = 0
     }
     
     private func setupNavigation() {
@@ -189,10 +184,11 @@ class ExploreViewController: BaseViewController {
             make.edges.equalToSuperview()
         }
         
-//        subView.addSubview(pageControl)
-//        pageControl.snp_makeConstraints { make in
-//            make.centerX.equalToSuperview()
-//        }
+        subView.addSubview(pageControl)
+        pageControl.snp_makeConstraints { make in
+            make.centerX.equalTo(collectionView)
+            make.bottom.equalTo(collectionView.snp.bottom).offset(-5)
+        }
     }
 }
 

@@ -43,11 +43,11 @@ class PagerController: DTPagerController {
 
         perferredScrollIndicatorHeight = 2.0
         
-        viewController1.title = "Hotels"
-        viewController2.title = "Restaurants"
+        viewController1.title = "hotels".translate()
+        viewController2.title = "restaurants".translate()
         viewController2.delegate = self
         viewController1.delegate = self
-        viewController3.title = "Flights"
+        viewController3.title = "flights".translate()
         viewControllers = [viewController1, viewController2, viewController3]
         scrollIndicator.backgroundColor = UIColor.mainColor
         scrollIndicator.layer.cornerRadius = 0
@@ -135,7 +135,6 @@ extension PagerController: RestaurantViewControllerDelegate {
 extension PagerController: HotelViewControllerDelegate {
     func hotelTapped(index: Int) {
         let vc = HotelDetailsViewController()
-        vc.isRestaurant = false
         vc.hotel = hotels[index]
         navigationController?.pushViewController(vc, animated: true)
     }

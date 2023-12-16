@@ -35,15 +35,15 @@ extension API {
 
 struct RestaurantModel: Codable {
     let _id: String
-    let name: String?
-//    let location: RestaurantLocation?
+    let name: String
+    let location: RestaurantLocation?
     let city: String?
 //    let cousine: String?
-//    let meals: [MealModel]?
-//    let workingHours: WorkingHours?
+    let meals: [MealModel]?
+    let workingHours: WorkingHours?
     let photos: [String]?
 //    let features: [String]?
-//    let phone: [String]?
+    let phone: [String]?
 }
 
 struct RestaurantLocation: Codable {
@@ -54,8 +54,6 @@ struct RestaurantLocation: Codable {
 
 struct MealModel: Codable {
     let name: String?
-    let averagePrice: String?
-    let photo: String?
 }
 
 struct WorkingHours: Codable {

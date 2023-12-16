@@ -64,50 +64,6 @@ class HotelsDetailsTableViewCell: UITableViewCell {
         return label
     }()
     
-    lazy var phoneImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
-        imageView.image = UIImage(systemName: "phone.fill")
-        imageView.tintColor = .secondaryLabel
-        return imageView
-    }()
-    
-    lazy var phoneNumLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .label
-        label.numberOfLines = 0
-        label.lineBreakMode = .byWordWrapping
-        label.text = "+998991234567"
-        return label
-    }()
-    
-    lazy var networkImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
-        imageView.image = UIImage(systemName: "network")
-        imageView.tintColor = .secondaryLabel
-        return imageView
-    }()
-    
-    lazy var websiteLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .label
-        label.numberOfLines = 0
-        label.lineBreakMode = .byWordWrapping
-        label.text = "https://guide-me.uz"
-        return label
-    }()
-    
-    lazy var contactsLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .label
-        label.numberOfLines = 0
-        label.lineBreakMode = .byWordWrapping
-        label.font = UIFont.systemFont(ofSize: 22, weight: .semibold)
-        label.text = "Contacts"
-        return label
-    }()
-    
 //
 //    lazy var playButton: UIButton = {
 //        let button = UIButton(type: .custom)
@@ -183,39 +139,7 @@ class HotelsDetailsTableViewCell: UITableViewCell {
             make.top.equalTo(cityLabel.snp.bottom).offset(20)
             make.leading.equalToSuperview().offset(20)
             make.trailing.equalToSuperview().offset(-20)
-        }
-        
-        subView.addSubview(contactsLabel)
-        contactsLabel.snp_makeConstraints { make in
-            make.top.equalTo(descriptionLabel.snp.bottom).offset(20)
-            make.leading.equalToSuperview().offset(20)
-        }
-
-        subView.addSubview(phoneNumLabel)
-        phoneNumLabel.snp_makeConstraints { make in
-            make.top.equalTo(contactsLabel.snp.bottom).offset(10)
-            make.leading.equalToSuperview().offset(37)
-        }
-        
-        subView.addSubview(phoneImageView)
-        phoneImageView.snp_makeConstraints { make in
-            make.leading.equalToSuperview().offset(15)
-            make.centerY.equalTo(phoneNumLabel)
-            make.height.width.equalTo(18)
-        }
-        
-        subView.addSubview(websiteLabel)
-        websiteLabel.snp_makeConstraints { make in
-            make.top.equalTo(phoneNumLabel.snp.bottom).offset(10)
-            make.leading.equalToSuperview().offset(37)
-        }
-        
-        subView.addSubview(networkImageView)
-        networkImageView.snp_makeConstraints { make in
-            make.leading.equalToSuperview().offset(15)
-            make.centerY.equalTo(websiteLabel)
-            make.height.width.equalTo(18)
-            make.bottom.equalToSuperview()
+            make.bottom.equalToSuperview().offset(-5)
         }
     }
 

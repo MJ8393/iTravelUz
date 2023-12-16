@@ -22,7 +22,7 @@ final class StretchyTableHeaderView: UIView {
         label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         label.textColor = .white
         label.textAlignment = .right
-        label.text = "Samarkand"
+        //        label.text = "Samarkand"
         return label
     }()
     

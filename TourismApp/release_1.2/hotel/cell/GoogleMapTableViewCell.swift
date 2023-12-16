@@ -17,6 +17,41 @@ class GoogleMapTableViewCell: UITableViewCell {
         return view
     }()
     
+    lazy var phoneImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        imageView.image = UIImage(systemName: "phone.fill")
+        imageView.tintColor = .secondaryLabel
+        return imageView
+    }()
+    
+    lazy var phoneNumLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .label
+        label.numberOfLines = 0
+        label.lineBreakMode = .byWordWrapping
+        label.text = "+998991234567"
+        return label
+    }()
+    
+    lazy var networkImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        imageView.image = UIImage(systemName: "network")
+        imageView.tintColor = .secondaryLabel
+        return imageView
+    }()
+    
+    lazy var contactsLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .label
+        label.numberOfLines = 0
+        label.lineBreakMode = .byWordWrapping
+        label.font = UIFont.systemFont(ofSize: 22, weight: .semibold)
+        label.text = "contacts".translate()
+        return label
+    }()
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -33,11 +68,31 @@ class GoogleMapTableViewCell: UITableViewCell {
             make.edges.equalToSuperview()
         }
         
+        subView.addSubview(contactsLabel)
+        contactsLabel.snp_makeConstraints { make in
+            make.top.equalToSuperview().offset(10)
+            make.leading.equalToSuperview().offset(20)
+        }
+
+        subView.addSubview(phoneNumLabel)
+        phoneNumLabel.snp_makeConstraints { make in
+            make.top.equalTo(contactsLabel.snp.bottom).offset(10)
+            make.leading.equalToSuperview().offset(37)
+        }
+        
+        subView.addSubview(phoneImageView)
+        phoneImageView.snp_makeConstraints { make in
+            make.leading.equalToSuperview().offset(15)
+            make.centerY.equalTo(phoneNumLabel)
+            make.height.width.equalTo(18)
+        }
+        
         subView.addSubview(mapView)
         mapView.layer.cornerRadius = 22
         mapView.isUserInteractionEnabled = true
         mapView.snp.makeConstraints { make in
-            make.left.top.equalToSuperview().offset(20)
+            make.top.equalTo(phoneImageView.snp.bottom).offset(15)
+            make.left.equalToSuperview().offset(20)
             make.bottom.right.equalToSuperview().offset(-20)
             make.height.equalTo(200)
         }
@@ -49,6 +104,10 @@ class GoogleMapTableViewCell: UITableViewCell {
         marker.title = title
         marker.snippet = Snippet
         marker.map = mapView
+    }
+    
+    func setContactData(phoneNumber: String) {
+        phoneNumLabel.text = phoneNumber
     }
    
     func setMap(latitude: Double, longitude: Double, title: String, Snippet: String) {
