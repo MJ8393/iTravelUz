@@ -11,9 +11,9 @@ extension Notification.Name {
     static let languageDidChange = Notification.Name("LanguageDidChange")
 }
 
-class BaseViewController: UIViewController {
+open class BaseViewController: UIViewController {
 
-    override func viewDidLoad() {
+    open override func viewDidLoad() {
         super.viewDidLoad()
 
         NotificationCenter.default.addObserver(self, selector: #selector(languageDidChange), name: .languageDidChange, object: nil)

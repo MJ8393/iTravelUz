@@ -82,6 +82,13 @@ class PagerController: DTPagerController {
         getAllRestaurants()
     }
     
+    override func languageDidChange() {
+        print("hotels".translate(), "xxx")
+        pageSegmentedControl.leftButton.titleLabel?.text = "hotels".translate()
+        pageSegmentedControl.rightButton.titleLabel?.text = "restaurants".translate()
+        pageSegmentedControl.thirdButton.titleLabel?.text = "flights".translate()
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         isFilterTapped = false

@@ -40,8 +40,8 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         
         NotificationCenter.default.addObserver(forName: NSNotification.Name("ChangeTabBar"), object: nil, queue: nil) { _ in
             nc1.title = "home".translate()
-            nc2.title = "search".translate()
-            nc4.title = "translator".translate()
+            nc2.title = "explore".translate()
+            nc4.title = "search".translate()
             nc5.title = "profile".translate()
         }
     }
@@ -134,7 +134,6 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         }
         return true
     }
-    
 }
 
 
@@ -171,7 +170,6 @@ class ActualGradientButton: UIButton {
 
 
 extension UITabBarController{
-
     func getHeight()->CGFloat{
         return self.tabBar.frame.size.height
     }

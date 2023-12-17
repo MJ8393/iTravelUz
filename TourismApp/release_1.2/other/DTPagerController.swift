@@ -16,7 +16,7 @@ import UIKit
 
 /// DTPagerController
 /// Used to create a pager controller of multiple view controllers.
-open class DTPagerController: UIViewController, UIScrollViewDelegate {
+open class DTPagerController: BaseViewController, UIScrollViewDelegate {
 
     /// scrollIndicator below the segmented control bar.
     /// Default background color is blue.
