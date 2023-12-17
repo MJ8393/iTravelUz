@@ -132,8 +132,6 @@ class SignInViewController: UIViewController {
             make.height.equalTo(55)
            
         }
-        
-        
     }
     
     @objc func logInButtonTapped() {
