@@ -28,6 +28,7 @@ class CollectionViewTableViewCell: UITableViewCell {
         collectionView.isScrollEnabled = true
         collectionView.layer.cornerRadius = 0
         collectionView.showsHorizontalScrollIndicator = false
+        collectionView.isPagingEnabled = true
         collectionView.register(MainImagesCollectionViewCell.self, forCellWithReuseIdentifier: String.init(describing: MainImagesCollectionViewCell.self))
         return collectionView
     }()

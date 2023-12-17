@@ -8,11 +8,12 @@
 import UIKit
 
 extension UIViewController {
-    func presentXXXXOnMainThread(){
+    func presentXXXXOnMainThread(offset: CGFloat){
         // trowing things to the main thread
         DispatchQueue.main.async {
             
             let alertVC = AlertVC()
+            alertVC.offset = offset
 //                        let alertVC = UINavigationController(rootViewController: QRScanerViewController())
 
             alertVC.modalPresentationStyle = .overFullScreen
@@ -25,6 +26,8 @@ extension UIViewController {
 class AlertVC: UIViewController {
     
     let padding: CGFloat = 20
+    
+    var offset: CGFloat = 50
     
     let menuButton = ActualGradientButton(frame: CGRect(x: 0, y: 0, width: 64, height: 64))
 
@@ -67,11 +70,15 @@ class AlertVC: UIViewController {
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.5, options: [], animations: {
             // Your animation code here
             self.translateButton.snp.updateConstraints { make in
-                make.bottom.equalTo(self.view.snp.bottom).offset(-50)
+                make.bottom.equalTo(self.view.snp.bottom).offset(-self.offset)
             }
             
+            let image = UIImage(systemName: "mic.fill")?.withTintColor(.white)
+            self.chatButton.imageView?.tintColor = .white
+            self.chatButton.setImage(image, for: .normal)
+            
             self.cameraButton.snp.updateConstraints { make in
-                make.bottom.equalTo(self.view.snp.bottom).offset(-50)
+                make.bottom.equalTo(self.view.snp.bottom).offset(-self.offset)
             }
             
             self.chatButton.snp.updateConstraints { make in
@@ -104,6 +111,10 @@ class AlertVC: UIViewController {
             self.chatButton.snp.updateConstraints { make in
                 make.bottom.equalTo(self.menuButton.snp.top).offset(64)
             }
+            
+            let image = UIImage(systemName: "square.grid.2x2")?.withTintColor(.white)
+            self.chatButton.imageView?.tintColor = .white
+            self.chatButton.setImage(image, for: .normal)
 
             self.blurEffectView.alpha = 0.0 // Set the final alpha for disappearing
 
@@ -120,8 +131,9 @@ class AlertVC: UIViewController {
     
     func setupMiddleButton() {
         view.addSubview(menuButton)
+        print("xxx", -self.offset)
         menuButton.snp.makeConstraints { make in
-            make.bottom.equalTo(view.snp.bottom).offset(-50)
+            make.bottom.equalTo(view.snp.bottom).offset(-self.offset)
             make.centerX.equalToSuperview()
             make.width.height.equalTo(64)
         }
@@ -174,7 +186,7 @@ class AlertVC: UIViewController {
     func setupCameraButton() {
         view.addSubview(cameraButton)
         cameraButton.snp.makeConstraints { make in
-            make.bottom.equalTo(view.snp.bottom).offset(64)
+            make.bottom.equalTo(view.snp.bottom).offset(offset)
             make.left.equalTo(menuButton.snp.right).offset(25)
             make.width.height.equalTo(64)
         }
@@ -206,7 +218,7 @@ class AlertVC: UIViewController {
          //menuButton.backgroundColor = UIColor.init(hex: "6980FD")
         chatButton.layer.cornerRadius = 32
 
-        let image = UIImage(systemName: "mic.fill")?.withTintColor(.white)
+        let image = UIImage(systemName: "square.grid.2x2")?.withTintColor(.white)
         chatButton.imageView?.tintColor = .white
         chatButton.setImage(image, for: .normal)
         chatButton.contentVerticalAlignment = .fill
@@ -234,6 +246,7 @@ class AlertVC: UIViewController {
             self.chatButton.snp.updateConstraints { make in
                 make.bottom.equalTo(self.menuButton.snp.top).offset(64)
             }
+            
 
             self.blurEffectView.alpha = 0.0 // Set the final alpha for disappearing
 

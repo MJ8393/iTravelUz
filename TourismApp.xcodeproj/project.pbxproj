@@ -1450,17 +1450,17 @@
 				CODE_SIGN_ENTITLEMENTS = TourismApp/TourismApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = L7D5MM5SF3;
+				DEVELOPMENT_TEAM = 2PRTB3DVMF;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TourismApp/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = GuideMe;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.travel";
-				INFOPLIST_KEY_NSCameraUsageDescription = "We use camera to take photo";
+				INFOPLIST_KEY_NSCameraUsageDescription = "We use camera to take photo of historical destination and identify it using our image recognition AI tool";
 				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "We use location to find touristic destinations near you ";
 				INFOPLIST_KEY_NSLocationUsageDescription = "We use location to find touristic destinations near you ";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We use location to find touristic destinations near you ";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "We need access to your microphone so that you can use speech to text functionality and send message to AI travel assistant. ";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We need your access to save the images to your library";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We need your access to save the images to your library and  identify it using our image recognition AI tool";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -1471,7 +1471,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.uyguntursunov.GuideMe;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mekhriddin.GuideMe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -1498,12 +1498,12 @@
 				INFOPLIST_FILE = TourismApp/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = GuideMe;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.travel";
-				INFOPLIST_KEY_NSCameraUsageDescription = "We use camera to take photo";
+				INFOPLIST_KEY_NSCameraUsageDescription = "We use camera to take photo of historical destination and identify it using our image recognition AI tool";
 				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "We use location to find touristic destinations near you ";
 				INFOPLIST_KEY_NSLocationUsageDescription = "We use location to find touristic destinations near you ";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We use location to find touristic destinations near you ";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "We need access to your microphone so that you can use speech to text functionality and send message to AI travel assistant. ";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We need your access to save the images to your library";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We need your access to save the images to your library and  identify it using our image recognition AI tool";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;

@@ -107,7 +107,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
          //menuButton.backgroundColor = UIColor.init(hex: "6980FD")
          menuButton.layer.cornerRadius = 32
 
-        let image = UIImage(systemName: "mic.fill")?.withTintColor(.white)
+        let image = UIImage(systemName: "square.grid.2x2")?.withTintColor(.white)
         menuButton.imageView?.tintColor = .white
         menuButton.setImage(image, for: .normal)
         menuButton.contentVerticalAlignment = .fill
@@ -120,7 +120,8 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
     
     @objc func menuButtonAction(sender: UIButton) {
         Vibration.medium.vibrate()
-        self.presentXXXXOnMainThread()
+        let offset = UIScreen.main.bounds.height - menuButton.frame.maxY
+        self.presentXXXXOnMainThread(offset: offset)
     }
     
     @objc func dismissRegisterViewController() {
