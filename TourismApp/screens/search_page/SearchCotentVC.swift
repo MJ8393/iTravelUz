@@ -27,7 +27,7 @@ class SearchCotentVC: BaseViewController, UITextFieldDelegate {
     }()
     
     lazy var searchIconImageView: UIImageView = {
-        let imageView = UIImageView(frame: CGRect(x: 5, y: 3, width: 20, height: 20))
+        let imageView = UIImageView(frame: CGRect(x: 7, y: 4, width: 20, height: 20))
         imageView.contentMode = .scaleAspectFit
         imageView.tintColor = .secondaryLabel
         imageView.clipsToBounds = true

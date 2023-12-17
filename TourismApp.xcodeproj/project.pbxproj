@@ -93,7 +93,7 @@
 		10AD11E22ABF020E00F68BC9 /* AddToFavorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10AD11E12ABF020E00F68BC9 /* AddToFavorite.swift */; };
 		10B0D9072B1FE87900CFA9BE /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B0D9062B1FE87900CFA9BE /* NetworkMonitor.swift */; };
 		10B0D9092B1FEC5E00CFA9BE /* NetworkExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B0D9082B1FEC5E00CFA9BE /* NetworkExtension.swift */; };
-		10B389C92B167D52007FCAD7 /* FuckYouViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B389C82B167D52007FCAD7 /* FuckYouViewController.swift */; };
+		10B389C92B167D52007FCAD7 /* YouViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B389C82B167D52007FCAD7 /* YouViewController.swift */; };
 		10C193932B2021B0006A2770 /* NoInternetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C193922B2021B0006A2770 /* NoInternetViewController.swift */; };
 		10C193962B202261006A2770 /* NoInternetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C193952B202261006A2770 /* NoInternetView.swift */; };
 		10C9163B2A7821FE0054B55C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C9163A2A7821FE0054B55C /* AppDelegate.swift */; };
@@ -232,7 +232,7 @@
 		10AD11E12ABF020E00F68BC9 /* AddToFavorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToFavorite.swift; sourceTree = "<group>"; };
 		10B0D9062B1FE87900CFA9BE /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		10B0D9082B1FEC5E00CFA9BE /* NetworkExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkExtension.swift; sourceTree = "<group>"; };
-		10B389C82B167D52007FCAD7 /* FuckYouViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuckYouViewController.swift; sourceTree = "<group>"; };
+		10B389C82B167D52007FCAD7 /* YouViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouViewController.swift; sourceTree = "<group>"; };
 		10C193922B2021B0006A2770 /* NoInternetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoInternetViewController.swift; sourceTree = "<group>"; };
 		10C193952B202261006A2770 /* NoInternetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoInternetView.swift; sourceTree = "<group>"; };
 		10C916372A7821FE0054B55C /* TourismApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TourismApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -605,7 +605,7 @@
 		105359182B19492900C6BE21 /* ImageRecognition */ = {
 			isa = PBXGroup;
 			children = (
-				10B389C82B167D52007FCAD7 /* FuckYouViewController.swift */,
+				10B389C82B167D52007FCAD7 /* YouViewController.swift */,
 				10DDB2482B16A81B00276787 /* CameraViewController.swift */,
 				105359192B19495F00C6BE21 /* ImageLoaderViewController.swift */,
 			);
@@ -1255,7 +1255,7 @@
 				8C82DCC52B1E52BC00AD788E /* HotelsDetailsTableViewCell.swift in Sources */,
 				1003425C2AE8740E0075DE9A /* CommentsSmallTableViewCell.swift in Sources */,
 				10CA8A2B2B1BD4A10065E8E4 /* HotelViewController.swift in Sources */,
-				10B389C92B167D52007FCAD7 /* FuckYouViewController.swift in Sources */,
+				10B389C92B167D52007FCAD7 /* YouViewController.swift in Sources */,
 				10369B4A2AACF25800558A5E /* label.proto in Sources */,
 				10369B4B2AACF25800558A5E /* code.proto in Sources */,
 				8C3281D92B1F267D000FD0DD /* FacilitiesCollectionViewCell.swift in Sources */,
@@ -1450,7 +1450,7 @@
 				CODE_SIGN_ENTITLEMENTS = TourismApp/TourismApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 2PRTB3DVMF;
+				DEVELOPMENT_TEAM = L7D5MM5SF3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TourismApp/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = GuideMe;
@@ -1471,7 +1471,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mekhriddin.GuideMe;
+				PRODUCT_BUNDLE_IDENTIFIER = com.uyguntursunov.GuideMe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
