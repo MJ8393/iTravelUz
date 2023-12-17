@@ -85,7 +85,7 @@ class PagerController: DTPagerController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         isFilterTapped = false
-        title = "Explore"
+        title = "explore".translate()
         navigationController?.navigationBar.prefersLargeTitles = true
     }
     

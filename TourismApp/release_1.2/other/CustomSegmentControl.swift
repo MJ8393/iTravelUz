@@ -27,7 +27,7 @@ class CustomSegmentControl: UIView {
             .foregroundColor: UIColor.mainColor,
             .font: UIFont.systemFont(ofSize: 16, weight: .bold)
         ]
-        let attributedString = NSAttributedString(string: "Hotels", attributes: attributes)
+        let attributedString = NSAttributedString(string: "hotels".translate(), attributes: attributes)
         button.setAttributedTitle(attributedString, for: .normal)
         button.addTarget(self, action: #selector(leftButtonTapped), for: .touchUpInside)
         return button
@@ -39,7 +39,7 @@ class CustomSegmentControl: UIView {
             .foregroundColor: UIColor.gray,
             .font: UIFont.systemFont(ofSize: 16, weight: .bold)
         ]
-        let attributedString = NSAttributedString(string: "Restaurants", attributes: attributes)
+        let attributedString = NSAttributedString(string: "restaurants".translate(), attributes: attributes)
         button.setAttributedTitle(attributedString, for: .normal)
         button.addTarget(self, action: #selector(rightButtonTapped), for: .touchUpInside)
         return button
@@ -51,7 +51,7 @@ class CustomSegmentControl: UIView {
             .foregroundColor: UIColor.gray,
             .font: UIFont.systemFont(ofSize: 16, weight: .bold)
         ]
-        let attributedString = NSAttributedString(string: "Flights", attributes: attributes)
+        let attributedString = NSAttributedString(string: "flights".translate(), attributes: attributes)
         button.setAttributedTitle(attributedString, for: .normal)
         button.addTarget(self, action: #selector(thidButtonTapped), for: .touchUpInside)
         return button

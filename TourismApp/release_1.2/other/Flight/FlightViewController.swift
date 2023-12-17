@@ -75,7 +75,7 @@ extension FlightViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         if UD.filterFlights == "All" {
             return 2
-        } else if UD.filterFlights == "Flights inside Uzbekistan" {
+        } else if UD.filterFlights == "Flights within Uzbekistan" {
             return 1
         } else if UD.filterFlights == "International Flights" {
             return 1
@@ -86,15 +86,15 @@ extension FlightViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = UIView()
         let label = UILabel()
-        label.text = "Flights inside Uzbekistan"
+        label.text = "flights within uzbekistan".translate()
         label.textColor = .gray
         label.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
         
         if numberOfSection == 1 {
             if UD.filterFlights == "Flights inside Uzbekistan" {
-                label.text = "Flights inside Uzbekistan"
+                label.text = "flights within uzbekistan".translate()
             } else if UD.filterFlights == "International Flights" {
-                label.text = "International Flights"
+                label.text = "international flights".translate()
             }
         }
         
@@ -123,32 +123,32 @@ extension FlightViewController: UITableViewDelegate, UITableViewDataSource {
 
 
 let uzbekistanFlights = [
-    Flight(fromCity: "Buxoro", toCity: "Toshkent", price: "dan 192 010 UZS", link: "https://www.aviasales.uz/routes/bhk/tas"),
-    Flight(fromCity: "Fargʻona", toCity: "Toshkent", price: "dan 118 392 UZS", link: "https://www.aviasales.uz/routes/feg/tas"),
-    Flight(fromCity: "Qarshi", toCity: "Toshkent", price: "dan 164 128 UZS", link: "https://www.aviasales.uz/routes/ksq/tas"),
-    Flight(fromCity: "Nukus", toCity: "Toshkent", price: "dan 392 947 UZS", link: "https://www.aviasales.uz/routes/ncu/tas"),
-    Flight(fromCity: "Namangan", toCity: "Toshkent", price: "dan 108 228 UZS", link: "https://www.aviasales.uz/routes/nma/tas"),
-    Flight(fromCity: "Samarqand", toCity: "Toshkent", price: "dan 100 262 UZS", link: "https://www.aviasales.uz/routes/skd/tas"),
-    Flight(fromCity: "Toshkent", toCity: "Buxoro", price: "dan 210 139 UZS", link: "https://www.aviasales.uz/routes/tas/bhk"),
-    Flight(fromCity: "Toshkent", toCity: "Fargʻona", price: "dan 145 861 UZS", link: "https://www.aviasales.uz/routes/tas/feg"),
-    Flight(fromCity: "Toshkent", toCity: "Qarshi", price: "dan 211 650UZS", link: "https://www.aviasales.uz/routes/tas/ksq"),
-    Flight(fromCity: "Toshkent", toCity: "Nukus", price: "dan 428 108 UZS", link: "https://www.aviasales.uz/routes/tas/ncu"),
+    Flight(fromCity: "Buxoro", toCity: "Toshkent", price: "192 010 UZS", link: "https://www.aviasales.uz/routes/bhk/tas"),
+    Flight(fromCity: "Fargʻona", toCity: "Toshkent", price: "118 392 UZS", link: "https://www.aviasales.uz/routes/feg/tas"),
+    Flight(fromCity: "Qarshi", toCity: "Toshkent", price: "164 128 UZS", link: "https://www.aviasales.uz/routes/ksq/tas"),
+    Flight(fromCity: "Nukus", toCity: "Toshkent", price: "392 947 UZS", link: "https://www.aviasales.uz/routes/ncu/tas"),
+    Flight(fromCity: "Namangan", toCity: "Toshkent", price: "108 228 UZS", link: "https://www.aviasales.uz/routes/nma/tas"),
+    Flight(fromCity: "Samarqand", toCity: "Toshkent", price: "100 262 UZS", link: "https://www.aviasales.uz/routes/skd/tas"),
+    Flight(fromCity: "Toshkent", toCity: "Buxoro", price: "210 139 UZS", link: "https://www.aviasales.uz/routes/tas/bhk"),
+    Flight(fromCity: "Toshkent", toCity: "Fargʻona", price: "145 861 UZS", link: "https://www.aviasales.uz/routes/tas/feg"),
+    Flight(fromCity: "Toshkent", toCity: "Qarshi", price: "211 650UZS", link: "https://www.aviasales.uz/routes/tas/ksq"),
+    Flight(fromCity: "Toshkent", toCity: "Nukus", price: "428 108 UZS", link: "https://www.aviasales.uz/routes/tas/ncu"),
 ]
 
 let internationalFlights = [
     Flight(fromCity: "Moskva", toCity: "Buxoro", price: "1 387 472 UZS", link: "https://www.aviasales.uz/routes/mow/bhk"),
-    Flight(fromCity: "Moskva", toCity: "Samarqand", price: "dan 1 150 550 UZS", link: "https://www.aviasales.uz/routes/bhk/tas"),
-    Flight(fromCity: "Sankt-Peterburg", toCity: "Toshkent", price: "dan 912 941 UZS", link: "https://www.aviasales.uz/routes/led/tas"),
-    Flight(fromCity: "Moskva", toCity: "Toshkent", price: "dan 789 329 UZS", link: "https://www.aviasales.uz/routes/mow/tas"),
-    Flight(fromCity: "Toshkent", toCity: "Moskva", price: "dan 1 064 434 UZS", link: "https://www.aviasales.uz/routes/tas/mow"),
-    Flight(fromCity: "Moskva", toCity: "Samarqand", price: "dan 950 436 UZS", link: "https://www.aviasales.uz/routes/mow/skd"),
-    Flight(fromCity: "Istanbul", toCity: "Toshkent", price: "dan 1 672 054 UZS", link: "https://www.aviasales.uz/routes/ist/tas"),
-    Flight(fromCity: "Toshkent", toCity: "Istanbul", price: "dan 1 886 039 UZS", link: "https://www.aviasales.uz/routes/tas/ist"),
-    Flight(fromCity: "Moskva", toCity: "Namangan", price: "dan 2 879 328 UZS", link: "https://www.aviasales.uz/routes/mow/nma"),
-    Flight(fromCity: "Moskva", toCity: "Urganch", price: "dan 1 123 492 UZS", link: "https://www.aviasales.uz/routes/mow/ugc"),
-    Flight(fromCity: "Sankt-Peterburg", toCity: "Samarqand", price: "dan 1 666 148 UZS", link: "https://www.aviasales.uz/routes/led/skd"),
-    Flight(fromCity: "Sochi", toCity: "Toshkent", price: "dan 1 657 770 UZS", link: "https://www.aviasales.uz/routes/aer/tas"),
-    Flight(fromCity: "Buxoro", toCity: "Moskva", price: "dan 1 232 408 UZS", link: "https://www.aviasales.uz/routes/bhk/mow"),
+    Flight(fromCity: "Moskva", toCity: "Samarqand", price: "1 150 550 UZS", link: "https://www.aviasales.uz/routes/bhk/tas"),
+    Flight(fromCity: "Sankt-Peterburg", toCity: "Toshkent", price: "912 941 UZS", link: "https://www.aviasales.uz/routes/led/tas"),
+    Flight(fromCity: "Moskva", toCity: "Toshkent", price: "789 329 UZS", link: "https://www.aviasales.uz/routes/mow/tas"),
+    Flight(fromCity: "Toshkent", toCity: "Moskva", price: "1 064 434 UZS", link: "https://www.aviasales.uz/routes/tas/mow"),
+    Flight(fromCity: "Moskva", toCity: "Samarqand", price: "950 436 UZS", link: "https://www.aviasales.uz/routes/mow/skd"),
+    Flight(fromCity: "Istanbul", toCity: "Toshkent", price: "1 672 054 UZS", link: "https://www.aviasales.uz/routes/ist/tas"),
+    Flight(fromCity: "Toshkent", toCity: "Istanbul", price: "1 886 039 UZS", link: "https://www.aviasales.uz/routes/tas/ist"),
+    Flight(fromCity: "Moskva", toCity: "Namangan", price: "2 879 328 UZS", link: "https://www.aviasales.uz/routes/mow/nma"),
+    Flight(fromCity: "Moskva", toCity: "Urganch", price: "1 123 492 UZS", link: "https://www.aviasales.uz/routes/mow/ugc"),
+    Flight(fromCity: "Sankt-Peterburg", toCity: "Samarqand", price: "1 666 148 UZS", link: "https://www.aviasales.uz/routes/led/skd"),
+    Flight(fromCity: "Sochi", toCity: "Toshkent", price: "1 657 770 UZS", link: "https://www.aviasales.uz/routes/aer/tas"),
+    Flight(fromCity: "Buxoro", toCity: "Moskva", price: "1 232 408 UZS", link: "https://www.aviasales.uz/routes/bhk/mow"),
     Flight(fromCity: "Moskva", toCity: "Fargʻona", price: "1 202 055 UZS", link: "https://www.aviasales.uz/routes/mow/feg"),
     Flight(fromCity: "Toshkent", toCity: "Sankt-Peterburg", price: "1 681 943 UZS", link: "https://www.aviasales.uz/routes/tas/led"),
 ]

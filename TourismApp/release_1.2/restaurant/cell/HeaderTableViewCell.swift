@@ -10,7 +10,11 @@ import UIKit
 class HeaderTableViewCell: UITableViewCell {
     
     let width = UIScreen.main.bounds.width
-    var imageURLs: [String] = []
+    var imageURLs = [String]() {
+        didSet {
+            pageControl.numberOfPages = imageURLs.count
+        }
+    }
     
     lazy var containerView: UIView = {
         let view = UIView()
@@ -93,7 +97,7 @@ class HeaderTableViewCell: UITableViewCell {
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
         label.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
-        label.text = "Working hours: "
+        label.text = "working hours:".translate()
         return label
     }()
     
@@ -146,6 +150,7 @@ class HeaderTableViewCell: UITableViewCell {
         nameLabel.snp.makeConstraints { make in
             make.top.equalTo(collectionView.snp.bottom).offset(15)
             make.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().offset(-20)
         }
         
         containerView.addSubview(locationImageView)
@@ -193,8 +198,6 @@ class HeaderTableViewCell: UITableViewCell {
         nameLabel.text = name
         cityLabel.text = city
         workHoursTime.text = workHours
-        pageControl.numberOfPages = imageURLs.count
-        
     }
 }
 

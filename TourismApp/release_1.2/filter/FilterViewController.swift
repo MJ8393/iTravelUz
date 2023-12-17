@@ -32,7 +32,7 @@ class FilterViewController: UIViewController {
     
     lazy var sortLabel: UILabel = {
         let label = UILabel()
-        label.text = "Filter"
+        label.text = "filter".translate()
         label.font = .systemFont(ofSize: 24, weight: .bold)
         label.textColor = .label
         return label
