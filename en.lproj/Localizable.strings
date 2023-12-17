@@ -70,8 +70,12 @@
 "explore" = "Explore";
 "hotels" = "Hotels";
 "restaurants" = "Restaurants";
-"flights" = "flights";
+"flights" = "Flights";
 "contacts" = "Contacts";
-"view" = "Exprole";
-"working hours" = "Working hours";
+"explore" = "Exprole";
+"working hours:" = "Working hours:";
+"all" = "All";
+"filter" = "Filter";
+"flights within uzbekistan" = "Flights within Uzbekistan";
+"international flights" = "International Flights";
 

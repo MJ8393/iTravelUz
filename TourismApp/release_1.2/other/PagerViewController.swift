@@ -86,7 +86,8 @@ class PagerController: DTPagerController {
         super.viewWillAppear(animated)
         isFilterTapped = false
 //        title = "Explore"
-        self.navigationItem.title = "Explore"
+        self.navigationItem.title = "explore".translate()
+        title = "explore".translate()
         navigationController?.navigationBar.prefersLargeTitles = true
     }
     

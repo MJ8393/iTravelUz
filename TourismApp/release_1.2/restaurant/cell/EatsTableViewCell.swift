@@ -13,9 +13,9 @@ class EatsTableViewCell: UITableViewCell {
         didSet {
             collectionView.snp.updateConstraints { make in
                 if meals.count % 2 == 0 {
-                    make.height.equalTo(195 * (meals.count / 2))
+                    make.height.equalTo(205 * (meals.count / 2))
                 } else {
-                    make.height.equalTo(195 * ((meals.count / 2) + 1))
+                    make.height.equalTo(205 * ((meals.count / 2) + 1))
                 }
             }
         }
@@ -73,9 +73,9 @@ class EatsTableViewCell: UITableViewCell {
             make.bottom.equalToSuperview().offset(0)
 
             if meals.count % 2 == 0 {
-                make.height.equalTo(195 * (meals.count / 2))
+                make.height.equalTo(205 * (meals.count / 2))
             } else {
-                make.height.equalTo(195 * ((meals.count / 2) + 1))
+                make.height.equalTo(205 * ((meals.count / 2) + 1))
             }
         }
     }
@@ -93,6 +93,6 @@ extension EatsTableViewCell: UICollectionViewDelegate, UICollectionViewDataSourc
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: (UIScreen.main.bounds.width - 60) / 2, height: 195)
+        return CGSize(width: (UIScreen.main.bounds.width - 60) / 2, height: 205)
     }
 }
