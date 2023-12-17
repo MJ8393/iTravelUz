@@ -9,7 +9,7 @@ import UIKit
 
 class HeaderTableViewCell: UITableViewCell {
     
-    let width = UIScreen.main.bounds.width - 10 - 10
+    let width = UIScreen.main.bounds.width
     var imageURLs: [String] = []
     
     lazy var containerView: UIView = {
@@ -28,7 +28,7 @@ class HeaderTableViewCell: UITableViewCell {
         collectionView.dataSource = self
         collectionView.isScrollEnabled = true
         collectionView.isPagingEnabled = true
-        collectionView.layer.cornerRadius = 12
+        collectionView.layer.cornerRadius = 0
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.register(HeaderCollectionViewCell.self, forCellWithReuseIdentifier: String.init(describing: HeaderCollectionViewCell.self))
@@ -131,8 +131,8 @@ class HeaderTableViewCell: UITableViewCell {
         containerView.addSubview(collectionView)
         collectionView.snp_makeConstraints { make in
             make.top.equalToSuperview()
-            make.leading.equalToSuperview().offset(10)
-            make.trailing.equalToSuperview().offset(-10)
+            make.leading.equalToSuperview()
+            make.trailing.equalToSuperview()
             make.height.equalTo(200)
         }
         
@@ -177,9 +177,9 @@ class HeaderTableViewCell: UITableViewCell {
         
         containerView.addSubview(workHoursLabel)
         workHoursLabel.snp_makeConstraints { make in
-            make.top.equalTo(cityLabel.snp.bottom).offset(5)
+            make.top.equalTo(cityLabel.snp.bottom).offset(8)
             make.leading.equalToSuperview().offset(20)
-            make.bottom.equalToSuperview().offset(-5)
+            make.bottom.equalToSuperview().offset(0)
         }
         
         containerView.addSubview(workHoursTime)

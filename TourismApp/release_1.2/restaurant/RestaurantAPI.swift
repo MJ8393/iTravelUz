@@ -54,6 +54,7 @@ struct RestaurantLocation: Codable {
 
 struct MealModel: Codable {
     let name: String?
+    let photo: String?
 }
 
 struct WorkingHours: Codable {

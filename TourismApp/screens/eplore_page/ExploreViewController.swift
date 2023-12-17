@@ -89,7 +89,7 @@ class ExploreViewController: BaseViewController {
         setupNavigation()
         tableView.tableHeaderView = collectionView
         navigationController?.navigationBar.barTintColor = .systemBackground
-        configurePageControl()
+//        configurePageControl()
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
         if isImageRecognition {
             navigationController?.navigationBar.isHidden = false
@@ -246,6 +246,7 @@ extension ExploreViewController: UITableViewDelegate, UITableViewDataSource {
                 }
             }
             
+            cell.delegate = self
             cell.backgroundColor = .clear
             cell.selectionStyle = .none
             return cell
@@ -345,8 +346,8 @@ extension ExploreViewController: MapTableViewCellDelegate {
                 vc.isCity = false
             }
         }
-        let backButton = UIBarButtonItem(image: UIImage(systemName: "chevron.backward")!, style: .plain, target: self, action: #selector(dismissRegisterViewController))
-        backButton.tintColor = .label
+        let backButton = UIBarButtonItem(image: UIImage(systemName: "arrow.backward")!, style: .plain, target: self, action: #selector(dismissRegisterViewController))
+        backButton.tintColor = .black
 
         navigationController?.navigationItem.leftBarButtonItem = backButton
         navigationController?.pushViewController(vc, animated: true)

@@ -70,6 +70,21 @@ extension UserDefaults {
         get { return self.string(forKey: "to") }
         set { self.set(newValue, forKey: "to") }
     }
+    
+    var filterHotel: String? {
+        get { return self.string(forKey: "filterHotel") }
+        set { self.set(newValue, forKey: "filterHotel") }
+    }
+    
+    var filterRestaurant: String? {
+        get { return self.string(forKey: "filterRestaurant") }
+        set { self.set(newValue, forKey: "filterRestaurant") }
+    }
+    
+    var filterFlights: String? {
+        get { return self.string(forKey: "filterFlights") }
+        set { self.set(newValue, forKey: "filterFlights") }
+    }
 }
 
 extension Optional {

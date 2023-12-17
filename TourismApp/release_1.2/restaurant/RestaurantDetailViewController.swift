@@ -17,7 +17,7 @@ class RestaurantDetailViewController: UIViewController {
     }()
     
     lazy var tableView: UITableView = {
-        let tableView = UITableView(frame: .zero, style: .grouped)
+        let tableView = UITableView()
         tableView.backgroundColor = .clear
         tableView.delegate = self
         tableView.dataSource = self
@@ -26,13 +26,13 @@ class RestaurantDetailViewController: UIViewController {
         tableView.register(GoogleMapTableViewCell.self, forCellReuseIdentifier: String.init(describing: GoogleMapTableViewCell.self))
         tableView.separatorStyle = .none
         tableView.showsVerticalScrollIndicator = false
-        tableView.contentInset = UIEdgeInsets(top: 5, left: 0, bottom: 0, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 30, right: 0)
         return tableView
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        title = restaurant?.name
         initViews()
         if let meals = restaurant?.meals {
             print(Int(meals.count / 2))
@@ -72,6 +72,9 @@ extension RestaurantDetailViewController: UITableViewDelegate, UITableViewDataSo
             return cell
         } else if(indexPath.row == 1) {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: String.init(describing: EatsTableViewCell.self), for: indexPath) as? EatsTableViewCell else { return UITableViewCell() }
+            if let restaurant = restaurant, let meals = restaurant.meals {
+                cell.meals = meals
+            }
             cell.backgroundColor = .clear
             cell.selectionStyle = .none
             
@@ -84,12 +87,18 @@ extension RestaurantDetailViewController: UITableViewDelegate, UITableViewDataSo
             guard let cell = tableView.dequeueReusableCell(withIdentifier: String.init(describing: GoogleMapTableViewCell.self), for: indexPath) as? GoogleMapTableViewCell else { return UITableViewCell() }
             cell.backgroundColor = .clear
             cell.selectionStyle = .none
-            
-            cell.setContactData(phoneNumber: restaurant?.phone?[0] ?? "")
+            cell.delegate = self
+            cell.setContactData(phoneNumber: restaurant?.phone?[0] ?? "", website: "")
             
             cell.setMap(latitude: restaurant?.location?.latitude ?? Helper.getDefaultLocation().lat, longitude: restaurant?.location?.longitude ?? Helper.getDefaultLocation().lon, title: restaurant?.name ?? "", Snippet: restaurant?.city ?? "")
             
             return cell
         }
+    }
+}
+
+extension RestaurantDetailViewController: GoogleMapTableViewCellDelegate2 {
+    func mapViewTapped() {
+        return
     }
 }

@@ -22,16 +22,14 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         let nc2 = UINavigationController(rootViewController: PagerController())
         let nc5 = UINavigationController(rootViewController: ProfileViewController())
 
-        
         nc1.title = "home".translate()
-        nc2.title = "search".translate()
-        nc4.title = "Exprole".translate()
+        nc2.title = "view".translate()
+        nc4.title = "search".translate()
         nc5.title = "profile".translate()
-
                 
         nc1.tabBarItem.image = UIImage(systemName: "house")
-        nc2.tabBarItem.image = UIImage(systemName: "magnifyingglass")
-        nc4.tabBarItem.image = UIImage(systemName: "globe")
+        nc4.tabBarItem.image = UIImage(systemName: "magnifyingglass")
+        nc2.tabBarItem.image = UIImage(systemName: "safari")
         nc5.tabBarItem.image = UIImage(systemName: "person.crop.circle")
         nc3.tabBarItem.tag = 2
         

@@ -63,7 +63,7 @@ extension FlightViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: String.init(describing: FloightTableViewCell.self), for: indexPath) as? FloightTableViewCell else { return UITableViewCell() }
 //        cell.selectionStyle = .none
-        if indexPath.row == 0 {
+        if indexPath.section == 0 {
             cell.setData(flight: firstFlights[indexPath.row])
         } else {
             cell.setData(flight: secondFlights[indexPath.row])
@@ -73,7 +73,14 @@ extension FlightViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return numberOfSection
+        if UD.filterFlights == "All" {
+            return 2
+        } else if UD.filterFlights == "Flights inside Uzbekistan" {
+            return 1
+        } else if UD.filterFlights == "International Flights" {
+            return 1
+        }
+        return 0
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -83,6 +90,14 @@ extension FlightViewController: UITableViewDelegate, UITableViewDataSource {
         label.textColor = .gray
         label.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
         
+        if numberOfSection == 1 {
+            if UD.filterFlights == "Flights inside Uzbekistan" {
+                label.text = "Flights inside Uzbekistan"
+            } else if UD.filterFlights == "International Flights" {
+                label.text = "International Flights"
+            }
+        }
+        
         view.addSubview(label)
         label.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(20)
@@ -90,7 +105,6 @@ extension FlightViewController: UITableViewDelegate, UITableViewDataSource {
             make.top.equalToSuperview()
             make.bottom.equalToSuperview().offset(-10)
         }
-
         return view
     }
     

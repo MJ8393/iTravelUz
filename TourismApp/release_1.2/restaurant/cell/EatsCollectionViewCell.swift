@@ -13,11 +13,8 @@ class EatsCollectionViewCell: UICollectionViewCell {
         let view = UIView()
         view.clipsToBounds = false
         view.layer.cornerRadius = 12
-        view.layer.shadowColor = UIColor(red: 0.071, green: 0.071, blue: 0.071, alpha: 0.06).cgColor
-        view.layer.shadowRadius = 16
-        view.layer.shadowOpacity = 1
-        view.backgroundColor = UIColor(named: "tabbar")
-        view.layer.shadowOffset = CGSize(width: 4, height: 4)
+        view.backgroundColor = .clear
+        view.clipsToBounds = true
         return view
     }()
     
@@ -25,8 +22,8 @@ class EatsCollectionViewCell: UICollectionViewCell {
         let imageView = ActivityImageView(frame: .zero)
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
-        imageView.layer.cornerRadius = 6
-        imageView.image = UIImage(named: "eats")
+        imageView.layer.cornerRadius = 12
+        imageView.backgroundColor = .systemGray6
         return imageView
     }()
     
@@ -35,8 +32,8 @@ class EatsCollectionViewCell: UICollectionViewCell {
         nameLabel.textColor = .label
         nameLabel.textAlignment = .left
         nameLabel.lineBreakMode = .byWordWrapping
-        nameLabel.text = "Palov"
-        nameLabel.font = UIFont.systemFont(ofSize: 17, weight: .bold)
+        nameLabel.text = ""
+        nameLabel.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         return nameLabel
     }()
     
@@ -59,19 +56,23 @@ class EatsCollectionViewCell: UICollectionViewCell {
         subView.addSubview(imageView)
         imageView.snp_makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
-            make.height.width.equalTo(160.0)
+            make.height.equalTo(160.0)
         }
         
         subView.addSubview(nameLabel)
         nameLabel.snp_makeConstraints { make in
             make.top.equalTo(imageView.snp.bottom).offset(5)
             make.centerX.equalTo(imageView)
-            make.bottom.equalToSuperview().offset(-5)
         }
     }
     
     func setData(_ url: String, _ mealName: String) {
         imageView.loadImage(url: url)
         nameLabel.text = mealName
+    }
+    
+    func setMeal(meal: MealModel) {
+        imageView.loadImage(url: meal.photo)
+        nameLabel.text = meal.name
     }
 }

@@ -42,4 +42,7 @@ struct HotelModel: Codable {
     let city: String?
     let photos: [String]?
     let mostPopularFacilities: [String]?
+    let phone: String?
+    let website: String?
+    let email: String?
 }

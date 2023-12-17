@@ -9,10 +9,18 @@ import UIKit
 
 class EatsTableViewCell: UITableViewCell {
     
-    var eats: [String] = ["Shashlik", "Manti", "Sho'rva", "Somsa", "Palov"]
-    
-    var width = UIScreen.main.bounds.width - 10 - 10
-    
+    var meals = [MealModel]() {
+        didSet {
+            collectionView.snp.updateConstraints { make in
+                if meals.count % 2 == 0 {
+                    make.height.equalTo(195 * (meals.count / 2))
+                } else {
+                    make.height.equalTo(195 * ((meals.count / 2) + 1))
+                }
+            }
+        }
+    }
+        
     lazy var subView: UIView = {
         let view = UIView()
         return view
@@ -31,6 +39,8 @@ class EatsTableViewCell: UITableViewCell {
         collectionView.layer.cornerRadius = 12
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.showsVerticalScrollIndicator = false
+        collectionView.isUserInteractionEnabled = false
+        collectionView.isScrollEnabled = false
         collectionView.register(EatsCollectionViewCell.self, forCellWithReuseIdentifier: String.init(describing: EatsCollectionViewCell.self))
         return collectionView
     }()
@@ -55,36 +65,34 @@ class EatsTableViewCell: UITableViewCell {
         subView.snp_makeConstraints { make in
             make.edges.equalToSuperview()
         }
-        
         subView.addSubview(collectionView)
         collectionView.snp_makeConstraints { make in
-            make.top.equalToSuperview().offset(5)
-            make.leading.equalToSuperview().offset(10)
-            make.trailing.equalToSuperview().offset(-10)
-            make.bottom.equalToSuperview().offset(-5)
-            make.height.equalTo(200)
+            make.top.equalToSuperview().offset(20)
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().offset(-20)
+            make.bottom.equalToSuperview().offset(0)
+
+            if meals.count % 2 == 0 {
+                make.height.equalTo(195 * (meals.count / 2))
+            } else {
+                make.height.equalTo(195 * ((meals.count / 2) + 1))
+            }
         }
     }
 }
 
 extension EatsTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return eats.count
+        return meals.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String.init(describing: EatsCollectionViewCell.self), for: indexPath) as? EatsCollectionViewCell else { return UICollectionViewCell() }
-        
-//        cell.setData("", eats[indexPath.row])
-//        cell
+        cell.setMeal(meal: meals[indexPath.row])
         return cell
     }
     
-//    func numberOfSections(in collectionView: UICollectionView) -> Int {
-//        
-//    }
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 180, height: 190)
+        return CGSize(width: (UIScreen.main.bounds.width - 60) / 2, height: 195)
     }
 }

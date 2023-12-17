@@ -10,7 +10,7 @@ import UIKit
 class CollectionViewTableViewCell: UITableViewCell {
     
     var imageURLs: [String] = []
-    var width = UIScreen.main.bounds.width - 10 - 10
+    var width = UIScreen.main.bounds.width
     
     lazy var subView: UIView = {
         let view = UIView()
@@ -26,7 +26,7 @@ class CollectionViewTableViewCell: UITableViewCell {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.isScrollEnabled = true
-        collectionView.layer.cornerRadius = 6
+        collectionView.layer.cornerRadius = 0
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.register(MainImagesCollectionViewCell.self, forCellWithReuseIdentifier: String.init(describing: MainImagesCollectionViewCell.self))
         return collectionView
@@ -66,15 +66,9 @@ class CollectionViewTableViewCell: UITableViewCell {
         subView.addSubview(collectionView)
         collectionView.snp_makeConstraints { make in
             make.top.bottom.equalToSuperview()
-            make.leading.equalToSuperview().offset(10)
-            make.trailing.equalToSuperview().offset(-10)
+            make.leading.equalToSuperview().offset(0)
+            make.trailing.equalToSuperview().offset(0)
             make.height.equalTo(200)
-        }
-        
-        subView.addSubview(pageControl)
-        pageControl.snp_makeConstraints { make in
-            make.bottom.equalToSuperview().offset(-10)
-            make.centerX.equalToSuperview()
         }
     }
 }

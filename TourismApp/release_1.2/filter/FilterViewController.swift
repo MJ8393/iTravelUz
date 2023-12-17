@@ -8,17 +8,14 @@
 import UIKit
 import PanModal
 
-let flightFilterData = ["Flights inside Uzbekistan", "International Flights"]
-
 
 protocol FilterViewControllerDelegate: AnyObject {
-    
+    func indexTapped(_ index: Int, _ type: FilterType)
 }
 
 struct CityFilter {
     let name: String
 }
-
 
 class FilterViewController: UIViewController {
     
@@ -36,7 +33,7 @@ class FilterViewController: UIViewController {
     lazy var sortLabel: UILabel = {
         let label = UILabel()
         label.text = "Filter"
-        label.font = .systemFont(ofSize: 22, weight: .bold)
+        label.font = .systemFont(ofSize: 24, weight: .bold)
         label.textColor = .label
         return label
     }()
@@ -54,11 +51,20 @@ class FilterViewController: UIViewController {
         return tableView
     }()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         initViews()
+        if UD.filterHotel == nil {
+            UD.filterHotel = "All"
+        }
+        
+        if UD.filterFlights == nil {
+            UD.filterFlights = "All"
+        }
+        
+        if UD.filterRestaurant == nil {
+            UD.filterRestaurant = "All"
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -104,10 +110,31 @@ extension FilterViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: String.init(describing: FilterTableViewCell.self), for: indexPath) as? FilterTableViewCell else { return UITableViewCell() }
         
         cell.setData(cities[indexPath.row])
-        if indexPath.row == getChoosedIndex() {
-            cell.chooseImageView.isHidden = false
-        } else {
-            cell.chooseImageView.isHidden = true
+//        if indexPath.row == getChoosedIndex() {
+//            cell.chooseImageView.isHidden = false
+//        } else {
+//            cell.chooseImageView.isHidden = true
+//        }
+        switch filterType {
+        case .flight:
+            if UD.filterFlights == cities[indexPath.row] {
+                cell.chooseImageView.isHidden = false
+            } else {
+                cell.chooseImageView.isHidden = true
+            }
+        case .hotel:
+            print("xxxx", UD.filterHotel, UD.filterRestaurant, UD.filterFlights)
+            if UD.filterHotel == cities[indexPath.row] {
+                cell.chooseImageView.isHidden = false
+            } else {
+                cell.chooseImageView.isHidden = true
+            }
+        case .restaurant:
+            if UD.filterRestaurant == cities[indexPath.row] {
+                cell.chooseImageView.isHidden = false
+            } else {
+                cell.chooseImageView.isHidden = true
+            }
         }
         cell.selectionStyle = .none
         cell.backgroundColor = .clear
@@ -116,17 +143,19 @@ extension FilterViewController: UITableViewDelegate, UITableViewDataSource {
     
     func getChoosedIndex() -> Int {
         var index = 0
-//        if mode == "light" {
-//            index = 1
-//        } else if mode == "dark" {
-//            index = 0
-//        } else {
-//            index = 2
-//        }
         return index
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        delegate?.indexTapped(indexPath.row, filterType)
+        switch filterType {
+        case .flight:
+            UD.filterFlights = cities[indexPath.row]
+        case .hotel:
+            UD.filterHotel = cities[indexPath.row]
+        case .restaurant:
+            UD.filterRestaurant = cities[indexPath.row]
+        }
         dismiss(animated: true)
     }
 }
