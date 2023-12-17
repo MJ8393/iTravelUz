@@ -98,25 +98,51 @@ class CustomSegmentControl: UIView {
     @objc func leftButtonTapped() {
         callback?(0, currentIndeX)
         currentIndeX = 0
-        self.leftButton.setTitleColor(.mainColor, for: .normal)
-        self.rightButton.setTitleColor(.gray, for: .normal)
-        self.thirdButton.setTitleColor(.gray, for: .normal)
     }
     
     @objc func rightButtonTapped() {
         callback?(1, currentIndeX)
+        let attributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: UIColor.mainColor,
+            .font: UIFont.systemFont(ofSize: 16, weight: .bold)
+        ]
+        let attributedString = NSAttributedString(string: "Restaurants", attributes: attributes)
+        rightButton.setAttributedTitle(attributedString, for: .normal)
         currentIndeX = 1
-        self.leftButton.setTitleColor(.gray, for: .normal)
-        self.rightButton.setTitleColor(.mainColor, for: .normal)
-        self.thirdButton.setTitleColor(.gray, for: .normal)
     }
     
     @objc func thidButtonTapped() {
         callback?(2, currentIndeX)
+        let attributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: UIColor.mainColor,
+            .font: UIFont.systemFont(ofSize: 16, weight: .bold)
+        ]
+        let attributedString = NSAttributedString(string: "Flights", attributes: attributes)
+        thirdButton.setAttributedTitle(attributedString, for: .normal)
         currentIndeX = 2
-        self.leftButton.setTitleColor(.gray, for: .normal)
-        self.rightButton.setTitleColor(.gray, for: .normal)
-        self.thirdButton.setTitleColor(.mainColor, for: .normal)
-
+    }
+    
+    func changeAttributes(c1: UIColor, c2: UIColor, c3: UIColor) {
+        
+        let attributes1: [NSAttributedString.Key: Any] = [
+            .foregroundColor: c1,
+            .font: UIFont.systemFont(ofSize: 16, weight: .bold)
+        ]
+        let attributedString1 = NSAttributedString(string: "Hotels", attributes: attributes1)
+        leftButton.setAttributedTitle(attributedString1, for: .normal)
+        
+        let attributes2: [NSAttributedString.Key: Any] = [
+            .foregroundColor: c2,
+            .font: UIFont.systemFont(ofSize: 16, weight: .bold)
+        ]
+        let attributedString2 = NSAttributedString(string: "Restaurants", attributes: attributes2)
+        rightButton.setAttributedTitle(attributedString2, for: .normal)
+        
+        let attributes3: [NSAttributedString.Key: Any] = [
+            .foregroundColor: c3,
+            .font: UIFont.systemFont(ofSize: 16, weight: .bold)
+        ]
+        let attributedString3 = NSAttributedString(string: "Flights", attributes: attributes3)
+        thirdButton.setAttributedTitle(attributedString3, for: .normal)
     }
 }

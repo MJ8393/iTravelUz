@@ -20,8 +20,8 @@ class MainViewController: BaseViewController {
     
     var isReloadPageOpened: Bool = false
     
-    var longitude: CLLocationDegrees = 41.2995
-    var latitude: CLLocationDegrees = 69.2401
+    var longitude: CLLocationDegrees = 69.2401
+    var latitude: CLLocationDegrees = 41.2995
 
     var nearbyDestinations = [MainDestination]()
     var cities = [City]()
@@ -365,8 +365,7 @@ extension MainViewController: NetworkMonitorDelegate {
             showLoadingView()
             getCities()
             getPopular()
-            locationManager.delegate = self
-            locationManager.requestWhenInUseAuthorization()
+            getNearbyCities(lat: latitude, long: longitude)
         }
     }
 }

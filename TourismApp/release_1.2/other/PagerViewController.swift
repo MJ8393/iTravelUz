@@ -85,14 +85,16 @@ class PagerController: DTPagerController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         isFilterTapped = false
-        title = "Explore"
+//        title = "Explore"
+        self.navigationItem.title = "Explore"
         navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         if !isFilterTapped {
-            title = ""
+//            title = ""
+            self.navigationItem.title = ""
             navigationController?.navigationBar.prefersLargeTitles = false
         }
     }
@@ -134,7 +136,7 @@ class PagerController: DTPagerController {
                         }
                     }
                 }
-            case .failure(_):
+            case .failure( _):
                 self?.showAlert(title: "Error", message: "Please, Failure to get hotels")
             }
         }

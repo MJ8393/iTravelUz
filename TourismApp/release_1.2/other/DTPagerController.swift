@@ -206,10 +206,14 @@ open class DTPagerController: UIViewController, UIScrollViewDelegate {
         view.addSubview(pageScrollView)
         view.addSubview(pageSegmentedControl)
         pageSegmentedControl.callback = { [weak self] new, old in
+            self?.isActionRequied = true
+            self?.currentIndeX = new
             self?.performUpdate(with: new, previousPageIndex: old)
         }
         view.addSubview(scrollIndicator)
     }
+    
+    var isActionRequied: Bool = false
 
     open override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -221,7 +225,10 @@ open class DTPagerController: UIViewController, UIScrollViewDelegate {
         pageSegmentedControl.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: segmentedControlHeight)
 
         // Scroll view
-        setUpPageScrollView()
+        if !isActionRequied {
+            setUpPageScrollView()
+        }
+        isActionRequied = false
 
         // Update child view controllers' view frame
         for (index, viewController) in viewControllers.enumerated() {
@@ -377,24 +384,24 @@ open class DTPagerController: UIViewController, UIScrollViewDelegate {
     open func setUpSegmentedControl(viewControllers: [UIViewController]) {
 
         // Only remove all segments if using UISegmentedControl
-        if let pageSegmentedControl = pageSegmentedControl as? UISegmentedControl {
-            pageSegmentedControl.removeAllSegments()
-        }
+//        if let pageSegmentedControl = pageSegmentedControl as? UISegmentedControl {
+//            pageSegmentedControl.removeAllSegments()
+//        }
 
         for (index, _) in viewControllers.enumerated() {
             // Only insert new segment if using default UISegmentedControl
-            if let pageSegmentedControl = pageSegmentedControl as? UISegmentedControl {
-                pageSegmentedControl.insertSegment(withTitle: "", at: index, animated: false)
-            }
+//            if let pageSegmentedControl = pageSegmentedControl as? UISegmentedControl {
+//                pageSegmentedControl.insertSegment(withTitle: "", at: index, animated: false)
+//            }
 
             // Call this method to setup appearance for every single segmented.
             updateAppearanceForSegmentedItem(at: index)
         }
 
         // Add target if needed
-        if self != (pageSegmentedControl.target(forAction: #selector(pageSegmentedControlValueChanged), withSender: UIControl.Event.valueChanged) as? DTPagerController) {
-//            pageSegmentedControl.addTarget(self, action: #selector(pageSegmentedControlValueChanged), for: UIControl.Event.valueChanged)
-        }
+//        if self != (pageSegmentedControl.target(forAction: #selector(pageSegmentedControlValueChanged), withSender: UIControl.Event.valueChanged) as? DTPagerController) {
+////            pageSegmentedControl.addTarget(self, action: #selector(pageSegmentedControlValueChanged), for: UIControl.Event.valueChanged)
+//        }
 
         selectedPageIndex = previousPageIndex
     }

@@ -30,10 +30,11 @@ class EatsCollectionViewCell: UICollectionViewCell {
     lazy var nameLabel: UILabel = {
         let nameLabel = UILabel()
         nameLabel.textColor = .label
-        nameLabel.textAlignment = .left
-        nameLabel.lineBreakMode = .byWordWrapping
+        nameLabel.textAlignment = .center
+        nameLabel.lineBreakMode = .byTruncatingTail
+        nameLabel.numberOfLines = 1
         nameLabel.text = ""
-        nameLabel.font = UIFont.systemFont(ofSize: 16, weight: .medium)
+        nameLabel.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         return nameLabel
     }()
     
@@ -62,7 +63,7 @@ class EatsCollectionViewCell: UICollectionViewCell {
         subView.addSubview(nameLabel)
         nameLabel.snp_makeConstraints { make in
             make.top.equalTo(imageView.snp.bottom).offset(5)
-            make.centerX.equalTo(imageView)
+            make.left.right.equalTo(imageView)
         }
     }
     
