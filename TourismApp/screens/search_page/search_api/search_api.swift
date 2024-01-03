@@ -9,7 +9,7 @@ import Foundation
 import Alamofire
 
 extension API {
-    func searchDestination(name: String, complition: @escaping (Result<SearchModel, Error>) -> Void) {
+    func searchDestination(name: String, completion: @escaping (Result<SearchModel, Error>) -> Void) {
         let url = API_URL_SEARCH
         
         let parameters: Parameters = [
@@ -25,13 +25,12 @@ extension API {
                     do {
                         let decoder = JSONDecoder()
                         let data = try decoder.decode(SearchModel.self, from: data!)
-                        print("xxx", data.destinations.count)
-                        complition(.success(data))
+                        completion(.success(data))
                     } catch {
-                        complition(.failure(error))
+                        completion(.failure(error))
                     }
                 case .failure(let error):
-                    complition(.failure(error))
+                    completion(.failure(error))
                 }
             }
     }

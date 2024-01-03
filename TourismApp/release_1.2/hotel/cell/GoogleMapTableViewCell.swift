@@ -51,7 +51,7 @@ class GoogleMapTableViewCell: UITableViewCell {
     lazy var networkLabel: UILabel = {
         let label = UILabel()
         label.textColor = .label
-        label.numberOfLines = 0
+        label.numberOfLines = 1
         label.lineBreakMode = .byWordWrapping
         label.text = "www.google.com"
         return label
@@ -115,6 +115,7 @@ class GoogleMapTableViewCell: UITableViewCell {
         networkLabel.snp_makeConstraints { make in
             make.top.equalTo(phoneNumLabel.snp.bottom).offset(5)
             make.leading.equalToSuperview().offset(37)
+            make.trailing.equalToSuperview().offset(-20)
         }
         
         subView.addSubview(networkImageView)

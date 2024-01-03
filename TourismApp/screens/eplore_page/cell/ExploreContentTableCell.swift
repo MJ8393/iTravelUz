@@ -131,11 +131,11 @@ class ExploreContentTableCell: UITableViewCell, AVSpeechSynthesizerDelegate {
     //                self?.bottomSendView.sendButton.isUserInteractionEnabled = true
                 }
                 
-                let stopIconImage = UIImage(systemName: "stop.fill")
+                let stopIconImage = UIImage(systemName: "pause.fill")
                 playButton.setImage(stopIconImage, for: .normal)
                 isSpeedStopped = false
             } else {
-                let playIconImage = UIImage(systemName: "play.fill")
+                let playIconImage = UIImage(systemName: "pause.fill")
                 playButton.setImage(playIconImage, for: .normal)
                 SpeechService.shared.replay()
                 isSpeedStopped = false

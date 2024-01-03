@@ -44,7 +44,7 @@ class HeaderTableViewCell: UITableViewCell {
         pageControl.numberOfPages = imageURLs.count
         pageControl.currentPage = 0
         pageControl.pageIndicatorTintColor = .secondaryLabel
-        pageControl.currentPageIndicatorTintColor = .systemBlue
+        pageControl.currentPageIndicatorTintColor = .mainColor
         pageControl.hidesForSinglePage = true
         return pageControl
     }()
@@ -208,7 +208,7 @@ extension HeaderTableViewCell: UICollectionViewDelegate, UICollectionViewDataSou
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String.init(describing: HeaderCollectionViewCell.self), for: indexPath) as? HeaderCollectionViewCell else {return UICollectionViewCell()}
-        cell.setImage(with: imageURLs[indexPath.row])
+        cell.setImage(with: imageURLs[indexPath.section])
         return cell
     }
     

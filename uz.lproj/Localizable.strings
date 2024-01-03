@@ -22,7 +22,7 @@
 "favorites" = "Sevimlilar";
 "delete" = "O'chirish";
 "search" = "Qidirish";
-"search_place" = "Biror joyni qidiring ...";
+"search_place" = "Biror joyni qidiring";
 "calcel" = "Bekor qilish";
 "log_out_alert" = "Chiqishga animnisiz?";
 "choose_mode" = "Dizayn tanlang";
@@ -79,3 +79,6 @@
 "filter" = "Saralash";
 "flights within uzbekistan" = "Flights within Uzbekistan";
 "international flights" = "International Flights";
+"discover" = "Kashf eting";
+"suggested" = "Ko'p qidirilganlar";
+"cancel" = "Bekor qilish";

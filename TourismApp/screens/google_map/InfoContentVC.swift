@@ -17,11 +17,21 @@ protocol FPContentVCDelegate: AnyObject {
 class InfoContentVC: BaseViewController {
     
     weak var delegate: FPContentVCDelegate?
-    var images: [Gallery] = []
-    var gallery: [Gallery] = []
+    
+    var gallery = [Gallery]() {
+        didSet {
+            pageControl.numberOfPages = gallery.count
+        }
+    }
+    
+    var cityGallery = [String]() {
+        didSet {
+            pageControl.numberOfPages = cityGallery.count
+        }
+    }
+    
     let thisWidth = CGFloat(UIScreen.main.bounds.width - 40.0)
-    var cityGallery: [String] = []
-    var isCity = false
+    var isCity: Bool = false
     var city: City?
     var destination: MainDestination?
     
@@ -118,6 +128,16 @@ class InfoContentVC: BaseViewController {
         return collectionView
     }()
     
+    lazy var pageControl: UIPageControl = {
+        let pageControl = UIPageControl()
+        pageControl.numberOfPages = gallery.count
+        pageControl.currentPage = 0
+        pageControl.pageIndicatorTintColor = .secondaryLabel
+        pageControl.currentPageIndicatorTintColor = .mainColor
+        pageControl.hidesForSinglePage = true
+        return pageControl
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -161,7 +181,7 @@ class InfoContentVC: BaseViewController {
     }
     
     private func addSubviews() {
-        let properties = [cityLabel, descriptionLabel, goButton, shareButton, likeButton, xButton, collectionView]
+        let properties = [cityLabel, descriptionLabel, goButton, shareButton, likeButton, xButton, collectionView, pageControl]
         for property in properties {
             view.addSubview(property)
         }
@@ -214,6 +234,11 @@ class InfoContentVC: BaseViewController {
         
         let constraints = [descriptionLabelConstraints, shareButtonConstraints, likeButtonConstraints, goButtonConstrains, xButtonConstraints, collectionViewConstraints]
         for constraint in constraints { NSLayoutConstraint.activate(constraint) }
+        
+        pageControl.snp_makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.bottom.equalTo(collectionView.snp.bottom).offset(-5)
+        }
     }
     
 }
@@ -248,5 +273,10 @@ extension InfoContentVC: UICollectionViewDelegate, UICollectionViewDataSource {
             cell.backgroundColor = .clear
         }
         return cell
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let currentPage = Int(scrollView.contentOffset.x / scrollView.frame.width)
+        pageControl.currentPage = currentPage
     }
 }

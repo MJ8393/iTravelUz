@@ -24,7 +24,6 @@ class SearchVC: mapVC {
         super.viewDidLoad()
         
         setFPC()
-        
         navigationController?.navigationBar.isHidden = true
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIWindow.keyboardWillShowNotification, object: nil)

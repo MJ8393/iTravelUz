@@ -15,12 +15,31 @@ class ExploreViewController: BaseViewController {
         return view
     }()
     
-    var destination: MainDestination?
-    var city: City?
+    var numberOfImages: Int = 0
+    
+    var destination: MainDestination? {
+        didSet {
+            if isCity {
+                numberOfImages = city?.gallery?.count ?? 1
+            } else {
+                numberOfImages = destination?.gallery?.count ?? 1
+            }
+        }
+    }
+    
+    var city: City? {
+        didSet {
+            if isCity {
+                numberOfImages = city?.gallery?.count ?? 1
+            } else {
+                numberOfImages = destination?.gallery?.count ?? 1
+            }
+        }
+    }
+    
     var isCity = false
     var isLiked: Bool = false
     var thisWidth: CGFloat = CGFloat(UIScreen.main.bounds.width)
-    var numberOfImages: Int = 0
     var isImageRecognition: Bool = false
     
     lazy var tableView: UITableView = {
@@ -49,14 +68,11 @@ class ExploreViewController: BaseViewController {
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.isPagingEnabled = true
         collectionView.register(HeaderImagesCollectionViewCell.self, forCellWithReuseIdentifier: HeaderImagesCollectionViewCell.identifier)
-        collectionView.addSubview(pageControl)
         return collectionView
     }()
     
     lazy var pageControl: UIPageControl = {
         let pageControl = UIPageControl()
-        pageControl.frame = CGRect(x: 10, y: view.frame.size.height - 100, width: view.frame.size.width - 20, height: 70)
-        pageControl.hidesForSinglePage = true
         if isCity {
             numberOfImages = city?.gallery?.count ?? 1
         } else {
@@ -65,7 +81,7 @@ class ExploreViewController: BaseViewController {
         pageControl.numberOfPages = numberOfImages
         pageControl.currentPage = 0
         pageControl.pageIndicatorTintColor = .secondaryLabel
-        pageControl.currentPageIndicatorTintColor = .systemBlue
+        pageControl.currentPageIndicatorTintColor = .mainColor
         pageControl.hidesForSinglePage = true
         return pageControl
     }()
@@ -89,7 +105,7 @@ class ExploreViewController: BaseViewController {
         setupNavigation()
         tableView.tableHeaderView = collectionView
         navigationController?.navigationBar.barTintColor = .systemBackground
-//        configurePageControl()
+        //        configurePageControl()
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
         if isImageRecognition {
             navigationController?.navigationBar.isHidden = false
@@ -191,9 +207,11 @@ class ExploreViewController: BaseViewController {
             make.edges.equalToSuperview()
         }
         
+        subView.addSubview(collectionView)
+        
         subView.addSubview(pageControl)
         pageControl.snp_makeConstraints { make in
-            make.centerX.equalTo(collectionView)
+            make.centerX.equalToSuperview()
             make.bottom.equalTo(collectionView.snp.bottom).offset(-5)
         }
     }
@@ -273,15 +291,15 @@ extension ExploreViewController: UITableViewDelegate, UITableViewDataSource {
         //        let defaultOffset = view.safeAreaInsets.top
         //        let offset = scrollView.contentOffset.y + defaultOffset
         //        navigationController?.navigationBar.transform = .init(translationX: 0, y: min(0, -offset))
-//        if let collectionView = scrollView as? UITableView {
-//            // It's a UICollectionView scrolling
-//            let defaultOffset = view.safeAreaInsets.top
-//            let offset = collectionView.contentOffset.y + defaultOffset
-//            navigationController?.navigationBar.transform = .init(translationX: 0, y: min(0, -offset))
-//        } else {
-//            // It's some other type of UIScrollView scrolling
-//            // Handle it accordingly
-//        }
+        //        if let collectionView = scrollView as? UITableView {
+        //            // It's a UICollectionView scrolling
+        //            let defaultOffset = view.safeAreaInsets.top
+        //            let offset = collectionView.contentOffset.y + defaultOffset
+        //            navigationController?.navigationBar.transform = .init(translationX: 0, y: min(0, -offset))
+        //        } else {
+        //            // It's some other type of UIScrollView scrolling
+        //            // Handle it accordingly
+        //        }
     }
 }
 
@@ -348,7 +366,7 @@ extension ExploreViewController: MapTableViewCellDelegate {
         }
         let backButton = UIBarButtonItem(image: UIImage(systemName: "arrow.backward")!, style: .plain, target: self, action: #selector(dismissRegisterViewController))
         backButton.tintColor = .black
-
+        
         navigationController?.navigationItem.leftBarButtonItem = backButton
         navigationController?.pushViewController(vc, animated: true)
     }

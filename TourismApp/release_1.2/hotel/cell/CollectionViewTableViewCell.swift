@@ -9,7 +9,11 @@ import UIKit
 
 class CollectionViewTableViewCell: UITableViewCell {
     
-    var imageURLs: [String] = []
+    var imageURLs = [String]() {
+        didSet {
+            pageControl.numberOfPages = imageURLs.count
+        }
+    }
     var width = UIScreen.main.bounds.width
     
     lazy var subView: UIView = {
@@ -38,7 +42,7 @@ class CollectionViewTableViewCell: UITableViewCell {
         pageControl.numberOfPages = imageURLs.count
         pageControl.currentPage = 0
         pageControl.pageIndicatorTintColor = .secondaryLabel
-        pageControl.currentPageIndicatorTintColor = .systemBlue
+        pageControl.currentPageIndicatorTintColor = .mainColor
         pageControl.hidesForSinglePage = true
         return pageControl
     }()
@@ -71,6 +75,12 @@ class CollectionViewTableViewCell: UITableViewCell {
             make.trailing.equalToSuperview().offset(0)
             make.height.equalTo(200)
         }
+        
+        subView.addSubview(pageControl)
+        pageControl.snp_makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.bottom.equalToSuperview().offset(-5)
+        }
     }
 }
 
@@ -82,7 +92,7 @@ extension CollectionViewTableViewCell: UICollectionViewDelegate, UICollectionVie
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String.init(describing: MainImagesCollectionViewCell.self), for: indexPath) as? MainImagesCollectionViewCell else {return UICollectionViewCell()}
-        cell.setImage(with: imageURLs[indexPath.row])
+        cell.setImage(with: imageURLs[indexPath.section])
         return cell
     }
     

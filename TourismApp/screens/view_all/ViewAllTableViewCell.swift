@@ -9,7 +9,6 @@ import UIKit
 
 class TableViewCell: UITableViewCell {
     
-    weak var delegate: ViewAllVCDelegate?
     static let identifier = "TableViewCell"
     var coordinate: MainLocation?
     
@@ -27,38 +26,24 @@ class TableViewCell: UITableViewCell {
     private let cityLabel: UILabel = {
         let headerLabel = UILabel()
         headerLabel.translatesAutoresizingMaskIntoConstraints = false
-        headerLabel.textColor = UIColor(named: "view_all_colorSet")
-        headerLabel.font = .boldSystemFont(ofSize: 17)
+        headerLabel.textColor = .label
+        headerLabel.font = .systemFont(ofSize: 17, weight: .bold)
         headerLabel.text = "City Label"
         return headerLabel
     }()
     
-    
     private let locationLabel: UILabel = {
         let locationLabel = UILabel()
         locationLabel.translatesAutoresizingMaskIntoConstraints = false
-        locationLabel.textColor = UIColor(named: "view_all_colorSet")
+        locationLabel.textColor = .label
+        locationLabel.font = .systemFont(ofSize: 15, weight: .semibold)
         locationLabel.text = "Tashkent, Uzbekistan"
         return locationLabel
     }()
     
-    
-    private let locationButton: UIButton = {
-        let locationButton = UIButton()
-        locationButton.translatesAutoresizingMaskIntoConstraints = false
-        locationButton.tintColor = UIColor(named: "view_all_colorSet")
-        locationButton.backgroundColor = .secondarySystemBackground
-        let image = UIImage(systemName: "mappin.and.ellipse")
-        locationButton.setImage(image)
-        locationButton.layer.cornerRadius = 12.5
-        locationButton.addTarget(self, action: #selector(locationButtonTapped), for: .touchUpInside)
-        locationButton.isHidden = true
-        return locationButton
-    }()
-    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        let properties = [headerImageView, cityLabel, locationLabel, locationButton]
+        let properties = [headerImageView, cityLabel, locationLabel]
         for property in properties { contentView.addSubview(property) }
         
         applyConstraints()
@@ -121,21 +106,9 @@ class TableViewCell: UITableViewCell {
             locationLabel.topAnchor.constraint(equalTo: cityLabel.bottomAnchor, constant: 5),
             locationLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             cityLabel.heightAnchor.constraint(equalToConstant: 20)
-            
         ]
         
-        let locationButtonConstraints = [
-            locationButton.topAnchor.constraint(equalTo: locationLabel.bottomAnchor, constant: 5),
-            locationButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            locationButton.heightAnchor.constraint(equalToConstant: 25),
-            locationButton.widthAnchor.constraint(equalToConstant: 25)
-        ]
-        
-        let constraints = [headerImageViewConstraints, cityLabelConstraints, locationLabelConstraints, locationButtonConstraints]
+        let constraints = [headerImageViewConstraints, cityLabelConstraints, locationLabelConstraints]
         for constraint in constraints { NSLayoutConstraint.activate(constraint) }
-    }
-    
-    @objc func locationButtonTapped() {
-        delegate?.locationButtonTapped()
     }
 }

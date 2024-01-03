@@ -59,7 +59,6 @@ class HotelViewController: UIViewController {
             make.edges.equalToSuperview()
         }
     }
-
 }
 
 extension HotelViewController: UITableViewDelegate, UITableViewDataSource {

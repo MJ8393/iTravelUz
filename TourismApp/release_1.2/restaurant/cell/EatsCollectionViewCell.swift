@@ -67,11 +67,6 @@ class EatsCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    func setData(_ url: String, _ mealName: String) {
-        imageView.loadImage(url: url)
-        nameLabel.text = mealName
-    }
-    
     func setMeal(meal: MealModel) {
         imageView.loadImage(url: meal.photo)
         nameLabel.text = meal.name

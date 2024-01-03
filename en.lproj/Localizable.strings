@@ -21,7 +21,7 @@
 "favorites" = "Favorites";
 "delete" = "Delete";
 "search" = "Search";
-"search_place" = "Search for a place ...";
+"search_place" = "Search for a place";
 "calcel" = "Cancel";
 "log_out_alert" = "Are you sure you want to log out?";
 "choose_mode" = "Choose mode";
@@ -72,10 +72,11 @@
 "restaurants" = "Restaurants";
 "flights" = "Flights";
 "contacts" = "Contacts";
-"explore" = "Exprole";
 "working hours:" = "Working hours:";
 "all" = "All";
 "filter" = "Filter";
 "flights within uzbekistan" = "Flights within Uzbekistan";
 "international flights" = "International Flights";
+"discover" = "Discover";
+"cancel" = "Cancel";
 

@@ -22,7 +22,7 @@ class MainViewController: BaseViewController {
     
     var longitude: CLLocationDegrees = 69.2401
     var latitude: CLLocationDegrees = 41.2995
-
+    
     var nearbyDestinations = [MainDestination]()
     var cities = [City]()
     var popularDestionations = [MainDestination]()
@@ -34,7 +34,7 @@ class MainViewController: BaseViewController {
     
     var images = [ UIImage(named: "bukhara")!, UIImage(named: "khiva")!, UIImage(named: "juma")!, UIImage(named: "nodira_begim")!]
     var titlesMain = ["poi_kalon".translate(), "khiva".translate(), "juma_mosque".translate(), "nadiragebim".translate()]
-
+    
     lazy var subView: UIView = {
         let view = UIView()
         return view
@@ -51,24 +51,24 @@ class MainViewController: BaseViewController {
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0)
         return tableView
     }()
-
+    
     var avatarView: AccountView!
     var avatarTopConstraint: NSLayoutConstraint!
     
     let header = StretchyTableHeaderView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 220))
-
+    
     var cityRequestFinished: Bool = false
     var popularRequestFinished: Bool = false
     var nearbyRequestFinished: Bool = false
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.systemBackground
-//        self.navigationController?.navigationBar.tintColor = UIColor.mainColor
+        //        self.navigationController?.navigationBar.tintColor = UIColor.mainColor
         initViews()
         isSuccessfullyLoadedR1 = false
         isSuccessfullyLoadedR2 = false
         isSuccessfullyLoadedR3 = false
-
+        
         
         // API
         showLoadingView()
@@ -77,13 +77,13 @@ class MainViewController: BaseViewController {
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         
-//        header.imageView.image = UIImage(named: "Registan")!
+        //        header.imageView.image = UIImage(named: "Registan")!
         self.header.updateImageWithAnimation(images[0], titlesMain[0])
         tableView.tableHeaderView = header
         setupNavigation()
-//        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-//         navigationController?.navigationBar.barTintColor = UIColor.mainColor
-//   
+        //        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        //         navigationController?.navigationBar.barTintColor = UIColor.mainColor
+        //
         
         performTaskWithTimer()
         NetworkMonitor.shared.delegate = self
@@ -106,7 +106,7 @@ class MainViewController: BaseViewController {
         titles = ["near_destinations".translate(), "cities".translate(), "popular_destinations".translate()]
         tableView.reloadData()
         titlesMain = ["poi_kalon".translate(), "juma_mosque".translate(), "nadiragebim".translate(), "shoxizinda".translate(), "khiva".translate()]
-//        navigationController?.navigationBar.isHidden = true
+        //        navigationController?.navigationBar.isHidden = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -114,13 +114,13 @@ class MainViewController: BaseViewController {
         navigationController?.setNavigationBarHidden(true, animated: animated)
         startMonitoring()
     }
-
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.setNavigationBarHidden(false, animated: animated)
         stopMonitoring()
     }
-
+    
     // MARK: Get Nearby
     func getNearbyCities(lat: Double, long: Double) {
         nearbyRequestFinished = false
@@ -183,17 +183,17 @@ class MainViewController: BaseViewController {
     
     
     private func setupNavigation() {
-//        avatarView = AccountView()
-//        let gesture = UITapGestureRecognizer(target: self, action: #selector(avatarViewTapped))
-//        avatarView.addGestureRecognizer(gesture)
-//        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: avatarView)
+        //        avatarView = AccountView()
+        //        let gesture = UITapGestureRecognizer(target: self, action: #selector(avatarViewTapped))
+        //        avatarView.addGestureRecognizer(gesture)
+        //        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: avatarView)
     }
     
     @objc func avatarViewTapped() {
         let vc = PersonalViewController()
         present(UINavigationController(rootViewController: vc), animated: true)
     }
-
+    
     private func initViews() {
         view.addSubview(subView)
         subView.snp.makeConstraints { make in
@@ -208,7 +208,6 @@ class MainViewController: BaseViewController {
 }
 
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
-    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 3
     }
@@ -256,12 +255,18 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        let defaultOffset = view.safeAreaInsets.top
-//        let offset = scrollView.contentOffset.y + defaultOffset
-//        navigationController?.navigationBar.transform = .init(translationX: 0, y: min(0, -offset))
+        //        let defaultOffset = view.safeAreaInsets.top
+        //        let offset = scrollView.contentOffset.y + defaultOffset
+        //        navigationController?.navigationBar.transform = .init(translationX: 0, y: min(0, -offset))
         
         guard let header = tableView.tableHeaderView as? StretchyTableHeaderView else { return }
         header.scrollViewDidScroll(scrollView: tableView)
+        
+        if scrollView.contentOffset.y < -150 {
+            Vibration.light.vibrate()
+            let vc = ExploreViewController()
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
 }
 
@@ -303,49 +308,49 @@ extension MainViewController: MainControllerDelegate {
             vc.isCity = false
             vc.title = titles[2]
         }
-
+        
         navigationController?.pushViewController(vc, animated: true)
     }
 }
 
 extension MainViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-           switch status {
-           case .authorizedWhenInUse, .authorizedAlways:
-               locationManager.startUpdatingLocation()
-           case .denied, .restricted:
-               longitude = 41.2995
-               latitude = 69.2401
-               getNearbyCities(lat: 41.2995, long: 69.2401)
-           default:
-               break
-           }
-       }
+        switch status {
+        case .authorizedWhenInUse, .authorizedAlways:
+            locationManager.startUpdatingLocation()
+        case .denied, .restricted:
+            longitude = 41.2995
+            latitude = 69.2401
+            getNearbyCities(lat: 41.2995, long: 69.2401)
+        default:
+            break
+        }
+    }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-            if let location = locations.last {
-                let latitude = location.coordinate.latitude
-                let longitude = location.coordinate.longitude
-                
-                // Check if the location has changed significantly
-                if let previousLocation = self.previousLocation {
-                    if location.distance(from: previousLocation) > 10.0 {
-                        self.longitude = latitude
-                        self.latitude = longitude
-                        getNearbyCities(lat: latitude, long: longitude) // Change 10.0 to your desired threshold in meters
-                    }
-                } else {
+        if let location = locations.last {
+            let latitude = location.coordinate.latitude
+            let longitude = location.coordinate.longitude
+            
+            // Check if the location has changed significantly
+            if let previousLocation = self.previousLocation {
+                if location.distance(from: previousLocation) > 10.0 {
                     self.longitude = latitude
                     self.latitude = longitude
-                    getNearbyCities(lat: latitude, long: longitude)
+                    getNearbyCities(lat: latitude, long: longitude) // Change 10.0 to your desired threshold in meters
                 }
-                // Store the current location as the previous location
-                self.previousLocation = location
-                // Stop updating location if needed
-                locationManager.stopUpdatingLocation()
+            } else {
+                self.longitude = latitude
+                self.latitude = longitude
+                getNearbyCities(lat: latitude, long: longitude)
             }
+            // Store the current location as the previous location
+            self.previousLocation = location
+            // Stop updating location if needed
+            locationManager.stopUpdatingLocation()
         }
-
+    }
+    
 }
 
 extension MainViewController: NetworkMonitorDelegate {
