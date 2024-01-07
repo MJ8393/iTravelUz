@@ -19,15 +19,13 @@ class MainImagesCollectionViewCell: UICollectionViewCell {
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.image = UIImage(named: "Registan")
+        imageView.backgroundColor = .secondaryLabel
         return imageView
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        contentView.addSubview(imageView)
-        imageView.snp_makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
+        initViews()
     }
     
     required init?(coder: NSCoder) {

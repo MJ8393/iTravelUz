@@ -70,9 +70,7 @@ extension ViewAllVC: UITableViewDelegate, UITableViewDataSource {
 //            if let gallery = destionations[indexPath.row].gallery {
 //                self.gallery[indexPath.row] = gallery[indexPath.row]
 //            }
-            
         }
-        
         cell.backgroundColor = .clear
         cell.selectionStyle = .none
         return cell

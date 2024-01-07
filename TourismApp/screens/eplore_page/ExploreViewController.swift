@@ -377,7 +377,6 @@ extension ExploreViewController: MapTableViewCellDelegate {
     
 }
 
-
 extension ExploreViewController:UIGestureRecognizerDelegate {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true

@@ -26,7 +26,7 @@ class SuggestedTableViewCell: UITableViewCell {
     
     lazy var nameLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 17, weight: .medium)
+        label.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
         label.text = "Registan"
         label.numberOfLines = 1
         label.textColor = .label
@@ -35,10 +35,10 @@ class SuggestedTableViewCell: UITableViewCell {
     
     lazy var cityNameLabel: UILabel = {
         let authorLabel = UILabel()
-        authorLabel.textColor = .secondaryLabel
+        authorLabel.textColor = .label
         authorLabel.textAlignment = .left
         authorLabel.lineBreakMode = .byWordWrapping
-        authorLabel.font = UIFont.systemFont(ofSize: 14)
+        authorLabel.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         authorLabel.text = "Samarkand"
         return authorLabel
     }()

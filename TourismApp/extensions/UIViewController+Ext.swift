@@ -9,6 +9,16 @@ import UIKit
 
 extension UIViewController {
     
+    func hideKeyboardWhenTappedAround() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+    
     func getBottomMargin() -> CGFloat{
         if #available(iOS 11.0, *) {
             let window = UIApplication.shared.keyWindow

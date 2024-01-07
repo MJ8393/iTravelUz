@@ -96,9 +96,6 @@ class LoginViewController: UIViewController {
             make.left.equalToSuperview().offset(20)
             make.right.equalToSuperview().offset(-20)
         }
-        
-        
-        
     }
     
     override func viewDidLayoutSubviews() {

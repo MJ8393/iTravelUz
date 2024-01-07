@@ -3,4 +3,102 @@
    uuid = "DA4CAE61-AB5C-4884-8F28-BB72C8AC04E1"
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F6D64881-89DE-401C-9E13-3F1FDB338063"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TourismApp/release_1.3/TripPlanner/CustomViews/TripLengthView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
+            landmarkName = "plusButtonPressed()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "20C17292-A642-4107-91BF-5BE71E6DC501"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TourismApp/release_1.3/TripPlanner/TableViewCells/DateTableViewCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "41"
+            endingLineNumber = "41"
+            landmarkName = "plus()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CE744215-9059-4FA7-B1E3-FF25622E65F6"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TourismApp/release_1.3/TripPlanner/TableViewCells/DateTableViewCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
+            landmarkName = "plus()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "83EB7108-6143-479C-A097-C3A32438CC86"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TourismApp/release_1.3/TripPlanner/TableViewCells/MyTripsTableViewCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "88"
+            endingLineNumber = "88"
+            landmarkName = "firstButtonPressed()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "83EB7108-6143-479C-A097-C3A32438CC86 - bdace9a0b32c6bad"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TourismApp.MyTripsTableViewCell.secondButtonPressed() -&gt; ()"
+                  moduleName = "TourismApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/uyguntursunov/Desktop/development/iTravelUz/TourismApp/release_1.3/TripPlanner/TableViewCells/MyTripsTableViewCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "88"
+                  endingLineNumber = "88"
+                  offsetFromSymbolStart = "30">
+               </Location>
+               <Location
+                  uuid = "83EB7108-6143-479C-A097-C3A32438CC86 - 452abeb1785da961"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TourismApp.MyTripsTableViewCell.firstButtonPressed() -&gt; ()"
+                  moduleName = "TourismApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/uyguntursunov/Desktop/development/iTravelUz/TourismApp/release_1.3/TripPlanner/TableViewCells/MyTripsTableViewCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "89"
+                  endingLineNumber = "89"
+                  offsetFromSymbolStart = "30">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>
