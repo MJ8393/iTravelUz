@@ -20,7 +20,6 @@ class SectionHeaderView: UIView {
 
     lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Title"
         label.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
         label.textColor = .label
         return label

@@ -38,6 +38,10 @@ struct Context: Codable {
 }
 
 //MARK: - Search Model
+struct GlobalSearchModel: Codable {
+    let cities: [City]
+}
+
 struct SearchModel: Codable {
     let destinations: [SearchDestinationModel]
 }

@@ -1,13 +1,13 @@
 //
-//  CompanionsCollectionViewCell.swift
+//  InterestsCollectionViewCell.swift
 //  TourismApp
 //
-//  Created by Uyg'un Tursunov on 06/01/24.
+//  Created by Uyg'un Tursunov on 13/01/24.
 //
 
 import UIKit
 
-class CompanionsCollectionViewCell: UICollectionViewCell {
+class InterestsCollectionViewCell: UICollectionViewCell {
     
     var isAlreadySelected: Bool = false
     
@@ -26,12 +26,12 @@ class CompanionsCollectionViewCell: UICollectionViewCell {
     }()
     
     lazy var imageView: UIImageView = {
-        let imageView = UIImageView(frame: .zero)
+        let imageView = UIImageView()
         imageView.backgroundColor = .clear
         imageView.tintColor = .label
         imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
-        imageView.layer.cornerRadius = 20
+        imageView.layer.cornerRadius = 15
         return imageView
     }()
     
@@ -41,7 +41,7 @@ class CompanionsCollectionViewCell: UICollectionViewCell {
         label.textAlignment = .left
         label.lineBreakMode = .byTruncatingTail
         label.numberOfLines = 1
-        label.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
+        label.font = UIFont.systemFont(ofSize: 15, weight: .medium)
         return label
     }()
     
@@ -56,6 +56,7 @@ class CompanionsCollectionViewCell: UICollectionViewCell {
     }
     
     func updateCheckStatus() {
+        isAlreadySelected.toggle()
         titleLabel.textColor = isAlreadySelected ? .white : .label
         imageView.tintColor = isAlreadySelected ? .white : .label
         subView.backgroundColor = isAlreadySelected ? .mainColor : UIColor(named: "tabbar")
@@ -64,25 +65,30 @@ class CompanionsCollectionViewCell: UICollectionViewCell {
     func initViews() {
         contentView.addSubview(subView)
         subView.snp_makeConstraints { make in
-            make.top.leading.equalToSuperview().offset(10)
-            make.trailing.bottom.equalToSuperview().offset(-10)
+            make.top.equalToSuperview().offset(10)
+            make.leading.equalToSuperview().offset(5)
+            make.trailing.equalToSuperview().offset(-5)
+            make.bottom.equalToSuperview().offset(-10)
+        }
+        
+        subView.addSubview(imageView)
+        imageView.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(10)
+            make.leading.equalToSuperview().offset(10)
+            make.bottom.equalToSuperview().offset(-10)
+            make.height.width.equalTo(30)
         }
         
         subView.addSubview(titleLabel)
         titleLabel.snp_makeConstraints { make in
-            make.bottom.equalToSuperview().offset(-15)
-            make.leading.equalToSuperview().offset(15)
-        }
-        
-        subView.addSubview(imageView)
-        imageView.snp_makeConstraints { make in
-            make.top.leading.equalToSuperview().offset(15)
-            make.height.width.equalTo(40)
+            make.centerY.equalTo(imageView)
+            make.leading.equalTo(imageView.snp.trailing).offset(10)
+            make.trailing.equalToSuperview().offset(-10)
         }
     }
     
-    func setData(title: String, imageTitle: String) {
+    func setData(title: String, imageName: String) {
         titleLabel.text = title
-        imageView.image = UIImage(systemName: imageTitle)
+        imageView.image = UIImage(systemName: imageName)
     }
 }

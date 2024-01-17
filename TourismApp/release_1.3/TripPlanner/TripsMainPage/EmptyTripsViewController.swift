@@ -7,12 +7,12 @@
 
 import UIKit
 
-protocol NoTripsViewControllerDelegate: AnyObject {
-    func createButtonPressed()
+protocol EmptyTripsViewControllerDelegate: AnyObject {
+    func createWithAIButtonPressed()
 }
 
-class NoTripsViewController: BaseViewController {
-
+class EmptyTripsViewController: BaseViewController {
+    
     lazy var subView: UIView = {
         let view = UIView()
         return view
@@ -25,14 +25,13 @@ class NoTripsViewController: BaseViewController {
         tableView.separatorStyle = .none
         tableView.showsVerticalScrollIndicator = false
         tableView.backgroundColor = .clear
-        tableView.register(NoTripsTableViewCell.self, forCellReuseIdentifier: String(describing: NoTripsTableViewCell.self))
-        tableView.register(ButtonTableViewCell.self, forCellReuseIdentifier: String(describing: ButtonTableViewCell.self))
+        tableView.register(EmptyTripsTableViewCell.self, forCellReuseIdentifier: String(describing: EmptyTripsTableViewCell.self))
         return tableView
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         initViews()
     }
     
@@ -49,10 +48,6 @@ class NoTripsViewController: BaseViewController {
     private func initViews() {
         title = "My Trips"
         
-        let backButton = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        backButton.tintColor = .mainColor
-        navigationItem.backBarButtonItem = backButton
-        
         view.addSubview(subView)
         subView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
@@ -63,32 +58,31 @@ class NoTripsViewController: BaseViewController {
             make.edges.equalToSuperview()
         }
     }
+    
+    @objc func dismissVC() {
+        dismiss(animated: true)
+    }
 }
 
-extension NoTripsViewController: UITableViewDelegate, UITableViewDataSource {
+extension EmptyTripsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == 0 {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: NoTripsTableViewCell.self), for: indexPath) as? NoTripsTableViewCell else { return UITableViewCell() }
-            cell.backgroundColor = .clear
-            cell.selectionStyle = .none
-            return cell
-        } else {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: ButtonTableViewCell.self), for: indexPath) as? ButtonTableViewCell else { return UITableViewCell() }
-            cell.delegate = self
-            cell.backgroundColor = .clear
-            cell.selectionStyle = .none
-            return cell
-        }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: EmptyTripsTableViewCell.self), for: indexPath) as? EmptyTripsTableViewCell else { return UITableViewCell() }
+        cell.delegate = self
+        cell.backgroundColor = .clear
+        cell.selectionStyle = .none
+        return cell
     }
 }
 
-extension NoTripsViewController: NoTripsViewControllerDelegate {
-    func createButtonPressed() {
+extension EmptyTripsViewController: EmptyTripsViewControllerDelegate {
+    func createWithAIButtonPressed() {
         let vc = PageViewController()
-        navigationController?.pushViewController(vc, animated: true)
+        let navigationController = UINavigationController(rootViewController: vc)
+        navigationController.modalPresentationStyle = .fullScreen
+        self.navigationController?.present(navigationController, animated: true)
     }
 }

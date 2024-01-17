@@ -62,9 +62,9 @@ class SuggestedTableViewCell: UITableViewCell {
         subView.addSubview(mainImageView)
         mainImageView.snp_makeConstraints { make in
             make.leading.equalToSuperview().offset(15)
-            make.top.equalToSuperview().offset(8)
-            make.bottom.equalToSuperview().offset(-8)
-            make.height.width.equalTo(100)
+            make.top.equalToSuperview().offset(5)
+            make.bottom.equalToSuperview().offset(-5)
+            make.height.width.equalTo(80)
         }
         
         subView.addSubview(nameLabel)
@@ -82,9 +82,9 @@ class SuggestedTableViewCell: UITableViewCell {
         }
     }
     
-    func setData(with model: SearchDestinationModel) {
-        mainImageView.loadImage(url: model.gallery?[0].url)
+    func setData(model: City) {
+        mainImageView.loadImage(url: model.gallery?[0])
         nameLabel.text = model.name?.getName()
-        cityNameLabel.text = model.city_name?.getCityName()
+        cityNameLabel.text = model.country?.getCountry()
     }
 }

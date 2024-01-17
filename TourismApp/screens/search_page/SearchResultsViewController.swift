@@ -59,7 +59,7 @@ extension SearchResultsViewController: UITableViewDelegate, UITableViewDataSourc
         guard let cell = tableView.dequeueReusableCell(withIdentifier: String.init(describing: SuggestedTableViewCell.self), for: indexPath) as? SuggestedTableViewCell else {return UITableViewCell()}
         cell.backgroundColor = .clear
         cell.selectionStyle = .none
-        cell.setData(with: searchResults[indexPath.row])
+//        cell.setData(with: searchResults[indexPath.row])
         return cell
     }
 }

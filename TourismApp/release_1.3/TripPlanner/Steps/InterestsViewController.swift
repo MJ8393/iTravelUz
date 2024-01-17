@@ -48,7 +48,7 @@ class InterestsViewController: UIViewController {
 
 extension InterestsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 8
+        return 2
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -57,13 +57,12 @@ extension InterestsViewController: UITableViewDelegate, UITableViewDataSource {
             cell.backgroundColor = .clear
             cell.selectionStyle = .none
             cell.titleLabel.text = "Interests"
-            cell.descriptionLabel.text = "Choose as many as you like"
+            cell.descriptionLabel.text = "Select all that apply"
             return cell
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: InterestsTableViewCell.self), for: indexPath) as? InterestsTableViewCell else { return UITableViewCell() }
             cell.backgroundColor = .clear
             cell.selectionStyle = .none
-            cell.isInterest = true
             return cell
         }
     }

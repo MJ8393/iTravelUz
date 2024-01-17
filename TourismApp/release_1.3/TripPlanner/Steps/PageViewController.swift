@@ -11,6 +11,8 @@ class PageViewController: UIViewController {
     
     var width = UIScreen.main.bounds.width
     var currentPageIndex: Int = 0
+    var didChoosePlace: Bool = false
+    var didChooseBudget: Bool = false
     
     lazy var progressView: UIProgressView = {
         let progressView = UIProgressView(progressViewStyle: .default)
@@ -26,6 +28,13 @@ class PageViewController: UIViewController {
         pc.dataSource = self
         pc.isDoubleSided = true
         return pc
+    }()
+    
+    lazy var continueBtn: Button = {
+        let btn = Button(title: "Continue")
+        btn.layer.cornerRadius = 15
+        btn.addTarget(self, action: #selector(continueBtnPressed), for: .touchUpInside)
+        return btn
     }()
     
     lazy var viewControllerList: [UIViewController] = {
@@ -51,36 +60,65 @@ class PageViewController: UIViewController {
         }
     }
     
-    @objc func nextButtonPressed() {
-        updateProgressView(index: (currentPageIndex + 1) + 1)
-        guard currentPageIndex < viewControllerList.count - 1 else {
-            let vc = TripDetailsViewController()
-            navigationController?.pushViewController(vc, animated: true)
-            return
+    @objc func continueBtnPressed() {
+        if didChoosePlace {
+            updateProgressView(index: (currentPageIndex + 1) + 1)
+            guard currentPageIndex < viewControllerList.count - 1 else {
+                if didChooseBudget {
+                    let vc = TripDetailsViewController()
+                    navigationController?.pushViewController(vc, animated: true)
+                } else {
+                    showAlert(title: "Error", message: "Please, choose based on your budget")
+                }
+                return
+            }
+            pageViewController.setViewControllers([viewControllerList[currentPageIndex + 1]], direction: .forward, animated: true)
+            currentPageIndex += 1
+        } else {
+            showAlert(title: "Error", message: "Please, choose the place")
         }
-        pageViewController.setViewControllers([viewControllerList[currentPageIndex + 1]], direction: .forward, animated: true)
-        currentPageIndex += 1
         
     }
     
     @objc func backButtonPressed() {
-        guard currentPageIndex > 0 else { return }
-        updateProgressView(index: (currentPageIndex + 1))
-        pageViewController.setViewControllers([viewControllerList[currentPageIndex]], direction: .forward, animated: true)
+        guard currentPageIndex > 0 else {
+            dismiss(animated: true)
+            return }
+        updateProgressView(index: (currentPageIndex + 1) - 1)
+        pageViewController.setViewControllers([viewControllerList[currentPageIndex - 1]], direction: .reverse, animated: true)
         currentPageIndex -= 1
     }
     
+    @objc func xButtonPressed() {
+        dismiss(animated: true)
+    }
+    
+    @objc func didSelectCell(_ notification: Notification) {
+        if let choosePlace = notification.userInfo?["didChoosePlace"] as? Bool {
+            didChoosePlace = choosePlace
+        }
+    }
+    
+    @objc func didSelectBudget(_ notification: Notification) {
+        if let chooseBudget = notification.userInfo?["didChooseBudget"] as? Bool {
+            didChooseBudget = chooseBudget
+        }
+    }
+    
     private func initViews() {
-        let backButton = UIBarButtonItem(title: "", style: .plain, target: self, action: #selector(backButtonPressed))
-        backButton.tintColor = .mainColor
-        navigationItem.backBarButtonItem = backButton
+        view.backgroundColor = .systemBackground
         
-        let nextButton = UIBarButtonItem(title: "Next", style: .done, target: self, action: #selector(nextButtonPressed))
-        nextButton.tintColor = .mainColor
-        let attributes: [NSAttributedString.Key : Any] = [
-            .font: UIFont.systemFont(ofSize: 20, weight: .medium)
-        ]
-        nextButton.setTitleTextAttributes(attributes, for: .normal)
+        NotificationCenter.default.addObserver(self, selector: #selector(didSelectCell(_:)), name: .didSelectCell, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(didSelectBudget(_:)), name: .didSelectBudget, object: nil)
+        
+        let backImage = UIImage(systemName: "chevron.left")
+        let backButton = UIBarButtonItem(image: backImage, style: .plain, target: self, action: #selector(backButtonPressed))
+        backButton.tintColor = .label
+        navigationItem.leftBarButtonItem = backButton
+        
+        let xImage = UIImage(systemName: "xmark")
+        let nextButton = UIBarButtonItem(image: xImage, style: .done, target: self, action: #selector(xButtonPressed))
+        nextButton.tintColor = .label
         navigationItem.rightBarButtonItem = nextButton
         
         if let firstVC = viewControllerList.first {
@@ -91,12 +129,29 @@ class PageViewController: UIViewController {
         self.view.insertSubview(pageViewController.view, at: 0)
         pageViewController.didMove(toParent: self)
         
+        pageViewController.view.snp.makeConstraints { make in
+            make.top.leading.trailing.equalToSuperview()
+            make.bottom.equalToSuperview().offset(-90)
+        }
+        
         view.addSubview(progressView)
         progressView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             make.leading.trailing.equalToSuperview()
             make.height.equalTo(10)
         }
+        
+        view.addSubview(continueBtn)
+        continueBtn.snp.makeConstraints { make in
+            make.bottom.equalToSuperview().offset(-40)
+            make.leading.equalToSuperview().offset(25)
+            make.trailing.equalToSuperview().offset(-25)
+            make.height.equalTo(45)
+        }
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 }
 
@@ -110,10 +165,14 @@ extension PageViewController: UIPageViewControllerDelegate, UIPageViewController
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        guard let viewControllerIndex = viewControllerList.firstIndex(of: viewController) else { return nil }
-        let nextIndex = viewControllerIndex + 1
-        guard nextIndex < viewControllerList.count else { return nil }
-        return viewControllerList[nextIndex]
+        if didChoosePlace {
+            guard let viewControllerIndex = viewControllerList.firstIndex(of: viewController) else { return nil }
+            let nextIndex = viewControllerIndex + 1
+            guard nextIndex < viewControllerList.count else { return nil }
+            return viewControllerList[nextIndex]
+        } else {
+            return nil
+        }
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {

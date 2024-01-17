@@ -13,7 +13,7 @@ protocol SearchContentVCDelegate: AnyObject, mapVC {
     func textFieldBeginEditing()
 }
 
-class SearchCotentVC: BaseViewController, UITextFieldDelegate {
+class SearchContentVC: BaseViewController, UITextFieldDelegate {
     
     weak var delegate: SearchContentVCDelegate?
     var places: [SearchDestinationModel] = []
@@ -60,7 +60,7 @@ class SearchCotentVC: BaseViewController, UITextFieldDelegate {
         let attributedText = NSAttributedString(string: "", attributes: attributes2)
         textField.attributedText = attributedText
         textField.tintColor = UIColor.mainColor
-        textField.addTarget(self, action: #selector(SearchCotentVC.textFieldDidChange(_:)), for: .editingChanged)
+        textField.addTarget(self, action: #selector(SearchContentVC.textFieldDidChange(_:)), for: .editingChanged)
         return textField
     }()
     
@@ -142,7 +142,7 @@ class SearchCotentVC: BaseViewController, UITextFieldDelegate {
 }
 
 
-extension SearchCotentVC: UITableViewDelegate, UITableViewDataSource {
+extension SearchContentVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return places.count
     }
@@ -175,7 +175,7 @@ extension SearchCotentVC: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-extension SearchCotentVC {
+extension SearchContentVC {
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         delegate?.textFieldBeginEditing()
         return true

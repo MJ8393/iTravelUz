@@ -8,9 +8,11 @@
 import UIKit
 
 class BudgetViewController: UIViewController {
-
-    var budgetTypes = ["Cheap", "Moderate", "Luxury"]
-    var eachCellStatus: [Bool] = []
+    
+    let budgetTypes = ["Very Low", "Low", "Mid-Range", "Standard", "Luxury"]
+    let priceLevels = ["Lower than $200", "$200-500", "$500-1000", "$1000-2000", "Higher than $2000"]
+    let budgets = [150, 400, 800, 1500, 2500]
+    static var budget: Int = 400
     
     lazy var subView: UIView = {
         let view = UIView()
@@ -25,7 +27,7 @@ class BudgetViewController: UIViewController {
         tableView.showsVerticalScrollIndicator = false
         tableView.backgroundColor = .clear
         tableView.register(TitleTableViewCell.self, forCellReuseIdentifier: String(describing: TitleTableViewCell.self))
-        tableView.register(InterestsTableViewCell.self, forCellReuseIdentifier: String(describing: InterestsTableViewCell.self))
+        tableView.register(BudgetTableViewCell.self, forCellReuseIdentifier: String(describing: BudgetTableViewCell.self))
         return tableView
     }()
     
@@ -36,9 +38,6 @@ class BudgetViewController: UIViewController {
     }
     
     private func initViews() {
-        for _ in 1...3 {
-            eachCellStatus.append(false)
-        }
         
         view.addSubview(subView)
         subView.snp.makeConstraints { make in
@@ -55,7 +54,7 @@ class BudgetViewController: UIViewController {
 
 extension BudgetViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return 6
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -67,17 +66,31 @@ extension BudgetViewController: UITableViewDelegate, UITableViewDataSource {
             cell.descriptionLabel.text = "Choose spending habits for your trip"
             return cell
         } else {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: InterestsTableViewCell.self), for: indexPath) as? InterestsTableViewCell else { return UITableViewCell() }
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: BudgetTableViewCell.self), for: indexPath) as? BudgetTableViewCell else { return UITableViewCell() }
             cell.backgroundColor = .clear
             cell.selectionStyle = .none
-            cell.isInterest = false
-            cell.setData(title: budgetTypes[indexPath.row - 1])
+            cell.setData(title: budgetTypes[indexPath.row - 1], price: priceLevels[indexPath.row - 1])
             return cell
         }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: IndexPath(row: indexPath.row, section: 0)) as? InterestsTableViewCell
-        cell?.updateCheckStatus()
+        if indexPath.row > 0 {
+            for i in 1...5 {
+                if let cell = tableView.cellForRow(at: IndexPath(row: i, section: indexPath.section)) as? BudgetTableViewCell {
+                    cell.isAlreadySelected = false
+                    cell.updateCheckStatus()
+                }
+            }
+            
+            guard let cell = tableView.cellForRow(at: IndexPath(row: indexPath.row, section: 0)) as? BudgetTableViewCell else { return }
+            Vibration.light.vibrate()
+            cell.isAlreadySelected.toggle()
+            cell.updateCheckStatus()
+            if cell.isAlreadySelected {
+                BudgetViewController.budget = budgets[indexPath.row - 1]
+            }
+            NotificationCenter.default.post(name: .didSelectBudget, object: nil, userInfo: ["didChooseBudget": true])
+        }
     }
 }

@@ -16,19 +16,7 @@ class ButtonTableViewCell: UITableViewCell {
         return view
     }()
     
-    lazy var createButton: UIButton = {
-        let button = UIButton()
-        button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = .mainColor
-        button.layer.cornerRadius = 12
-        let attributes: [NSAttributedString.Key: Any] = [
-            .font: UIFont.systemFont(ofSize: 17, weight: .semibold)
-        ]
-        let attributedText = NSAttributedString(string: "Start a new trip with AI", attributes: attributes)
-        button.setAttributedTitle(attributedText, for: .normal)
-        button.addTarget(self, action: #selector(createButtonPressed), for: .touchUpInside)
-        return button
-    }()
+    
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

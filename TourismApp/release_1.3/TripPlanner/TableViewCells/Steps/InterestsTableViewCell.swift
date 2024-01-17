@@ -2,53 +2,40 @@
 //  InterestsTableViewCell.swift
 //  TourismApp
 //
-//  Created by Uyg'un Tursunov on 06/01/24.
+//  Created by Uyg'un Tursunov on 13/01/24.
 //
 
 import UIKit
 
 class InterestsTableViewCell: UITableViewCell {
     
-    var isInterest: Bool = false
-    var isAlreadySelected: Bool = false
+    let interestsOptions = ["Art & Culture", "Food & Drinks", "Nature", "Historical Sites", "Shopping", "Urban Areas", "Educational", "Relaxation"]
+    let icons = ["paintbrush.pointed", "cup.and.saucer", "tree", "building.columns", "cart", "building.2", "book", "sun.max"]
+    static var interests: [String] = []
     
     lazy var subView: UIView = {
         let view = UIView()
-        let tap = UITapGestureRecognizer(target: self, action: #selector(didSelectCell))
-        view.addGestureRecognizer(tap)
         return view
     }()
     
-    lazy var titleLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Shopping"
-        label.textColor = .label
-        label.textAlignment = .left
-        label.lineBreakMode = .byTruncatingTail
-        label.numberOfLines = 1
-        label.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
-        return label
-    }()
-    
-    lazy var checkImageView: UIImageView = {
-        let imageView = UIImageView(frame: .zero)
-        imageView.image = UIImage(systemName: "circle")
-        imageView.backgroundColor = .clear
-        imageView.tintColor = .label
-        imageView.contentMode = .scaleAspectFit
-        imageView.clipsToBounds = true
-        imageView.layer.cornerRadius = 20
-        return imageView
-    }()
-    
-    lazy var separatorLineView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .secondaryLabel
-        return view
+    lazy var collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.minimumLineSpacing = 0
+        layout.minimumInteritemSpacing = 0
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.layer.cornerRadius = 12
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.isScrollEnabled = false
+        collectionView.register(InterestsCollectionViewCell.self, forCellWithReuseIdentifier: String.init(describing: InterestsCollectionViewCell.self))
+        return collectionView
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
         initViews()
     }
     
@@ -56,62 +43,44 @@ class InterestsTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    @objc func didSelectCell() {
-        if isInterest {
-            isAlreadySelected.toggle()
-            updateCheckStatus()
-        } else {
-            guard let tableView = self.superview as? UITableView,
-                  let indexPath = tableView.indexPath(for: self) else {
-                return
-            }
-            for i in 0..<tableView.numberOfRows(inSection: indexPath.section) {
-                if let cell = tableView.cellForRow(at: IndexPath(row: i, section: indexPath.section)) as? InterestsTableViewCell {
-                    cell.isAlreadySelected = false
-                    cell.updateCheckStatus()
-                }
-            }
-            isAlreadySelected.toggle()
-            updateCheckStatus()
-        }
-    }
-    
-    func updateCheckStatus() {
-        checkImageView.image = isAlreadySelected ? UIImage(systemName: "checkmark.circle.fill") : UIImage(systemName: "circle")
-        checkImageView.tintColor = isAlreadySelected ? .mainColor : .label
-    }
-    
-    private func initViews() {
+    func initViews() {
         contentView.addSubview(subView)
         subView.snp_makeConstraints { make in
             make.edges.equalToSuperview()
         }
         
-        subView.addSubview(titleLabel)
-        titleLabel.snp_makeConstraints { make in
+        subView.addSubview(collectionView)
+        collectionView.snp_makeConstraints { make in
             make.top.equalToSuperview().offset(20)
-            make.leading.equalToSuperview().offset(30)
-            make.trailing.equalToSuperview().offset(-30)
-            make.bottom.equalToSuperview().offset(-20)
-        }
-        
-        subView.addSubview(checkImageView)
-        checkImageView.snp_makeConstraints { make in
-            make.centerY.equalTo(titleLabel)
-            make.trailing.equalToSuperview().offset(-30)
-            make.height.width.equalTo(30)
-        }
-        
-        subView.addSubview(separatorLineView)
-        separatorLineView.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(25)
-            make.trailing.equalToSuperview().offset(-25)
+            make.leading.equalToSuperview().offset(10)
+            make.trailing.equalToSuperview().offset(-10)
+            make.height.equalTo(250)
             make.bottom.equalToSuperview()
-            make.height.equalTo(1)
+        }
+    }
+}
+
+extension InterestsTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return interestsOptions.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String.init(describing: InterestsCollectionViewCell.self), for: indexPath) as? InterestsCollectionViewCell else { return UICollectionViewCell() }
+        cell.setData(title: interestsOptions[indexPath.row], imageName: icons[indexPath.row])
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let cell = collectionView.cellForItem(at: indexPath) as? InterestsCollectionViewCell else { return }
+        Vibration.light.vibrate()
+        cell.updateCheckStatus()
+        if cell.isAlreadySelected == true {
+            InterestsTableViewCell.interests.append(interestsOptions[indexPath.row])
         }
     }
     
-    func setData(title: String) {
-        titleLabel.text = title
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: (UIScreen.main.bounds.width - 30)/2, height: 60)
     }
 }

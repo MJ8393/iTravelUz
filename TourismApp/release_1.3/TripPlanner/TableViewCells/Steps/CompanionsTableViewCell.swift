@@ -9,6 +9,9 @@ import UIKit
 
 class CompanionsTableViewCell: UITableViewCell {
     
+    let companions = ["Just me", "Couple", "Family", "Friends"]
+    let icons = ["person", "heart", "figure.2.and.child.holdinghands", "figure.2"]
+    
     lazy var subView: UIView = {
         let view = UIView()
         return view
@@ -19,7 +22,6 @@ class CompanionsTableViewCell: UITableViewCell {
         layout.scrollDirection = .vertical
         layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 0
-//        layout.sectionInset = UIEdgeInsets(top: 5, left: 0, bottom: 5, right: 0)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -39,11 +41,6 @@ class CompanionsTableViewCell: UITableViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        collectionView.frame = contentView.bounds
     }
     
     func initViews() {
@@ -70,8 +67,22 @@ extension CompanionsTableViewCell: UICollectionViewDelegate, UICollectionViewDat
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: CompanionsCollectionViewCell.self), for: indexPath) as? CompanionsCollectionViewCell else { return UICollectionViewCell() }
-        cell.setData(title: "Family", imageTitle: "person.2")
+        cell.setData(title: companions[indexPath.row], imageTitle: icons[indexPath.row])
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        for i in 0...3 {
+            if let cell = collectionView.cellForItem(at: IndexPath(item: i, section: indexPath.section)) as? CompanionsCollectionViewCell {
+                cell.isAlreadySelected = false
+                cell.updateCheckStatus()
+            }
+        }
+        
+        guard let cell = collectionView.cellForItem(at: indexPath) as? CompanionsCollectionViewCell else { return }
+        Vibration.light.vibrate()
+        cell.isAlreadySelected.toggle()
+        cell.updateCheckStatus()
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

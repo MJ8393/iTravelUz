@@ -9,6 +9,7 @@ import UIKit
 import CoreLocation
 import FloatingPanel
 import MapKit
+import GoogleMaps
 
 class InfoVC: mapVC {
     
@@ -16,7 +17,7 @@ class InfoVC: mapVC {
     let contentVC = InfoContentVC()
     let appearance = SurfaceAppearance()
     
-//    var coordinate: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 41.377491, longitude: 64.585262)
+    //    var coordinate: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 41.377491, longitude: 64.585262)
     var destination: MainDestination?
     var isLiked: Bool = false
     
@@ -88,7 +89,7 @@ class InfoVC: mapVC {
                     contentVC.likeButton.isHidden = true
                 }
             }
-
+            
         } else {
             contentVC.destination = destination
             contentVC.cityLabel.text = destination?.name?.getName()
@@ -109,7 +110,6 @@ class InfoVC: mapVC {
         }
     }
     
-    
     private func setFPC() {
         fpc.delegate = self
         fpc.view.frame = view.bounds
@@ -121,9 +121,9 @@ class InfoVC: mapVC {
         fpc.view.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             fpc.view.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 0.0),
-          fpc.view.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 0.0),
-          fpc.view.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: 0.0),
-          fpc.view.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 0.0),
+            fpc.view.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 0.0),
+            fpc.view.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: 0.0),
+            fpc.view.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 0.0),
         ])
         fpc.show(animated: true) {
             self.fpc.didMove(toParent: self)
@@ -266,7 +266,7 @@ extension UIViewController {
         mapItem.name = name
         mapItem.openInMaps(launchOptions: options)
     }
-
     
-
+    
+    
 }

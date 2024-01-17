@@ -92,7 +92,7 @@ class CommentsViewController: UIViewController {
     
     lazy var publishButton: UIButton = {
         let logInButton = UIButton(type: .system)
-        logInButton.layer.cornerRadius = 16
+        logInButton.layer.cornerRadius = 25
         logInButton.backgroundColor = UIColor(hex: "7F3DFF")
         logInButton.setTitle("publish".translate(), for: .normal)
         logInButton.tintColor = .white
@@ -186,7 +186,7 @@ class CommentsViewController: UIViewController {
             make.bottom.equalToSuperview().offset(-getBottomMargin() - 20)
             make.left.equalToSuperview().offset(20)
             make.right.equalToSuperview().offset(-20)
-            make.height.equalTo(55)
+            make.height.equalTo(50)
         }
     }
     

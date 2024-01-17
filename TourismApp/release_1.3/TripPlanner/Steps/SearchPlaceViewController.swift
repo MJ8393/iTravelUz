@@ -9,6 +9,10 @@ import UIKit
 
 class SearchPlaceViewController: UIViewController {
 
+    var searchResults = [City]()
+    var isSuccessfullyLoaded: Bool = false
+    static var city: City?
+    
     lazy var subView: UIView = {
         let view = UIView()
         return view
@@ -60,7 +64,7 @@ class SearchPlaceViewController: UIViewController {
         let attributedText = NSAttributedString(string: "", attributes: attributes2)
         textField.attributedText = attributedText
         textField.tintColor = UIColor.mainColor
-//        textField.addTarget(self, action: #selector(SearchCotentVC.textFieldDidChange(_:)), for: .editingChanged)
+        textField.addTarget(self, action: #selector(editingDidChange(_:)), for: .allEditingEvents)
         return textField
     }()
     
@@ -78,6 +82,34 @@ class SearchPlaceViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initViews()
+        hideKeyboardWhenTappedAround()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        textField.becomeFirstResponder()
+    }
+    
+    @objc func editingDidChange(_ textField: UITextField) {
+        if let query = textField.text, !query.isEmpty {
+            showLoadingView()
+            API.shared.searchCity(name: query) { [weak self] result in
+                self?.dissmissLoadingView()
+                switch result {
+                case .success(let data):
+                    self?.searchResults = data.cities
+                    self?.isSuccessfullyLoaded = true
+                    DispatchQueue.main.async {
+                        self?.tableView.reloadData()
+                    }
+                    self?.dissmissLoadingView()
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+        } else {
+            dissmissLoadingView()
+        }
     }
     
     private func initViews() {
@@ -103,23 +135,30 @@ class SearchPlaceViewController: UIViewController {
         
         subView.addSubview(tableView)
         tableView.snp.makeConstraints { make in
-            make.bottom.lessThanOrEqualToSuperview()
             make.top.equalTo(textField.snp.bottom).offset(10)
-            make.bottom.equalToSuperview().offset(-50)
             make.leading.trailing.equalToSuperview()
+            make.bottom.equalToSuperview()
         }
     }
 }
 
 extension SearchPlaceViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 7
+        return searchResults.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: SuggestedTableViewCell.self), for: indexPath) as? SuggestedTableViewCell else { return UITableViewCell() }
         cell.backgroundColor = .clear
         cell.selectionStyle = .none
+        cell.setData(model: searchResults[indexPath.row])
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        Vibration.light.vibrate()
+        textField.text = searchResults[indexPath.row].name?.getName()
+        SearchPlaceViewController.city = searchResults[indexPath.row]
+        NotificationCenter.default.post(name: .didSelectCell, object: nil, userInfo: ["didChoosePlace": true])
     }
 }

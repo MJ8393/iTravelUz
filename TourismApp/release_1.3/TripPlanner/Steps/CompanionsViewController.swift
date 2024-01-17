@@ -57,7 +57,7 @@ extension CompanionsViewController: UITableViewDelegate, UITableViewDataSource {
             cell.backgroundColor = .clear
             cell.selectionStyle = .none
             cell.titleLabel.text = "Who is going?"
-            cell.descriptionLabel.text = "Choose one"
+            cell.descriptionLabel.text = "Choose your travellers"
             return cell
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: CompanionsTableViewCell.self), for: indexPath) as? CompanionsTableViewCell else { return UITableViewCell() }

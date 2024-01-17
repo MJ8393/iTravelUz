@@ -1,5 +1,5 @@
 //
-//  NoTripsTableViewCell.swift
+//  EmptyTripsTableViewCell.swift
 //  TourismApp
 //
 //  Created by Uyg'un Tursunov on 05/01/24.
@@ -7,7 +7,9 @@
 
 import UIKit
 
-class NoTripsTableViewCell: UITableViewCell {
+class EmptyTripsTableViewCell: UITableViewCell {
+    
+    weak var delegate: EmptyTripsViewControllerDelegate?
     
     lazy var subView: UIView = {
         let view = UIView()
@@ -46,6 +48,20 @@ class NoTripsTableViewCell: UITableViewCell {
         return label
     }()
     
+    lazy var createBtn: Button = {
+        let button = Button(title: "Create on your own")
+        button.layer.cornerRadius = 25
+        button.addTarget(self, action: #selector(createButtonPressed), for: .touchUpInside)
+        return button
+    }()
+    
+    lazy var createWithAIBtn: Button = {
+        let button = Button(title: "Start a new trip with AI")
+        button.layer.cornerRadius = 25
+        button.addTarget(self, action: #selector(createWithAIButtonPressed), for: .touchUpInside)
+        return button
+    }()
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         initViews()
@@ -53,6 +69,14 @@ class NoTripsTableViewCell: UITableViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    @objc func createButtonPressed() {
+        
+    }
+    
+    @objc func createWithAIButtonPressed() {
+        delegate?.createWithAIButtonPressed()
     }
     
     private func initViews() {
@@ -79,7 +103,23 @@ class NoTripsTableViewCell: UITableViewCell {
             make.top.equalTo(label1.snp.bottom).offset(30)
             make.leading.equalToSuperview().offset(40)
             make.trailing.equalToSuperview().offset(-40)
-            make.bottom.equalToSuperview().offset(-20)
+        }
+        
+        subView.addSubview(createBtn)
+        createBtn.snp.makeConstraints { make in
+            make.top.equalTo(label2.snp.bottom).offset(100)
+            make.leading.equalToSuperview().offset(25)
+            make.trailing.equalToSuperview().offset(-25)
+            make.height.equalTo(50)
+        }
+        
+        subView.addSubview(createWithAIBtn)
+        createWithAIBtn.snp.makeConstraints { make in
+            make.top.equalTo(createBtn.snp.bottom).offset(15)
+            make.leading.equalTo(createBtn)
+            make.trailing.equalTo(createBtn)
+            make.height.equalTo(50)
+            make.bottom.equalToSuperview()
         }
     }
 }

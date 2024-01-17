@@ -12,7 +12,7 @@ import FloatingPanel
 class SearchVC: mapVC {
     
     let fpc = FloatingPanelController()
-    let searchPlaceVC = SearchCotentVC()
+    let searchPlaceVC = SearchContentVC()
     let appearance = SurfaceAppearance()
     
     override func loadView() {

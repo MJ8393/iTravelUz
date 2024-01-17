@@ -10,6 +10,7 @@ import UIKit
 class TripLengthTableViewCell: UITableViewCell {
 
     var daysCount: Int = 1
+    static var tripLength: Int = 1
     
     lazy var subView: UIView = {
         let view = UIView()
@@ -64,6 +65,7 @@ class TripLengthTableViewCell: UITableViewCell {
     
     @objc func plusButtonPressed() {
         guard daysCount < 7 else { return }
+        Vibration.light.vibrate()
         daysCount += 1
         updateDaysLabel(days: daysCount)
         
@@ -82,6 +84,7 @@ class TripLengthTableViewCell: UITableViewCell {
     
     @objc func minusButtonPressed() {
         guard daysCount > 1 else { return }
+        Vibration.light.vibrate()
         daysCount -= 1
         plusButton.tintColor = .label
         updateDaysLabel(days: daysCount)
@@ -104,6 +107,7 @@ class TripLengthTableViewCell: UITableViewCell {
         guard count >= 1, count <= 7 else { return }
         let text = "\(count)"
         daysLabel.text = text
+        TripLengthTableViewCell.tripLength = count
     }
     
     required init?(coder: NSCoder) {

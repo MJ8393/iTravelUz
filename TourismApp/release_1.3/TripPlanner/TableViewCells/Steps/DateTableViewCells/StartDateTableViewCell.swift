@@ -9,6 +9,8 @@ import UIKit
 
 class StartDateTableViewCell: UITableViewCell {
 
+    static var date: String = ""
+    
     lazy var subView: UIView = {
         let view = UIView()
         return view
@@ -42,14 +44,6 @@ class StartDateTableViewCell: UITableViewCell {
         datePicker.addTarget(self, action: #selector(updatedValue), for: .valueChanged)
         return datePicker
     }()
-    
-    lazy var chooseDateButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("06, Jan", for: .normal)
-        button.setTitleColor(.mainColor, for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 20, weight: .medium)
-        return button
-    }()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -61,7 +55,13 @@ class StartDateTableViewCell: UITableViewCell {
     }
     
     @objc func updatedValue() {
-        
+        donePick()
+    }
+    
+    func donePick() {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        StartDateTableViewCell.date = dateFormatter.string(from: datePicker.date)
     }
     
     private func initViews() {

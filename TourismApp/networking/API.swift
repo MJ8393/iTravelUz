@@ -20,6 +20,7 @@ class API {
     let API_URL_CLOSE_CHAT = BASE_URL + "/chat/close_chat"
     let API_URL_GET_CHAT_HISTORY = BASE_URL + "/chat/get_chat"
     let API_URL_SEARCH = BASE_URL + "/geo/city/d/search"
+    let API_URL_SEARCH_CITY = BASE_URL + "/search?name="
     
     // MAIN
     let API_URL_GET_NEARBY = BASE_URL + "/geo/city/d/nearby_destinations"
@@ -44,7 +45,9 @@ class API {
     // Hotel
     let API_URL_GET_HOTELS = BASE_URL + "/hotels"
     let API_URL_GET_RESTRAURANT = BASE_URL + "/restaurants"
-
+    
+    // Trip Planner
+    let API_URL_PLAN_TRIP = BASE_URL + "/plans/make_plan_for_me"
 
     
     func openChat(language: String, complition: @escaping (Result<OpenChatModel, Error>) -> Void) {

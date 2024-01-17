@@ -26,7 +26,7 @@ class DayTripTableViewCell: UITableViewCell {
     }()
     
     lazy var locationImageView: UIImageView = {
-        let imageView = UIImageView(image: UIImage(systemName: "fork.knife"))
+        let imageView = UIImageView(image: UIImage(systemName: "mappin.and.ellipse"))
         imageView.backgroundColor = .clear
         imageView.tintColor = .mainColor
         imageView.contentMode = .scaleAspectFit
@@ -204,5 +204,29 @@ class DayTripTableViewCell: UITableViewCell {
             make.trailing.equalTo(arrowImageView.snp.leading).offset(-20)
             make.bottom.equalToSuperview()
         }
+    }
+    
+    func setDestination(model: MainDestination, orderNumber: Int) {
+        mainImageView.loadImage(url: model.gallery?[0].url)
+        nameLabel.text = (model.name?.getName() ?? "")
+        descriptionLabel.text = model.description?.getDescription()
+        orderNumberLabel.text = String(orderNumber)
+        locationImageView.image = UIImage(systemName: "mappin.and.ellipse")
+    }
+    
+    func setRestaurant(model: RestaurantModel, orderNumber: Int) {
+        mainImageView.loadImage(url: model.photos?[0])
+        nameLabel.text = (model.name)
+//        descriptionLabel.text = model.
+        orderNumberLabel.text = String(orderNumber)
+        locationImageView.image = UIImage(systemName: "fork.knife")
+    }
+    
+    func setHotel(model: HotelModel, orderNumber: Int) {
+        mainImageView.loadImage(url: model.photos?[0])
+        nameLabel.text = (model.name)
+        descriptionLabel.text = model.description
+        orderNumberLabel.text = String(orderNumber)
+        locationImageView.image = UIImage(systemName: "bed.double")
     }
 }
