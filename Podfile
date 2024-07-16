@@ -16,9 +16,20 @@ target 'TourismApp' do
   pod 'FloatingPanel'
   pod 'Kingfisher'
   pod 'PanModal'
-pod 'Localize-Swift', '~> 3.2'
+  pod 'Localize-Swift', '~> 3.2'
 	pod 'SwiftyStarRatingView'
-pod 'CameraManager', '~> 5.1'
+  pod 'CameraManager', '~> 5.1'
+
+
+post_install do |installer|
+    installer.generated_projects.each do |project|
+        project.targets.each do |target|
+            target.build_configurations.each do |config|
+                config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '13.0'
+            end
+        end
+    end
+end
 
 
   

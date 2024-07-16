@@ -1,6 +1,7 @@
 ${PODS_ROOT}/Target Support Files/Pods-TourismApp/Pods-TourismApp-frameworks.sh
 ${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework
 ${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework
+${BUILT_PRODUCTS_DIR}/CameraManager/CameraManager.framework
 ${BUILT_PRODUCTS_DIR}/FloatingPanel/FloatingPanel.framework
 ${BUILT_PRODUCTS_DIR}/GSKStretchyHeaderView/GSKStretchyHeaderView.framework
 ${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework
