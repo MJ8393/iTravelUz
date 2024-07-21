@@ -22,21 +22,25 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         let nc2 = UINavigationController(rootViewController: PagerController())
         let nc4 = savedTrips.count == 0 ? UINavigationController(rootViewController: EmptyTripsViewController()) : UINavigationController(rootViewController: SavedTripsViewController())
         let nc5 = UINavigationController(rootViewController: ProfileViewController())
+        
+        let nc6 = UINavigationController(rootViewController: BazarViewController())
 
         nc1.title = "home".translate()
         nc2.title = "explore".translate()
         nc4.title = "search".translate()
         nc5.title = "profile".translate()
+        nc6.title = "bazar".translate()
                 
         nc1.tabBarItem.image = UIImage(systemName: "house")
         nc2.tabBarItem.image = UIImage(systemName: "safari")
         nc4.tabBarItem.image = UIImage(systemName: "magnifyingglass")
         nc5.tabBarItem.image = UIImage(systemName: "person.crop.circle")
+        nc6.tabBarItem.image = UIImage(systemName: "cart")
         nc3.tabBarItem.tag = 2
         
         tabBar.tintColor = UIColor.mainColor
         self.delegate = self
-        setViewControllers([nc1, nc2, nc3, nc4, nc5], animated: true)
+        setViewControllers([nc1, nc2, nc3, nc4, nc6], animated: true)
         setupMiddleButton()
         
         NotificationCenter.default.addObserver(forName: NSNotification.Name("ChangeTabBar"), object: nil, queue: nil) { _ in
@@ -44,6 +48,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
             nc2.title = "explore".translate()
             nc4.title = "search".translate()
             nc5.title = "profile".translate()
+            nc6.title = "bazar".translate()
         }
     }
         

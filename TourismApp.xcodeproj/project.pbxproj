@@ -113,6 +113,9 @@
 		10E80DA92B1E049100E90841 /* DTSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E80DA82B1E049100E90841 /* DTSegmentedControl.swift */; };
 		10EB81442ABCBA1200D7126E /* Main_API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10EB81432ABCBA1200D7126E /* Main_API.swift */; };
 		10EB81462ABCBA7500D7126E /* MainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10EB81452ABCBA7500D7126E /* MainModel.swift */; };
+		3D940EE22C4A30D800B571D5 /* BazarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D940EE12C4A30D800B571D5 /* BazarViewController.swift */; };
+		3D940EE52C4A30FB00B571D5 /* BazarAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D940EE42C4A30FB00B571D5 /* BazarAPI.swift */; };
+		3D940EE72C4A697300B571D5 /* BazarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D940EE62C4A697300B571D5 /* BazarTableViewCell.swift */; };
 		8C0638582B5273E600E21360 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0638572B5273E600E21360 /* Button.swift */; };
 		8C0752C32B3FF03A00096E8C /* DiscoverTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0752C22B3FF03A00096E8C /* DiscoverTableViewCell.swift */; };
 		8C0EFDBB2ABDFEFF008C101F /* SearchContentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0EFDBA2ABDFEFF008C101F /* SearchContentVC.swift */; };
@@ -285,6 +288,9 @@
 		10E80DA82B1E049100E90841 /* DTSegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DTSegmentedControl.swift; sourceTree = "<group>"; };
 		10EB81432ABCBA1200D7126E /* Main_API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main_API.swift; sourceTree = "<group>"; };
 		10EB81452ABCBA7500D7126E /* MainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainModel.swift; sourceTree = "<group>"; };
+		3D940EE12C4A30D800B571D5 /* BazarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BazarViewController.swift; sourceTree = "<group>"; };
+		3D940EE42C4A30FB00B571D5 /* BazarAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BazarAPI.swift; sourceTree = "<group>"; };
+		3D940EE62C4A697300B571D5 /* BazarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BazarTableViewCell.swift; sourceTree = "<group>"; };
 		4912A189F550887CD934CAC1 /* Pods-TourismApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TourismApp.debug.xcconfig"; path = "Target Support Files/Pods-TourismApp/Pods-TourismApp.debug.xcconfig"; sourceTree = "<group>"; };
 		8C0638572B5273E600E21360 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		8C0752C22B3FF03A00096E8C /* DiscoverTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverTableViewCell.swift; sourceTree = "<group>"; };
@@ -923,6 +929,7 @@
 		10C916392A7821FE0054B55C /* TourismApp */ = {
 			isa = PBXGroup;
 			children = (
+				3D940EE02C4A309E00B571D5 /* release_1.4 */,
 				8CFEC6D72B48416D00B05492 /* release_1.3 */,
 				10B389C52B163324007FCAD7 /* release_1.2 */,
 				101388C12AF829C400918635 /* release_1.1 */,
@@ -1018,6 +1025,24 @@
 				10EB81432ABCBA1200D7126E /* Main_API.swift */,
 			);
 			path = API;
+			sourceTree = "<group>";
+		};
+		3D940EE02C4A309E00B571D5 /* release_1.4 */ = {
+			isa = PBXGroup;
+			children = (
+				3D940EE32C4A30E500B571D5 /* Bazar */,
+			);
+			path = release_1.4;
+			sourceTree = "<group>";
+		};
+		3D940EE32C4A30E500B571D5 /* Bazar */ = {
+			isa = PBXGroup;
+			children = (
+				3D940EE12C4A30D800B571D5 /* BazarViewController.swift */,
+				3D940EE42C4A30FB00B571D5 /* BazarAPI.swift */,
+				3D940EE62C4A697300B571D5 /* BazarTableViewCell.swift */,
+			);
+			path = Bazar;
 			sourceTree = "<group>";
 		};
 		6FE3E99AA68647F8BEF716EE /* Frameworks */ = {
@@ -1395,6 +1420,7 @@
 				8CC11FAD2B2E0BD90061EB70 /* EatsCollectionViewCell.swift in Sources */,
 				10369B492AACF25800558A5E /* annotations.proto in Sources */,
 				8CFEC6DB2B48544800B05492 /* EmptyTripsViewController.swift in Sources */,
+				3D940EE72C4A697300B571D5 /* BazarTableViewCell.swift in Sources */,
 				8CB3B2B32B553D0C00D2C070 /* TripPlanner_API.swift in Sources */,
 				10194BBB2AC4181600366A69 /* ProfileTableViewCell.swift in Sources */,
 				8C0638582B5273E600E21360 /* Button.swift in Sources */,
@@ -1498,6 +1524,7 @@
 				10369B4B2AACF25800558A5E /* code.proto in Sources */,
 				8C3281D92B1F267D000FD0DD /* FacilitiesCollectionViewCell.swift in Sources */,
 				100342572AE7CEEE0075DE9A /* HeaderImagesCollectionViewCell.swift in Sources */,
+				3D940EE22C4A30D800B571D5 /* BazarViewController.swift in Sources */,
 				8C735E7D2B4A9E5A00B1BBB3 /* SavedTripsTableViewCell.swift in Sources */,
 				1051A2C12A9BEFB90083D25D /* LoaderView.swift in Sources */,
 				108B56522A9D1541000DF967 /* HeaderView.swift in Sources */,
@@ -1535,6 +1562,7 @@
 				102DC33B2AE44AC3002AB6C3 /* PersonalHeaderView.swift in Sources */,
 				101CCFDC2AC492F000D6E90C /* ChangeLanguage.swift in Sources */,
 				10DD0F0C2AE97E1600EEF9CE /* CommentsViewController.swift in Sources */,
+				3D940EE52C4A30FB00B571D5 /* BazarAPI.swift in Sources */,
 				1091DE5C2AC0DE12008664E9 /* FavoritesTableViewCell.swift in Sources */,
 				10EB81442ABCBA1200D7126E /* Main_API.swift in Sources */,
 				8C7A9C462ABAD115005F790D /* ViewAllTableViewCell.swift in Sources */,
@@ -1698,7 +1726,8 @@
 				CODE_SIGN_ENTITLEMENTS = TourismApp/TourismApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = L7D5MM5SF3;
+				DEVELOPMENT_TEAM = X896SVF3JJ;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TourismApp/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = GuideMe;
@@ -1719,7 +1748,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.2;
-				PRODUCT_BUNDLE_IDENTIFIER = com.uyguntursunov.GuideMe;
+				PRODUCT_BUNDLE_IDENTIFIER = com.subhiddin.GuideMe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -1741,7 +1770,9 @@
 				CODE_SIGN_ENTITLEMENTS = TourismApp/TourismApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 2PRTB3DVMF;
+				DEVELOPMENT_TEAM = X896SVF3JJ;
+				EXCLUDED_ARCHS = "";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TourismApp/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = GuideMe;
@@ -1762,7 +1793,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.2;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mekhriddin.GuideMe;
+				PRODUCT_BUNDLE_IDENTIFIER = com.subhiddin.GuideMe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;

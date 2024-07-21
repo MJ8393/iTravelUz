@@ -9,6 +9,7 @@ import Foundation
 import Alamofire
 
 let BASE_URL = "http://guide-me.uz"
+let BASE_URL_RAHMATULLO = "http://164.90.235.157"
 let testToken = UD.token ?? ""
 //let testToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MDA3MzAyODYsInVzZXIiOiJhc2xvbiJ9.IKB0rjKM5_5Y-ps6_aM6Tcau5aJpevkB2DIDS_wuo7w"
 
@@ -45,6 +46,8 @@ class API {
     // Hotel
     let API_URL_GET_HOTELS = BASE_URL + "/hotels"
     let API_URL_GET_RESTRAURANT = BASE_URL + "/restaurants"
+    
+    let API_URL_GET_MARKETS = BASE_URL_RAHMATULLO + ":8084/api/market"
     
     // Trip Planner
     let API_URL_PLAN_TRIP = BASE_URL + "/plans/make_plan_for_me"
