@@ -1,14 +1,13 @@
 //
-//  BazarTableViewCell.swift
+//  ProductCollectionViewCell.swift
 //  TourismApp
 //
-//  Created by Nuriddinov Subkhiddin on 19/07/24.
+//  Created by Nuriddinov Subkhiddin on 22/07/24.
 //
 
 import UIKit
-import SnapKit
 
-class BazarTableViewCell: UITableViewCell {
+class ProductCollectionViewCell: UICollectionViewCell {
     
     lazy var subView: UIView = {
         let view = UIView()
@@ -32,11 +31,12 @@ class BazarTableViewCell: UITableViewCell {
         return imageView
     }()
     
+    
     lazy var nameLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 17, weight: .medium)
         label.textColor = .label
-        label.text = "Korzinka supermarket"
+        label.text = "Lagancha"
         return label
     }()
     
@@ -55,31 +55,18 @@ class BazarTableViewCell: UITableViewCell {
         return label
     }()
     
-    lazy var locationImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "Group 7")!
-        imageView.contentMode = .scaleAspectFit
-        return imageView
-    }()
-    
-    lazy var locationLabel: UILabel = {
+    lazy var priceLabel: UILabel = {
         let label = UILabel()
         label.textColor = .label
-        label.text = "Tashkent, Uzbekistan"
+        label.text = "24$"
+        label.textColor = .label
         label.font = UIFont.systemFont(ofSize: 15, weight: .regular)
         return label
     }()
     
-    lazy var phoneLabel: UILabel = {
-        let label = UILabel()
-        label.text = "+998936258030"
-        label.font = UIFont.systemFont(ofSize: 15, weight: .regular)
-        label.textColor = .label
-        return label
-    }()
-    
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
         initViews()
     }
     
@@ -87,45 +74,23 @@ class BazarTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func initViews() {
-        self.addSubview(subView)
-        subView.snp.makeConstraints { make in
-            make.left.equalToSuperview().offset(20)
-            make.right.equalToSuperview().offset(-20)
-            make.top.equalToSuperview().offset(10)
-            make.bottom.equalToSuperview().offset(-10)
+    func initViews() {
+        
+        contentView.addSubview(subView)
+        subView.snp_makeConstraints { make in
+            make.edges.equalToSuperview()
         }
         
         subView.addSubview(mainImageView)
         mainImageView.snp.makeConstraints { make in
             make.left.right.top.equalToSuperview()
-            make.height.equalTo(200)
+            make.height.equalTo(180)
         }
         
         subView.addSubview(nameLabel)
         nameLabel.snp.makeConstraints { make in
-            make.top.equalTo(mainImageView.snp.bottom).offset(10)
+            make.top.equalTo(mainImageView.snp.bottom).offset(2)
             make.left.equalToSuperview().offset(12)
-        }
-        
-        subView.addSubview(locationImageView)
-        locationImageView.snp.makeConstraints { make in
-            make.left.equalToSuperview().offset(12)
-            make.top.equalTo(nameLabel.snp.bottom).offset(10)
-            make.height.width.equalTo(18)
-        }
-        
-        subView.addSubview(locationLabel)
-        locationLabel.snp.makeConstraints { make in
-            make.left.equalTo(locationImageView.snp.right).offset(8)
-            make.centerY.equalTo(locationImageView)
-        }
-        
-        subView.addSubview(phoneLabel)
-        phoneLabel.snp.makeConstraints { make in
-            make.left.equalToSuperview().offset(12)
-            make.top.equalTo(locationImageView.snp.bottom).offset(10)
-            make.bottom.equalToSuperview().offset(-10)
         }
         
         subView.addSubview(starLabel)
@@ -140,5 +105,19 @@ class BazarTableViewCell: UITableViewCell {
             make.centerY.equalTo(nameLabel)
             make.height.width.equalTo(18)
         }
+        
+        subView.addSubview(priceLabel)
+        priceLabel.snp.makeConstraints { make in
+            make.left.equalToSuperview().offset(12)
+            make.top.equalTo(nameLabel.snp.bottom).offset(10)
+            make.bottom.equalToSuperview().offset(-10)
+        }
     }
+    
+    
+    
+    
+    
 }
+
+

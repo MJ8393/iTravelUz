@@ -116,6 +116,8 @@
 		3D940EE22C4A30D800B571D5 /* BazarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D940EE12C4A30D800B571D5 /* BazarViewController.swift */; };
 		3D940EE52C4A30FB00B571D5 /* BazarAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D940EE42C4A30FB00B571D5 /* BazarAPI.swift */; };
 		3D940EE72C4A697300B571D5 /* BazarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D940EE62C4A697300B571D5 /* BazarTableViewCell.swift */; };
+		3D940EE92C4E6C3800B571D5 /* ProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D940EE82C4E6C3800B571D5 /* ProductViewController.swift */; };
+		3D940EEB2C4E6E0700B571D5 /* ProductCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D940EEA2C4E6E0700B571D5 /* ProductCollectionViewCell.swift */; };
 		8C0638582B5273E600E21360 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0638572B5273E600E21360 /* Button.swift */; };
 		8C0752C32B3FF03A00096E8C /* DiscoverTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0752C22B3FF03A00096E8C /* DiscoverTableViewCell.swift */; };
 		8C0EFDBB2ABDFEFF008C101F /* SearchContentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0EFDBA2ABDFEFF008C101F /* SearchContentVC.swift */; };
@@ -291,6 +293,8 @@
 		3D940EE12C4A30D800B571D5 /* BazarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BazarViewController.swift; sourceTree = "<group>"; };
 		3D940EE42C4A30FB00B571D5 /* BazarAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BazarAPI.swift; sourceTree = "<group>"; };
 		3D940EE62C4A697300B571D5 /* BazarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BazarTableViewCell.swift; sourceTree = "<group>"; };
+		3D940EE82C4E6C3800B571D5 /* ProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewController.swift; sourceTree = "<group>"; };
+		3D940EEA2C4E6E0700B571D5 /* ProductCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCollectionViewCell.swift; sourceTree = "<group>"; };
 		4912A189F550887CD934CAC1 /* Pods-TourismApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TourismApp.debug.xcconfig"; path = "Target Support Files/Pods-TourismApp/Pods-TourismApp.debug.xcconfig"; sourceTree = "<group>"; };
 		8C0638572B5273E600E21360 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		8C0752C22B3FF03A00096E8C /* DiscoverTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverTableViewCell.swift; sourceTree = "<group>"; };
@@ -1040,9 +1044,19 @@
 			children = (
 				3D940EE12C4A30D800B571D5 /* BazarViewController.swift */,
 				3D940EE42C4A30FB00B571D5 /* BazarAPI.swift */,
-				3D940EE62C4A697300B571D5 /* BazarTableViewCell.swift */,
+				3D940EE82C4E6C3800B571D5 /* ProductViewController.swift */,
+				3D940EEC2C4E7B3F00B571D5 /* Cell */,
 			);
 			path = Bazar;
+			sourceTree = "<group>";
+		};
+		3D940EEC2C4E7B3F00B571D5 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				3D940EE62C4A697300B571D5 /* BazarTableViewCell.swift */,
+				3D940EEA2C4E6E0700B571D5 /* ProductCollectionViewCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		6FE3E99AA68647F8BEF716EE /* Frameworks */ = {
@@ -1430,6 +1444,7 @@
 				108FC8732A87B20400A97BE0 /* UIViewController+Ext.swift in Sources */,
 				101CCFEF2AC4C7BF00D6E90C /* BaseViewController.swift in Sources */,
 				10369B2B2AAC922400558A5E /* ExploreContentTableCell.swift in Sources */,
+				3D940EEB2C4E6E0700B571D5 /* ProductCollectionViewCell.swift in Sources */,
 				10369B2E2AACA4B300558A5E /* speechService.swift in Sources */,
 				8C735E7B2B4A9D1300B1BBB3 /* SavedTripsViewController.swift in Sources */,
 				8C6C875A2AE9721F0068F43A /* InfoVC.swift in Sources */,
@@ -1459,6 +1474,7 @@
 				10369B5E2AAD45EC00558A5E /* SiriWaveView.swift in Sources */,
 				10369B442AACF25800558A5E /* operations.proto in Sources */,
 				108FC86D2A87A0D500A97BE0 /* UIColor.swift in Sources */,
+				3D940EE92C4E6C3800B571D5 /* ProductViewController.swift in Sources */,
 				8C95AB802B4088AF00330ED9 /* DiscoverCollectionViewCell.swift in Sources */,
 				8C82DCBE2B1E38E800AD788E /* CollectionViewTableViewCell.swift in Sources */,
 				8C0EFDBB2ABDFEFF008C101F /* SearchContentVC.swift in Sources */,

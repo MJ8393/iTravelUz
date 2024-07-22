@@ -61,6 +61,21 @@ class ActivityImageView: UIImageView {
             }
         }
     }
+    
+    func loadImageJava(url: String?) {
+        if let imageUrl = url, let url = URL(string: imageUrl) {
+            self.kf.setImage(with: url, placeholder: nil, options: nil, progressBlock: nil) { [weak self] result in
+                guard let self = self else { return }
+                switch result {
+                case .success(let value):
+                    self.image = value.image
+                case .failure(let error):
+                    print("Error loading image: \(error)")
+                }
+                self.stopLoading()
+            }
+        }
+    }
 
     func setImage(image: UIImage?) {
         stopLoading()

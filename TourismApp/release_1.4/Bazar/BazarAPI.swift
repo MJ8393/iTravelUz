@@ -47,6 +47,19 @@ struct MarketModel: Codable {
     let city : String?
     let phoneNumber : String?
     let overallRanking : Double?
+    let imageUrl : String?
+}
+
+struct ProductModel: Codable {
+    let id : String?
+    let name : String?
+    let price : Int?
+    let category : String?
+    let createdAt : String?
+    let createdBy : String?
+    let description : String?
+    let overallRanking : Int?
+    let imageUrl : String?
 }
 
 
