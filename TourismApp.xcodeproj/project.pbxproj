@@ -113,6 +113,8 @@
 		10E80DA92B1E049100E90841 /* DTSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E80DA82B1E049100E90841 /* DTSegmentedControl.swift */; };
 		10EB81442ABCBA1200D7126E /* Main_API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10EB81432ABCBA1200D7126E /* Main_API.swift */; };
 		10EB81462ABCBA7500D7126E /* MainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10EB81452ABCBA7500D7126E /* MainModel.swift */; };
+		3D195F3E2C50D01500B9970A /* ProductDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D195F3D2C50D01500B9970A /* ProductDetailViewController.swift */; };
+		3D195F402C50DD6100B9970A /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D195F3F2C50DD6100B9970A /* CommentTableViewCell.swift */; };
 		3D940EE22C4A30D800B571D5 /* BazarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D940EE12C4A30D800B571D5 /* BazarViewController.swift */; };
 		3D940EE52C4A30FB00B571D5 /* BazarAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D940EE42C4A30FB00B571D5 /* BazarAPI.swift */; };
 		3D940EE72C4A697300B571D5 /* BazarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D940EE62C4A697300B571D5 /* BazarTableViewCell.swift */; };
@@ -290,6 +292,8 @@
 		10E80DA82B1E049100E90841 /* DTSegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DTSegmentedControl.swift; sourceTree = "<group>"; };
 		10EB81432ABCBA1200D7126E /* Main_API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main_API.swift; sourceTree = "<group>"; };
 		10EB81452ABCBA7500D7126E /* MainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainModel.swift; sourceTree = "<group>"; };
+		3D195F3D2C50D01500B9970A /* ProductDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailViewController.swift; sourceTree = "<group>"; };
+		3D195F3F2C50DD6100B9970A /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
 		3D940EE12C4A30D800B571D5 /* BazarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BazarViewController.swift; sourceTree = "<group>"; };
 		3D940EE42C4A30FB00B571D5 /* BazarAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BazarAPI.swift; sourceTree = "<group>"; };
 		3D940EE62C4A697300B571D5 /* BazarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BazarTableViewCell.swift; sourceTree = "<group>"; };
@@ -1045,6 +1049,7 @@
 				3D940EE12C4A30D800B571D5 /* BazarViewController.swift */,
 				3D940EE42C4A30FB00B571D5 /* BazarAPI.swift */,
 				3D940EE82C4E6C3800B571D5 /* ProductViewController.swift */,
+				3D195F3D2C50D01500B9970A /* ProductDetailViewController.swift */,
 				3D940EEC2C4E7B3F00B571D5 /* Cell */,
 			);
 			path = Bazar;
@@ -1055,6 +1060,7 @@
 			children = (
 				3D940EE62C4A697300B571D5 /* BazarTableViewCell.swift */,
 				3D940EEA2C4E6E0700B571D5 /* ProductCollectionViewCell.swift */,
+				3D195F3F2C50DD6100B9970A /* CommentTableViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1493,6 +1499,7 @@
 				10DEB84D2A927877008CE34F /* MainViewController.swift in Sources */,
 				108FC8672A879F8D00A97BE0 /* ChatRecieverCell.swift in Sources */,
 				8C647FC32B49C91F00A6559C /* TripDetailsViewController.swift in Sources */,
+				3D195F3E2C50D01500B9970A /* ProductDetailViewController.swift in Sources */,
 				10DDB2492B16A81B00276787 /* CameraViewController.swift in Sources */,
 				102DC3462AE50B7E002AB6C3 /* SignInViewController.swift in Sources */,
 				101CCFE32AC4B62400D6E90C /* LanguageManager.swift in Sources */,
@@ -1534,6 +1541,7 @@
 				8CFEC6E62B4860B400B05492 /* PageViewController.swift in Sources */,
 				8C82DCC52B1E52BC00AD788E /* HotelsDetailsTableViewCell.swift in Sources */,
 				1003425C2AE8740E0075DE9A /* CommentsSmallTableViewCell.swift in Sources */,
+				3D195F402C50DD6100B9970A /* CommentTableViewCell.swift in Sources */,
 				10CA8A2B2B1BD4A10065E8E4 /* HotelViewController.swift in Sources */,
 				10B389C92B167D52007FCAD7 /* YouViewController.swift in Sources */,
 				10369B4A2AACF25800558A5E /* label.proto in Sources */,

@@ -8,7 +8,7 @@
 import UIKit
 
 class BazarViewController: UIViewController {
-    
+
     var markets = [MarketModel]() {
         didSet {
             tableView.reloadData()
@@ -41,7 +41,6 @@ class BazarViewController: UIViewController {
         initViews()
         setupNavigation()
         getData()
-        
     }
     
     private func setupNavigation() {}
@@ -65,7 +64,7 @@ class BazarViewController: UIViewController {
         
         view.addSubview(tableView)
 
-        let topInset : CGFloat = (navigationController?.navigationBar.frame.height ?? 10) + 60
+        let topInset: CGFloat = (navigationController?.navigationBar.frame.height ?? 10) + 60
         tableView.snp.makeConstraints { make in
             make.bottom.left.right.equalToSuperview()
             make.top.equalToSuperview().offset(topInset)
@@ -89,8 +88,9 @@ extension BazarViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let market = markets[indexPath.row]
         let productVC = ProductViewController()
+        productVC.marketID = market.id
         navigationController?.pushViewController(productVC, animated: true)
     }
-    
 }

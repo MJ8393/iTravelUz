@@ -145,7 +145,7 @@ class BazarTableViewCell: UITableViewCell {
         mainImageView.loadImageJava(url: market.imageUrl)
         nameLabel.text = market.name
         starLabel.text = "\(Double(market.overallRanking ?? 0))"
-        locationLabel.text = market.city
+        locationLabel.text = market.address
         phoneLabel.text = market.phoneNumber
     }
 }

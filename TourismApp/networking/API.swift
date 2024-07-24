@@ -47,8 +47,8 @@ class API {
     let API_URL_GET_HOTELS = BASE_URL + "/hotels"
     let API_URL_GET_RESTRAURANT = BASE_URL + "/restaurants"
     
+    // Bazar
     let API_URL_GET_MARKETS = BASE_URL_RAHMATULLO + ":8084/api/market"
-    
     
     // Trip Planner
     let API_URL_PLAN_TRIP = BASE_URL + "/plans/make_plan_for_me"
@@ -155,6 +155,8 @@ class API {
                 }
             }
     }
+    
+    
 }
 
 class Token {

@@ -34,7 +34,8 @@ class ProductCollectionViewCell: UICollectionViewCell {
     
     lazy var nameLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 17, weight: .medium)
+        label.numberOfLines = 0
+        label.font = UIFont.systemFont(ofSize: 14, weight: .medium)
         label.textColor = .label
         label.text = "Lagancha"
         return label
@@ -87,32 +88,44 @@ class ProductCollectionViewCell: UICollectionViewCell {
             make.height.equalTo(180)
         }
         
-        subView.addSubview(nameLabel)
-        nameLabel.snp.makeConstraints { make in
-            make.top.equalTo(mainImageView.snp.bottom).offset(2)
-            make.left.equalToSuperview().offset(12)
-        }
-        
         subView.addSubview(starLabel)
         starLabel.snp.makeConstraints { make in
             make.right.equalToSuperview().offset(-12)
-            make.centerY.equalTo(nameLabel)
+            make.top.equalTo(mainImageView.snp.bottom).offset(8)
         }
         
         subView.addSubview(starImageView)
         starImageView.snp.makeConstraints { make in
             make.right.equalTo(starLabel.snp.left).offset(-8)
-            make.centerY.equalTo(nameLabel)
+            make.centerY.equalTo(starLabel)
             make.height.width.equalTo(18)
+        }
+        
+        subView.addSubview(nameLabel)
+        nameLabel.snp.makeConstraints { make in
+            make.left.equalToSuperview().offset(12)
+            make.right.lessThanOrEqualTo(starImageView.snp.left).offset(-8)
+            make.centerY.equalTo(starLabel)
         }
         
         subView.addSubview(priceLabel)
         priceLabel.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(12)
-            make.top.equalTo(nameLabel.snp.bottom).offset(10)
-            make.bottom.equalToSuperview().offset(-10)
+            make.top.equalTo(nameLabel.snp.bottom).offset(8)
+            make.bottom.equalToSuperview().offset(-8)
         }
     }
+    
+    func configure(with product: ProductModel) {
+        nameLabel.text = product.name
+        starLabel.text = String(format: "%.1f", product.overallRanking ?? 0)
+        
+        let priceText = product.price != nil ? String(format: "%.2f", product.price!) : "N/A"
+        priceLabel.text = "\(priceText) $"
+        
+        mainImageView.loadImageJava(url: product.imageUrl)
+    }
+
     
     
     
