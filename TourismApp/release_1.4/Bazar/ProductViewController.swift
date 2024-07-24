@@ -10,7 +10,7 @@ import UIKit
 class ProductViewController: UIViewController {
 
     var marketID: String?
-    var products = [ProductModel]() // Assuming you have a ProductModel for your products
+    var products = [ProductModel]()
 
     lazy var subView: UIView = {
         let view = UIView()
@@ -71,7 +71,7 @@ extension ProductViewController: UICollectionViewDataSource, UICollectionViewDel
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductCollectionViewCell", for: indexPath) as! ProductCollectionViewCell
         let product = products[indexPath.item]
-        cell.configure(with: product) // Assuming you have a configure method
+        cell.configure(with: product)
         cell.backgroundColor = .clear
         return cell
     }
@@ -82,8 +82,11 @@ extension ProductViewController: UICollectionViewDataSource, UICollectionViewDel
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let selectedProduct = products[indexPath.item]
+        
         let vc = ProductDetailViewController()
         vc.modalPresentationStyle = .formSheet
+        vc.product = selectedProduct
         vc.modalTransitionStyle = .coverVertical
         present(vc, animated: true, completion: nil)
     }

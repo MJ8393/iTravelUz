@@ -9,11 +9,13 @@ import UIKit
 import SnapKit
 
 class ProductDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
+    
+    var product: ProductModel?
+    
     lazy var mainImageView: ActivityImageView = {
         let imageView = ActivityImageView(frame: .zero)
         imageView.image = UIImage(named: "korzinka")!
-        imageView.contentMode = .scaleAspectFill
+        imageView.contentMode = .scaleToFill
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 20
         imageView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
@@ -123,19 +125,31 @@ class ProductDetailViewController: UIViewController, UITableViewDelegate, UITabl
         view.addSubview(continueButton)
         
         setupConstraints()
+        setData()
+        
+    }
+    
+    private func setData() {
+        if let product = product {
+            mainImageView.loadImageJava(url: product.imageUrl)
+            
+            label.text = product.description
+            
+            tableView.reloadData()
+        }
     }
     
     private func setupConstraints() {
         mainImageView.snp.makeConstraints { make in
             make.left.right.top.equalToSuperview()
-            make.height.equalTo(320)
+            make.height.equalTo(350)
         }
         
         labelContainerView.snp.makeConstraints { make in
             make.top.equalTo(mainImageView.snp.bottom).offset(20)
             make.left.equalToSuperview().offset(20)
             make.right.equalToSuperview().offset(-20)
-            make.height.equalTo(80)
+            make.height.equalTo(100)
         }
         
         label.snp.makeConstraints { make in
@@ -203,14 +217,14 @@ class ProductDetailViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "CommentTableViewCell", for: indexPath) as? CommentTableViewCell else {
             return UITableViewCell()
         }
-        cell.commentLabel.text = "Bla bla bla"
+        cell.commentLabel.text = "This is nice product"
         cell.selectionStyle = .none
         return cell
     }
